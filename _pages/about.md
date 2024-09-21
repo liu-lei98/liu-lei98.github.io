@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "404 Not found!^_%"
+title: "Lei Liu's Wiki"
 author_profile: true
 redirect_from: 
   - /about/
