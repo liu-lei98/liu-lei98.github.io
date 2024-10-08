@@ -1,14 +1,14 @@
 ---
-title: "draw"
+title: "机械制图"
 collection: teaching
-type: " "
-permalink: /teaching/2014-spring-teaching-1
-venue: " "
-date:  
-location: " "
+type: "Workshop"
+permalink: /teaching/2015-spring-teaching-1
+venue: "University 1, Department"
+date: 2015-01-01
+location: "City, Country"
 ---
 
-机械制图 2024 秋
+This is a description of a teaching experience. You can use markdown like any other post.
 
 Heading 1
 ======
@@ -18,3 +18,4 @@ Heading 2
 
 Heading 3
 ======
+
