@@ -12,7 +12,8 @@ location: "Changsha, China"
 
 国标规定
 ======
+slidesurl: 'http://academicpages.github.io/files/MDchap0.pptx'
 
 简单平面图形绘制
 ======
-
+slidesurl: 'http://academicpages.github.io/files/MDchap1.pptx'
