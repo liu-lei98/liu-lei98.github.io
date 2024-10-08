@@ -10,10 +10,10 @@ location: "Changsha, China"
 
 关于机械制图的课件文件。
 
-国标规定[PPT](http://liu-lei98.github.io/files/MDchap0.pptx)
+国标规定[ref](https://www.mechtool.cn/drawingandaccuracy/index.html)
 ======
 
 
-简单平面图形绘制[PPT](http://liu-lei98.github.io/files/MDchap1.pptx)
+简单平面图形绘制[PPT](http://liu-lei98.github.io/files/MDchap1.pdf)
 ======
 
