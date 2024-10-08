@@ -1,5 +1,5 @@
 ---
-title: "机械制图"
+title: "draw"
 collection: teaching
 type: " "
 permalink: /teaching/2014-spring-teaching-1
