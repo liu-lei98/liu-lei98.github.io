@@ -8,7 +8,7 @@ date: 2024-09-30
 location: "Changsha, China"
 ---
 
-关于机械制图的课件文件。
+关于机械制图的课件文件[PPT files](https://pan.baidu.com/s/1uBgkNZ4krc9SV7Ut3s3G8Q?pwd=r12p)。
 
 国标规定[ref](https://www.mechtool.cn/drawingandaccuracy/index.html)
 ======
