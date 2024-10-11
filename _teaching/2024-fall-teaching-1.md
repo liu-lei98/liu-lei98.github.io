@@ -28,3 +28,15 @@ location: "Changsha, China"
 
 复杂平面图形绘制及作图步骤[PPT](http://liu-lei98.github.io/files/MDchap1.pdf)
 ======
+
+教材P17-1[ggd](https://www.geogebra.org/m/kbkqkmxb)
+
+习题集P7-1[ggd](https://www.geogebra.org/m/feyhuuyh)
+
+习题集P7-2[ggd](https://www.geogebra.org/m/gdksbbdt)
+
+习题集P7-2[ggd](https://www.geogebra.org/m/uczrn9wc)
+
+习题集P15-1[ggd](https://www.geogebra.org/m/qpryvtne)
+
+习题集P15-2[ggd](https://www.geogebra.org/m/ngm4nryc)
