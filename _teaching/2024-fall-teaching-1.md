@@ -31,9 +31,9 @@ location: "Changsha, China"
 
 教材P17-1[ggd](https://www.geogebra.org/m/kbkqkmxb)
 
-习题集P7-1[ggd](https://www.geogebra.org/m/feyhuuyh)
+习题集P7-1-🙅不完美[ggd](https://www.geogebra.org/m/feyhuuyh)
 
-习题集P7-2[ggd](https://www.geogebra.org/m/gdksbbdt)
+习题集P7-1[ggd](https://www.geogebra.org/m/gdksbbdt)
 
 习题集P7-2[ggd](https://www.geogebra.org/m/uczrn9wc)
 
