@@ -37,6 +37,6 @@ location: "Changsha, China"
 
 习题集P7-2[ggd](https://www.geogebra.org/m/uczrn9wc)
 
-习题集P15-1[ggd](https://www.geogebra.org/m/qpryvtne)
+习题集P15-1[ggd](https://www.geogebra.org/m/qwza2vbf)
 
 习题集P15-2[ggd](https://www.geogebra.org/m/ngm4nryc)
