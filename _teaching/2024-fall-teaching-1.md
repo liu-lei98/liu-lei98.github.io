@@ -40,3 +40,10 @@ location: "Changsha, China"
 习题集P15-1[ggd](https://www.geogebra.org/m/qwza2vbf)
 
 习题集P15-2[ggd](https://www.geogebra.org/m/ngm4nryc)
+
+正投影作图基础[PPT在做了在做了]
+======
+
+投影[ggd](https://www.geogebra.org/m/pkzmuzyb)
+
+三视图[ggd](https://www.geogebra.org/m/hdq7n38q)
