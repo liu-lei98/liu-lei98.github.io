@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Lei Liu's Wiki"
+title: "Lei Liu's Space"
 author_profile: true
 redirect_from: 
   - /about/
