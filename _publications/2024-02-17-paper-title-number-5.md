@@ -1,7 +1,7 @@
 ---
 title: "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging"
 collection: publications
-category: Journal
+category: sournal
 permalink: /publication/2024-02-17-paper-title-number-5
 excerpt: 'This paper is about Compressive spectral imaging'
 date: 2024-02-17

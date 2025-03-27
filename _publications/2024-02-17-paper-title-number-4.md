@@ -1,7 +1,7 @@
 ---
 title: "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging"
 collection: publications
-category: Journal
+category: journal
 permalink: /publication/2024-02-17-paper-title-number-4
 excerpt: 'This paper is about Compressive spectral imaging'
 date: 2024-02-17
