@@ -7,7 +7,11 @@ redirect_from:
   - /about.html
 ---
 
-Hi, this is Lei. My research interests include deep learning, computational imaging, and image restoration.
+Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！
+
+To Do
+======
+在努力探索自己正在生活的城市中！
 
 Publication
 ======
