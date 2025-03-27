@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "L_L / LLwiki"
+title                    : "L_L / LL space"
 title_separator          : "-"
 name                     : &name "Liu Lei"
 description              : &description "personal description"
@@ -24,8 +24,8 @@ author:
   avatar           : "photo.png"
   name             : "Liu Lei"
   pronouns         : # example: "she/her"  
-  bio              : "He is still living."
-  location         : "Earth"
+  bio              : "还在努力活着的一只普通生物！"
+  location         : "Earth，居然是地球人"
   #employer         : "Red Brick University"
   uri              : # URL
   email            : "liu_lei_98@163.com" 
