@@ -1,11 +1,5 @@
----
-title: "与你们相遇便是平凡而特殊的奇迹!O^O"
-excerpt: "
-一些日常的记录
-"
-collection: 📸
----
-
+<!DOCTYPE html>
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +7,16 @@ collection: 📸
     <style>
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
             background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
         }
         .thumbnail {
             width: 150px;
@@ -46,25 +46,26 @@ collection: 📸
     </style>
 </head>
 <body>
-    <p align = "left">
-    <br/><img src='/images/000012580010.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000014320010.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520004.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520007.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520008.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520013.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520014.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520020.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520021.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520022.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520023.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520028.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520031.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520034.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520036.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    <img src='/images/000045520037.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-    </p>
-    <!-- <img src="https://via.placeholder.com/300" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)"> -->
+    <h1>与你们相遇便是平凡而特殊的奇迹!O^O</h1>
+    <p>一些日常的记录</p>
+    <div class="gallery">
+        <img src='/images/000012580010.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000014320010.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520004.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520007.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520008.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520013.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520014.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520020.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520021.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520022.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520023.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520028.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520031.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520034.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520036.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520037.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    </div>
     <div class="overlay" id="overlay" onclick="closePreview()">
         <img id="preview-img" src="" alt="预览图">
     </div>
@@ -78,86 +79,4 @@ collection: 📸
         }
     </script>
 </body>
-
-
-
-<!-- </body>
-    <p align = "left">  
-        <br/><img src='/images/000012580010.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000014320010.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520004.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520007.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520008.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520013.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520014.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520020.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520021.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520022.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520023.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520028.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520031.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520034.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520036.jpg' width="30%" onclick="showModal(this)">
-        <img src='/images/000045520037.jpg' width="30%" onclick="showModal(this)">
-        </p>        
-  </body> -->
-
-
-<!-- <style>
-    .modal {
-       display: none;
-       position: fixed;
-       z-index: 9999;
-       top: 15%;
-       left: 15%;
-       width: auto;
-       height: auto;
-       background-color: rgba(160, 167, 133, 0.8);
-    }
-  
-    .modal-image {
-       display: block;
-       max-width: 50%;
-       max-height: 50%;
-       margin: auto;
-       margin-top: 5%;
-    }
- </style>
-
-<p align = "left">  
-<br/><img src='/images/000012580010.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000014320010.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520004.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520007.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520008.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520013.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520014.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520020.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520021.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520022.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520023.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520028.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520031.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520034.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520036.jpg' width="30%" onclick="showModal(this)">
-<img src='/images/000045520037.jpg' width="30%" onclick="showModal(this)">
-</p>
-
-
-<div id="modal" class="modal" onclick="hideModal()">
-    <img id="modal-image" class="modal-image">
-  </div>
-   
-<script>
-    function showModal(image) {
-    var modal = document.getElementById("modal");
-    var modalImage = document.getElementById("modal-image");
-    modal.style.display = "block";
-    modalImage.src = image.src;
-    }
-
-    function hideModal() {
-    var modal = document.getElementById("modal");
-    modal.style.display = "none";
-    }
-</script> -->
+</html>
