@@ -5,10 +5,11 @@ excerpt: "
 "
 collection: 📸
 ---
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <title>图片点击放大预览</title> -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,7 +72,9 @@ collection: 📸
     </style>
 </head>
 <body>
-    <!-- <h2>点击图片放大预览</h2> -->
+    <h2>点击图片放大预览</h2>
+    
+    <!-- 使用本地相对路径图片测试 -->
     <p align = "left">  
         <br/><img src='/images/000012580010.jpg' width="30%" class="thumbnail" alt="示例图片1">
         <img src='/images/000014320010.jpg' width="30%" class="thumbnail" alt="示例图片1">
@@ -90,9 +93,6 @@ collection: 📸
         <img src='/images/000045520036.jpg' width="30%" class="thumbnail" alt="示例图片1">
         <img src='/images/000045520037.jpg' width="30%" class="thumbnail" alt="示例图片1">
         </p>  
-    <!-- <img src="https://picsum.photos/200/150?random=1" class="thumbnail" alt="示例图片1">
-    <img src="https://picsum.photos/200/150?random=2" class="thumbnail" alt="示例图片2">
-    <img src="https://picsum.photos/200/150?random=3" class="thumbnail" alt="示例图片3"> -->
     
     <!-- 模态框 -->
     <div id="imageModal" class="modal">
@@ -101,40 +101,47 @@ collection: 📸
     </div>
 
     <script>
-        // 获取所有缩略图
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('expandedImg');
-        const closeBtn = document.querySelector('.close');
-        
-        // 为每个缩略图添加点击事件
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                modal.style.display = 'flex';
-                modalImg.src = this.src;
-                modalImg.alt = this.alt;
+        // 确保DOM完全加载后再执行JS
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有缩略图
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('expandedImg');
+            const closeBtn = document.querySelector('.close');
+            
+            // 为每个缩略图添加点击事件
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    console.log('图片被点击'); // 调试用
+                    modal.style.display = 'flex';
+                    modalImg.src = this.src;
+                    modalImg.alt = this.alt;
+                });
+            });
+            
+            // 点击关闭按钮
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // 点击模态框背景也关闭
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // 按ESC键关闭
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                }
             });
         });
-        
-        // 点击关闭按钮
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-        
-        // 点击模态框背景也关闭
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-        
-        // 按ESC键关闭
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.style.display === 'flex') {
-                modal.style.display = 'none';
-            }
-        });
     </script>
+</body>
+</html>
+
 <!-- </body>
     <p align = "left">  
         <br/><img src='/images/000012580010.jpg' width="30%" onclick="showModal(this)">
