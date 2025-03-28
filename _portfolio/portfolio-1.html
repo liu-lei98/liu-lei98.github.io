@@ -5,142 +5,83 @@ excerpt: "
 "
 collection: 📸
 ---
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片点击放大预览</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
         }
-        
         .thumbnail {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
+            width: 150px;
             cursor: pointer;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            transition: transform 0.2s;
+            transition: transform 0.3s;
         }
-        
         .thumbnail:hover {
-            transform: scale(1.02);
-            border-color: #999;
+            transform: scale(1.1);
         }
-        
-        .modal {
+        .overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
         }
-        
-        .modal-content {
+        .overlay img {
             max-width: 50vw;
             max-height: 50vh;
-            object-fit: contain;
-            animation: fadeIn 0.3s;
-        }
-        
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 <body>
-    <h2>点击图片放大预览</h2>
-    
-    <!-- 使用本地相对路径图片测试 -->
-    <p align = "left">  
-        <br/><img src='/images/000012580010.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000014320010.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520004.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520007.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520008.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520013.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520014.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520020.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520021.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520022.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520023.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520028.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520031.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520034.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520036.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        <img src='/images/000045520037.jpg' width="30%" class="thumbnail" alt="示例图片1">
-        </p>  
-    
-    <!-- 模态框 -->
-    <div id="imageModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="expandedImg">
+    <br/>
+    <img src='/images/000012580010.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000014320010.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520004.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520007.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520008.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520013.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520014.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520020.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520021.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520022.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520023.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520028.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520031.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520034.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520036.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <img src='/images/000045520037.jpg' width="30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <!-- <img src="https://via.placeholder.com/300" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)"> -->
+    <div class="overlay" id="overlay" onclick="closePreview()">
+        <img id="preview-img" src="" alt="预览图">
     </div>
-
     <script>
-        // 确保DOM完全加载后再执行JS
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有缩略图
-            const thumbnails = document.querySelectorAll('.thumbnail');
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('expandedImg');
-            const closeBtn = document.querySelector('.close');
-            
-            // 为每个缩略图添加点击事件
-            thumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function() {
-                    console.log('图片被点击'); // 调试用
-                    modal.style.display = 'flex';
-                    modalImg.src = this.src;
-                    modalImg.alt = this.alt;
-                });
-            });
-            
-            // 点击关闭按钮
-            closeBtn.addEventListener('click', function() {
-                modal.style.display = 'none';
-            });
-            
-            // 点击模态框背景也关闭
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-            
-            // 按ESC键关闭
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.style.display === 'flex') {
-                    modal.style.display = 'none';
-                }
-            });
-        });
+        function openPreview(src) {
+            document.getElementById('preview-img').src = src;
+            document.getElementById('overlay').style.display = 'flex';
+        }
+        function closePreview() {
+            document.getElementById('overlay').style.display = 'none';
+        }
     </script>
 </body>
 </html>
+
+
 
 <!-- </body>
     <p align = "left">  
