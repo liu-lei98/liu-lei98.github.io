@@ -5,13 +5,12 @@ excerpt: "
 "
 collection: 📸
 ---
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>与你们相遇便是平凡而特殊的奇迹!O^O</title>
+    <!-- <title>与你们相遇便是平凡而特殊的奇迹!O^O</title> -->
     <style>
         body {
             display: flex;
@@ -27,7 +26,7 @@ collection: 📸
             gap: 10px;
         }
         .thumbnail {
-            width: 150px;
+            width: 30%;
             cursor: pointer;
             transition: transform 0.3s;
         }
@@ -54,25 +53,25 @@ collection: 📸
     </style>
 </head>
 <body>
-    <!-- <h1>与你们相遇便是平凡而特殊的奇迹!O^O</h1> -->
+    <h1>与你们相遇便是平凡而特殊的奇迹!O^O</h1>
     <p>一些日常的记录</p>
     <div class="gallery">
-        <img src='/images/000012580010.jpg' width = "30%" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000014320010.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520004.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520007.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520008.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520013.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520014.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520020.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520021.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520022.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520023.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520028.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520031.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520034.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520036.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520037.jpg' width = "30%"  alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000012580010.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000014320010.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520004.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520007.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520008.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520013.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520014.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520020.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520021.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520022.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520023.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520028.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520031.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520034.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520036.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+        <img src='/images/000045520037.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
     </div>
     <div class="overlay" id="overlay" onclick="closePreview()">
         <img id="preview-img" src="" alt="预览图">
