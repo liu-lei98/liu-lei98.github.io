@@ -56,7 +56,7 @@ permalink: /portfolio/
         <div class="gallery-container" id="gallery">
             {% assign images = "/images/000012580010.jpg,/images/000014320010.jpg,/images/000045520004.jpg,/images/000045520007.jpg,/images/000045520008.jpg" | split: "," %}
             {% for image in images %}
-                <a href="{{ site.baseurl }}/portfolio/{{ image | split: '/' | last }}">
+                <a href="{{ site.baseurl }}/portfolio/images/{{ image | split: '/' | last }}">
                     <img src="{{ image }}" alt="图片" class="thumbnail">
                 </a>
             {% endfor %}
