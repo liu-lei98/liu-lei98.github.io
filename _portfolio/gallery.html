@@ -1,3 +1,9 @@
+---
+layout: default
+title: "图片预览"
+permalink: /portfolio/gallery
+---
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -6,25 +12,8 @@
     <title>图片预览</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
-        .gallery-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            padding: 20px;
-        }
-        .thumbnail {
-            width: auto;
-            max-width: 30%;
-            height: auto;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .thumbnail:hover {
-            transform: scale(1.1);
-        }
         .overlay {
-            display: none;
+            display: flex;
             position: fixed;
             top: 0;
             left: 0;
@@ -40,36 +29,11 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
-        .back-button {
-            display: block;
-            text-align: center;
-            margin: 20px auto;
-            font-size: 18px;
-            text-decoration: none;
-            color: #007bff;
-        }
     </style>
 </head>
 <body>
-    <div class="container text-center">
-        <a href="index.html" class="back-button">返回首页</a>
-        <div class="gallery-container">
-            <img src="/portfolio/images/000012580010.jpg" alt="图片" class="thumbnail" onclick="openPreview(this.src)">
-            <img src="/portfolio/images/000014320010.jpg" alt="图片" class="thumbnail" onclick="openPreview(this.src)">
-            <img src="/portfolio/images/000045520004.jpg" alt="图片" class="thumbnail" onclick="openPreview(this.src)">
-        </div>
+    <div class="overlay" onclick="window.history.back();">
+        <img src="/images/000012580010.jpg" alt="预览图">
     </div>
-    <div class="overlay" id="overlay" onclick="closePreview()">
-        <img id="preview-img" src="" alt="预览图">
-    </div>
-    <script>
-        function openPreview(src) {
-            document.getElementById('preview-img').src = src;
-            document.getElementById('overlay').style.display = 'flex';
-        }
-        function closePreview() {
-            document.getElementById('overlay').style.display = 'none';
-        }
-    </script>
 </body>
 </html>
