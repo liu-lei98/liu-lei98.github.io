@@ -29,7 +29,7 @@ collection: portfolio
 ---
 layout: page
 title: "与你们相遇便是平凡而特殊的奇迹!O^O"
-permalink: /portfolio/
+permalink: /portfolio/gallery/
 ---
 
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ permalink: /portfolio/
     <link rel="stylesheet" href="{{ "/assets/css/bootstrap.min.css" | relative_url }}">
     <style>
         .gallery-container {
-            display: flex;
+            display: none;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
@@ -78,9 +78,9 @@ permalink: /portfolio/
 </head>
 <body>
     <div class="container text-center">
-        <h1 class="my-4">{{ page.title }}</h1>
+        <h1 class="my-4" onclick="toggleGallery()" style="cursor: pointer;">{{ page.title }} ▼</h1>
         <p>一些日常的记录</p>
-        <div class="gallery-container">
+        <div class="gallery-container" id="gallery">
             {% for image in site.static_files %}
                 {% if image.path contains '/images/' %}
                     <img src="{{ image.path }}" alt="图片" class="thumbnail" onclick="openPreview(this.src)">
@@ -92,6 +92,14 @@ permalink: /portfolio/
         <img id="preview-img" src="" alt="预览图">
     </div>
     <script>
+        function toggleGallery() {
+            var gallery = document.getElementById('gallery');
+            if (gallery.style.display === 'none' || gallery.style.display === '') {
+                gallery.style.display = 'flex';
+            } else {
+                gallery.style.display = 'none';
+            }
+        }
         function openPreview(src) {
             document.getElementById('preview-img').src = src;
             document.getElementById('overlay').style.display = 'flex';
