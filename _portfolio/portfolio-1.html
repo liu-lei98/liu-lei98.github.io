@@ -26,19 +26,13 @@ collection: portfolio
 <br/><br/><img src='/images/000045520035.jpg'>
 <br/><br/><img src='/images/000045520036.jpg'>
 <br/><br/><img src='/images/000045520037.jpg'> -->
----
-layout: page
-title: "与你们相遇便是平凡而特殊的奇迹!O^O"
-<!-- permalink: /portfolio/gallery/ -->
----
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ "/assets/css/bootstrap.min.css" | relative_url }}">
+    <title>与你们相遇便是平凡而特殊的奇迹!O^O</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
         .gallery-container {
             display: none;
@@ -78,14 +72,14 @@ title: "与你们相遇便是平凡而特殊的奇迹!O^O"
 </head>
 <body>
     <div class="container text-center">
-        <h1 class="my-4" onclick="toggleGallery()" style="cursor: pointer;">{{ page.title }} ▼</h1>
+        <h1 class="my-4" onclick="toggleGallery()" style="cursor: pointer;">与你们相遇便是平凡而特殊的奇迹!O^O ▼</h1>
         <p>一些日常的记录</p>
         <div class="gallery-container" id="gallery">
-            {% for image in site.static_files %}
-                {% if image.path contains '/images/' %}
-                    <img src="{{ image.path }}" alt="图片" class="thumbnail" onclick="openPreview(this.src)">
-                {% endif %}
-            {% endfor %}
+            <img src="/images/000012580010.jpg" alt="图片" class="thumbnail" onclick="openPreview(this.src)">
+            <img src="/images/000014320010.jpg" alt="图片" class="thumbnail" onclick="openPreview(this.src)">
+            <img src="/images/000045520004.jpg" alt="图片" class="thumbnail" onclick="openPreview(this.src)">
+            <img src="/images/000045520007.jpg" alt="图片" class="thumbnail" onclick="openPreview(this.src)">
+            <img src="/images/000045520008.jpg" alt="图片" class="thumbnail" onclick="openPreview(this.src)">
         </div>
     </div>
     <div class="overlay" id="overlay" onclick="closePreview()">
