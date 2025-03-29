@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>与你们相遇便是平凡而特殊的奇迹!O^O</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <style>
+        .gallery-container {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+        .thumbnail {
+            width: auto;
+            max-width: 30%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .thumbnail:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="my-4" onclick="toggleGallery()" style="cursor: pointer;">与你们相遇便是平凡而特殊的奇迹!O^O ▼</h1>
+        <p>一些日常的记录</p>
+        <div class="gallery-container" id="gallery">
+            <a href="gallery.html"><img src="/portfolio/images/000012580010.jpg" alt="图片" class="thumbnail"></a>
+            <a href="gallery.html"><img src="/portfolio/images/000014320010.jpg" alt="图片" class="thumbnail"></a>
+            <a href="gallery.html"><img src="/portfolio/images/000045520004.jpg" alt="图片" class="thumbnail"></a>
+        </div>
+    </div>
+    <script>
+        function toggleGallery() {
+            var gallery = document.getElementById('gallery');
+            gallery.style.display = (gallery.style.display === 'none' || gallery.style.display === '') ? 'flex' : 'none';
+        }
+    </script>
+</body>
+</html>
