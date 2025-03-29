@@ -54,16 +54,15 @@ author_profile: true
             margin-top: 10px;
         }
         .nav-buttons button {
-            padding: 10px;
-            font-size: 16px;
+            background: transparent;
             border: none;
-            background: white;
+            font-size: 30px;
+            color: white;
             cursor: pointer;
-            border-radius: 5px;
             transition: 0.3s;
         }
         .nav-buttons button:hover {
-            background: #ddd;
+            color: #ddd;
         }
     </style>
 </head>
@@ -81,9 +80,11 @@ author_profile: true
     </div>
 
     <div class="overlay" id="overlay">
-        <button onclick="prevImage()">◀ 上一张</button>
+        <div class="nav-buttons">
+            <button onclick="prevImage()">◀</button>
+            <button onclick="nextImage()">▶</button>
+        </div>
         <img id="preview-img" src="" alt="预览图">
-        <button onclick="nextImage()">下一张 ▶</button>
     </div>
 
     <script>
