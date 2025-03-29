@@ -1,29 +1,23 @@
 ---
+layout: page
 title: "与你们相遇便是平凡而特殊的奇迹!O^O"
-excerpt: "
-一些日常的记录
-"
-collection: 📸
+permalink: /portfolio/gallery/
 ---
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <title>与你们相遇便是平凡而特殊的奇迹!O^O</title> -->
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/css/bootstrap.min.css" | relative_url }}">
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: #f0f0f0;
-            padding: 20px;
-        }
         .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
+            padding: 20px;
         }
         .thumbnail {
             width: 30%;
@@ -53,25 +47,16 @@ collection: 📸
     </style>
 </head>
 <body>
-    <h1>与你们相遇便是平凡而特殊的奇迹!O^O</h1>
-    <p>一些日常的记录</p>
-    <div class="gallery">
-        <img src='/images/000012580010.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000014320010.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520004.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520007.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520008.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520013.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520014.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520020.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520021.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520022.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520023.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520028.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520031.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520034.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520036.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
-        <img src='/images/000045520037.jpg' alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+    <div class="container text-center">
+        <h1 class="my-4">{{ page.title }}</h1>
+        <p>一些日常的记录</p>
+        <div class="gallery">
+            {% for image in site.static_files %}
+                {% if image.path contains '/images/' %}
+                    <img src="{{ image.path | relative_url }}" alt="点击放大" class="thumbnail" onclick="openPreview(this.src)">
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
     <div class="overlay" id="overlay" onclick="closePreview()">
         <img id="preview-img" src="" alt="预览图">
