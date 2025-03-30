@@ -95,7 +95,7 @@ author_profile: true
     <!-- Gallery 画廊 -->
     <div class="gallery-container" id="gallery">
         {% for file in site.static_files %}
-            {% if file.path contains '/portfolio/images/gallery1/' %}
+            {% if file.path contains '/images/gallery1/' %}
                 <img src="{{ file.path }}" alt="图片" class="thumbnail">
             {% endif %}
         {% endfor %}
