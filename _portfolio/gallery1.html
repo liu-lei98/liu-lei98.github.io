@@ -16,21 +16,19 @@ author_profile: true
         /* 画廊容器 */
         .gallery-container {
             display: flex;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
             padding: 20px;
+            align-items: flex-start; /* 保持图片原始比例，不统一对齐 */
         }
 
-        /* 缩略图样式，保持原始比例 */
         .thumbnail {
-            max-width: 30%;
-            height: auto;
-            object-fit: cover;
+            max-width: 30%; /* 最大宽度不超过30%，但不拉伸 */
+            height: auto; /* 保持原始比例 */
             cursor: pointer;
             transition: transform 0.3s;
         }
-
         .thumbnail:hover {
             transform: scale(1.1);
         }
