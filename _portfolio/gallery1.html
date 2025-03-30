@@ -68,19 +68,18 @@ author_profile: true
         }
 
         .nav-buttons button {
-            background: rgba(255, 255, 255, 0.3); /* 半透明白色 */
+            background: none; /* 无背景色 */
             border: none;
             font-size: 24px;
-            color: #fff;
+            color: #fff; /* 纯白色字体 */
             cursor: pointer;
-            padding: 12px 18px;
-            border-radius: 50px; /* 圆角按钮 */
-            transition: background 0.3s ease;
+            padding: 10px 15px;
             pointer-events: auto; /* 允许按钮被点击 */
+            transition: box-shadow 0.2s ease;
         }
 
-        .nav-buttons button:hover {
-            background: rgba(255, 255, 255, 0.6); /* 悬停时加深透明度 */
+        .nav-buttons button:active {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 点击时发光 */
         }
 
     </style>
