@@ -62,24 +62,27 @@ author_profile: true
             width: 100%;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             transform: translateY(-50%);
+            pointer-events: none; /* 让点击只作用于按钮本身 */
         }
 
         .nav-buttons button {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.3); /* 半透明白色 */
             border: none;
-            font-size: 30px;
-            color: white;
+            font-size: 24px;
+            color: #fff;
             cursor: pointer;
-            padding: 15px;
-            border-radius: 50%;
-            transition: 0.3s;
+            padding: 12px 18px;
+            border-radius: 50px; /* 圆角按钮 */
+            transition: background 0.3s ease;
+            pointer-events: auto; /* 允许按钮被点击 */
         }
 
         .nav-buttons button:hover {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.6); /* 悬停时加深透明度 */
         }
+
     </style>
 </head>
 <body>
