@@ -25,7 +25,7 @@ author_profile: true
         /* 缩略图样式，保持原始比例 */
         .thumbnail {
             max-width: 30%;
-            height: auto;
+            height: 30%;
             object-fit: cover;
             cursor: pointer;
             transition: transform 0.3s;
@@ -35,7 +35,7 @@ author_profile: true
             transform: scale(1.1);
         }
 
-        /* 预览层 */
+        /* 预览层，带毛玻璃背景 */
         .overlay {
             display: none;
             position: fixed;
@@ -43,7 +43,8 @@ author_profile: true
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
             justify-content: center;
             align-items: center;
         }
@@ -53,10 +54,10 @@ author_profile: true
             max-width: 70vw;
             max-height: 80vh;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
-        /* 左右切换按钮 */
+        /* 左右切换按钮，带毛玻璃效果 */
         .nav-buttons {
             position: absolute;
             top: 50%;
@@ -67,18 +68,19 @@ author_profile: true
         }
 
         .nav-buttons button {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
             border: none;
             font-size: 30px;
-            color: black;
+            color: white;
             cursor: pointer;
-            padding: 10px;
+            padding: 15px;
             border-radius: 50%;
             transition: 0.3s;
         }
 
         .nav-buttons button:hover {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.4);
         }
 
         /* Gallery 入口样式 */
@@ -121,7 +123,7 @@ author_profile: true
     <!-- Gallery 画廊 -->
     <div class="gallery-container" id="gallery">
         {% for file in site.static_files %}
-            {% if file.path contains '/images/gallery1/' %}
+            {% if file.path contains '/portfolio/images/gallery1/' %}
                 <img src="{{ file.path }}" alt="图片" class="thumbnail">
             {% endif %}
         {% endfor %}
