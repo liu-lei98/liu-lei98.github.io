@@ -22,17 +22,17 @@ redirect_from:
             padding: 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: auto;
             background: #fff;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         h1, h2 {
             font-weight: bold;
             color: #5a4a42;
-            text-align: center;
+            text-align: right; /* 标题右对齐 */
         }
         h2 {
             margin-top: 30px;
@@ -41,18 +41,28 @@ redirect_from:
         }
         .section {
             margin-bottom: 20px;
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: column;
+            /* align-items: flex-end; 让内容靠右 */
         }
         .list-item {
             margin: 10px 0;
+            width: 100%; /* 让列表项占据整个区域，避免挤压 */
+            text-align: right;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .list-item:nth-child(odd) {
+            background: rgba(200, 180, 160, 0.2); /* 交替色块，增加可读性 */
         }
         .btn-link {
-            display: block;
+            display: inline-block;
             text-decoration: none;
             background: #91877d;
             color: white;
             padding: 8px 15px;
             border-radius: 5px;
-            text-align: center;
             transition: 0.3s;
         }
         .btn-link:hover {
@@ -77,15 +87,15 @@ redirect_from:
 
     <div class="section">
         <h2>🔧 技能</h2>
-        <ul>
-            <li>🏋️‍♂️ 卧推 16kg（还不如别人推空杆了）</li>
-            <li>🐟 摸鱼等级 MAX（所谓的能力越小责任越小）</li>
+        <ul style="width: 100%;">
+            <li class="list-item">🏋️‍♂️ 卧推 16kg（还不如别人推空杆了）</li>
+            <li class="list-item">🐟 摸鱼等级 MAX（所谓的能力越小责任越小）</li>
         </ul>
     </div>
 
     <div class="section">
         <h2>📚 论文发表</h2>
-        <ul>
+        <ul style="width: 100%;">
             {% for post in site.publications reversed %}
                 <li class="list-item">{% include archive-single-cv.html %}</li>
             {% endfor %}
@@ -94,7 +104,7 @@ redirect_from:
 
     <div class="section">
         <h2>🎤 会议报告</h2>
-        <ul>
+        <ul style="width: 100%;">
             {% for post in site.talks reversed %}
                 <li class="list-item">{% include archive-single-talk-cv.html %}</li>
             {% endfor %}
@@ -103,7 +113,7 @@ redirect_from:
 
     <div class="section">
         <h2>📖 教学经历</h2>
-        <ul>
+        <ul style="width: 100%;">
             {% for post in site.teaching reversed %}
                 <li class="list-item">{% include archive-single-cv.html %}</li>
             {% endfor %}
