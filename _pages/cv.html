@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CV"
+<!-- title: "CV" -->
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -14,15 +14,14 @@ redirect_from:
     <title>个人简历 - CV</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
-        /* 基础样式 */
         body {
             font-family: "微软雅黑", "Noto Sans SC", sans-serif;
-            background-color: #f6f5f3; /* 柔和米色背景 */
-            color: #4a4a4a; /* 深灰色字体 */
+            background-color: #f6f5f3;
+            color: #4a4a4a;
             padding: 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: auto;
             background: #fff;
             padding: 20px;
@@ -44,33 +43,25 @@ redirect_from:
         }
         .section ul {
             display: flex;
-            flex-wrap: wrap; /* 允许换行 */
-            justify-content: space-between; /* 让项目均匀分布 */
+            flex-wrap: wrap;
             padding: 0;
-            list-style: none; /* 去掉默认列表样式 */
+            list-style: none;
         }
-
         .section ul li {
-            flex: 1 1 calc(33.333% - 20px); /* 让每个列表项占 1/3 宽度，减去间距 */
-            margin: 10px;
-            padding: 15px;
+            flex: 1 1 100%; /* 默认占满整行 */
+            margin: 5px 0;
+            padding: 10px;
             background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .section ul li:hover {
-            transform: translateY(-5px);
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
         }
         .btn-link {
-            display: block;
+            display: inline-block;
             text-decoration: none;
             background: #91877d;
             color: white;
             padding: 8px 15px;
             border-radius: 5px;
-            text-align: center;
             transition: 0.3s;
         }
         .btn-link:hover {
@@ -79,20 +70,16 @@ redirect_from:
     </style>
 </head>
 <body>
-
 <div class="container">
     <h1>📄 个人简历 - CV</h1>
-
     <div class="section">
         <h2>🎓 教育背景</h2>
-        <p class="list-item">📌 Ph.D in Chicken Theory, Wild Chicken University, 2012</p>
+        <ul><li>📌 Ph.D in Chicken Theory, Wild Chicken University, 2012</li></ul>
     </div>
-
     <div class="section">
         <h2>💼 工作经历</h2>
-        <p class="list-item">🔨 在学校搬砖中</p>
+        <ul><li>🔨 在学校搬砖中</li></ul>
     </div>
-
     <div class="section">
         <h2>🔧 技能</h2>
         <ul>
@@ -100,40 +87,34 @@ redirect_from:
             <li>🐟 摸鱼等级 MAX（所谓的能力越小责任越小）</li>
         </ul>
     </div>
-
     <div class="section">
         <h2>📚 论文发表</h2>
         <ul>
             {% for post in site.publications reversed %}
-                <li class="list-item">{% include archive-single-cv.html %}</li>
+                <li>{% include archive-single-cv.html %}</li>
             {% endfor %}
         </ul>
     </div>
-
     <div class="section">
         <h2>🎤 会议报告</h2>
         <ul>
             {% for post in site.talks reversed %}
-                <li class="list-item">{% include archive-single-talk-cv.html %}</li>
+                <li>{% include archive-single-talk-cv.html %}</li>
             {% endfor %}
         </ul>
     </div>
-
     <div class="section">
         <h2>📖 教学经历</h2>
         <ul>
             {% for post in site.teaching reversed %}
-                <li class="list-item">{% include archive-single-cv.html %}</li>
+                <li>{% include archive-single-cv.html %}</li>
             {% endfor %}
         </ul>
     </div>
-
     <div class="section">
         <h2>🏅 个人服务 & 领导力</h2>
-        <p class="list-item">🍾 是某黑粉头子</p>
+        <ul><li>🍾 是某黑粉头子</li></ul>
     </div>
-
 </div>
-
 </body>
 </html>
