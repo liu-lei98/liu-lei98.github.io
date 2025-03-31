@@ -6,40 +6,116 @@ author_profile: true
 redirect_from:
   - /resume
 ---
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历 - CV</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: "微软雅黑", "Noto Sans SC", sans-serif;
+            background-color: #f6f5f3; /* 柔和米色背景 */
+            color: #4a4a4a; /* 深灰色字体 */
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            font-weight: bold;
+            color: #5a4a42;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #c5b8a5;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .list-item {
+            margin: 10px 0;
+        }
+        .btn-link {
+            display: block;
+            text-decoration: none;
+            background: #91877d;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .btn-link:hover {
+            background: #776c62;
+        }
+    </style>
+</head>
+<body>
 
-{% include base_path %}
+<div class="container">
+    <h1>📄 个人简历 - CV</h1>
 
-Education
-======
-* Ph.D in Chicken Theory, Wild Chicken University, 2012
+    <div class="section">
+        <h2>🎓 教育背景</h2>
+        <p class="list-item">📌 Ph.D in Chicken Theory, Wild Chicken University, 2012</p>
+    </div>
 
-Work experience
-======
-* 在学校搬砖中
-  
-Skills
-======
-* 卧推 16kg（还不如别人推空杆了
-* 摸鱼等级max（所谓的能力越小责任越小
+    <div class="section">
+        <h2>💼 工作经历</h2>
+        <p class="list-item">🔨 在学校搬砖中</p>
+    </div>
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* 是🍾的黑粉头子
+    <div class="section">
+        <h2>🔧 技能</h2>
+        <ul>
+            <li>🏋️‍♂️ 卧推 16kg（还不如别人推空杆了）</li>
+            <li>🐟 摸鱼等级 MAX（所谓的能力越小责任越小）</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>📚 论文发表</h2>
+        <ul>
+            {% for post in site.publications reversed %}
+                <li class="list-item">{% include archive-single-cv.html %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🎤 会议报告</h2>
+        <ul>
+            {% for post in site.talks reversed %}
+                <li class="list-item">{% include archive-single-talk-cv.html %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>📖 教学经历</h2>
+        <ul>
+            {% for post in site.teaching reversed %}
+                <li class="list-item">{% include archive-single-cv.html %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🏅 个人服务 & 领导力</h2>
+        <p class="list-item">🍾 是某黑粉头子</p>
+    </div>
+
+</div>
+
+</body>
+</html>
