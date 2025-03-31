@@ -13,27 +13,53 @@ author_profile: true
     <title>与你们相遇便是平凡而特殊的奇迹!O^O</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
-        /* 画廊容器 */
+        /* 🏞️ 吉卜力风格背景 */
+        body {
+            background: linear-gradient(to bottom, #dfe9f3, #fef5e7);
+            font-family: 'Georgia', serif;
+            color: #5a4d41;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* 📜 标题样式 */
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #3c2f2f;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #5a4d41;
+        }
+
+        /* 📸 画廊容器 */
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
             padding: 20px;
-            align-items: flex-start; /* 保持图片原始比例，不统一对齐 */
+            align-items: flex-start;
         }
 
+        /* 🎨 缩略图样式（保留原始比例） */
         .thumbnail {
-            max-width: 30%; /* 最大宽度不超过30%，但不拉伸 */
-            height: auto; /* 保持原始比例 */
+            max-width: 30%;
+            height: auto;
+            border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s ease-in-out;
         }
+
         .thumbnail:hover {
             transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* 预览层，带毛玻璃背景 */
+        /* 🪟 预览层 */
         .overlay {
             display: none;
             position: fixed;
@@ -42,20 +68,22 @@ author_profile: true
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             justify-content: center;
             align-items: center;
+            transition: opacity 0.3s ease-in-out;
         }
 
-        /* 预览大图 */
+        /* 🔎 预览大图 */
         .overlay img {
             max-width: 70vw;
             max-height: 80vh;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease-in-out;
         }
 
-        /* 左右切换按钮，带毛玻璃效果 */
+        /* 🔄 左右切换按钮 */
         .nav-buttons {
             position: absolute;
             top: 50%;
@@ -63,36 +91,40 @@ author_profile: true
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* transform: translateY(-50%); */
-            pointer-events: none; /* 让点击只作用于按钮本身 */
+            pointer-events: none;
         }
 
+        /* 🏹 切换按钮（ins风，去背景，点击时发光） */
         .nav-buttons button {
-            background: none; /* 无背景色 */
+            background: none;
             border: none;
-            font-size: 24px;
-            color: #fff; /* 纯白色字体 */
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.8);
             cursor: pointer;
             padding: 10px 15px;
-            pointer-events: auto; /* 允许按钮被点击 */
-            transition: box-shadow 0.2s ease;
+            pointer-events: auto;
+            transition: text-shadow 0.2s ease-in-out;
+        }
+
+        .nav-buttons button:hover {
+            text-shadow: 0 0 12px rgba(255, 255, 255, 1);
         }
 
         .nav-buttons button:active {
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 点击时发光 */
+            text-shadow: 0 0 20px rgba(255, 255, 255, 1);
         }
 
     </style>
 </head>
 <body>
 
-    <!-- 画廊标题 -->
+    <!-- 📖 标题部分 -->
     <div class="container text-center">
         <h1 class="my-4">与你们相遇便是平凡而特殊的奇迹!O^O</h1>
         <p>一些日常的记录</p>
     </div>
 
-    <!-- Gallery 画廊 -->
+    <!-- 📸 画廊 -->
     <div class="gallery-container" id="gallery">
         {% for file in site.static_files %}
             {% if file.path contains '/images/gallery1/' %}
@@ -101,7 +133,7 @@ author_profile: true
         {% endfor %}
     </div>
 
-    <!-- 预览层 -->
+    <!-- 🔍 预览层 -->
     <div class="overlay" id="overlay">
         <div class="nav-buttons">
             <button onclick="prevImage()">◀</button>
