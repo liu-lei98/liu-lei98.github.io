@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: none
 title: "CV"
 permalink: /cv/
 author_profile: true
@@ -14,14 +14,15 @@ redirect_from:
     <title>个人简历 - CV</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
+        /* 基础样式 */
         body {
             font-family: "微软雅黑", "Noto Sans SC", sans-serif;
-            background-color: #f6f5f3;
-            color: #4a4a4a;
+            background-color: #f6f5f3; /* 柔和米色背景 */
+            color: #4a4a4a; /* 深灰色字体 */
             padding: 20px;
         }
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: auto;
             background: #fff;
             padding: 20px;
@@ -41,27 +42,17 @@ redirect_from:
         .section {
             margin-bottom: 20px;
         }
-        .section ul {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 0;
-            list-style: none;
-        }
-        .section ul li {
-            flex: 1 1 100%; /* 默认占满整行 */
-            margin: 5px 0;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        .list-item {
+            margin: 10px 0;
         }
         .btn-link {
-            display: inline-block;
+            display: block;
             text-decoration: none;
             background: #91877d;
             color: white;
             padding: 8px 15px;
             border-radius: 5px;
+            text-align: center;
             transition: 0.3s;
         }
         .btn-link:hover {
@@ -70,16 +61,20 @@ redirect_from:
     </style>
 </head>
 <body>
+
 <div class="container">
     <h1>📄 个人简历 - CV</h1>
+
     <div class="section">
         <h2>🎓 教育背景</h2>
-        <ul><li>📌 Ph.D in Chicken Theory, Wild Chicken University, 2012</li></ul>
+        <p class="list-item">📌 Ph.D in Chicken Theory, Wild Chicken University, 2012</p>
     </div>
+
     <div class="section">
         <h2>💼 工作经历</h2>
-        <ul><li>🔨 在学校搬砖中</li></ul>
+        <p class="list-item">🔨 在学校搬砖中</p>
     </div>
+
     <div class="section">
         <h2>🔧 技能</h2>
         <ul>
@@ -87,34 +82,40 @@ redirect_from:
             <li>🐟 摸鱼等级 MAX（所谓的能力越小责任越小）</li>
         </ul>
     </div>
+
     <div class="section">
         <h2>📚 论文发表</h2>
         <ul>
             {% for post in site.publications reversed %}
-                <li>{% include archive-single-cv.html %}</li>
+                <li class="list-item">{% include archive-single-cv.html %}</li>
             {% endfor %}
         </ul>
     </div>
+
     <div class="section">
         <h2>🎤 会议报告</h2>
         <ul>
             {% for post in site.talks reversed %}
-                <li>{% include archive-single-talk-cv.html %}</li>
+                <li class="list-item">{% include archive-single-talk-cv.html %}</li>
             {% endfor %}
         </ul>
     </div>
+
     <div class="section">
         <h2>📖 教学经历</h2>
         <ul>
             {% for post in site.teaching reversed %}
-                <li>{% include archive-single-cv.html %}</li>
+                <li class="list-item">{% include archive-single-cv.html %}</li>
             {% endfor %}
         </ul>
     </div>
+
     <div class="section">
         <h2>🏅 个人服务 & 领导力</h2>
-        <ul><li>🍾 是某黑粉头子</li></ul>
+        <p class="list-item">🍾 是某黑粉头子</p>
     </div>
+
 </div>
+
 </body>
 </html>
