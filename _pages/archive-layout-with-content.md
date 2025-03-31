@@ -4,174 +4,215 @@ layout: archive
 permalink: /archive-layout-with-content/
 ---
 
-A variety of common markup showing how the theme styles them.
-
-# Header one
-
-## Header two
-
-### Header three
-
-#### Header four
-
-##### Header five
-
-###### Header six
-
-## Blockquotes
-
-Single line blockquote:
-
-> Quotes are cool.
-
-## Tables
-
-| Entry            | Item   |                                                              |
-| --------         | ------ | ------------------------------------------------------------ |
-| [John Doe](#)    | 2016   | Description of the item in the list                          |
-| [Jane Doe](#)    | 2019   | Description of the item in the list                          |
-| [Doe Doe](#)     | 2022   | Description of the item in the list                          |
-
-| Header1 | Header2 | Header3 |
-|:--------|:-------:|--------:|
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|-----------------------------|
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|=============================|
-| Foot1   | Foot2   | Foot3   |
-
-## Definition Lists
-
-Definition List Title
-:   Definition list division.
-
-Startup
-:   A startup company or startup is a company or temporary organization designed to search for a repeatable and scalable business model.
-
-#dowork
-:   Coined by Rob Dyrdek and his personal body guard Christopher "Big Black" Boykins, "Do Work" works as a self motivator, to motivating your friends.
-
-Do It Live
-:   I'll let Bill O'Reilly [explain](https://www.youtube.com/watch?v=O_HyZ5aW76c "We'll Do It Live") this one.
-
-## Unordered Lists (Nested)
-
-  * List item one 
-      * List item one 
-          * List item one
-          * List item two
-          * List item three
-          * List item four
-      * List item two
-      * List item three
-      * List item four
-  * List item two
-  * List item three
-  * List item four
-
-## Ordered List (Nested)
-
-  1. List item one 
-      1. List item one 
-          1. List item one
-          2. List item two
-          3. List item three
-          4. List item four
-      2. List item two
-      3. List item three
-      4. List item four
-  2. List item two
-  3. List item three
-  4. List item four
-
-## Buttons
-
-Make any link standout more when applying the `.btn` class.
-
-## Notices
-
-**Watch out!** You can also add notices by appending `{: .notice}` to a paragraph.
-{: .notice}
-
-## HTML Tags
-
-### Address Tag
-
-<address>
-  1 Infinite Loop<br /> Cupertino, CA 95014<br /> United States
-</address>
-
-### Anchor Tag (aka. Link)
-
-This is an example of a [link](http://github.com "Github").
-
-### Abbreviation Tag
-
-The abbreviation CSS stands for "Cascading Style Sheets".
-
-*[CSS]: Cascading Style Sheets
-
-### Cite Tag
-
-"Code is poetry." ---<cite>Automattic</cite>
-
-### Code Tag
-
-You will learn later on in these tests that `word-wrap: break-word;` will be your best friend.
-
-### Strike Tag
-
-This tag will let you <strike>strikeout text</strike>.
-
-### Emphasize Tag
-
-The emphasize tag should _italicize_ text.
-
-### Insert Tag
-
-This tag should denote <ins>inserted</ins> text.
-
-### Keyboard Tag
-
-This scarcely known tag emulates <kbd>keyboard text</kbd>, which is usually styled like the `<code>` tag.
-
-### Preformatted Tag
-
-This tag styles large blocks of code.
-
-<pre>
-.post-title {
-  margin: 0 0 5px;
-  font-weight: bold;
-  font-size: 38px;
-  line-height: 1.2;
-  and here's a line of some really, really, really, really long text, just to see how the PRE tag handles it and to find out how it overflows;
-}
-</pre>
-
-### Quote Tag
-
-<q>Developers, developers, developers&#8230;</q> &#8211;Steve Ballmer
-
-### Strong Tag
-
-This tag shows **bold text**.
-
-### Subscript Tag
-
-Getting our science styling on with H<sub>2</sub>O, which should push the "2" down.
-
-### Superscript Tag
-
-Still sticking with science and Isaac Newton's E = MC<sup>2</sup>, which should lift the 2 up.
-
-### Variable Tag
-
-This allows you to denote <var>variables</var>.
-
 {% include base_path %}
-{% for post in site.pages %}
-{% include archive-single.html %}
-{% endfor %}
+
+<div class="container">
+    <h1 class="page-title">A variety of common markup showing how the theme styles them.</h1>
+
+    <!-- Header Section -->
+    <div class="section">
+        <h2>Header One</h2>
+        <h3>Header Two</h3>
+        <h4>Header Three</h4>
+        <h5>Header Four</h5>
+        <h6>Header Five</h6>
+    </div>
+
+    <!-- Blockquotes -->
+    <div class="section">
+        <h2>Blockquotes</h2>
+        <blockquote>Quotes are cool.</blockquote>
+    </div>
+
+    <!-- Tables -->
+    <div class="section">
+        <h2>Tables</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Entry</th>
+                    <th>Item</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">John Doe</a></td>
+                    <td>2016</td>
+                    <td>Description of the item in the list</td>
+                </tr>
+                <tr>
+                    <td><a href="#">Jane Doe</a></td>
+                    <td>2019</td>
+                    <td>Description of the item in the list</td>
+                </tr>
+                <tr>
+                    <td><a href="#">Doe Doe</a></td>
+                    <td>2022</td>
+                    <td>Description of the item in the list</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Definition Lists -->
+    <div class="section">
+        <h2>Definition Lists</h2>
+        <dl>
+            <dt>Definition List Title</dt>
+            <dd>A definition list division.</dd>
+            <dt>Startup</dt>
+            <dd>A startup company is designed to search for a repeatable business model.</dd>
+            <dt>#dowork</dt>
+            <dd>A self-motivator coined by Rob Dyrdek.</dd>
+        </dl>
+    </div>
+
+    <!-- Lists -->
+    <div class="section">
+        <h2>Unordered Lists</h2>
+        <ul>
+            <li>List item one
+                <ul>
+                    <li>Nested list item one</li>
+                    <li>Nested list item two</li>
+                </ul>
+            </li>
+            <li>List item two</li>
+            <li>List item three</li>
+        </ul>
+    </div>
+
+    <!-- Ordered Lists -->
+    <div class="section">
+        <h2>Ordered Lists</h2>
+        <ol>
+            <li>List item one
+                <ol>
+                    <li>Nested list item one</li>
+                    <li>Nested list item two</li>
+                </ol>
+            </li>
+            <li>List item two</li>
+            <li>List item three</li>
+        </ol>
+    </div>
+
+    <!-- Buttons -->
+    <div class="section">
+        <h2>Buttons</h2>
+        <a href="#" class="btn">Click Me</a>
+    </div>
+
+    <!-- Notices -->
+    <div class="section">
+        <h2>Notices</h2>
+        <p class="notice">Watch out! This is a notice paragraph.</p>
+    </div>
+
+    <!-- HTML Tags -->
+    <div class="section">
+        <h2>HTML Tags</h2>
+        <address>
+            1 Infinite Loop<br /> Cupertino, CA 95014<br /> United States
+        </address>
+        <p>This is an example of a <a href="http://github.com">link</a>.</p>
+        <p>The abbreviation CSS stands for "Cascading Style Sheets".</p>
+        <pre><code>word-wrap: break-word;</code></pre>
+        <p>This tag shows <strong>bold text</strong>.</p>
+        <p>H<sub>2</sub>O is an example of subscript.</p>
+        <p>E = MC<sup>2</sup> is an example of superscript.</p>
+    </div>
+
+    {% for post in site.pages %}
+        {% include archive-single.html %}
+    {% endfor %}
+</div>
+
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Helvetica Neue', sans-serif;
+        background-color: #f7f8f9;
+        color: #4a4a4a;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        color: #333;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: #5c6b73;
+        font-weight: 400;
+    }
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+    h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+    h3, h4, h5, h6 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    /* Section Styling */
+    .section {
+        margin-bottom: 40px;
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        background-color: #fafafa;
+    }
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #e0e0e0;
+    }
+    th {
+        background-color: #f1f1f1;
+    }
+
+    /* List Styling */
+    ul, ol {
+        padding-left: 20px;
+    }
+
+    /* Button Styling */
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #6d7c85;
+        color: #fff;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+    .btn:hover {
+        background-color: #5a686f;
+    }
+
+    /* Notice Styling */
+    .notice {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: 500;
+    }
+</style>
