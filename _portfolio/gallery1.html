@@ -10,121 +10,17 @@ author_profile: true
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>与你们相遇便是平凡而特殊的奇迹!O^O</title>
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <style>
-        /* 🌿 日系低饱和背景 */
-        body {
-            background: linear-gradient(to bottom, #ece8e1, #d3dce3); /* 柔和米白到淡灰蓝 */
-            font-family: 'Noto Sans JP', 'Georgia', serif;
-            color: #4a4a4a;
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        /* 📜 标题样式 */
-        h1 {
-            font-size: 32px;
-            font-weight: bold;
-            color: #3b3b3b;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        p {
-            font-size: 16px;
-            color: #5a5a5a;
-            opacity: 0.8;
-        }
-
-        /* 📸 画廊容器 */
-        .gallery-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            padding: 20px;
-            align-items: flex-start;
-        }
-
-        /* 🎨 缩略图样式 */
-        .thumbnail {
-            max-width: 28%;
-            height: auto;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .thumbnail:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        /* 🪟 预览层 */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        /* 🔎 预览大图 */
-        .overlay img {
-            max-width: 70vw;
-            max-height: 80vh;
-            border-radius: 12px;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* 🔄 左右切换按钮 */
-        .nav-buttons {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            pointer-events: none;
-        }
-
-        /* 🏹 切换按钮 */
-        .nav-buttons button {
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: rgba(255, 255, 255, 0.85);
-            cursor: pointer;
-            padding: 10px 15px;
-            pointer-events: auto;
-            transition: text-shadow 0.2s ease-in-out;
-        }
-
-        .nav-buttons button:hover {
-            text-shadow: 0 0 12px rgba(255, 255, 255, 1);
-        }
-
-    </style>
+    <title>与你们相遇便是奇迹</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
-    <!-- 📖 标题部分 -->
     <div class="container text-center">
-        <h1 class="my-4">与你们相遇便是平凡而特殊的奇迹!O^O</h1>
+        <h1>与你们相遇便是平凡而特殊的奇迹!O^O</h1>
         <p>一些日常的记录</p>
     </div>
 
-    <!-- 📸 画廊 -->
-    <div class="gallery-container" id="gallery">
+    <div class="gallery-container">
         {% for file in site.static_files %}
             {% if file.path contains '/images/gallery1/' %}
                 <img src="{{ file.path }}" alt="图片" class="thumbnail">
@@ -132,7 +28,6 @@ author_profile: true
         {% endfor %}
     </div>
 
-    <!-- 🔍 预览层 -->
     <div class="overlay" id="overlay">
         <div class="nav-buttons">
             <button onclick="prevImage()">◀️</button>
@@ -141,52 +36,7 @@ author_profile: true
         <img id="preview-img" src="" alt="预览图">
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let images = [];
-            let currentIndex = 0;
-
-            function openPreview(index) {
-                currentIndex = index;
-                document.getElementById('preview-img').src = images[currentIndex];
-                document.getElementById('overlay').style.display = 'flex';
-            }
-
-            function closePreview(event) {
-                if (event.target.id === 'overlay') {
-                    document.getElementById('overlay').style.display = 'none';
-                }
-            }
-
-            function prevImage() {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                document.getElementById('preview-img').src = images[currentIndex];
-            }
-
-            function nextImage() {
-                currentIndex = (currentIndex + 1) % images.length;
-                document.getElementById('preview-img').src = images[currentIndex];
-            }
-
-            document.getElementById('overlay').addEventListener('click', closePreview);
-
-            document.querySelectorAll('.thumbnail').forEach((img, index) => {
-                images.push(img.src);
-                img.addEventListener('click', function() {
-                    openPreview(index);
-                });
-            });
-
-            document.addEventListener("keydown", function(event) {
-                if (event.key === "Escape") document.getElementById('overlay').style.display = 'none';
-                else if (event.key === "ArrowLeft") prevImage();
-                else if (event.key === "ArrowRight") nextImage();
-            });
-
-            window.prevImage = prevImage;
-            window.nextImage = nextImage;
-        });
-    </script>
+    <script src="/assets/js/gallery.js"></script>
 
 </body>
 </html>

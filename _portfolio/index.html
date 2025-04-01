@@ -5,87 +5,21 @@ permalink: /portfolio/index
 author_profile: true
 ---
 
-{% include base_path %}
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的图片合集</title>
-    <style>
-        /* 日系低饱和背景 */
-        body {
-            background: linear-gradient(to bottom, #eae7dc, #d3dce3); /* 柔和灰米色到青灰色渐变 */
-            font-family: 'Noto Sans JP', 'Georgia', serif;
-            color: #4a4a4a; /* 低饱和深灰色 */
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        /* 标题样式 */
-        h1 {
-            font-size: 32px;
-            font-weight: bold;
-            color: #3b3b3b;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        p {
-            font-size: 16px;
-            color: #5a5a5a;
-            opacity: 0.8;
-        }
-
-        /* 画廊选择区域 */
-        .gallery-list {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            margin-top: 30px;
-            flex-wrap: wrap; /* 适应小屏幕 */
-        }
-
-        /* 画廊按钮 - 低饱和日系风格 */
-        .gallery-item {
-            text-decoration: none;
-            padding: 12px 24px;
-            background-color: rgba(235, 229, 220, 0.9); /* 柔和暖灰 */
-            color: #3c3c3c;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* 柔和的光晕感 */
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* 悬停效果 - 低饱和透明渐变 */
-        .gallery-item:hover {
-            background-color: rgba(225, 220, 210, 0.95);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-            transform: scale(1.02);
-        }
-
-        /* 细节修饰 */
-        .gallery-container {
-            margin-top: 40px;
-            padding: 12px;
-            border-radius: 10px;
-        }
-
-    </style>
+    <title>图片合集</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
     <h1>📸 我的图片合集</h1>
     <p>选择一个 Gallery 进入查看</p>
 
-    <!-- 画廊列表 -->
     <div class="gallery-list">
         <a href="/portfolio/gallery1" class="gallery-item">2025-03</a>
-        <!-- 可添加更多的 Gallery 入口 -->
-        <!-- <a href="/portfolio/gallery2" class="gallery-item">Gallery 2</a>
-        <a href="/portfolio/gallery3" class="gallery-item">Gallery 3</a> -->
     </div>
 
 </body>
