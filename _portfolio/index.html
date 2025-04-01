@@ -6,7 +6,6 @@ author_profile: true
 ---
 
 {% include base_path %}
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -14,61 +13,64 @@ author_profile: true
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的图片合集</title>
     <style>
-        /* 设定背景，营造吉卜力风格 */
+        /* 日系低饱和背景 */
         body {
-            background: linear-gradient(to bottom, #dfe9f3, #fef5e7); /* 淡蓝到暖黄渐变 */
-            font-family: 'Georgia', serif; /* 使用复古字体 */
-            color: #5a4d41; /* 深棕色，温暖的复古风 */
+            background: linear-gradient(to bottom, #eae7dc, #d3dce3); /* 柔和灰米色到青灰色渐变 */
+            font-family: 'Noto Sans JP', 'Georgia', serif;
+            color: #4a4a4a; /* 低饱和深灰色 */
             text-align: center;
             padding: 40px 0;
         }
 
         /* 标题样式 */
         h1 {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: bold;
-            color: #3c2f2f; /* 深棕色 */
-            margin-bottom: 10px;
+            color: #3b3b3b;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
         }
 
         p {
-            font-size: 18px;
-            color: #5a4d41; /* 温暖的木质色调 */
+            font-size: 16px;
+            color: #5a5a5a;
+            opacity: 0.8;
         }
 
         /* 画廊选择区域 */
         .gallery-list {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 18px;
             margin-top: 30px;
+            flex-wrap: wrap; /* 适应小屏幕 */
         }
 
-        /* 画廊按钮（Ghibli 风格，柔和圆角+淡雅阴影） */
+        /* 画廊按钮 - 低饱和日系风格 */
         .gallery-item {
             text-decoration: none;
-            padding: 14px 28px;
-            background-color: #f4c983; /* 温暖的米黄色 */
-            color: #3c2f2f; /* 深棕色 */
-            font-size: 20px;
+            padding: 12px 24px;
+            background-color: rgba(235, 229, 220, 0.9); /* 柔和暖灰 */
+            color: #3c3c3c;
+            font-size: 18px;
             font-weight: bold;
-            border-radius: 10px; /* 轻微圆角，柔和视觉 */
-            box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2); /* 柔和阴影，像阳光下的纸片 */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* 柔和的光晕感 */
             transition: all 0.3s ease-in-out;
         }
 
-        /* 悬停效果 */
+        /* 悬停效果 - 低饱和透明渐变 */
         .gallery-item:hover {
-            background-color: #e8b562; /* 橙棕色过渡，温暖柔和 */
-            box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.3); /* 增强光影感 */
-            transform: translateY(-3px); /* 轻微浮起 */
+            background-color: rgba(225, 220, 210, 0.95);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+            transform: scale(1.02);
         }
 
-        /* 吉卜力风格的细节修饰 */
+        /* 细节修饰 */
         .gallery-container {
             margin-top: 40px;
-            padding: 10px;
-            border-radius: 12px;
+            padding: 12px;
+            border-radius: 10px;
         }
 
     </style>
