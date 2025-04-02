@@ -7,25 +7,65 @@ layout: compress
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    {% include head.html %}
-    {% include head/custom.html %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        body {
+            font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+            background-color: #f4f1eb;
+            color: #5a514c;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease-in-out;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+        h1, h2 {
+            font-weight: bold;
+            color: #4a4035;
+            text-align: center;
+        }
+        a {
+            color: #8a6d3b;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #5a514c;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: linear-gradient(120deg, #a89276, #8a6d3b);
+            color: white;
+            text-align: center;
+            transition: transform 0.2s, background 0.3s;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(120deg, #8a6d3b, #6d543b);
+        }
+    </style>
 </head>
-
 <body>
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
-
-    <main class="content">
+    <div class="container">
+        <h1>{{ page.title }}</h1>
         {{ content }}
-    </main>
-
-    <footer class="page__footer">
-        {% include footer/custom.html %}
-        {% include footer.html %}
-    </footer>
-
-    {% include scripts.html %}
+    </div>
 </body>
 </html>
-
