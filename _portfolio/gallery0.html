@@ -13,32 +13,68 @@ author_profile: true
     <title>🎞️在HDU</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
-        /* 自定义覆盖样式 */
+        :root {
+            --cream: #f5f0e6;
+            --paper: #fffcf7;
+            --beige: #e8e1d5;
+            --text-dark: #5a5242;
+            --text-medium: #7a7262;
+            --border: #e0d8c8;
+            --shadow: 0 2px 8px rgba(0,0,0,0.05);
+            --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        /* 日系低饱和背景 */
         body {
-            background-color: #f5f0e6;
+            background: var(--cream);
             font-family: 'Noto Sans JP', sans-serif;
-            color: #5a5242;
+            color: var(--text-dark);
             text-align: center;
             padding: 40px 0;
             line-height: 1.6;
         }
-        
+
+        /* 标题样式 */
+        h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #5a5a5a;
+            opacity: 0.8;
+        }
+
+        /* 📸 画廊容器 */
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
             padding: 20px;
+            align-items: flex-start;
         }
-        
+
+        /* 🎨 缩略图样式 */
         .thumbnail {
             max-width: 28%;
             height: auto;
             border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
         }
-        
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 🪟 预览层 */
         .overlay {
             display: none;
             position: fixed;
@@ -50,15 +86,45 @@ author_profile: true
             backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
-            z-index: 1050;
+            transition: opacity 0.3s ease-in-out;
         }
-        
+
+        /* 🔎 预览大图 */
         .overlay img {
             max-width: 70vw;
             max-height: 80vh;
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+            transition: transform 0.3s ease-in-out;
         }
+
+        /* 🔄 左右切换按钮 */
+        .nav-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        /* 🏹 切换按钮 */
+        .nav-buttons button {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.85);
+            cursor: pointer;
+            padding: 10px 15px;
+            pointer-events: auto;
+            transition: text-shadow 0.2s ease-in-out;
+        }
+
+        .nav-buttons button:hover {
+            text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+        }
+
     </style>
 </head>
 <body>
