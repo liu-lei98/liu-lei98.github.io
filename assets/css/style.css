@@ -1,0 +1,130 @@
+/* 基础样式 - 滨田英明风格 */
+:root {
+    --cream: #f5f0e6;
+    --paper: #fffcf7;
+    --beige: #e8e1d5;
+    --text-dark: #5a5242;
+    --text-medium: #7a7262;
+    --border: #e0d8c8;
+    --shadow: 0 2px 8px rgba(0,0,0,0.05);
+    --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* 内容区域 */
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 卡片样式 */
+.card {
+    background: var(--paper);
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+}
+
+/* 标题样式 */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-dark);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+h1 {
+    font-size: 2rem;
+    border-bottom: 1px solid var(--beige);
+    padding-bottom: 10px;
+}
+
+/* 链接样式 */
+a {
+    color: var(--text-medium);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--text-dark);
+    text-decoration: underline;
+}
+
+/* 导航栏 */
+.masthead {
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+/* 页脚 */
+.page__footer {
+    background: var(--paper);
+    border-top: 1px solid var(--border);
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+/* 按钮样式 */
+.btn {
+    background: var(--paper);
+    color: var(--text-dark);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--beige);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .content {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* 画廊缩略图 */
+.thumbnail {
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.thumbnail:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--hover-shadow);
+    filter: brightness(1.05);
+}
