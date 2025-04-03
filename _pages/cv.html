@@ -173,7 +173,9 @@ redirect_from:
         <h2>📚 整点没用的</h2>
         <ul>
             {% for post in site.publications reversed %}
-                <li>{% include archive-single-cv.html %}</li>
+                {% unless post.permalink contains '/index' %}
+                    <li>{% include archive-single-cv.html %}</li>
+                {% endunless %}
             {% endfor %}
         </ul>
     </div>
@@ -182,7 +184,9 @@ redirect_from:
         <h2>🎤 瞎逼逼</h2>
         <ul>
             {% for post in site.talks reversed %}
-                <li>{% include archive-single-talk-cv.html %}</li>
+                {% unless post.permalink contains '/index' %}
+                    <li>{% include archive-single-cv.html %}</li>
+                {% endunless %}
             {% endfor %}
         </ul>
     </div>
@@ -191,7 +195,9 @@ redirect_from:
         <h2>📖 不会硬教</h2>
         <ul>
             {% for post in site.teaching reversed %}
-                <li>{% include archive-single-cv.html %}</li>
+                {% unless post.permalink contains '/index' %}
+                    <li>{% include archive-single-cv.html %}</li>
+                {% endunless %}
             {% endfor %}
         </ul>
     </div>
