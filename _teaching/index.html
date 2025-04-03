@@ -5,61 +5,157 @@ permalink: /teaching/index
 author_profile: true
 ---
 
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --cream: #f5f0e6;
+            --paper: #fffcf7;
+            --beige: #e8e1d5;
+            --text-dark: #5a5242;
+            --text-medium: #7a7262;
+            --border: #e0d8c8;
+            --shadow: 0 2px 8px rgba(0,0,0,0.05);
+            --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
         body {
-            font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
-            background-color: #E3EDF7;
-            color: #2A3D45;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
+            line-height: 1.6;
         }
+        
         h1 {
-            font-weight: bold;
-            color: #3C6275;
-            margin-bottom: 20px;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            font-size: 2rem;
         }
+        
         .gallery-list {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
         }
+        
         .gallery-item {
             display: block;
             width: 100%;
-            max-width: 400px;
-            padding: 15px;
-            background: linear-gradient(120deg, #A3C1D1, #6B8291);
-            color: white;
+            padding: 18px;
+            background: var(--paper);
+            color: var(--text-dark);
             text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s;
+            border-radius: 3px;
+            transition: all 0.3s ease;
             text-align: center;
-            font-size: 18px;
+            font-size: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
+        
         .gallery-item:hover {
-            transform: scale(1.05);
-            background: linear-gradient(120deg, #6B8291, #4F6A78);
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+            background: var(--paper);
+        }
+        
+        .gallery-item::after {
+            content: "";
+            display: block;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--beige), transparent);
+            margin-top: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--paper);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            z-index: 100;
+        }
+        
+        .back-to-top.visible {
+            opacity: 0.8;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 15px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .gallery-item {
+                padding: 15px;
+                font-size: 15px;
+            }
         }
     </style>
 </head>
 <body>
 
     <h1>🥸 Created by Lei</h1>
-    <!-- <p>选择一个 Gallery 进入查看</p> -->
 
     <div class="gallery-list">
         <a href="/teaching/2024-fall-teaching-1" class="gallery-item">在长沙搬砖</a>
-        <!-- <a href="/portfolio/gallery1" class="gallery-item">2025-03 在长沙🎞️</a> -->
     </div>
+
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
+
+    <script>
+        // 显示/隐藏返回顶部按钮
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+    </script>
 
 </body>
 </html>
-
