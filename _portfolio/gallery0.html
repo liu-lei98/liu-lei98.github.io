@@ -13,68 +13,32 @@ author_profile: true
     <title>🎞️在HDU</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
-        :root {
-            --cream: #f5f0e6;
-            --paper: #fffcf7;
-            --beige: #e8e1d5;
-            --text-dark: #5a5242;
-            --text-medium: #7a7262;
-            --border: #e0d8c8;
-            --shadow: 0 2px 8px rgba(0,0,0,0.05);
-            --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        /* 日系低饱和背景 */
+        /* 自定义覆盖样式 */
         body {
-            background: var(--cream);
+            background-color: #f5f0e6;
             font-family: 'Noto Sans JP', sans-serif;
-            color: var(--text-dark);
+            color: #5a5242;
             text-align: center;
             padding: 40px 0;
             line-height: 1.6;
         }
-
-        /* 标题样式 */
-        h1 {
-            font-size: 2rem;
-            font-weight: 400;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        p {
-            font-size: 16px;
-            color: #5a5a5a;
-            opacity: 0.8;
-        }
-
-        /* 📸 画廊容器 */
+        
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
             padding: 20px;
-            align-items: flex-start;
         }
-
-        /* 🎨 缩略图样式 */
+        
         .thumbnail {
             max-width: 28%;
             height: auto;
             border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
         }
-
-        .thumbnail:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-
-        /* 🪟 预览层 */
+        
         .overlay {
             display: none;
             position: fixed;
@@ -86,71 +50,37 @@ author_profile: true
             backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
-            transition: opacity 0.3s ease-in-out;
+            z-index: 1050;
         }
-
-        /* 🔎 预览大图 */
+        
         .overlay img {
             max-width: 70vw;
             max-height: 80vh;
             border-radius: 12px;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
-            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         }
-
-        /* 🔄 左右切换按钮 */
-        .nav-buttons {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            pointer-events: none;
-        }
-
-        /* 🏹 切换按钮 */
-        .nav-buttons button {
-            background: none;
-            border: none;
-            font-size: 28px;
-            color: rgba(255, 255, 255, 0.85);
-            cursor: pointer;
-            padding: 10px 15px;
-            pointer-events: auto;
-            transition: text-shadow 0.2s ease-in-out;
-        }
-
-        .nav-buttons button:hover {
-            text-shadow: 0 0 12px rgba(255, 255, 255, 1);
-        }
-
     </style>
 </head>
 <body>
 
-    <!-- 📖 标题部分 -->
-    <div class="container text-center">
-        <h1 class="my-4">🎞️在HDU</h1>
-        <!-- <p>一些日常的记录</p> -->
+    <div class="container text-center my-4">
+        <h1 class="display-4 mb-4">🎞️在HDU</h1>
     </div>
 
-    <!-- 📸 画廊 -->
     <div class="gallery-container" id="gallery">
         {% for file in site.static_files %}
             {% if file.path contains '/images/gallery0/' %}
-                <img src="{{ file.path }}" alt="图片" class="thumbnail">
+                <img src="{{ file.path }}" alt="图片" class="thumbnail img-thumbnail shadow-sm">
             {% endif %}
         {% endfor %}
     </div>
 
-    <!-- 🔍 预览层 -->
     <div class="overlay" id="overlay">
-        <div class="nav-buttons">
-            <button onclick="prevImage()">◀️</button>
-            <button onclick="nextImage()">▶️</button>
+        <div class="position-absolute top-50 start-0 end-0 d-flex justify-content-between px-3">
+            <button class="btn btn-lg text-white" onclick="prevImage()">◀️</button>
+            <button class="btn btn-lg text-white" onclick="nextImage()">▶️</button>
         </div>
-        <img id="preview-img" src="" alt="预览图">
+        <img id="preview-img" src="" alt="预览图" class="img-fluid">
     </div>
 
     <script>
@@ -162,11 +92,13 @@ author_profile: true
                 currentIndex = index;
                 document.getElementById('preview-img').src = images[currentIndex];
                 document.getElementById('overlay').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
             }
 
             function closePreview(event) {
                 if (event.target.id === 'overlay') {
                     document.getElementById('overlay').style.display = 'none';
+                    document.body.style.overflow = 'auto';
                 }
             }
 
@@ -190,8 +122,10 @@ author_profile: true
             });
 
             document.addEventListener("keydown", function(event) {
-                if (event.key === "Escape") document.getElementById('overlay').style.display = 'none';
-                else if (event.key === "ArrowLeft") prevImage();
+                if (event.key === "Escape") {
+                    document.getElementById('overlay').style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                } else if (event.key === "ArrowLeft") prevImage();
                 else if (event.key === "ArrowRight") nextImage();
             });
 

@@ -13,21 +13,33 @@ author_profile: true
     <title>2025-03 在长沙🎞️的瞬间O^O</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
-        /* 🌿 日系低饱和背景 */
+        :root {
+            --cream: #f5f0e6;
+            --paper: #fffcf7;
+            --beige: #e8e1d5;
+            --text-dark: #5a5242;
+            --text-medium: #7a7262;
+            --border: #e0d8c8;
+            --shadow: 0 2px 8px rgba(0,0,0,0.05);
+            --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        /* 日系低饱和背景 */
         body {
-            background: linear-gradient(to bottom, #ece8e1, #d3dce3); /* 柔和米白到淡灰蓝 */
-            font-family: 'Noto Sans JP', 'Georgia', serif;
-            color: #4a4a4a;
+            background: var(--cream);
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-dark);
             text-align: center;
             padding: 40px 0;
+            line-height: 1.6;
         }
 
-        /* 📜 标题样式 */
+        /* 标题样式 */
         h1 {
-            font-size: 32px;
-            font-weight: bold;
-            color: #3b3b3b;
-            margin-bottom: 8px;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 20px;
             letter-spacing: 1px;
         }
 
