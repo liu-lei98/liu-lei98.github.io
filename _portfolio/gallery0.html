@@ -12,7 +12,6 @@ author_profile: true
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎞️在HDU</title>
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --cream: #f5f0e6;
@@ -44,7 +43,13 @@ author_profile: true
             letter-spacing: 1px;
         }
 
-        /* 画廊容器 */
+        p {
+            font-size: 16px;
+            color: #5a5a5a;
+            opacity: 0.8;
+        }
+
+        /* 📸 画廊容器 */
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
@@ -52,30 +57,24 @@ author_profile: true
             gap: 15px;
             padding: 20px;
             align-items: flex-start;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
-        /* 缩略图样式 */
+        /* 🎨 缩略图样式 */
         .thumbnail {
-            width: 100%;
-            max-width: 300px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 3px;
+            max-width: 28%;
+            height: auto;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
+            transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
         }
 
         .thumbnail:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--hover-shadow);
-            filter: brightness(1.05);
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
 
-        /* 图片预览层 - 保留原有功能 */
+        /* 🪟 预览层 */
         .overlay {
             display: none;
             position: fixed;
@@ -83,149 +82,60 @@ author_profile: true
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease-in-out;
         }
 
-        .overlay.show {
-            display: flex;
-            opacity: 1;
-        }
-
-        /* 预览大图 */
+        /* 🔎 预览大图 */
         .overlay img {
-            max-width: 80%;
-            max-height: 80%;
-            border-radius: 3px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease-out;
+            max-width: 70vw;
+            max-height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+            transition: transform 0.3s ease-in-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* 导航按钮 */
+        /* 🔄 左右切换按钮 */
         .nav-buttons {
             position: absolute;
             top: 50%;
             width: 100%;
             display: flex;
             justify-content: space-between;
-            transform: translateY(-50%);
+            align-items: center;
             pointer-events: none;
-            padding: 0 20px;
-            box-sizing: border-box;
         }
 
+        /* 🏹 切换按钮 */
         .nav-buttons button {
-            background: rgba(255, 255, 255, 0.2);
+            background: none;
             border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 20px;
-            color: white;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.85);
             cursor: pointer;
+            padding: 10px 15px;
             pointer-events: auto;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            transition: text-shadow 0.2s ease-in-out;
         }
 
         .nav-buttons button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 1);
         }
 
-        /* 关闭按钮 */
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 20px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .close-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
-        }
-
-        /* 返回顶部按钮 */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--paper);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            color: var(--text-dark);
-            z-index: 100;
-        }
-        
-        .back-to-top.visible {
-            opacity: 0.8;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            opacity: 1;
-            transform: translateY(-3px);
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 600px) {
-            body {
-                padding: 30px 0;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-            
-            .thumbnail {
-                max-width: 45%;
-                height: 150px;
-            }
-            
-            .overlay img {
-                max-width: 90%;
-                max-height: 60%;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- 标题部分 -->
+    <!-- 📖 标题部分 -->
     <div class="container text-center">
         <h1 class="my-4">🎞️在HDU</h1>
+        <!-- <p>一些日常的记录</p> -->
     </div>
 
-    <!-- 画廊 -->
+    <!-- 📸 画廊 -->
     <div class="gallery-container" id="gallery">
         {% for file in site.static_files %}
             {% if file.path contains '/images/gallery0/' %}
@@ -234,71 +144,44 @@ author_profile: true
         {% endfor %}
     </div>
 
-    <!-- 图片预览层 -->
+    <!-- 🔍 预览层 -->
     <div class="overlay" id="overlay">
-        <button class="close-btn" onclick="closePreview()">×</button>
         <div class="nav-buttons">
-            <button onclick="prevImage()">◀</button>
-            <button onclick="nextImage()">▶</button>
+            <button onclick="prevImage()">◀️</button>
+            <button onclick="nextImage()">▶️</button>
         </div>
         <img id="preview-img" src="" alt="预览图">
-    </div>
-
-    <!-- 返回顶部按钮 -->
-    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        ↑
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let images = [];
             let currentIndex = 0;
-            const overlay = document.getElementById('overlay');
 
-            // 打开图片预览
             function openPreview(index) {
                 currentIndex = index;
                 document.getElementById('preview-img').src = images[currentIndex];
-                overlay.classList.add('show');
-                document.body.style.overflow = 'hidden'; // 禁止背景滚动
+                document.getElementById('overlay').style.display = 'flex';
             }
 
-            // 关闭图片预览
-            function closePreview() {
-                overlay.classList.remove('show');
-                document.body.style.overflow = 'auto'; // 恢复背景滚动
+            function closePreview(event) {
+                if (event.target.id === 'overlay') {
+                    document.getElementById('overlay').style.display = 'none';
+                }
             }
 
-            // 上一张图片
             function prevImage() {
                 currentIndex = (currentIndex - 1 + images.length) % images.length;
-                updatePreviewImage();
+                document.getElementById('preview-img').src = images[currentIndex];
             }
 
-            // 下一张图片
             function nextImage() {
                 currentIndex = (currentIndex + 1) % images.length;
-                updatePreviewImage();
+                document.getElementById('preview-img').src = images[currentIndex];
             }
 
-            // 更新预览图片
-            function updatePreviewImage() {
-                const previewImg = document.getElementById('preview-img');
-                previewImg.style.animation = 'none';
-                previewImg.src = images[currentIndex];
-                setTimeout(() => {
-                    previewImg.style.animation = 'fadeIn 0.3s ease-out';
-                }, 10);
-            }
+            document.getElementById('overlay').addEventListener('click', closePreview);
 
-            // 点击遮罩层关闭
-            overlay.addEventListener('click', function(e) {
-                if (e.target === overlay) {
-                    closePreview();
-                }
-            });
-
-            // 收集所有图片并添加点击事件
             document.querySelectorAll('.thumbnail').forEach((img, index) => {
                 images.push(img.src);
                 img.addEventListener('click', function() {
@@ -306,31 +189,14 @@ author_profile: true
                 });
             });
 
-            // 键盘事件
             document.addEventListener("keydown", function(event) {
-                if (event.key === "Escape") {
-                    closePreview();
-                } else if (event.key === "ArrowLeft") {
-                    prevImage();
-                } else if (event.key === "ArrowRight") {
-                    nextImage();
-                }
+                if (event.key === "Escape") document.getElementById('overlay').style.display = 'none';
+                else if (event.key === "ArrowLeft") prevImage();
+                else if (event.key === "ArrowRight") nextImage();
             });
 
-            // 返回顶部按钮显示/隐藏
-            window.addEventListener('scroll', function() {
-                const backToTop = document.querySelector('.back-to-top');
-                if (window.pageYOffset > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
-
-            // 全局函数
             window.prevImage = prevImage;
             window.nextImage = nextImage;
-            window.closePreview = closePreview;
         });
     </script>
 
