@@ -1,153 +1,192 @@
 ---
-title: "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging"
-collection: publications
-category: journal
-permalink: /publication/2024-02-17-paper-title-number-4
-excerpt: 'This paper is about Compressive spectral imaging'
-date: 2024-02-17
-venue: 'IEEE Transactions on Geoscience and Remote Sensing'
-paperurl: 'https://doi.org/10.1109/TGRS.2023.3257125'
-citation: 'P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912'
+layout: archive
+permalink: /publications/TGRS2023
+author_profile: true
 ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f0e6;
+            --paper: #fffcf7;
+            --beige: #e8e1d5;
+            --text-dark: #5a5242;
+            --text-medium: #7a7262;
+            --border: #e0d8c8;
+            --shadow: 0 2px 8px rgba(0,0,0,0.05);
+            --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
 
-<div class="publication-container">
-    <div class="publication-header">
-        <h1 class="publication-title">{{ page.title }}</h1>
-        <div class="publication-meta">
-            <span class="publication-date">{{ page.date | date: "%B %d, %Y" }}</span>
-            <span class="publication-category">{{ page.category | capitalize }}</span>
-            <span class="publication-venue">{{ page.venue }}</span>
-        </div>
-    </div>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+            margin: 0;
+        }
 
-    <div class="publication-content">
-        <p class="publication-excerpt">{{ page.excerpt }}</p>
-        
-        <div class="publication-details">
-            <h2>Citation</h2>
-            <blockquote class="publication-citation">{{ page.citation }}</blockquote>
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .publication-item {
+            background: var(--paper);
+            border-radius: 3px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            padding: 30px;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .publication-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .publication-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .publication-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 1rem;
+            color: var(--text-medium);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .publication-excerpt {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .publication-citation {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 3px solid var(--beige);
+        }
+
+        .publication-link {
+            display: inline-block;
+            background: var(--paper);
+            color: var(--text-dark);
+            padding: 10px 20px;
+            border-radius: 3px;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .publication-link:hover {
+            background: var(--beige);
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--paper);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 0.8;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
             
-            <a href="{{ page.paperurl }}" class="publication-link" target="_blank">
+            .publication-title {
+                font-size: 1.5rem;
+            }
+            
+            .publication-item {
+                padding: 20px;
+            }
+            
+            .publication-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="publication-item">
+            <h1 class="publication-title">A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging</h1>
+            <div class="publication-meta">
+                <span class="publication-date">February 18, 2023</span>
+                <span class="publication-venue">IEEE Transactions on Geoscience and Remote Sensing</span>
+                <span class="publication-category">Journal</span>
+            </div>
+            <p class="publication-excerpt">This paper is about Compressive spectral imaging</p>
+            <blockquote class="publication-citation">
+                P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912
+            </blockquote>
+            <a href="https://doi.org/10.1109/TGRS.2023.3257125" class="publication-link" target="_blank">
                 View Full Paper on IEEE Xplore
             </a>
         </div>
     </div>
-</div>
 
-<style>
-    :root {
-        --cream: #f5f0e6;
-        --paper: #fffcf7;
-        --beige: #e8e1d5;
-        --text-dark: #5a5242;
-        --text-medium: #7a7262;
-        --border: #e0d8c8;
-        --shadow: 0 2px 8px rgba(0,0,0,0.05);
-        --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+    <!-- Back to top button -->
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
 
-    .publication-container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    .publication-header {
-        margin-bottom: 30px;
-        border-bottom: 1px solid var(--beige);
-        padding-bottom: 20px;
-    }
-
-    .publication-title {
-        font-family: 'Noto Sans JP', sans-serif;
-        font-size: 1.8rem;
-        font-weight: 400;
-        color: var(--text-dark);
-        margin-bottom: 15px;
-        line-height: 1.4;
-    }
-
-    .publication-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        font-size: 1rem;
-        color: var(--text-medium);
-        opacity: 0.8;
-    }
-
-    .publication-content {
-        background: var(--paper);
-        border-radius: 3px;
-        box-shadow: var(--shadow);
-        border: 1px solid var(--border);
-        padding: 30px;
-        transition: all 0.3s ease;
-    }
-
-    .publication-content:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--hover-shadow);
-    }
-
-    .publication-excerpt {
-        font-size: 1.1rem;
-        color: var(--text-dark);
-        margin-bottom: 25px;
-        line-height: 1.6;
-    }
-
-    .publication-details {
-        margin-top: 30px;
-    }
-
-    .publication-details h2 {
-        font-size: 1.3rem;
-        font-weight: 400;
-        color: var(--text-dark);
-        margin-bottom: 15px;
-    }
-
-    .publication-citation {
-        font-size: 0.95rem;
-        color: var(--text-medium);
-        line-height: 1.6;
-        padding: 15px;
-        background-color: var(--cream);
-        border-left: 3px solid var(--beige);
-        margin-bottom: 25px;
-    }
-
-    .publication-link {
-        display: inline-block;
-        background: var(--paper);
-        color: var(--text-dark);
-        padding: 10px 20px;
-        border-radius: 3px;
-        text-decoration: none;
-        border: 1px solid var(--border);
-        transition: all 0.3s ease;
-        font-size: 0.95rem;
-    }
-
-    .publication-link:hover {
-        background: var(--beige);
-        transform: translateY(-2px);
-        box-shadow: var(--hover-shadow);
-    }
-
-    @media (max-width: 768px) {
-        .publication-title {
-            font-size: 1.5rem;
-        }
-        
-        .publication-content {
-            padding: 20px;
-        }
-        
-        .publication-meta {
-            flex-direction: column;
-            gap: 8px;
-        }
-    }
-</style>
+    <script>
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>
