@@ -1,4 +1,4 @@
-{% include base_path %}
+<!-- {% include base_path %}
 
 <section class="page__share">
   {% if site.data.ui-text[site.locale].share_on_label %}
@@ -10,4 +10,33 @@
   <a href="https://www.facebook.com/sharer/sharer.php?u={{ base_path }}{{ page.url }}" class="btn btn--facebook" title="{{ site.data.ui-text[site.locale].share_on_label | default: 'Share on' }} Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
   <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ base_path }}{{ page.url }}" class="btn btn--linkedin" title="{{ site.data.ui-text[site.locale].share_on_label | default: 'Share on' }} LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section> -->
+
+{% include base_path %}
+
+<section class="page__share">
+  {% if site.data.ui-text[site.locale].share_on_label %}
+    <h4 class="page__share-title">{{ site.data.ui-text[site.locale].share_on_label | default: "分享到" }}</h4>
+  {% endif %}
+
+  <a href="https://space.bilibili.com/YOUR_BILIBILI_UID" class="btn btn--bilibili" title="{{ site.data.ui-text[site.locale].share_on_label | default: '分享到' }} Bilibili">
+    <i class="fab fa-bilibili" aria-hidden="true"></i><span> Bilibili</span>
+  </a>
 </section>
+
+<style>
+  /* Bilibili button style - matching your color scheme */
+  .btn--bilibili {
+    background-color: #FB7299; /* Bilibili pink */
+    color: white;
+    border-color: #FB7299;
+  }
+  
+  .btn--bilibili:hover {
+    background-color: #e65c84;
+    color: white;
+  }
+  
+  /* If you need to add the Bilibili icon */
+  /* First make sure you have Font Awesome included in your site */
+</style>
