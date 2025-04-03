@@ -12,90 +12,6 @@ author_profile: true
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图片合集</title>
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: #f8f4e9;
-            font-family: 'Noto Sans JP', sans-serif;
-            color: #5a5242;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 400;
-            color: #5a5242;
-            margin-bottom: 20px;
-            text-align: center;
-            letter-spacing: 1px;
-        }
-        
-        p {
-            text-align: center;
-            color: #7a7262;
-            margin-bottom: 30px;
-        }
-        
-        .gallery-list {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .gallery-item {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: #fff;
-            border: 1px solid #e0d8c8;
-            border-radius: 8px;
-            text-align: center;
-            color: #5a5242;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            background: #f5f1e6;
-        }
-        
-        /* 返回顶部按钮 */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid #e0d8c8;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background: #fff;
-            transform: translateY(-3px);
-        }
-    </style>
 </head>
 <body>
 
@@ -105,23 +21,6 @@ author_profile: true
     <div class="gallery-list">
         <a href="/portfolio/gallery1" class="gallery-item">2025-03</a>
     </div>
-
-    <!-- 返回顶部按钮 -->
-    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        ↑
-    </div>
-
-    <script>
-        // 显示/隐藏返回顶部按钮
-        window.addEventListener('scroll', function() {
-            const backToTop = document.querySelector('.back-to-top');
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-    </script>
 
 </body>
 </html>
