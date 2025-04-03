@@ -19,24 +19,38 @@
     <h4 class="page__share-title">{{ site.data.ui-text[site.locale].share_on_label | default: "分享到" }}</h4>
   {% endif %}
 
-  <a href="https://space.bilibili.com/YOUR_BILIBILI_UID" class="btn btn--bilibili" title="{{ site.data.ui-text[site.locale].share_on_label | default: '分享到' }} Bilibili">
+  <a href="https://t.bilibili.com/?share_source=copy_link&share_medium=web&jump_from=share&url={{ base_path }}{{ page.url | url_encode }}" 
+     class="btn btn--bilibili" 
+     title="分享到Bilibili"
+     target="_blank">
     <i class="fab fa-bilibili" aria-hidden="true"></i><span> Bilibili</span>
   </a>
 </section>
 
 <style>
-  /* Bilibili button style - matching your color scheme */
+  /* Bilibili按钮样式 - 匹配您的配色方案 */
   .btn--bilibili {
-    background-color: #FB7299; /* Bilibili pink */
+    background-color: #FB7299; /* B站粉色 */
     color: white;
-    border-color: #FB7299;
+    border: 1px solid #FB7299;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    transition: all 0.2s ease;
   }
   
   .btn--bilibili:hover {
     background-color: #e65c84;
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
-  /* If you need to add the Bilibili icon */
-  /* First make sure you have Font Awesome included in your site */
+  .page__share-title {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    color: var(--text-medium);
+  }
 </style>
