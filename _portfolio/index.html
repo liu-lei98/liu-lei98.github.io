@@ -11,21 +11,22 @@ author_profile: true
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --cream: #f5f0e6;
-            --paper: #fffcf5;
-            --light-blue: #e3edf7;
-            --text-dark: #2a3d45;
-            --text-medium: #3c6275;
-            --border: #d3d3d3;
-            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+            --paper: #fffcf7;
+            --beige: #e8e1d5;
+            --text-dark: #5a5242;
+            --text-medium: #7a7262;
+            --border: #e0d8c8;
+            --shadow: 0 2px 8px rgba(0,0,0,0.05);
+            --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         body {
-            font-family: "Noto Serif JP", serif;
-            background-color: var(--light-blue);
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--cream);
             color: var(--text-dark);
             text-align: center;
             padding: 40px 20px;
@@ -34,7 +35,7 @@ author_profile: true
         
         h1 {
             font-weight: 400;
-            color: var(--text-medium);
+            color: var(--text-dark);
             margin-bottom: 30px;
             letter-spacing: 1px;
             font-size: 2rem;
@@ -56,38 +57,36 @@ author_profile: true
             background: var(--paper);
             color: var(--text-dark);
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 3px;
             transition: all 0.3s ease;
             text-align: center;
             font-size: 16px;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
             position: relative;
-            overflow: hidden;
         }
         
-        .gallery-item::before {
+        .gallery-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
+            background: var(--paper);
+        }
+        
+        .gallery-item::after {
             content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, rgba(163,193,209,0.1), rgba(107,130,145,0.1));
+            display: block;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--beige), transparent);
+            margin-top: 15px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
         
-        .gallery-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        }
-        
-        .gallery-item:hover::before {
+        .gallery-item:hover::after {
             opacity: 1;
         }
         
-        /* 返回顶部按钮 */
+        /* 完全一致的返回顶部按钮 */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -105,6 +104,7 @@ author_profile: true
             transition: all 0.3s ease;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
+            color: var(--text-dark);
             z-index: 100;
         }
         
@@ -118,7 +118,7 @@ author_profile: true
             transform: translateY(-3px);
         }
         
-        /* 响应式设计 */
+        /* 响应式设计保持一致 */
         @media (max-width: 600px) {
             body {
                 padding: 30px 15px;
@@ -144,13 +144,13 @@ author_profile: true
         <a href="/portfolio/gallery1" class="gallery-item">2025-03 在长沙 🎞️</a>
     </div>
 
-    <!-- 返回顶部按钮 -->
+    <!-- 与CV页面完全相同的返回顶部按钮 -->
     <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         ↑
     </div>
 
     <script>
-        // 显示/隐藏返回顶部按钮
+        // 与CV页面完全相同的JS代码
         window.addEventListener('scroll', function() {
             const backToTop = document.querySelector('.back-to-top');
             if (window.pageYOffset > 300) {
