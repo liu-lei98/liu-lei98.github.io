@@ -140,9 +140,15 @@ li:before {
 
 /* 统一装饰元素 */
 .section::after {
-    /* content: ""; */
+    content: "";
     display: block;
     height: 1px;
     background: linear-gradient(to right, transparent, var(--beige), transparent);
     margin-top: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
 }
