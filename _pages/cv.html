@@ -17,17 +17,20 @@ redirect_from:
     <style>
         :root {
             --cream: #f5f0e6;
+            --paper: #fffcf7;
             --beige: #e8e1d5;
-            --light-gray: #d3d3d3;
-            --text-gray: #5a5a5a;
+            --text-dark: #5a5242;
+            --text-medium: #7a7262;
+            --border: #e0d8c8;
             --shadow: 0 2px 8px rgba(0,0,0,0.05);
+            --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         body {
             background-color: var(--cream);
             font-family: 'Noto Sans JP', sans-serif;
-            color: var(--text-gray);
-            line-height: 1.8;
+            color: var(--text-dark);
+            line-height: 1.6;
             padding: 0;
             margin: 0;
         }
@@ -39,24 +42,24 @@ redirect_from:
         }
         
         .section {
-            background: white;
+            background: var(--paper);
             padding: 30px;
             margin-bottom: 25px;
             border-radius: 3px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
         
         .section:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: var(--hover-shadow);
         }
         
         h2 {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: 400;
-            color: var(--text-gray);
+            color: var(--text-dark);
             margin-top: 0;
             margin-bottom: 20px;
             padding-bottom: 10px;
@@ -65,9 +68,8 @@ redirect_from:
         }
         
         p, li {
-            font-size: 16px;
-            color: var(--text-gray);
-            opacity: 0.9;
+            font-size: 1rem;
+            color: var(--text-medium);
         }
         
         ul {
@@ -85,17 +87,49 @@ redirect_from:
             content: "・";
             position: absolute;
             left: 0;
-            color: var(--light-gray);
-            font-size: 20px;
+            color: var(--beige);
+            font-size: 1.2rem;
         }
         
-        /* 滨田英明风格装饰元素 */
+        /* 统一装饰元素 */
         .section::after {
             content: "";
             display: block;
             height: 1px;
             background: linear-gradient(to right, transparent, var(--beige), transparent);
             margin-top: 20px;
+        }
+        
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--paper);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            color: var(--text-dark);
+            z-index: 100;
+        }
+        
+        .back-to-top.visible {
+            opacity: 0.8;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-3px);
         }
         
         /* 响应式设计 */
@@ -109,39 +143,8 @@ redirect_from:
             }
             
             h2 {
-                font-size: 20px;
+                font-size: 1.3rem;
             }
-        }
-        
-        /* 返回顶部按钮 */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--beige);
-            color: var(--text-gray);
-        }
-        
-        .back-to-top.visible {
-            opacity: 0.8;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            opacity: 1;
-            transform: translateY(-3px);
         }
     </style>
 </head>
@@ -149,17 +152,17 @@ redirect_from:
 
 <div class="container">
     <div class="section">
-        <h2>🎓 教育背景</h2>
+        <h2>🎓 野鸡进修</h2>
         <p>📌 Ph.D in Chicken Theory, Wild Chicken University, 2012</p>
     </div>
 
     <div class="section">
-        <h2>💼 工作经历</h2>
+        <h2>💼 牛马啊人生</h2>
         <p>🔨 在学校搬砖中</p>
     </div>
 
     <div class="section">
-        <h2>🔧 技能专长</h2>
+        <h2>🔧 无聊的时候做的</h2>
         <ul>
             <li>🏋️‍♂️ 卧推 16kg</li>
             <li>🐟 摸鱼等级 MAX</li>
@@ -167,7 +170,7 @@ redirect_from:
     </div>
 
     <div class="section">
-        <h2>📚 学术成果</h2>
+        <h2>📚 整点没用的</h2>
         <ul>
             {% for post in site.publications reversed %}
                 <li>{% include archive-single-cv.html %}</li>
@@ -176,7 +179,7 @@ redirect_from:
     </div>
 
     <div class="section">
-        <h2>🎤 学术报告</h2>
+        <h2>🎤 瞎逼逼</h2>
         <ul>
             {% for post in site.talks reversed %}
                 <li>{% include archive-single-talk-cv.html %}</li>
@@ -185,7 +188,7 @@ redirect_from:
     </div>
 
     <div class="section">
-        <h2>📖 教学经历</h2>
+        <h2>📖 不会硬教</h2>
         <ul>
             {% for post in site.teaching reversed %}
                 <li>{% include archive-single-cv.html %}</li>
@@ -194,12 +197,12 @@ redirect_from:
     </div>
 
     <div class="section">
-        <h2>🏅 荣誉奖项</h2>
+        <h2>🏅 都是别人衬托的</h2>
         <p>🍾 黑粉头子</p>
     </div>
 </div>
 
-<!-- 滨田风格返回顶部按钮 -->
+<!-- 返回顶部按钮 -->
 <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
     ↑
 </div>

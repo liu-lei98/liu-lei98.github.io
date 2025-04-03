@@ -6,19 +6,19 @@
 
 main:
 
-  - title: "CV"
+  - title: "解释一下这个人😝"
     url: /cv/
   
-  - title: "Gallery"
+  - title: "天天瞎拍拍📸"
     url: /portfolio/
 
-  - title: "Publications"
+  - title: "整点没用的📃"
     url: /publications/ 
 
-  - title: "Talks"
+  - title: "讲点没用的📢"
     url: /talks/     
 
-  - title: "Teaching"
+  - title: "或许有点用的🥸"
     url: /teaching/      
 
 
