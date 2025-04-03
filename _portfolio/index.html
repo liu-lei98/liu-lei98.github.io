@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Gallery"
+<!-- title: "Gallery" -->
 permalink: /portfolio/index
 author_profile: true
 ---
@@ -10,7 +10,7 @@ author_profile: true
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>图片合集</title>
+    <title>📸😝</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <style>
         body {
@@ -19,6 +19,12 @@ author_profile: true
             color: #5a514c;
             text-align: center;
             padding: 20px;
+            opacity: 0;
+            animation: fade-in 1s ease-in-out forwards;
+        }
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         h1 {
             font-weight: bold;
@@ -40,25 +46,60 @@ author_profile: true
             color: white;
             text-decoration: none;
             border-radius: 8px;
-            transition: all 0.3s;
+            transition: all 0.3s ease-in-out;
             text-align: center;
             font-size: 18px;
+            cursor: pointer;
         }
         .gallery-item:hover {
             transform: scale(1.05);
             background: linear-gradient(120deg, #8a6d3b, #6d543b);
         }
+        .gallery-item:active {
+            transform: scale(0.95);
+            background: linear-gradient(120deg, #6d543b, #5a3d2b);
+        }
+        .lazy-img {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .lazy-img.loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
 
-    <h1>📸 我的图片合集</h1>
-    <p>选择一个 Gallery 进入查看</p>
+    <h1>📸 Captured by Lei</h1>
+    <!-- <p>选择一个 Gallery 进入查看</p> -->
 
     <div class="gallery-list">
         <a href="/portfolio/gallery0" class="gallery-item">2024 在HDU🎞️</a>
         <a href="/portfolio/gallery1" class="gallery-item">2025-03 在长沙🎞️</a>
     </div>
+
+    <div class="gallery-images">
+        <img data-src="/images/gallery0.jpg" class="lazy-img" width="300" height="200" alt="Gallery 2024">
+        <img data-src="/images/gallery1.jpg" class="lazy-img" width="300" height="200" alt="Gallery 2025">
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 懒加载图片
+            let lazyImages = document.querySelectorAll(".lazy-img");
+            let observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        let img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.add("loaded");
+                        obs.unobserve(img);
+                    }
+                });
+            });
+            lazyImages.forEach(img => observer.observe(img));
+        });
+    </script>
 
 </body>
 </html>
