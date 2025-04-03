@@ -1,77 +1,193 @@
 ---
-title: "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging"
-collection: publications
-category: sournal
-permalink: /publication/2024-02-17-paper-title-number-5
-excerpt: 'This paper is about Compressive spectral imaging'
-date: 2024-02-17
-venue: 'IEEE Transactions on Multimedia'
-paperurl: 'https://doi.org/10.1109/TMM.2023.3304450'
-citation: 'P. Xu, L. Liu, H. Zheng, X. Yuan, C. Xu and L. Xue, "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging," in IEEE Transactions on Multimedia, vol. 26, pp. 2838-2850, 2024'
+layout: archive
+permalink: /publications/TMM2024
+author_profile: true
 ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f0e6;
+            --paper: #fffcf7;
+            --beige: #e8e1d5;
+            --text-dark: #5a5242;
+            --text-medium: #7a7262;
+            --border: #e0d8c8;
+            --shadow: 0 2px 8px rgba(0,0,0,0.05);
+            --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
 
-<div class="publication-item">
-    <h2 class="publication-title">{{ page.title }}</h2>
-    <p class="publication-meta">
-        <span class="publication-date">{{ page.date | date: "%B %d, %Y" }}</span> |
-        <span class="publication-venue">{{ page.venue }}</span>
-    </p>
-    <p class="publication-excerpt">{{ page.excerpt }}</p>
-    <p class="publication-citation">{{ page.citation }}</p>
-    <a href="{{ page.paperurl }}" class="btn btn-primary" target="_blank">Get the paper</a>
-</div>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+            margin: 0;
+        }
 
-<style>
-    .publication-item {
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin-bottom: 30px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-    .publication-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
+        .publication-item {
+            background: var(--paper);
+            border-radius: 3px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            padding: 30px;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
 
-    .publication-title {
-        font-size: 1.8em;
-        color: #5c6b73;
-        font-weight: 500;
-        margin-bottom: 10px;
-    }
+        .publication-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+        }
 
-    .publication-meta {
-        font-size: 1.1em;
-        color: #b0b7bb;
-        margin-bottom: 10px;
-    }
+        .publication-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
 
-    .publication-excerpt {
-        font-size: 1.2em;
-        color: #4a4a4a;
-        margin-bottom: 15px;
-    }
+        .publication-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 1rem;
+            color: var(--text-medium);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
 
-    .publication-citation {
-        font-size: 1.1em;
-        color: #6d7c85;
-        margin-bottom: 15px;
-    }
+        .publication-excerpt {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
 
-    .btn-primary {
-        background-color: #5c6b73;
-        color: #ffffff;
-        padding: 10px 20px;
-        font-size: 1.1em;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
+        .publication-citation {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 3px solid var(--beige);
+        }
 
-    .btn-primary:hover {
-        background-color: #4a5b64;
-    }
-</style>
+        .publication-link {
+            display: inline-block;
+            background: var(--paper);
+            color: var(--text-dark);
+            padding: 10px 20px;
+            border-radius: 3px;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .publication-link:hover {
+            background: var(--beige);
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--paper);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 0.8;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+            
+            .publication-title {
+                font-size: 1.5rem;
+            }
+            
+            .publication-item {
+                padding: 20px;
+            }
+            
+            .publication-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="publication-item">
+            <h1 class="publication-title">Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging</h1>
+            <div class="publication-meta">
+                <span class="publication-date">February 17, 2024</span>
+                <span class="publication-venue">IEEE Transactions on Multimedia</span>
+                <span class="publication-category">Journal</span>
+            </div>
+            <p class="publication-excerpt">This paper is about Compressive spectral imaging</p>
+            <blockquote class="publication-citation">
+                P. Xu, L. Liu, H. Zheng, X. Yuan, C. Xu and L. Xue, "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging," in IEEE Transactions on Multimedia, vol. 26, pp. 2838-2850, 2024
+            </blockquote>
+            <a href="https://doi.org/10.1109/TMM.2023.3304450" class="publication-link" target="_blank">
+                View Full Paper on IEEE Xplore
+            </a>
+        </div>
+    </div>
+
+    <!-- Back to top button -->
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
+
+    <script>
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>
