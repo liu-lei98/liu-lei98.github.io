@@ -7,16 +7,163 @@ redirect_from:
   - /about.html
 ---
 
-Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <style>
+        :root {
+            --cream: #f5f0e6;
+            --paper: #fffcf7;
+            --beige: #e8e1d5;
+            --text-dark: #5a5242;
+            --text-medium: #7a7262;
+            --border: #e0d8c8;
+            --shadow: 0 2px 8px rgba(0,0,0,0.05);
+            --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.8;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--paper);
+            padding: 30px;
+            border-radius: 3px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        
+        h1, h2, h3 {
+            font-weight: 400;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--beige);
+            padding-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 30px;
+        }
+        
+        p, li {
+            color: var(--text-medium);
+        }
+        
+        a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--text-medium);
+            text-decoration: underline;
+        }
+        
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--paper);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            z-index: 100;
+        }
+        
+        .back-to-top.visible {
+            opacity: 0.8;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
 
-To Do
-======
-在努力探索自己正在生活的城市中！
+    <div class="container">
+        <h1>Lei Liu's Space</h1>
+        
+        <p>Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！</p>
+        
+        <h2>To Do</h2>
+        <p>在努力探索自己正在生活的城市中！</p>
+        
+        <h2>Publication</h2>
+        <p>
+            P. Xu, L. Liu, H. Zheng, X. Yuan, C. Xu and L. Xue, "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging," in IEEE Transactions on Multimedia, vol. 26, pp. 2838-2850, 2024.
+            <a href="https://doi.org/10.1109/TMM.2023.3304450" target="_blank">[link]</a> 
+            <a href="https://github.com/CISMOLab/DADF-Net" target="_blank">[code]</a> 
+            <a href="http://liu-lei98.github.io/files/DADF.pdf" target="_blank">[pdf]</a>
+        </p>
+        
+        <p>
+            P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912.
+            <a href="https://doi.org/10.1109/TGRS.2023.3257125" target="_blank">[link]</a>
+        </p>
+    </div>
 
-Publication
-======
-P. Xu, L. Liu, H. Zheng, X. Yuan, C. Xu and L. Xue, "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging," in IEEE Transactions on Multimedia, vol. 26, pp. 2838-2850, 2024.[link](https://doi.org/10.1109/TMM.2023.3304450) [code](https://github.com/CISMOLab/DADF-Net) [pdf](http://liu-lei98.github.io/files/DADF.pdf)
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
 
-P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912.[link](https://doi.org/10.1109/TGRS.2023.3257125)
+    <script>
+        // 显示/隐藏返回顶部按钮
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+    </script>
 
-
+</body>
+</html>
