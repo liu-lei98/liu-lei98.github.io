@@ -128,3 +128,21 @@ a:hover {
     box-shadow: var(--hover-shadow);
     filter: brightness(1.05);
 }
+
+        
+li:before {
+    /* content: "・"; */
+    position: absolute;
+    left: 0;
+    color: var(--beige);
+    font-size: 1.2rem;
+}
+
+/* 统一装饰元素 */
+.section::after {
+    /* content: ""; */
+    display: block;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--beige), transparent);
+    margin-top: 20px;
+}
