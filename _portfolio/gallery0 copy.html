@@ -25,7 +25,7 @@ author_profile: true
             --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
-        /* 日系低饱和背景 */
+        /* 🌿 日系低饱和背景 */
         body {
             background: var(--cream);
             font-family: 'Noto Sans JP', sans-serif;
@@ -35,7 +35,7 @@ author_profile: true
             line-height: 1.6;
         }
 
-        /* 标题样式 */
+        /* 📜 标题样式 */
         h1 {
             font-size: 2rem;
             font-weight: 400;
@@ -44,7 +44,13 @@ author_profile: true
             letter-spacing: 1px;
         }
 
-        /* 画廊容器 */
+        p {
+            font-size: 16px;
+            color: var(--text-medium);
+            opacity: 0.8;
+        }
+
+        /* 📸 画廊容器 */
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
@@ -56,7 +62,7 @@ author_profile: true
             margin: 0 auto;
         }
 
-        /* 缩略图样式 */
+        /* 🎨 缩略图样式 */
         .thumbnail {
             width: 100%;
             max-width: 300px;
@@ -75,7 +81,7 @@ author_profile: true
             filter: brightness(1.05);
         }
 
-        /* 图片预览层 - 保留原有功能 */
+        /* 🪟 预览层 */
         .overlay {
             display: none;
             position: fixed;
@@ -83,12 +89,13 @@ author_profile: true
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
+            z-index: 1000;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease-in-out;
         }
 
         .overlay.show {
@@ -96,12 +103,12 @@ author_profile: true
             opacity: 1;
         }
 
-        /* 预览大图 */
+        /* 🔎 预览大图 */
         .overlay img {
             max-width: 80%;
             max-height: 80%;
             border-radius: 3px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             animation: fadeIn 0.3s ease-out;
         }
 
@@ -110,7 +117,7 @@ author_profile: true
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* 导航按钮 */
+        /* 🔄 左右切换按钮 */
         .nav-buttons {
             position: absolute;
             top: 50%;
@@ -123,6 +130,7 @@ author_profile: true
             box-sizing: border-box;
         }
 
+        /* 🏹 切换按钮 */
         .nav-buttons button {
             background: rgba(255, 255, 255, 0.2);
             border: none;
@@ -164,7 +172,7 @@ author_profile: true
             transform: scale(1.1);
         }
 
-        /* 返回顶部按钮 */
+        /* 返回顶部按钮 - 与CV页面一致 */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -210,22 +218,17 @@ author_profile: true
                 max-width: 45%;
                 height: 150px;
             }
-            
-            .overlay img {
-                max-width: 90%;
-                max-height: 60%;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- 标题部分 -->
+    <!-- 📖 标题部分 -->
     <div class="container text-center">
         <h1 class="my-4">🎞️在HDU</h1>
     </div>
 
-    <!-- 画廊 -->
+    <!-- 📸 画廊 -->
     <div class="gallery-container" id="gallery">
         {% for file in site.static_files %}
             {% if file.path contains '/images/gallery0/' %}
@@ -234,7 +237,7 @@ author_profile: true
         {% endfor %}
     </div>
 
-    <!-- 图片预览层 -->
+    <!-- 🔍 预览层 -->
     <div class="overlay" id="overlay">
         <button class="close-btn" onclick="closePreview()">×</button>
         <div class="nav-buttons">
@@ -255,50 +258,44 @@ author_profile: true
             let currentIndex = 0;
             const overlay = document.getElementById('overlay');
 
-            // 打开图片预览
             function openPreview(index) {
                 currentIndex = index;
                 document.getElementById('preview-img').src = images[currentIndex];
                 overlay.classList.add('show');
-                document.body.style.overflow = 'hidden'; // 禁止背景滚动
+                document.body.style.overflow = 'hidden';
             }
 
-            // 关闭图片预览
             function closePreview() {
                 overlay.classList.remove('show');
-                document.body.style.overflow = 'auto'; // 恢复背景滚动
+                document.body.style.overflow = 'auto';
             }
 
-            // 上一张图片
             function prevImage() {
                 currentIndex = (currentIndex - 1 + images.length) % images.length;
-                updatePreviewImage();
-            }
-
-            // 下一张图片
-            function nextImage() {
-                currentIndex = (currentIndex + 1) % images.length;
-                updatePreviewImage();
-            }
-
-            // 更新预览图片
-            function updatePreviewImage() {
-                const previewImg = document.getElementById('preview-img');
-                previewImg.style.animation = 'none';
-                previewImg.src = images[currentIndex];
+                document.getElementById('preview-img').src = images[currentIndex];
+                // 添加切换动画
+                document.getElementById('preview-img').style.animation = 'none';
                 setTimeout(() => {
-                    previewImg.style.animation = 'fadeIn 0.3s ease-out';
+                    document.getElementById('preview-img').style.animation = 'fadeIn 0.3s ease-out';
                 }, 10);
             }
 
-            // 点击遮罩层关闭
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                document.getElementById('preview-img').src = images[currentIndex];
+                // 添加切换动画
+                document.getElementById('preview-img').style.animation = 'none';
+                setTimeout(() => {
+                    document.getElementById('preview-img').style.animation = 'fadeIn 0.3s ease-out';
+                }, 10);
+            }
+
             overlay.addEventListener('click', function(e) {
                 if (e.target === overlay) {
                     closePreview();
                 }
             });
 
-            // 收集所有图片并添加点击事件
             document.querySelectorAll('.thumbnail').forEach((img, index) => {
                 images.push(img.src);
                 img.addEventListener('click', function() {
@@ -306,18 +303,13 @@ author_profile: true
                 });
             });
 
-            // 键盘事件
             document.addEventListener("keydown", function(event) {
-                if (event.key === "Escape") {
-                    closePreview();
-                } else if (event.key === "ArrowLeft") {
-                    prevImage();
-                } else if (event.key === "ArrowRight") {
-                    nextImage();
-                }
+                if (event.key === "Escape") closePreview();
+                else if (event.key === "ArrowLeft") prevImage();
+                else if (event.key === "ArrowRight") nextImage();
             });
 
-            // 返回顶部按钮显示/隐藏
+            // 显示/隐藏返回顶部按钮
             window.addEventListener('scroll', function() {
                 const backToTop = document.querySelector('.back-to-top');
                 if (window.pageYOffset > 300) {
@@ -327,7 +319,6 @@ author_profile: true
                 }
             });
 
-            // 全局函数
             window.prevImage = prevImage;
             window.nextImage = nextImage;
             window.closePreview = closePreview;
