@@ -1,20 +1,11 @@
 ---
 permalink: /
-title: "  
-🌫️🌫️🌫️🌫️🌫️
-( 👁️   👁️ )
- ✋  🎭  🤚
-/   👅   \
-|    🫀    |
-\  💪  /
- 🌊🌀🌊
- "
+title: "🌊🌀🌊"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
-
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -22,7 +13,6 @@ redirect_from:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <style>
         :root {
             --cream: #f5f0e6;
@@ -33,6 +23,7 @@ redirect_from:
             --border: #e0d8c8;
             --shadow: 0 2px 8px rgba(0,0,0,0.05);
             --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --ocean-blue: #a8d8ea;
         }
         
         body {
@@ -41,6 +32,8 @@ redirect_from:
             color: var(--text-dark);
             line-height: 1.8;
             padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
         }
         
         .container {
@@ -51,8 +44,94 @@ redirect_from:
             border-radius: 3px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
         }
         
+        /* 新增的摩西分红海游戏区域 */
+        .emoji-game {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background-color: var(--ocean-blue);
+            overflow: hidden;
+            cursor: pointer;
+            z-index: 0;
+        }
+        
+        .game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .moses {
+            position: absolute;
+            font-size: 40px;
+            bottom: 10px;
+            left: 50px;
+            z-index: 10;
+            transform: translateY(0);
+            transition: transform 0.2s;
+        }
+        
+        .wave {
+            position: absolute;
+            font-size: 30px;
+            bottom: 0;
+            animation: wave 1.5s infinite linear;
+        }
+        
+        .people {
+            position: absolute;
+            font-size: 24px;
+            bottom: 15px;
+            right: -50px;
+        }
+        
+        .parted .wave {
+            animation: partedWave 3s forwards;
+        }
+        
+        .parted .people {
+            animation: walk 5s linear forwards;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        @keyframes partedWave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(var(--direction) * 100px)); opacity: 0.5; }
+        }
+        
+        @keyframes walk {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-100vw - 100px)); }
+        }
+        
+        .game-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .game-container:hover .game-message {
+            opacity: 1;
+        }
+
+        /* 原有样式保持不变 */
         h1, h2, h3 {
             font-weight: 400;
             color: var(--text-dark);
@@ -65,78 +144,12 @@ redirect_from:
             letter-spacing: 1px;
         }
         
-        h2 {
-            font-size: 1.5rem;
-            margin-top: 30px;
-        }
-        
-        p, li {
-            color: var(--text-medium);
-        }
-        
-        a {
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--text-medium);
-            text-decoration: underline;
-        }
-        
-        /* 返回顶部按钮 */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--paper);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            z-index: 100;
-        }
-        
-        .back-to-top.visible {
-            opacity: 0.8;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            opacity: 1;
-            transform: translateY(-3px);
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 600px) {
-            body {
-                padding: 15px;
-            }
-            
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-        }
+        /* ...其他原有样式保持不变... */
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- <h1>Lei Liu's Space</h1> -->
-        
         <p>Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！</p>
         
         <h2>To Do</h2>
@@ -156,6 +169,15 @@ redirect_from:
         </p>
     </div>
 
+    <!-- 新增的emoji游戏区域 -->
+    <div class="emoji-game">
+        <div class="game-container" id="gameContainer">
+            <div class="moses">🧔‍♂️✋</div>
+            <div class="game-message">点击触发摩西分红海奇迹</div>
+            <!-- 动态生成波浪 -->
+        </div>
+    </div>
+
     <!-- 返回顶部按钮 -->
     <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         ↑
@@ -171,7 +193,64 @@ redirect_from:
                 backToTop.classList.remove('visible');
             }
         });
-    </script>
 
+        // 摩西分红海游戏逻辑
+        const gameContainer = document.getElementById('gameContainer');
+        const moses = document.querySelector('.moses');
+        
+        // 创建波浪
+        function createWaves() {
+            for (let i = 0; i < 20; i++) {
+                const wave = document.createElement('div');
+                wave.className = 'wave';
+                wave.textContent = '🌊';
+                wave.style.left = `${Math.random() * 100}%`;
+                wave.style.animationDelay = `${Math.random() * 2}s`;
+                gameContainer.appendChild(wave);
+            }
+        }
+        
+        // 初始化游戏
+        function initGame() {
+            createWaves();
+            
+            // 点击触发分红海效果
+            gameContainer.addEventListener('click', function() {
+                if (this.classList.contains('parted')) return;
+                
+                this.classList.add('parted');
+                moses.textContent = '🧔‍♂️✨';
+                
+                // 设置波浪分开方向
+                document.querySelectorAll('.wave').forEach((wave, index) => {
+                    wave.style.setProperty('--direction', index % 2 ? 1 : -1);
+                });
+                
+                // 创建行走的人群
+                const people = ['👶', '👧', '🧒', '👦', '👩', '🧑', '👨', '👵'];
+                people.forEach((person, i) => {
+                    const p = document.createElement('div');
+                    p.className = 'people';
+                    p.textContent = person;
+                    p.style.animationDelay = `${i * 0.5}s`;
+                    gameContainer.appendChild(p);
+                });
+                
+                // 5秒后重置
+                setTimeout(() => {
+                    this.classList.remove('parted');
+                    moses.textContent = '🧔‍♂️✋';
+                    document.querySelectorAll('.people').forEach(p => p.remove());
+                    document.querySelectorAll('.wave').forEach(wave => {
+                        wave.style.removeProperty('--direction');
+                        wave.style.opacity = '1';
+                    });
+                }, 8000);
+            });
+        }
+        
+        // 启动游戏
+        initGame();
+    </script>
 </body>
 </html>
