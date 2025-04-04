@@ -194,13 +194,13 @@ redirect_from:
             <ul>
                 {% for post in site.talks reversed %}
                     {% unless post.permalink contains '/index' %}
-                        <li>{% include archive-single-cv.html %}</li>
+                        <li>{% include archive-single-talk-cv.html %}</li>
                     {% endunless %}
                 {% endfor %}
             </ul>
         </div>
 
-        <div class="section">
+        <!-- <div class="section">
             <h2>📖 硬教</h2>
             <ul>
                 {% for post in site.teaching reversed %}
@@ -209,7 +209,7 @@ redirect_from:
                     {% endunless %}
                 {% endfor %}
             </ul>
-        </div>
+        </div> -->
 
         <div class="section">
             <h2>🏅 衬托</h2>
