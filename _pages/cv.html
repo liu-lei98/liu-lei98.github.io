@@ -55,6 +55,10 @@ redirect_from:
             animation: stepsMove 2s infinite linear;
         }
         
+        .tool, .fish, .book, .talk, .medal {
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+        
         @keyframes waveMove {
             from { transform: translateX(-10px); }
             to { transform: translateX(10px); }
@@ -68,6 +72,11 @@ redirect_from:
         @keyframes stepsMove {
             from { transform: translateX(20px); opacity: 1; }
             to { transform: translateX(-20px); opacity: 0; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
     </style>
 </head>
@@ -84,18 +93,18 @@ redirect_from:
 
     <div class="container">
         <div class="section">
-            <h2>💼 打工</h2>
-            <p>🔨 在学校搬砖中</p>
+            <h2>💼 <span class="tool">打工</span></h2>
+            <p>🔨 <span class="tool">在学校搬砖中</span></p>
         </div>
         <div class="section">
-            <h2>🔧 无聊</h2>
+            <h2>🔧 <span class="tool">无聊</span></h2>
             <ul>
-                <li>🏋️‍♂️ 卧推 16kg</li>
-                <li>🐟 摸鱼等级 MAX</li>
+                <li>🏋️‍♂️ <span class="tool">卧推 16kg</span></li>
+                <li>🐟 <span class="fish">摸鱼等级 MAX</span></li>
             </ul>
         </div>
         <div class="section">
-            <h2>📚 没用</h2>
+            <h2>📚 <span class="book">没用</span></h2>
             <ul>
                 {% for post in site.publications reversed %}
                     {% unless post.permalink contains '/index' %}
@@ -105,7 +114,7 @@ redirect_from:
             </ul>
         </div>
         <div class="section">
-            <h2>🎤 瞎逼逼</h2>
+            <h2>🎤 <span class="talk">瞎逼逼</span></h2>
             <ul>
                 {% for post in site.talks reversed %}
                     {% unless post.permalink contains '/index' %}
@@ -115,8 +124,8 @@ redirect_from:
             </ul>
         </div>
         <div class="section">
-            <h2>🏅 衬托</h2>
-            <p>🍾 黑粉头子</p>
+            <h2>🏅 <span class="medal">衬托</span></h2>
+            <p>🍾 <span class="medal">黑粉头子</span></p>
         </div>
     </div>
     
