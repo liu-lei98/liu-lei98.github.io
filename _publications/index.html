@@ -40,7 +40,63 @@ author_profile: true
             letter-spacing: 1px;
             font-size: 2rem;
         }
-        
+
+        /* 论文写作动画 */
+        .emoji-animation {
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .idea {
+            animation: glow 1.5s infinite alternate ease-in-out;
+        }
+
+        .typing {
+            animation: shake 0.2s infinite alternate ease-in-out;
+        }
+
+        .paper {
+            animation: fadeIn 2s infinite alternate ease-in-out;
+        }
+
+        .collapse {
+            animation: dizzy 1.5s infinite alternate ease-in-out;
+        }
+
+        .coffee {
+            animation: steam 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes glow {
+            0% { opacity: 0.5; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(2px); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-5px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes dizzy {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(10deg); }
+        }
+
+        @keyframes steam {
+            0% { opacity: 0.5; transform: translateY(0); }
+            100% { opacity: 1; transform: translateY(-5px); }
+        }
+
         .gallery-list {
             display: flex;
             flex-direction: column;
@@ -72,21 +128,6 @@ author_profile: true
             background: var(--paper);
         }
         
-        .gallery-item::after {
-            content: "";
-            display: block;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--beige), transparent);
-            margin-top: 15px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover::after {
-            opacity: 1;
-        }
-        
-        /* 完全一致的返回顶部按钮 */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -117,40 +158,34 @@ author_profile: true
             opacity: 1;
             transform: translateY(-3px);
         }
-        
-        /* 响应式设计保持一致 */
-        @media (max-width: 600px) {
-            body {
-                padding: 30px 15px;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-            
-            .gallery-item {
-                padding: 15px;
-                font-size: 15px;
-            }
-        }
+
     </style>
 </head>
 <body>
 
-    <h1>📃 useless by Lei</h1>
-
+    <!-- <h1>📃 useless by Lei</h1> -->
+    <h1>
+    <!-- 论文写作状态动画 -->
+    <div class="emoji-animation">
+        <span class="idea">💡</span>
+        <span class="typing">⌨️</span>
+        <span class="paper">📄</span>
+        <span class="collapse">😵</span>
+        <span class="coffee">☕</span>
+        <span>useless by Lei</span>
+    </div>
+    </h1>
     <div class="gallery-list">
         <a href="/publications/TGRS2023" class="gallery-item">A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging</a>
         <a href="/publications/TMM2024" class="gallery-item">Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging</a>
     </div>
 
-    <!-- 与CV页面完全相同的返回顶部按钮 -->
+    <!-- 返回顶部按钮 -->
     <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         ↑
     </div>
 
     <script>
-        // 与CV页面完全相同的JS代码
         window.addEventListener('scroll', function() {
             const backToTop = document.querySelector('.back-to-top');
             if (window.pageYOffset > 300) {
