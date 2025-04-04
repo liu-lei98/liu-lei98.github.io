@@ -40,7 +40,73 @@ author_profile: true
             letter-spacing: 1px;
             font-size: 2rem;
         }
-        
+
+        /* 主要动画样式 */
+        .emoji-animation {
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* 具体emoji动画 */
+        .wave {
+            animation: waveMove 2s infinite alternate ease-in-out;
+        }
+
+        .moses {
+            animation: mosesMove 2s infinite alternate ease-in-out;
+        }
+
+        .steps {
+            animation: stepsMove 2s infinite linear;
+        }
+
+        .camera {
+            animation: flash 2s infinite alternate ease-in-out;
+        }
+
+        .video {
+            animation: zoom 1.5s infinite alternate ease-in-out;
+        }
+
+        .photo {
+            animation: fadeIn 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes waveMove {
+            from { transform: translateX(-10px); }
+            to { transform: translateX(10px); }
+        }
+
+        @keyframes mosesMove {
+            from { transform: translateY(-5px); }
+            to { transform: translateY(5px); }
+        }
+
+        @keyframes stepsMove {
+            from { transform: translateX(20px); opacity: 1; }
+            to { transform: translateX(-20px); opacity: 0; }
+        }
+
+        @keyframes flash {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+
+        @keyframes zoom {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
         .gallery-list {
             display: flex;
             flex-direction: column;
@@ -71,22 +137,7 @@ author_profile: true
             box-shadow: var(--hover-shadow);
             background: var(--paper);
         }
-        
-        .gallery-item::after {
-            content: "";
-            display: block;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--beige), transparent);
-            margin-top: 15px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover::after {
-            opacity: 1;
-        }
-        
-        /* 完全一致的返回顶部按钮 */
+
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -112,45 +163,35 @@ author_profile: true
             opacity: 0.8;
             visibility: visible;
         }
-        
+
         .back-to-top:hover {
             opacity: 1;
             transform: translateY(-3px);
         }
-        
-        /* 响应式设计保持一致 */
-        @media (max-width: 600px) {
-            body {
-                padding: 30px 15px;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-            
-            .gallery-item {
-                padding: 15px;
-                font-size: 15px;
-            }
-        }
+
     </style>
 </head>
 <body>
-    <div class="container"></div>
-        <h1>📸 Captured by Lei</h1>
+    <h1>📸 Captured by Lei</h1>
 
-        <div class="gallery-list">
-            <a href="/portfolio/gallery0" class="gallery-item">2024 在HDU 🎞️</a>
-            <a href="/portfolio/gallery1" class="gallery-item">2025-03 在长沙 🎞️</a>
-        </div>
+    <!-- 摄影过程 -->
+    <div class="emoji-animation">
+        <span class="camera">📸</span>
+        <span class="video">🎥</span>
+        <span class="photo">🖼️</span>
     </div>
-    <!-- 与CV页面完全相同的返回顶部按钮 -->
+
+    <div class="gallery-list">
+        <a href="/portfolio/gallery0" class="gallery-item">2024 在HDU 🎞️</a>
+        <a href="/portfolio/gallery1" class="gallery-item">2025-03 在长沙 🎞️</a>
+    </div>
+
+    <!-- 返回顶部按钮 -->
     <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         ↑
     </div>
 
     <script>
-        // 与CV页面完全相同的JS代码
         window.addEventListener('scroll', function() {
             const backToTop = document.querySelector('.back-to-top');
             if (window.pageYOffset > 300) {
@@ -160,6 +201,5 @@ author_profile: true
             }
         });
     </script>
-
 </body>
 </html>
