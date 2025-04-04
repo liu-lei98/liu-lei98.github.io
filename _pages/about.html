@@ -46,22 +46,22 @@ redirect_from:
             border: 1px solid var(--border);
             position: relative;
             z-index: 1;
+            margin-bottom: 140px; /* 为动画区域留出空间 */
         }
         
-        /* 新增的摩西分红海游戏区域 */
-        .emoji-game {
+        /* 自动播放的摩西分红海动画区域 */
+        .emoji-animation {
             position: fixed;
-            bottom: 20px;
+            bottom: 0;
             left: 0;
             width: 100%;
             height: 120px;
             background-color: var(--ocean-blue);
             overflow: hidden;
-            cursor: pointer;
             z-index: 0;
         }
         
-        .game-container {
+        .animation-container {
             position: relative;
             width: 100%;
             height: 100%;
@@ -73,8 +73,6 @@ redirect_from:
             bottom: 10px;
             left: 50px;
             z-index: 10;
-            transform: translateY(0);
-            transition: transform 0.2s;
         }
         
         .wave {
@@ -89,46 +87,42 @@ redirect_from:
             font-size: 24px;
             bottom: 15px;
             right: -50px;
+            animation: walk 12s linear infinite;
+            animation-delay: var(--delay);
         }
         
-        .parted .wave {
-            animation: partedWave 3s forwards;
-        }
-        
-        .parted .people {
-            animation: walk 5s linear forwards;
-        }
-        
+        /* 波浪分开动画 */
         @keyframes wave {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-5px) translateX(5px); }
+            50% { transform: translateY(0) translateX(0); }
+            75% { transform: translateY(-5px) translateX(-5px); }
         }
         
-        @keyframes partedWave {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(var(--direction) * 100px)); opacity: 0.5; }
-        }
-        
+        /* 民众行走动画 */
         @keyframes walk {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-100vw - 100px)); }
+            0% { transform: translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(calc(-100vw - 100px)); opacity: 0; }
         }
         
-        .game-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255,255,255,0.9);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s;
+        /* 摩西举手动画 */
+        @keyframes moses-action {
+            0%, 40% { content: "🧔‍♂️"; }
+            50%, 100% { content: "🧔‍♂️✨"; }
         }
         
-        .game-container:hover .game-message {
-            opacity: 1;
+        .moses::after {
+            content: "🧔‍♂️";
+            animation: moses-action 12s infinite;
+        }
+        
+        /* 波浪分开效果 */
+        @keyframes wave-part {
+            0%, 40% { transform: translateX(0); opacity: 1; }
+            50%, 90% { transform: translateX(calc(var(--direction) * 60px)); opacity: 0.6; }
+            100% { transform: translateX(0); opacity: 1; }
         }
 
         /* 原有样式保持不变 */
@@ -167,19 +161,15 @@ redirect_from:
             P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912.
             <a href="https://doi.org/10.1109/TGRS.2023.3257125" target="_blank">[link]</a>
         </p>
-        <h2>
-            <!-- 新增的emoji游戏区域 -->
-            <div class="emoji-game">
-                <div class="game-container" id="gameContainer">
-                    <div class="moses">🧔‍♂️✋</div>
-                    <div class="game-message">点击触发摩西分红海奇迹</div>
-                    <!-- 动态生成波浪 -->
-                </div>
-            </div>          
-        </h2>
     </div>
 
-
+    <!-- 自动播放的emoji动画区域 -->
+    <div class="emoji-animation">
+        <div class="animation-container" id="animationContainer">
+            <div class="moses"></div>
+            <!-- 波浪和人群将通过JS动态生成 -->
+        </div>
+    </div>
 
     <!-- 返回顶部按钮 -->
     <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
@@ -197,63 +187,36 @@ redirect_from:
             }
         });
 
-        // 摩西分红海游戏逻辑
-        const gameContainer = document.getElementById('gameContainer');
-        const moses = document.querySelector('.moses');
-        
-        // 创建波浪
-        function createWaves() {
+        // 初始化自动播放的动画
+        function initAnimation() {
+            const container = document.getElementById('animationContainer');
+            
+            // 创建波浪
             for (let i = 0; i < 20; i++) {
                 const wave = document.createElement('div');
                 wave.className = 'wave';
                 wave.textContent = '🌊';
                 wave.style.left = `${Math.random() * 100}%`;
                 wave.style.animationDelay = `${Math.random() * 2}s`;
-                gameContainer.appendChild(wave);
+                wave.style.setProperty('--direction', i % 2 ? 1 : -1);
+                wave.style.animation = `wave 1.5s infinite linear, wave-part 12s infinite`;
+                wave.style.animationDelay = `${Math.random() * 2}s, ${Math.random() * 2}s`;
+                container.appendChild(wave);
             }
-        }
-        
-        // 初始化游戏
-        function initGame() {
-            createWaves();
             
-            // 点击触发分红海效果
-            gameContainer.addEventListener('click', function() {
-                if (this.classList.contains('parted')) return;
-                
-                this.classList.add('parted');
-                moses.textContent = '🧔‍♂️✨';
-                
-                // 设置波浪分开方向
-                document.querySelectorAll('.wave').forEach((wave, index) => {
-                    wave.style.setProperty('--direction', index % 2 ? 1 : -1);
-                });
-                
-                // 创建行走的人群
-                const people = ['👶', '👧', '🧒', '👦', '👩', '🧑', '👨', '👵'];
-                people.forEach((person, i) => {
-                    const p = document.createElement('div');
-                    p.className = 'people';
-                    p.textContent = person;
-                    p.style.animationDelay = `${i * 0.5}s`;
-                    gameContainer.appendChild(p);
-                });
-                
-                // 5秒后重置
-                setTimeout(() => {
-                    this.classList.remove('parted');
-                    moses.textContent = '🧔‍♂️✋';
-                    document.querySelectorAll('.people').forEach(p => p.remove());
-                    document.querySelectorAll('.wave').forEach(wave => {
-                        wave.style.removeProperty('--direction');
-                        wave.style.opacity = '1';
-                    });
-                }, 8000);
+            // 创建行走的人群
+            const people = ['👶', '👧', '🧒', '👦', '👩', '🧑', '👨', '👵'];
+            people.forEach((person, i) => {
+                const p = document.createElement('div');
+                p.className = 'people';
+                p.textContent = person;
+                p.style.setProperty('--delay', `${i * 1.5}s`);
+                container.appendChild(p);
             });
         }
         
-        // 启动游戏
-        initGame();
+        // 页面加载后启动动画
+        window.addEventListener('load', initAnimation);
     </script>
 </body>
 </html>
