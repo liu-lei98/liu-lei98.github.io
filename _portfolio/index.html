@@ -53,17 +53,6 @@ author_profile: true
         }
 
         /* 具体emoji动画 */
-        .wave {
-            animation: waveMove 2s infinite alternate ease-in-out;
-        }
-
-        .moses {
-            animation: mosesMove 2s infinite alternate ease-in-out;
-        }
-
-        .steps {
-            animation: stepsMove 2s infinite linear;
-        }
 
         .camera {
             animation: flash 2s infinite alternate ease-in-out;
@@ -77,21 +66,7 @@ author_profile: true
             animation: fadeIn 3s infinite alternate ease-in-out;
         }
 
-        @keyframes waveMove {
-            from { transform: translateX(-10px); }
-            to { transform: translateX(10px); }
-        }
-
-        @keyframes mosesMove {
-            from { transform: translateY(-5px); }
-            to { transform: translateY(5px); }
-        }
-
-        @keyframes stepsMove {
-            from { transform: translateX(20px); opacity: 1; }
-            to { transform: translateX(-20px); opacity: 0; }
-        }
-
+       
         @keyframes flash {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.2); opacity: 0.5; }
@@ -179,7 +154,7 @@ author_profile: true
         <span class="camera">📸</span>
         <span class="video">🎥</span>
         <span class="photo">🖼️</span>
-        <span class="waveMove">Captured by Lei</span>
+        <span class="photo">Captured by Lei</span>
     </div>
     </h1>
     <div class="gallery-list">
