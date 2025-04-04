@@ -39,7 +39,63 @@ author_profile: true
             letter-spacing: 1px;
             font-size: 2rem;
         }
-        
+
+        /* 瞎逼逼动画 */
+        .talk-animation {
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .speaking {
+            animation: mouthMove 0.5s infinite alternate ease-in-out;
+        }
+
+        .talking {
+            animation: bubble 1.2s infinite alternate ease-in-out;
+        }
+
+        .shocked {
+            animation: headExpand 1.5s infinite alternate ease-in-out;
+        }
+
+        .laughing {
+            animation: shakeLaugh 0.8s infinite alternate ease-in-out;
+        }
+
+        .cover-ears {
+            animation: hideEars 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes mouthMove {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+
+        @keyframes bubble {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        @keyframes headExpand {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.3); }
+        }
+
+        @keyframes shakeLaugh {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(10deg); }
+        }
+
+        @keyframes hideEars {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-5px); opacity: 0.7; }
+        }
+
         .gallery-list {
             display: flex;
             flex-direction: column;
@@ -68,20 +124,6 @@ author_profile: true
             transform: translateY(-3px);
             box-shadow: var(--hover-shadow);
             background: var(--paper);
-        }
-        
-        .gallery-item::after {
-            content: "";
-            display: block;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--beige), transparent);
-            margin-top: 15px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover::after {
-            opacity: 1;
         }
         
         /* 返回顶部按钮 */
@@ -114,28 +156,23 @@ author_profile: true
             opacity: 1;
             transform: translateY(-3px);
         }
-        
-        /* 响应式设计 */
-        @media (max-width: 600px) {
-            body {
-                padding: 30px 15px;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-            
-            .gallery-item {
-                padding: 15px;
-                font-size: 15px;
-            }
-        }
+
     </style>
 </head>
 <body>
 
-    <h1>📢 瞎逼逼 by Lei</h1>
-
+    <h1>
+    <!-- 瞎逼逼动画 -->
+    <div class="talk-animation">
+        <span class="speaking">🗣️</span>
+        <span class="talking">💬</span>
+        <span class="shocked">🤯</span>
+        <span class="laughing">😂</span>
+        <span class="cover-ears">🙉</span>
+        <span>瞎逼逼 by Lei</span>
+    </div>
+    </h1>
+    
     <div class="gallery-list">
         <a href="/talks/2012-03-01-talk-1" class="gallery-item">在浙江瞎逼逼</a>
     </div>
