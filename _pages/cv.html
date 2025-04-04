@@ -11,7 +11,7 @@ redirect_from:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <title>牛马简历</title> -->
+    <title>牛马简历</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -23,43 +23,42 @@ redirect_from:
             --border: #e0d8c8;
             --shadow: 0 2px 8px rgba(0,0,0,0.05);
             --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --accent: #ff6b6b;
         }
         
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background-color: var(--cream);
             color: var(--text-dark);
-            text-align: center;
             padding: 40px 20px;
             line-height: 1.6;
-        }
-        
-        h1 {
-            font-weight: 400;
-            color: var(--text-dark);
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            font-size: 2rem;
+            margin: 0;
         }
         
         .container {
             max-width: 800px;
             margin: 0 auto;
-            text-align: left;
         }
-        
+    
         .section {
             background: var(--paper);
             padding: 30px;
             margin-bottom: 25px;
-            border-radius: 3px;
+            border-radius: 8px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .section.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .section:hover {
-            transform: translateY(-2px);
+            transform: translateY(-5px) !important;
             box-shadow: var(--hover-shadow);
         }
         
@@ -72,39 +71,90 @@ redirect_from:
             padding-bottom: 10px;
             border-bottom: 1px solid var(--beige);
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 .emoji {
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover h2 .emoji {
+            transform: rotate(15deg) scale(1.2);
         }
         
         p, li {
             font-size: 1rem;
             color: var(--text-medium);
+            margin: 0;
         }
         
         ul {
             padding-left: 20px;
             list-style-type: none;
+            margin: 0;
         }
         
         li {
             position: relative;
             padding-left: 25px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        li:hover {
+            transform: translateX(5px);
+            color: var(--accent);
         }
         
         li:before {
-            /* content: "・"; */
+            content: "·";
             position: absolute;
             left: 0;
             color: var(--beige);
-            font-size: 1.2rem;
+            font-size: 2rem;
+            line-height: 0;
         }
         
-        /* 统一装饰元素 */
-        .section::after {
-            /* content: ""; */
-            display: block;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--beige), transparent);
-            margin-top: 20px;
+        /* 动画元素 */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .wiggle {
+            display: inline-block;
+            animation: wiggle 2s infinite;
+        }
+        
+        .shake {
+            display: inline-block;
+            animation: shake 0.5s infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
         }
         
         /* 返回顶部按钮 */
@@ -127,6 +177,7 @@ redirect_from:
             box-shadow: var(--shadow);
             color: var(--text-dark);
             z-index: 100;
+            font-size: 1.5rem;
         }
         
         .back-to-top.visible {
@@ -136,17 +187,14 @@ redirect_from:
         
         .back-to-top:hover {
             opacity: 1;
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.1);
+            color: var(--accent);
         }
         
         /* 响应式设计 */
         @media (max-width: 600px) {
             body {
-                padding: 30px 15px;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
+                padding: 20px 10px;
             }
             
             .section {
@@ -160,60 +208,39 @@ redirect_from:
     </style>
 </head>
 <body>
-
-    <!-- <h1>牛马简历</h1> -->
-
     <div class="container">
-
         <div class="section">
-            <h2>💼 打工</h2>
-            <p>🔨 在学校搬砖中</p>
+            <h2><span class="emoji floating">💼</span> 打工</h2>
+            <p><span class="wiggle">🔨</span> 在学校搬砖中 <span class="pulse">🏗️</span></p>
         </div>
 
         <div class="section">
-            <h2>🔧 无聊</h2>
+            <h2><span class="emoji floating">🔧</span> 无聊</h2>
             <ul>
-                <li>🏋️‍♂️ 卧推 16kg</li>
-                <li>🐟 摸鱼等级 MAX</li>
+                <li><span class="shake">🏋️‍♂️</span> 卧推 16kg</li>
+                <li><span class="floating">🐟</span> 摸鱼等级 MAX</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2>📚 没用</h2>
+            <h2><span class="emoji floating">📚</span> 没用</h2>
             <ul>
-                {% for post in site.publications reversed %}
-                    {% unless post.permalink contains '/index' %}
-                        <li>{% include archive-single-cv.html %}</li>
-                    {% endunless %}
-                {% endfor %}
+                <li>📄 论文1: 《论摸鱼对生产力的影响》</li>
+                <li>📑 论文2: 《办公室椅子的人体工学分析》</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2>🎤 瞎逼逼</h2>
+            <h2><span class="emoji floating">🎤</span> 瞎逼逼</h2>
             <ul>
-                {% for post in site.talks reversed %}
-                    {% unless post.permalink contains '/index' %}
-                        <li>{% include archive-single-talk-cv.html %}</li>
-                    {% endunless %}
-                {% endfor %}
+                <li>🗣️ 2023: 如何优雅地甩锅 - 国际甩锅大会</li>
+                <li>🎙️ 2022: 咖啡因与拖延症的正相关研究 - 全球摸鱼论坛</li>
             </ul>
         </div>
 
-        <!-- <div class="section">
-            <h2>📖 硬教</h2>
-            <ul>
-                {% for post in site.teaching reversed %}
-                    {% unless post.permalink contains '/index' %}
-                        <li>{% include archive-single-cv.html %}</li>
-                    {% endunless %}
-                {% endfor %}
-            </ul>
-        </div> -->
-
         <div class="section">
-            <h2>🏅 衬托</h2>
-            <p>🍾 黑粉头子</p>
+            <h2><span class="emoji floating">🏅</span> 衬托</h2>
+            <p><span class="pulse">🍾</span> 黑粉头子 <span class="wiggle">👑</span></p>
         </div>
     </div>
 
@@ -232,7 +259,30 @@ redirect_from:
                 backToTop.classList.remove('visible');
             }
         });
-    </script>
 
+        // 滚动动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const animateOnScroll = () => {
+                sections.forEach((section, index) => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (sectionTop < windowHeight * 0.85) {
+                        setTimeout(() => {
+                            section.classList.add('animated');
+                        }, index * 150);
+                    }
+                });
+            };
+            
+            // 初始加载动画
+            setTimeout(animateOnScroll, 500);
+            
+            // 滚动时动画
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
 </body>
 </html>
