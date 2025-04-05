@@ -9,214 +9,186 @@ redirect_from:
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --cream: #f5f0e6;
-            --paper: #fffcf7;
-            --beige: #e8e1d5;
-            --text-dark: #5a5242;
-            --text-medium: #7a7262;
-            --border: #e0d8c8;
-            --shadow: 0 2px 8px rgba(0,0,0,0.05);
-            --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            --ocean-blue: #a8d8ea;
-        }
-        
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: var(--cream);
-            color: var(--text-dark);
-            line-height: 1.8;
-            padding: 20px;
-            margin: 0;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--paper);
-            padding: 30px;
-            border-radius: 3px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            position: relative;
-            z-index: 1;
-            margin-bottom: 140px; /* 为动画区域留出空间 */
-        }
-        
-        /* 自动播放的摩西分红海动画区域 */
-        .emoji-animation {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background-color: var(--ocean-blue);
-            overflow: hidden;
-            z-index: 0;
-        }
-        
-        .animation-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .moses {
-            position: absolute;
-            font-size: 40px;
-            bottom: 10px;
-            left: 50px;
-            z-index: 10;
-        }
-        
-        .wave {
-            position: absolute;
-            font-size: 30px;
-            bottom: 0;
-            animation: wave 1.5s infinite linear;
-        }
-        
-        .people {
-            position: absolute;
-            font-size: 24px;
-            bottom: 15px;
-            right: -50px;
-            animation: walk 12s linear infinite;
-            animation-delay: var(--delay);
-        }
-        
-        /* 波浪分开动画 */
-        @keyframes wave {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-5px) translateX(5px); }
-            50% { transform: translateY(0) translateX(0); }
-            75% { transform: translateY(-5px) translateX(-5px); }
-        }
-        
-        /* 民众行走动画 */
-        @keyframes walk {
-            0% { transform: translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateX(calc(-100vw - 100px)); opacity: 0; }
-        }
-        
-        /* 摩西举手动画 */
-        @keyframes moses-action {
-            0%, 40% { content: "🧔‍♂️"; }
-            50%, 100% { content: "🧔‍♂️✨"; }
-        }
-        
-        .moses::after {
-            content: "🧔‍♂️";
-            animation: moses-action 12s infinite;
-        }
-        
-        /* 波浪分开效果 */
-        @keyframes wave-part {
-            0%, 40% { transform: translateX(0); opacity: 1; }
-            50%, 90% { transform: translateX(calc(var(--direction) * 60px)); opacity: 0.6; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌊🌀🌊</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f5f0e6;
+      --paper: #fffcf7;
+      --beige: #e8e1d5;
+      --text-dark: #5a5242;
+      --text-medium: #7a7262;
+      --border: #e0d8c8;
+      --shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
 
-        /* 原有样式保持不变 */
-        h1, h2, h3 {
-            font-weight: 400;
-            color: var(--text-dark);
-            border-bottom: 1px solid var(--beige);
-            padding-bottom: 10px;
-        }
-        
-        h1 {
-            font-size: 2rem;
-            letter-spacing: 1px;
-        }
-        
-        /* ...其他原有样式保持不变... */
-    </style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--paper);
+      padding: 30px;
+      border-radius: 3px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    h1, h2 {
+      font-weight: 400;
+      border-bottom: 1px solid var(--beige);
+      padding-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 30px;
+    }
+
+    p, li {
+      color: var(--text-medium);
+    }
+
+    a {
+      color: var(--text-dark);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .emoji-scene {
+      font-size: 1.8rem;
+      text-align: center;
+      margin: 30px 0;
+      animation: fadeIn 0.6s ease-in-out;
+      min-height: 3em;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--paper);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      z-index: 100;
+    }
+
+    .back-to-top.visible {
+      opacity: 0.8;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <p>Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！</p>
-        
-        <h2>To Do</h2>
-        <p>在努力探索自己正在生活的城市中！</p>
-        
-        <h2>Publication</h2>
-        <p>
-            P. Xu, L. Liu, H. Zheng, X. Yuan, C. Xu and L. Xue, "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging," in IEEE Transactions on Multimedia, vol. 26, pp. 2838-2850, 2024.
-            <a href="https://doi.org/10.1109/TMM.2023.3304450" target="_blank">[link]</a> 
-            <a href="https://github.com/CISMOLab/DADF-Net" target="_blank">[code]</a> 
-            <a href="http://liu-lei98.github.io/files/DADF.pdf" target="_blank">[pdf]</a>
-        </p>
-        
-        <p>
-            P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912.
-            <a href="https://doi.org/10.1109/TGRS.2023.3257125" target="_blank">[link]</a>
-        </p>
-    </div>
+<div class="container">
+  <p>Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！</p>
 
-    <!-- 自动播放的emoji动画区域 -->
-    <div class="emoji-animation">
-        <div class="animation-container" id="animationContainer">
-            <div class="moses"></div>
-            <!-- 波浪和人群将通过JS动态生成 -->
-        </div>
-    </div>
+  <!-- Emoji 动画区域 -->
+  <div id="emojiScene" class="emoji-scene">
+    <!-- 动态插入 emoji 段子 -->
+  </div>
 
-    <!-- 返回顶部按钮 -->
-    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        ↑
-    </div>
+  <h2>To Do</h2>
+  <p>在努力探索自己正在生活的城市中！</p>
 
-    <script>
-        // 显示/隐藏返回顶部按钮
-        window.addEventListener('scroll', function() {
-            const backToTop = document.querySelector('.back-to-top');
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
+  <h2>Publication</h2>
+  <p>
+    P. Xu, L. Liu, H. Zheng, X. Yuan, C. Xu and L. Xue, "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging," in IEEE Transactions on Multimedia, vol. 26, pp. 2838-2850, 2024.
+    <a href="https://doi.org/10.1109/TMM.2023.3304450" target="_blank">[link]</a> 
+    <a href="https://github.com/CISMOLab/DADF-Net" target="_blank">[code]</a> 
+    <a href="http://liu-lei98.github.io/files/DADF.pdf" target="_blank">[pdf]</a>
+  </p>
 
-        // 初始化自动播放的动画
-        function initAnimation() {
-            const container = document.getElementById('animationContainer');
-            
-            // 创建波浪
-            for (let i = 0; i < 20; i++) {
-                const wave = document.createElement('div');
-                wave.className = 'wave';
-                wave.textContent = '🌊';
-                wave.style.left = `${Math.random() * 100}%`;
-                wave.style.animationDelay = `${Math.random() * 2}s`;
-                wave.style.setProperty('--direction', i % 2 ? 1 : -1);
-                wave.style.animation = `wave 1.5s infinite linear, wave-part 12s infinite`;
-                wave.style.animationDelay = `${Math.random() * 2}s, ${Math.random() * 2}s`;
-                container.appendChild(wave);
-            }
-            
-            // 创建行走的人群
-            const people = ['👶', '👧', '🧒', '👦', '👩', '🧑', '👨', '👵'];
-            people.forEach((person, i) => {
-                const p = document.createElement('div');
-                p.className = 'people';
-                p.textContent = person;
-                p.style.setProperty('--delay', `${i * 1.5}s`);
-                container.appendChild(p);
-            });
-        }
-        
-        // 页面加载后启动动画
-        window.addEventListener('load', initAnimation);
-    </script>
+  <p>
+    P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912.
+    <a href="https://doi.org/10.1109/TGRS.2023.3257125" target="_blank">[link]</a>
+  </p>
+</div>
+
+<!-- 返回顶部按钮 -->
+<div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+
+<script>
+  const emojiScenes = [
+    '🏃‍♂️💨 ➡️ 🔥😱 ➡️ 🚒💦 ➡️ 🧯✅',
+    '⏰😫 ➡️ ☕🚇🏢💻⌛ ➡️ 🔔🕔 ➡️ 🏃‍♂️💨 ➡️ 🍻🛋️',
+    '🧍‍♂️🤔💭“待会儿我要说得有理有据” ➡️ 🧠📊📈 ➡️ 🗣️💬 ➡️ 🤡“啊这…那个…” ➡️ 💀🙃'
+  ];
+
+  const sceneEl = document.getElementById('emojiScene');
+  let lastIndex = -1;
+
+  function changeScene() {
+    let index;
+    do {
+      index = Math.floor(Math.random() * emojiScenes.length);
+    } while (index === lastIndex); // 避免重复
+    lastIndex = index;
+
+    sceneEl.innerHTML = emojiScenes[index];
+    sceneEl.classList.remove('emoji-scene'); // 触发动画刷新
+    void sceneEl.offsetWidth; // 触发重绘
+    sceneEl.classList.add('emoji-scene');
+  }
+
+  changeScene(); // 初始显示
+  setInterval(changeScene, 6000); // 每 6 秒换一个
+
+  // 返回顶部按钮
+  window.addEventListener('scroll', function () {
+    const backToTop = document.querySelector('.back-to-top');
+    if (window.pageYOffset > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+</script>
+
 </body>
 </html>
