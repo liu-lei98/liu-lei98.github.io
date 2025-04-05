@@ -11,88 +11,47 @@ redirect_from:
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🌊🌀🌊</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>🌊🌀🌊 Emoji Show</title>
   <style>
-    :root {
-      --cream: #f5f0e6;
-      --paper: #fffcf7;
-      --beige: #e8e1d5;
-      --text-dark: #5a5242;
-      --text-medium: #7a7262;
-      --border: #e0d8c8;
-      --shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
     body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background-color: var(--cream);
-      color: var(--text-dark);
-      padding: 20px;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: #fffdf5;
+      color: #333;
       overflow-x: hidden;
-      position: relative;
     }
 
     .container {
       max-width: 800px;
-      margin: 0 auto;
-      background: var(--paper);
-      padding: 30px;
-      border-radius: 3px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    h1, h2 {
-      font-weight: 400;
-      border-bottom: 1px solid var(--beige);
-      padding-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 2rem;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      margin-top: 30px;
-    }
-
-    p, li {
-      color: var(--text-medium);
-    }
-
-    a {
-      color: var(--text-dark);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
+      margin: 50px auto;
+      background: #fff;
+      padding: 40px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      text-align: center;
     }
 
     .emoji-scene {
       font-size: 1.8rem;
-      text-align: center;
-      margin: 30px 0;
-      opacity: 1;
+      height: 3em;
+      line-height: 3em;
       transition: opacity 1s ease-in-out;
-      min-height: 3em;
-      z-index: 10;
+      opacity: 1;
       position: relative;
+      z-index: 10;
     }
 
     .fade-out {
       opacity: 0;
     }
 
-    /* 弹幕基础样式 */
     .danmaku {
-      position: absolute;
+      position: fixed;
       white-space: nowrap;
       font-size: 1.2rem;
       animation: flyLeft 12s linear forwards;
-      color: hsl(var(--h), 80%, 50%);
+      color: hsl(var(--hue), 80%, 50%);
       pointer-events: none;
       z-index: 5;
     }
@@ -104,48 +63,7 @@ redirect_from:
       }
       to {
         right: 100%;
-        opacity: 0.3;
-      }
-    }
-
-    /* 返回顶部按钮 */
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      background: var(--paper);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      z-index: 100;
-    }
-
-    .back-to-top.visible {
-      opacity: 0.8;
-      visibility: visible;
-    }
-
-    .back-to-top:hover {
-      opacity: 1;
-      transform: translateY(-3px);
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 1.6rem;
+        opacity: 0;
       }
     }
   </style>
@@ -153,34 +71,11 @@ redirect_from:
 <body>
 
 <div class="container">
-  <p>Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！</p>
-
-  <!-- Emoji 动画区域 -->
-  <p><div id="emojiScene" class="emoji-scene">🚀✨正在加载...</div></p>
-  <p><div id="danmaku-container"></div></p>
-
-  <h2>To Do</h2>
-  <p>在努力探索自己正在生活的城市中！</p>
-
-  <h2>Publication</h2>
-  <p>
-    P. Xu, L. Liu, H. Zheng, X. Yuan, C. Xu and L. Xue, "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging," in IEEE Transactions on Multimedia, vol. 26, pp. 2838-2850, 2024.
-    <a href="https://doi.org/10.1109/TMM.2023.3304450" target="_blank">[link]</a> 
-    <a href="https://github.com/CISMOLab/DADF-Net" target="_blank">[code]</a> 
-    <a href="http://liu-lei98.github.io/files/DADF.pdf" target="_blank">[pdf]</a>
-  </p>
-
-  <p>
-    P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912.
-    <a href="https://doi.org/10.1109/TGRS.2023.3257125" target="_blank">[link]</a>
-  </p>
+  <h1>🎭 Emoji 剧场</h1>
+  <div id="emojiScene" class="emoji-scene">🚀✨ 正在加载中...</div>
 </div>
 
-<!-- 返回顶部按钮 -->
-<div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
-
-<!-- 弹幕容器 -->
-<!-- <div id="danmaku-container"></div> -->
+<div id="danmakuContainer"></div>
 
 <script>
   const emojiScenes = [
@@ -189,52 +84,41 @@ redirect_from:
     '🧍‍♂️🤔💭“待会儿我要说得有理有据” ➡️ 🧠📊📈 ➡️ 🗣️💬 ➡️ 🤡“啊这…那个…” ➡️ 💀🙃'
   ];
 
-  const sceneEl = document.getElementById('emojiScene');
-  const danmakuContainer = document.getElementById('danmaku-container');
-  let currentIndex = 0;
+  const emojiSceneEl = document.getElementById('emojiScene');
+  const danmakuContainer = document.getElementById('danmakuContainer');
+  let index = 0;
 
-  function showNextScene() {
-    sceneEl.classList.add('fade-out');
+  // 初始化展示
+  emojiSceneEl.innerHTML = emojiScenes[index];
+
+  // 淡入淡出轮播
+  setInterval(() => {
+    emojiSceneEl.classList.add('fade-out');
     setTimeout(() => {
-      currentIndex = (currentIndex + 1) % emojiScenes.length;
-      sceneEl.innerHTML = emojiScenes[currentIndex];
-      sceneEl.classList.remove('fade-out');
+      index = (index + 1) % emojiScenes.length;
+      emojiSceneEl.innerHTML = emojiScenes[index];
+      emojiSceneEl.classList.remove('fade-out');
     }, 1000);
-  }
+  }, 5000);
 
-  // 自动轮播
-  sceneEl.innerHTML = emojiScenes[currentIndex];
-  setInterval(showNextScene, 5000);
-
-  // 自动生成弹幕
+  // 弹幕生成函数
   function createDanmaku(text) {
     const el = document.createElement('div');
     el.className = 'danmaku';
-    el.textContent = text;
+    el.innerText = text;
     el.style.top = `${Math.random() * 80 + 10}%`;
-    el.style.setProperty('--h', Math.floor(Math.random() * 360));
+    el.style.setProperty('--hue', Math.floor(Math.random() * 360));
     danmakuContainer.appendChild(el);
-
     setTimeout(() => {
       danmakuContainer.removeChild(el);
     }, 12000);
   }
 
-  // 每3秒发一条弹幕
+  // 弹幕每3秒出一个
   setInterval(() => {
-    const random = emojiScenes[Math.floor(Math.random() * emojiScenes.length)];
-    createDanmaku(random);
+    const randomText = emojiScenes[Math.floor(Math.random() * emojiScenes.length)];
+    createDanmaku(randomText);
   }, 3000);
-
-  // 返回顶部按钮逻辑
-  window.addEventListener('scroll', function () {
-    const backToTop = document.querySelector('.back-to-top');
-    if (window.pageYOffset > 300) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
-    }
-  });
 </script>
 
 </body>
