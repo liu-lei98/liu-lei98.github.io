@@ -1,135 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Noto+Sans+JP:wght@300;500&display=swap');
-
-:root {
-  --blue: #a6cfff;
-  --yellow: #fff9c4;
-  --pink: #ffcdd2;
-  --orange: #ffe0b2;
-  --gray: #f5f5f5;
-  --text-dark: #333;
-  --text-light: #555;
-  --border-color: #e0e0e0;
-  --shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
-  --hover-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+/* Academicons Icon Styling */
+@font-face {
+    font-family: 'Academicons';
+    src: url('https://cdn.jsdelivr.net/npm/academicons/css/icons.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/npm/academicons/css/icons.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
-body {
-  font-family: 'Baloo 2', 'Noto Sans JP', sans-serif;
-  background: var(--gray);
-  color: var(--text-dark);
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  transition: all 0.2s ease-in-out;
+/* General Icon Settings */
+.ai {
+    font-family: 'Academicons', sans-serif;
+    color: #ff66b2; /* Soft pink color for icons */
+    font-size: 24px; /* Icon size */
+    transition: color 0.3s ease, transform 0.2s ease;
+    margin: 0 8px;
+    display: inline-block;
 }
 
-/* 通用容器 */
-.container {
-  max-width: 960px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #ffffff;
-  border: 2px solid var(--border-color);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  transition: transform 0.2s ease;
+/* Hover Effects for Icons */
+.ai:hover {
+    color: #ff48c4; /* Brighter pink for hover effect */
+    transform: scale(1.1); /* Slight enlargement on hover */
 }
 
-.container:hover {
-  transform: scale(1.01);
-  box-shadow: var(--hover-shadow);
+/* Icon Adjustments for Social Media Links */
+.ai-link {
+    color: #ff7b7b; /* Soft candy red */
+    font-size: 1.5em; /* Larger size for social icons */
+    margin-right: 20px;
+    transition: color 0.3s ease;
 }
 
-/* 标题样式 */
-h1, h2, h3 {
-  font-weight: 600;
-  color: var(--text-dark);
-  text-align: center;
-  margin: 20px 0;
-  background: linear-gradient(to right, var(--blue), var(--yellow));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.ai-link:hover {
+    color: #ff48c4; /* Lighter pink for hover effect */
 }
 
-/* 按钮样式 */
-a.btn-link, button {
-  display: inline-block;
-  text-decoration: none;
-  font-weight: 500;
-  background: linear-gradient(135deg, var(--blue), var(--pink));
-  color: #333;
-  padding: 12px 20px;
-  margin: 10px;
-  border-radius: 10px;
-  border: 2px solid var(--border-color);
-  box-shadow: 2px 2px 0 var(--orange);
-  transition: all 0.25s ease;
+/* Adding Soft Shadows to Icons */
+.ai-shadow {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6); /* Light shadow for a soft, comic effect */
 }
 
-a.btn-link:hover, button:hover {
-  background: linear-gradient(135deg, var(--pink), var(--yellow));
-  transform: translateY(-3px);
+/* Navigation Icons Styling */
+.nav-icon {
+    font-size: 1.8em; /* Larger size for navigation icons */
+    color: #ff8dbf; /* Soft candy pink */
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
-/* 卡片链接 */
-a.gallery-item, .card {
-  display: block;
-  background: #fff;
-  color: var(--text-light);
-  border: 1px dashed var(--border-color);
-  padding: 16px;
-  margin: 10px auto;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  transition: 0.2s ease;
-  text-align: center;
+.nav-icon:hover {
+    color: #ff48c4;
+    transform: scale(1.1);
 }
 
-a.gallery-item:hover, .card:hover {
-  background: var(--yellow);
-  transform: translateY(-2px);
+/* Footer Icons Styling */
+.footer-icon {
+    font-size: 1.5em; /* Slightly smaller icons for footer */
+    color: #ff83cc; /* Light candy pink */
+    margin: 10px;
+    transition: color 0.3s ease;
 }
 
-/* 返回顶部按钮 */
-.back-to-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 48px;
-  height: 48px;
-  background: var(--blue);
-  border-radius: 50%;
-  color: white;
-  font-size: 24px;
-  text-align: center;
-  line-height: 48px;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
+.footer-icon:hover {
+    color: #ff48c4; /* Brighter pink for hover effect */
 }
 
-.back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
+/* Special Icon Styling for Buttons */
+.button-icon {
+    font-size: 1.2em;
+    color: #ffffff; /* White for better contrast on buttons */
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
-.back-to-top:hover {
-  background: var(--pink);
-  transform: translateY(-4px);
+.button-icon:hover {
+    color: #ff66b2; /* Soft pink for hover effect */
+    transform: scale(1.1); /* Slight scale-up on hover */
 }
 
-/* 彩蛋（footer特效星星） */
-footer::after {
-  content: "🌟";
-  position: absolute;
-  right: 20px;
-  bottom: 10px;
-  animation: floatStar 3s ease-in-out infinite;
-}
+/* Mobile & Small Screen Adjustments */
+@media screen and (max-width: 768px) {
+    .ai {
+        font-size: 18px; /* Smaller icon size for mobile */
+    }
 
-@keyframes floatStar {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+    .ai-link {
+        font-size: 1.3em; /* Adjusted size for smaller screens */
+    }
+
+    .nav-icon {
+        font-size: 1.5em;
+    }
+
+    .footer-icon {
+        font-size: 1.3em;
+    }
+
+    .button-icon {
+        font-size: 1em;
+    }
 }
