@@ -69,19 +69,21 @@ redirect_from:
       text-decoration: underline;
     }
 
+    /* 淡入淡出动画容器 */
     .emoji-scene {
       font-size: 1.8rem;
       text-align: center;
       margin: 30px 0;
-      animation: fadeIn 0.6s ease-in-out;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
       min-height: 3em;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .fade-out {
+      opacity: 0;
     }
 
+    /* 返回顶部按钮 */
     .back-to-top {
       position: fixed;
       bottom: 30px;
@@ -129,9 +131,7 @@ redirect_from:
   <p>Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！</p>
 
   <!-- Emoji 动画区域 -->
-  <div id="emojiScene" class="emoji-scene">
-    <!-- 动态插入 emoji 段子 -->
-  </div>
+  <div id="emojiScene" class="emoji-scene">🚀✨正在加载...</div>
 
   <h2>To Do</h2>
   <p>在努力探索自己正在生活的城市中！</p>
@@ -161,23 +161,21 @@ redirect_from:
   ];
 
   const sceneEl = document.getElementById('emojiScene');
-  let lastIndex = -1;
+  let currentIndex = 0;
 
-  function changeScene() {
-    let index;
-    do {
-      index = Math.floor(Math.random() * emojiScenes.length);
-    } while (index === lastIndex); // 避免重复
-    lastIndex = index;
+  function showNextScene() {
+    sceneEl.classList.add('fade-out');
 
-    sceneEl.innerHTML = emojiScenes[index];
-    sceneEl.classList.remove('emoji-scene'); // 触发动画刷新
-    void sceneEl.offsetWidth; // 触发重绘
-    sceneEl.classList.add('emoji-scene');
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % emojiScenes.length;
+      sceneEl.innerHTML = emojiScenes[currentIndex];
+      sceneEl.classList.remove('fade-out');
+    }, 1000); // 等动画结束再换内容
   }
 
-  changeScene(); // 初始显示
-  setInterval(changeScene, 6000); // 每 6 秒换一个
+  // 初始场景
+  sceneEl.innerHTML = emojiScenes[currentIndex];
+  setInterval(showNextScene, 5000); // 每5秒切换一次
 
   // 返回顶部按钮
   window.addEventListener('scroll', function () {
