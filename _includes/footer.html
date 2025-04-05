@@ -1,4 +1,4 @@
-{% include base_path %}
+<!-- {% include base_path %}
 
 {% if site.author.github or site.author.bitbucket or site.atom_feed.hide != true %}
 <div class="page__footer-follow">
@@ -22,4 +22,114 @@
 <div class="page__footer-copyright">
   &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}, {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.<br />
   Site last updated {{ "now" | date: '%Y-%m-%d' %}}
-</div>
+</div> -->
+{% include base_path %}
+
+<footer class="hamada-footer">
+  <div class="hamada-container">
+    <div class="hamada-follow">
+      <ul class="hamada-icons">
+        {% if site.data.ui-text[site.locale].follow_label %}
+        <li><strong>{{ site.data.ui-text[site.locale].follow_label }}</strong></li>
+        {% endif %}
+        {% if site.author.github %}
+        <li><a href="http://github.com/{{ site.author.github }}"><i class="fab fa-github"></i> GitHub</a></li>
+        {% endif %}
+        {% if site.author.bitbucket %}
+        <li><a href="http://bitbucket.org/{{ site.author.bitbucket }}"><i class="fab fa-bitbucket"></i> Bitbucket</a></li>
+        {% endif %}
+        {% if site.atom_feed.hide != true %}
+        <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}"><i class="fa fa-fw fa-rss-square"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <div class="hamada-meta">
+      &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}.  
+      {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }}
+      <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; 
+      <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
+      <small>Site last updated {{ "now" | date: '%Y-%m-%d' }}</small>
+    </div>
+
+    <!-- 小彩蛋：点击月亮变亮 -->
+    <div class="hamada-easter-egg" onclick="this.classList.toggle('active')">
+      <span class="moon">🌙</span>
+      <span class="hint">点击试试</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .hamada-footer {
+    background-color: #f8f5f0;
+    border-top: 1px solid #ddd5cb;
+    font-family: 'Noto Serif JP', serif;
+    padding: 40px 20px;
+    color: #6d645f;
+    text-align: center;
+    position: relative;
+  }
+
+  .hamada-container {
+    max-width: 960px;
+    margin: auto;
+  }
+
+  .hamada-follow ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+  }
+
+  .hamada-icons li {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 16px;
+  }
+
+  .hamada-icons a {
+    color: #6d645f;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .hamada-icons a:hover {
+    color: #a3835b;
+  }
+
+  .hamada-meta {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+
+  .hamada-easter-egg {
+    margin-top: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .hamada-easter-egg .moon {
+    font-size: 24px;
+    transition: text-shadow 0.3s ease;
+  }
+
+  .hamada-easter-egg.active .moon {
+    text-shadow: 0 0 8px #f0e68c, 0 0 15px #ffe;
+  }
+
+  .hamada-easter-egg .hint {
+    display: block;
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .hamada-icons li {
+      display: block;
+      margin: 8px 0;
+    }
+  }
+</style>
