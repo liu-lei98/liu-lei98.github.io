@@ -9,116 +9,154 @@ redirect_from:
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🌊🌀🌊 Emoji Show</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background: #fffdf5;
-      color: #333;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊🌀🌊</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f5f0e6;
+            color: #5a5242;
+            line-height: 1.8;
+            padding: 20px;
+        }
 
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      background: #fff;
-      padding: 40px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      border-radius: 10px;
-      text-align: center;
-    }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fffcf7;
+            padding: 30px;
+            border-radius: 3px;
+            border: 1px solid #e0d8c8;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
 
-    .emoji-scene {
-      font-size: 1.8rem;
-      height: 3em;
-      line-height: 3em;
-      transition: opacity 1s ease-in-out;
-      opacity: 1;
-      position: relative;
-      z-index: 10;
-    }
+        h2 {
+            border-bottom: 1px solid #e8e1d5;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
 
-    .fade-out {
-      opacity: 0;
-    }
+        /* 淡入淡出动画轮播 */
+        .emoji-carousel {
+            text-align: center;
+            font-size: 2rem;
+            margin: 30px 0;
+            min-height: 50px;
+            position: relative;
+        }
 
-    .danmaku {
-      position: fixed;
-      white-space: nowrap;
-      font-size: 1.2rem;
-      animation: flyLeft 12s linear forwards;
-      color: hsl(var(--hue), 80%, 50%);
-      pointer-events: none;
-      z-index: 5;
-    }
+        .emoji-item {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            animation: fade 9s infinite;
+        }
 
-    @keyframes flyLeft {
-      from {
-        right: -200px;
-        opacity: 1;
-      }
-      to {
-        right: 100%;
-        opacity: 0;
-      }
-    }
-  </style>
+        .emoji-item:nth-child(1) { animation-delay: 0s; }
+        .emoji-item:nth-child(2) { animation-delay: 3s; }
+        .emoji-item:nth-child(3) { animation-delay: 6s; }
+
+        @keyframes fade {
+            0%, 100% { opacity: 0; }
+            10%, 30% { opacity: 1; }
+            40%, 90% { opacity: 0; }
+        }
+
+        /* 弹幕风格 */
+        .danmaku {
+            position: fixed;
+            top: 20px;
+            left: 100%;
+            white-space: nowrap;
+            font-size: 1.5rem;
+            animation: scroll 12s linear infinite;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-120%); }
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #fffcf7;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e0d8c8;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 0.8;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>🎭 Emoji 剧场</h1>
-  <div id="emojiScene" class="emoji-scene">🚀✨ 正在加载中...</div>
+<div class="emoji-carousel">
+    <div class="emoji-item">🧍💭🤔🧠💥🗣️💢（会议上的我）</div>
+    <div class="emoji-item">🧍😅「啊…我其实就是…那个…」</div>
+    <div class="emoji-item">🤡📢💬💣「我觉得吧，这个工作其实主要解决的是...」</div>
 </div>
 
-<div id="danmakuContainer"></div>
+<!-- 弹幕 -->
+<div class="danmaku">🌈 来点效果！💫 这就是磊的发言现场实况🎙️🌟</div>
+
+<div class="container">
+    <p>Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！</p>
+
+    <h2>To Do</h2>
+    <p>在努力探索自己正在生活的城市中！</p>
+
+    <h2>Publication</h2>
+    <p>
+        P. Xu, L. Liu, H. Zheng, X. Yuan, C. Xu and L. Xue, "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging," in IEEE Transactions on Multimedia, vol. 26, pp. 2838-2850, 2024.
+        <a href="https://doi.org/10.1109/TMM.2023.3304450" target="_blank">[link]</a> 
+        <a href="https://github.com/CISMOLab/DADF-Net" target="_blank">[code]</a> 
+        <a href="http://liu-lei98.github.io/files/DADF.pdf" target="_blank">[pdf]</a>
+    </p>
+    
+    <p>
+        P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912.
+        <a href="https://doi.org/10.1109/TGRS.2023.3257125" target="_blank">[link]</a>
+    </p>
+</div>
+
+<!-- 返回顶部按钮 -->
+<div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
 
 <script>
-  const emojiScenes = [
-    '🏃‍♂️💨 ➡️ 🔥😱 ➡️ 🚒💦 ➡️ 🧯✅',
-    '⏰😫 ➡️ ☕🚇🏢💻⌛ ➡️ 🔔🕔 ➡️ 🏃‍♂️💨 ➡️ 🍻🛋️',
-    '🧍‍♂️🤔💭“待会儿我要说得有理有据” ➡️ 🧠📊📈 ➡️ 🗣️💬 ➡️ 🤡“啊这…那个…” ➡️ 💀🙃'
-  ];
-
-  const emojiSceneEl = document.getElementById('emojiScene');
-  const danmakuContainer = document.getElementById('danmakuContainer');
-  let index = 0;
-
-  // 初始化展示
-  emojiSceneEl.innerHTML = emojiScenes[index];
-
-  // 淡入淡出轮播
-  setInterval(() => {
-    emojiSceneEl.classList.add('fade-out');
-    setTimeout(() => {
-      index = (index + 1) % emojiScenes.length;
-      emojiSceneEl.innerHTML = emojiScenes[index];
-      emojiSceneEl.classList.remove('fade-out');
-    }, 1000);
-  }, 5000);
-
-  // 弹幕生成函数
-  function createDanmaku(text) {
-    const el = document.createElement('div');
-    el.className = 'danmaku';
-    el.innerText = text;
-    el.style.top = `${Math.random() * 80 + 10}%`;
-    el.style.setProperty('--hue', Math.floor(Math.random() * 360));
-    danmakuContainer.appendChild(el);
-    setTimeout(() => {
-      danmakuContainer.removeChild(el);
-    }, 12000);
-  }
-
-  // 弹幕每3秒出一个
-  setInterval(() => {
-    const randomText = emojiScenes[Math.floor(Math.random() * emojiScenes.length)];
-    createDanmaku(randomText);
-  }, 3000);
+    // 返回顶部按钮显示/隐藏
+    window.addEventListener('scroll', function() {
+        const backToTop = document.querySelector('.back-to-top');
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
 </script>
 
 </body>
