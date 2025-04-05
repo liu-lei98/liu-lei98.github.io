@@ -10,6 +10,7 @@ author_profile: true
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -31,6 +32,7 @@ author_profile: true
             text-align: center;
             padding: 40px 20px;
             line-height: 1.6;
+            margin: 0;
         }
         
         h1 {
@@ -41,7 +43,6 @@ author_profile: true
             font-size: 2rem;
         }
 
-        /* 主要动画样式 */
         .emoji-animation {
             font-size: 2rem;
             display: flex;
@@ -51,8 +52,6 @@ author_profile: true
             overflow: hidden;
             white-space: nowrap;
         }
-
-        /* 具体emoji动画 */
 
         .camera {
             animation: flash 2s infinite alternate ease-in-out;
@@ -66,7 +65,6 @@ author_profile: true
             animation: fadeIn 3s infinite alternate ease-in-out;
         }
 
-       
         @keyframes flash {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.2); opacity: 0.5; }
@@ -147,22 +145,19 @@ author_profile: true
     </style>
 </head>
 <body>
-    <!-- <h1>📸 Captured by Lei</h1> -->
     <h1>
-    <!-- 摄影过程 -->
-    <div class="emoji-animation">
-        <span class="camera">📸</span>
-        <span class="video">🎥</span>
-        <span class="photo">🖼️</span>
-        <span class="photo">Captured by Lei</span>
-    </div>
+        <div class="emoji-animation">
+            <span class="camera">📸</span>
+            <span class="video">🎥</span>
+            <span class="photo">🖼️</span>
+            <span class="photo">Captured by Lei</span>
+        </div>
     </h1>
     <div class="gallery-list">
         <a href="/portfolio/gallery0" class="gallery-item">2024 在HDU 🎞️</a>
         <a href="/portfolio/gallery1" class="gallery-item">2025-03 在长沙 🎞️</a>
     </div>
 
-    <!-- 返回顶部按钮 -->
     <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         ↑
     </div>
