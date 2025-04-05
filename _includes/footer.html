@@ -25,111 +25,80 @@
 </div> -->
 {% include base_path %}
 
-<footer class="hamada-footer">
-  <div class="hamada-container">
-    <div class="hamada-follow">
-      <ul class="hamada-icons">
-        {% if site.data.ui-text[site.locale].follow_label %}
-        <li><strong>{{ site.data.ui-text[site.locale].follow_label }}</strong></li>
-        {% endif %}
-        {% if site.author.github %}
-        <li><a href="http://github.com/{{ site.author.github }}"><i class="fab fa-github"></i> GitHub</a></li>
-        {% endif %}
-        {% if site.author.bitbucket %}
-        <li><a href="http://bitbucket.org/{{ site.author.bitbucket }}"><i class="fab fa-bitbucket"></i> Bitbucket</a></li>
-        {% endif %}
-        {% if site.atom_feed.hide != true %}
-        <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}"><i class="fa fa-fw fa-rss-square"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li>
-        {% endif %}
-      </ul>
+<footer class="japan-footer">
+  <div class="footer-inner">
+    <div class="footer-emoji" onclick="showSurprise()">
+      🐾 <span class="hint">点击猫咪有惊喜</span>
     </div>
-
-    <div class="hamada-meta">
-      &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}.  
-      {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }}
-      <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; 
-      <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.<br />
-      <small>Site last updated {{ "now" | date: '%Y-%m-%d' }}</small>
+    <div class="footer-links">
+      <a href="https://github.com/{{ site.author.github }}" target="_blank">GitHub</a>
+      <span>·</span>
+      <a href="{{ site.atom_feed.path | default: base_path | append: '/feed.xml' }}">RSS</a>
     </div>
-
-    <!-- 小彩蛋：点击月亮变亮 -->
-    <div class="hamada-easter-egg" onclick="this.classList.toggle('active')">
-      <span class="moon">🌙</span>
-      <span class="hint">点击试试</span>
+    <div class="footer-text">
+      &copy; {{ site.time | date: '%Y' }} {{ site.title }} | 手工打造于 <a href="https://jekyllrb.com" target="_blank">Jekyll</a><br/>
+      <small>静かに、光を見つける。</small>
     </div>
   </div>
 </footer>
 
 <style>
-  .hamada-footer {
-    background-color: #f8f5f0;
-    border-top: 1px solid #ddd5cb;
-    font-family: 'Noto Serif JP', serif;
-    padding: 40px 20px;
-    color: #6d645f;
-    text-align: center;
-    position: relative;
-  }
-
-  .hamada-container {
-    max-width: 960px;
-    margin: auto;
-  }
-
-  .hamada-follow ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 16px;
-  }
-
-  .hamada-icons li {
-    display: inline-block;
-    margin: 0 10px;
-    font-size: 16px;
-  }
-
-  .hamada-icons a {
-    color: #6d645f;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .hamada-icons a:hover {
-    color: #a3835b;
-  }
-
-  .hamada-meta {
-    font-size: 14px;
-    line-height: 1.6;
-    opacity: 0.85;
-  }
-
-  .hamada-easter-egg {
-    margin-top: 20px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-
-  .hamada-easter-egg .moon {
-    font-size: 24px;
-    transition: text-shadow 0.3s ease;
-  }
-
-  .hamada-easter-egg.active .moon {
-    text-shadow: 0 0 8px #f0e68c, 0 0 15px #ffe;
-  }
-
-  .hamada-easter-egg .hint {
-    display: block;
-    font-size: 12px;
-    color: #aaa;
-    margin-top: 4px;
-  }
-
-  @media (max-width: 600px) {
-    .hamada-icons li {
-      display: block;
-      margin: 8px 0;
-    }
-  }
+.japan-footer {
+  background-color: #f9f6f1;
+  padding: 30px 10px;
+  color: #5a5242;
+  text-align: center;
+  font-family: "Noto Serif JP", serif;
+  border-top: 1px solid #e0dcd4;
+  font-size: 15px;
+  position: relative;
+}
+.footer-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.footer-emoji {
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.footer-emoji:hover {
+  transform: scale(1.1);
+}
+.footer-links {
+  margin-top: 10px;
+}
+.footer-links a {
+  color: #7a7262;
+  text-decoration: none;
+  margin: 0 5px;
+  font-weight: 500;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}
+.footer-text {
+  margin-top: 12px;
+  color: #958b7a;
+  font-size: 14px;
+}
+.hint {
+  font-size: 13px;
+  color: #a79f91;
+  margin-left: 8px;
+}
 </style>
+
+<script>
+function showSurprise() {
+  const quotes = [
+    "光が差し込むその瞬間を、静かに待っている。",
+    "今日も、やさしい風が吹いた。",
+    "レンズ越しの世界は、少しだけ優しく見える。",
+    "日常の隙間に、小さな奇跡がある。",
+    "どんな曇りの日でも、光はどこかにある。"
+  ];
+  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+  alert(quote);
+}
+</script>
