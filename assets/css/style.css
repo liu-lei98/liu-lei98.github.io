@@ -1,154 +1,135 @@
-/* 基础样式 - 滨田英明风格 */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Noto+Sans+JP:wght@300;500&display=swap');
+
 :root {
-    --cream: #f5f0e6;
-    --paper: #fffcf7;
-    --beige: #e8e1d5;
-    --text-dark: #5a5242;
-    --text-medium: #7a7262;
-    --border: #e0d8c8;
-    --shadow: 0 2px 8px rgba(0,0,0,0.05);
-    --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --blue: #a6cfff;
+  --yellow: #fff9c4;
+  --pink: #ffcdd2;
+  --orange: #ffe0b2;
+  --gray: #f5f5f5;
+  --text-dark: #333;
+  --text-light: #555;
+  --border-color: #e0e0e0;
+  --shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  --hover-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background-color: var(--cream);
-    color: var(--text-dark);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
+  font-family: 'Baloo 2', 'Noto Sans JP', sans-serif;
+  background: var(--gray);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  transition: all 0.2s ease-in-out;
 }
 
-/* 内容区域 */
-.content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+/* 通用容器 */
+.container {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
 }
 
-/* 卡片样式 */
-.card {
-    background: var(--paper);
-    border-radius: 3px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--hover-shadow);
+.container:hover {
+  transform: scale(1.01);
+  box-shadow: var(--hover-shadow);
 }
 
 /* 标题样式 */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--text-dark);
-    font-weight: 400;
-    letter-spacing: 0.5px;
-}
-
-h1 {
-    font-size: 2rem;
-    border-bottom: 1px solid var(--beige);
-    padding-bottom: 10px;
-}
-
-/* 链接样式 */
-a {
-    color: var(--text-medium);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--text-dark);
-    text-decoration: underline;
-}
-
-/* 导航栏 */
-.masthead {
-    background: var(--paper);
-    border-bottom: 1px solid var(--border);
-    box-shadow: var(--shadow);
-}
-
-/* 页脚 */
-.page__footer {
-    background: var(--paper);
-    border-top: 1px solid var(--border);
-    padding: 20px 0;
-    margin-top: 40px;
+h1, h2, h3 {
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: center;
+  margin: 20px 0;
+  background: linear-gradient(to right, var(--blue), var(--yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* 按钮样式 */
-.btn {
-    background: var(--paper);
-    color: var(--text-dark);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+a.btn-link, button {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 500;
+  background: linear-gradient(135deg, var(--blue), var(--pink));
+  color: #333;
+  padding: 12px 20px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--border-color);
+  box-shadow: 2px 2px 0 var(--orange);
+  transition: all 0.25s ease;
 }
 
-.btn:hover {
-    background: var(--beige);
-    transform: translateY(-2px);
-    box-shadow: var(--hover-shadow);
+a.btn-link:hover, button:hover {
+  background: linear-gradient(135deg, var(--pink), var(--yellow));
+  transform: translateY(-3px);
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .content {
-        padding: 15px;
-    }
-    
-    h1 {
-        font-size: 1.6rem;
-    }
+/* 卡片链接 */
+a.gallery-item, .card {
+  display: block;
+  background: #fff;
+  color: var(--text-light);
+  border: 1px dashed var(--border-color);
+  padding: 16px;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: 0.2s ease;
+  text-align: center;
 }
 
-/* 画廊缩略图 */
-.thumbnail {
-    width: 100%;
-    max-width: 300px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border);
+a.gallery-item:hover, .card:hover {
+  background: var(--yellow);
+  transform: translateY(-2px);
 }
 
-.thumbnail:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--hover-shadow);
-    filter: brightness(1.05);
+/* 返回顶部按钮 */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  background: var(--blue);
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
 }
 
-        
-li:before {
-    /* content: "・"; */
-    position: absolute;
-    left: 0;
-    color: var(--beige);
-    font-size: 1.2rem;
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
-/* 统一装饰元素 */
-.section::after {
-    content: "";
-    display: block;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--beige), transparent);
-    margin-top: 20px;
+.back-to-top:hover {
+  background: var(--pink);
+  transform: translateY(-4px);
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: left;
+/* 彩蛋（footer特效星星） */
+footer::after {
+  content: "🌟";
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  animation: floatStar 3s ease-in-out infinite;
+}
+
+@keyframes floatStar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
