@@ -1,101 +1,124 @@
-/* Academicons Icon Styling */
+/*
+ * Academicons Candy Style - Based on Academicons 1.9.4
+ * Author: Custom Comic-Candy Theme by ChatGPT
+ * License: MIT (CSS), SIL OFL 1.1 (Font)
+ */
+
+/* === 基础字体定义 === */
 @font-face {
     font-family: 'Academicons';
-    src: url('https://cdn.jsdelivr.net/npm/academicons/css/icons.woff2') format('woff2'),
-         url('https://cdn.jsdelivr.net/npm/academicons/css/icons.woff') format('woff');
-    font-weight: normal;
     font-style: normal;
-}
-
-/* General Icon Settings */
-.ai {
-    font-family: 'Academicons', sans-serif;
-    color: #ff66b2; /* Soft pink color for icons */
-    font-size: 24px; /* Icon size */
-    transition: color 0.3s ease, transform 0.2s ease;
-    margin: 0 8px;
+    font-weight: 400;
+    font-display: block;
+    src: url('../fonts/academicons.eot');
+    src: url('../fonts/academicons.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/academicons.woff') format('woff'),
+         url('../fonts/academicons.ttf') format('truetype'),
+         url('../fonts/academicons.svg#Academicons') format('svg');
+  }
+  
+  /* === 核心图标类定义 === */
+  .ai {
+    font-family: 'Academicons';
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-rendering: auto;
     display: inline-block;
-}
-
-/* Hover Effects for Icons */
-.ai:hover {
-    color: #ff48c4; /* Brighter pink for hover effect */
-    transform: scale(1.1); /* Slight enlargement on hover */
-}
-
-/* Icon Adjustments for Social Media Links */
-.ai-link {
-    color: #ff7b7b; /* Soft candy red */
-    font-size: 1.5em; /* Larger size for social icons */
-    margin-right: 20px;
-    transition: color 0.3s ease;
-}
-
-.ai-link:hover {
-    color: #ff48c4; /* Lighter pink for hover effect */
-}
-
-/* Adding Soft Shadows to Icons */
-.ai-shadow {
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6); /* Light shadow for a soft, comic effect */
-}
-
-/* Navigation Icons Styling */
-.nav-icon {
-    font-size: 1.8em; /* Larger size for navigation icons */
-    color: #ff8dbf; /* Soft candy pink */
-    margin: 0 10px;
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.nav-icon:hover {
-    color: #ff48c4;
-    transform: scale(1.1);
-}
-
-/* Footer Icons Styling */
-.footer-icon {
-    font-size: 1.5em; /* Slightly smaller icons for footer */
-    color: #ff83cc; /* Light candy pink */
-    margin: 10px;
-    transition: color 0.3s ease;
-}
-
-.footer-icon:hover {
-    color: #ff48c4; /* Brighter pink for hover effect */
-}
-
-/* Special Icon Styling for Buttons */
-.button-icon {
-    font-size: 1.2em;
-    color: #ffffff; /* White for better contrast on buttons */
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.button-icon:hover {
-    color: #ff66b2; /* Soft pink for hover effect */
-    transform: scale(1.1); /* Slight scale-up on hover */
-}
-
-/* Mobile & Small Screen Adjustments */
-@media screen and (max-width: 768px) {
-    .ai {
-        font-size: 18px; /* Smaller icon size for mobile */
-    }
-
-    .ai-link {
-        font-size: 1.3em; /* Adjusted size for smaller screens */
-    }
-
-    .nav-icon {
-        font-size: 1.5em;
-    }
-
-    .footer-icon {
-        font-size: 1.3em;
-    }
-
-    .button-icon {
-        font-size: 1em;
-    }
-}
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* 🌈 漫画风格增强 */
+    color: #444;
+    background: linear-gradient(135deg, #ffe0f0 0%, #d6f1ff 100%);
+    padding: 0.4em;
+    border-radius: 0.6em;
+    box-shadow: 2px 2px 0 #ffe477, 4px 4px 0 #6ec6ff;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* 🎉 悬停动效：糖果高亮 */
+  .ai:hover {
+    color: #fff;
+    background: linear-gradient(135deg, #ff94c2 0%, #88e1f2 100%);
+    box-shadow: 2px 2px 0 #fff176, 4px 4px 0 #4fc3f7, 0 0 0 4px rgba(255,255,255,0.3) inset;
+    transform: scale(1.1) rotate(-1deg);
+  }
+  
+  /* === 大小和布局 === */
+  .ai-lg { font-size: 1.33333em; line-height: 0.75em; vertical-align: -0.0667em; }
+  .ai-xs { font-size: 0.75em; }
+  .ai-sm { font-size: 0.875em; }
+  .ai-1x { font-size: 1em; }
+  .ai-2x { font-size: 2em; }
+  .ai-3x { font-size: 3em; }
+  .ai-4x { font-size: 4em; }
+  .ai-5x { font-size: 5em; }
+  .ai-fw { text-align: center; width: 1.25em; }
+  
+  /* === 布局增强 === */
+  .ai-pull-left { float: left; margin-right: 0.3em; }
+  .ai-pull-right { float: right; margin-left: 0.3em; }
+  
+  /* === stack icon 支持 === */
+  .ai-stack {
+    position: relative;
+    display: inline-block;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    vertical-align: middle;
+  }
+  .ai-stack-1x, .ai-stack-2x {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .ai-stack-2x { font-size: 2em; }
+  
+  /* === 自定义彩蛋动画（可选） === */
+  @keyframes candyPop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.1) rotate(3deg); }
+    100% { transform: scale(1); }
+  }
+  .ai-pop {
+    animation: candyPop 1.6s infinite ease-in-out;
+  }
+  
+  /* === 图标内容定义 === */
+  /* ⚠️ 以下省略了大部分 icon 的 :before 定义，如需完整请加载官方 CSS 或拷贝全部内容 */
+  .ai-academia:before { content: "\e9af"; }
+  .ai-google-scholar:before { content: "\e9d4"; }
+  .ai-orcid:before { content: "\e9d9"; }
+  .ai-arxiv:before { content: "\e974"; }
+  .ai-researchgate:before { content: "\e95e"; }
+  .ai-dblp:before { content: "\e94f"; }
+  .ai-mendeley:before { content: "\e9f0"; }
+  .ai-zenodo:before { content: "\e911"; }
+  /* …… 可继续添加其他图标 */
+  
+  /* === 边框风格按钮类 === */
+  .ai-border {
+    border: 2px dashed #ffeeaa;
+    background: #fffdf7;
+    color: #555;
+    box-shadow: inset 0 0 0.25em #f0c8ff;
+  }
+  
+  /* === 背景变体类（低对比度） === */
+  .ai-bg-light {
+    background-color: #fafafa;
+  }
+  .ai-bg-blue {
+    background-color: #d6f1ff;
+  }
+  .ai-bg-pink {
+    background-color: #ffe0f0;
+  }
+  .ai-bg-yellow {
+    background-color: #fffbd0;
+  }
+  
