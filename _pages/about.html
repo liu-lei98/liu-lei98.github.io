@@ -6,205 +6,157 @@ redirect_from:
   - /about/
   - /about.html
 ---
-<!-- 彩虹文字标题 + 动态弹幕 + 点击特效 -->
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌊🌀🌊</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background-color: #f5f0e6;
-      color: #5a5242;
-      line-height: 1.8;
-      padding: 20px;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊🌀🌊</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f5f0e6;
+            color: #5a5242;
+            line-height: 1.8;
+            padding: 20px;
+        }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #fffcf7;
-      padding: 30px;
-      border-radius: 3px;
-      border: 1px solid #e0d8c8;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fffcf7;
+            padding: 30px;
+            border-radius: 3px;
+            border: 1px solid #e0d8c8;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
 
-    h1.rainbow-title {
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: bold;
-      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbow 4s linear infinite;
-    }
+        h2 {
+            border-bottom: 1px solid #e8e1d5;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
 
-    @keyframes rainbow {
-      0% {background-position: 0%;}
-      100% {background-position: 100%;}
-    }
+        /* 淡入淡出动画轮播 */
+        .emoji-carousel {
+            text-align: center;
+            font-size: 2rem;
+            margin: 30px 0;
+            min-height: 50px;
+            position: relative;
+        }
 
-    h2 {
-      border-bottom: 1px solid #e8e1d5;
-      padding-bottom: 10px;
-      margin-top: 30px;
-    }
+        .emoji-item {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            animation: fade 9s infinite;
+        }
 
-    .emoji-carousel {
-      text-align: center;
-      font-size: 2rem;
-      margin: 30px 0;
-      min-height: 50px;
-      position: relative;
-    }
+        .emoji-item:nth-child(1) { animation-delay: 0s; }
+        .emoji-item:nth-child(2) { animation-delay: 3s; }
+        .emoji-item:nth-child(3) { animation-delay: 6s; }
 
-    .emoji-item {
-      position: absolute;
-      width: 100%;
-      opacity: 0;
-      animation: fade 9s infinite;
-    }
+        @keyframes fade {
+            0%, 100% { opacity: 0; }
+            10%, 30% { opacity: 1; }
+            40%, 90% { opacity: 0; }
+        }
 
-    .emoji-item:nth-child(1) { animation-delay: 0s; }
-    .emoji-item:nth-child(2) { animation-delay: 3s; }
-    .emoji-item:nth-child(3) { animation-delay: 6s; }
+        /* 弹幕风格 */
+        .danmaku {
+            position: fixed;
+            top: 20px;
+            left: 100%;
+            white-space: nowrap;
+            font-size: 1.5rem;
+            animation: scroll 12s linear infinite;
+            z-index: 999;
+            pointer-events: none;
+        }
 
-    @keyframes fade {
-      0%, 100% { opacity: 0; }
-      10%, 30% { opacity: 1; }
-      40%, 90% { opacity: 0; }
-    }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-120%); }
+        }
 
-    .danmaku {
-      position: fixed;
-      top: 10px;
-      font-size: 1.2rem;
-      white-space: nowrap;
-      animation: scroll 10s linear infinite;
-      z-index: 1000;
-      pointer-events: none;
-      color: #ff4f84;
-      text-shadow: 1px 1px 3px #fff;
-    }
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #fffcf7;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e0d8c8;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            z-index: 100;
+        }
 
-    @keyframes scroll {
-      0% { transform: translateX(100vw); }
-      100% { transform: translateX(-100vw); }
-    }
+        .back-to-top.visible {
+            opacity: 0.8;
+            visibility: visible;
+        }
 
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      background: #fffcf7;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      border: 1px solid #e0d8c8;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      z-index: 100;
-    }
-
-    .back-to-top.visible {
-      opacity: 0.8;
-      visibility: visible;
-    }
-
-    .back-to-top:hover {
-      opacity: 1;
-      transform: translateY(-3px);
-    }
-
-    .click-burst {
-      position: absolute;
-      font-size: 1.5rem;
-      pointer-events: none;
-      animation: pop 1s ease-out forwards;
-    }
-
-    @keyframes pop {
-      0% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(2) translateY(-50px);
-      }
-    }
-  </style>
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+    </style>
 </head>
 <body>
 
-<h1 class="rainbow-title">🌈 欢迎来到磊的空间 🌈</h1>
-
 <div class="emoji-carousel">
-  <div class="emoji-item">🧍💭🤔🧠💥🗣️💢</div>
-  <div class="emoji-item">🧍😅「啊…我其实就是…那个…」</div>
-  <div class="emoji-item">🤡📢💬💣「我觉得吧」</div>
+    <div class="emoji-item">🧍💭🤔🧠💥🗣️💢</div>
+    <div class="emoji-item">🧍😅「啊…我其实就是…那个…」</div>
+    <div class="emoji-item">🤡📢💬💣「我觉得吧」</div>
 </div>
 
 <!-- 弹幕 -->
-<div class="danmaku">🌟 我是谁！我在哪！会议发言时的灵魂出窍现场 🌈🎤</div>
+<div class="danmaku">🌟######</div>
 
 <div class="container">
-  <p>Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！</p>
+    <p>Hi, this is Lei. 泥猴啊！喂喂喂！这里是磊，听得到吗！</p>
 
-  <h2>To Do</h2>
-  <p>在努力探索自己正在生活的城市中！</p>
+    <h2>To Do</h2>
+    <p>在努力探索自己正在生活的城市中！</p>
 
-  <h2>Publication</h2>
-  <p>
-    P. Xu, L. Liu, H. Zheng, X. Yuan, C. Xu and L. Xue, "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging," in IEEE Transactions on Multimedia, vol. 26, pp. 2838-2850, 2024.
-    <a href="https://doi.org/10.1109/TMM.2023.3304450" target="_blank">[link]</a> 
-    <a href="https://github.com/CISMOLab/DADF-Net" target="_blank">[code]</a> 
-    <a href="http://liu-lei98.github.io/files/DADF.pdf" target="_blank">[pdf]</a>
-  </p>
-  
-  <p>
-    P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912.
-    <a href="https://doi.org/10.1109/TGRS.2023.3257125" target="_blank">[link]</a>
-  </p>
+    <h2>Publication</h2>
+    <p>
+        P. Xu, L. Liu, H. Zheng, X. Yuan, C. Xu and L. Xue, "Degradation-Aware Dynamic Fourier-Based Network for Spectral Compressive Imaging," in IEEE Transactions on Multimedia, vol. 26, pp. 2838-2850, 2024.
+        <a href="https://doi.org/10.1109/TMM.2023.3304450" target="_blank">[link]</a> 
+        <a href="https://github.com/CISMOLab/DADF-Net" target="_blank">[code]</a> 
+        <a href="http://liu-lei98.github.io/files/DADF.pdf" target="_blank">[pdf]</a>
+    </p>
+    
+    <p>
+        P. Xu, L. Liu, Y. Jia, H. Zheng, C. Xu and L. Xue, "A Refinement Boosted and Attention Guided Deep FISTA Reconstruction Framework for Compressive Spectral Imaging," in IEEE Transactions on Geoscience and Remote Sensing, vol. 61, pp. 1-12, 2023, Art no. 5505912.
+        <a href="https://doi.org/10.1109/TGRS.2023.3257125" target="_blank">[link]</a>
+    </p>
 </div>
 
 <!-- 返回顶部按钮 -->
 <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
 
 <script>
-  // 返回顶部按钮显示
-  window.addEventListener('scroll', function () {
-    const backToTop = document.querySelector('.back-to-top');
-    if (window.pageYOffset > 300) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
-    }
-  });
-
-  // 点击特效
-  document.addEventListener('click', function (e) {
-    const emojiList = ['💥','✨','💫','🎉','🔥','🌈','🌀','⚡'];
-    const emoji = emojiList[Math.floor(Math.random() * emojiList.length)];
-    const burst = document.createElement('div');
-    burst.className = 'click-burst';
-    burst.textContent = emoji;
-    burst.style.left = `${e.pageX}px`;
-    burst.style.top = `${e.pageY}px`;
-    document.body.appendChild(burst);
-    setTimeout(() => document.body.removeChild(burst), 1000);
-  });
+    // 返回顶部按钮显示/隐藏
+    window.addEventListener('scroll', function() {
+        const backToTop = document.querySelector('.back-to-top');
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
 </script>
 
 </body>
