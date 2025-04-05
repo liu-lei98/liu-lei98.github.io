@@ -29,6 +29,8 @@ redirect_from:
       background-color: var(--cream);
       color: var(--text-dark);
       padding: 20px;
+      overflow-x: hidden;
+      position: relative;
     }
 
     .container {
@@ -69,7 +71,6 @@ redirect_from:
       text-decoration: underline;
     }
 
-    /* 淡入淡出动画容器 */
     .emoji-scene {
       font-size: 1.8rem;
       text-align: center;
@@ -77,10 +78,34 @@ redirect_from:
       opacity: 1;
       transition: opacity 1s ease-in-out;
       min-height: 3em;
+      z-index: 10;
+      position: relative;
     }
 
     .fade-out {
       opacity: 0;
+    }
+
+    /* 弹幕基础样式 */
+    .danmaku {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 1.2rem;
+      animation: flyLeft 12s linear forwards;
+      color: hsl(var(--h), 80%, 50%);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    @keyframes flyLeft {
+      from {
+        right: -200px;
+        opacity: 1;
+      }
+      to {
+        right: 100%;
+        opacity: 0.3;
+      }
     }
 
     /* 返回顶部按钮 */
@@ -153,6 +178,9 @@ redirect_from:
 <!-- 返回顶部按钮 -->
 <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
 
+<!-- 弹幕容器 -->
+<div id="danmaku-container"></div>
+
 <script>
   const emojiScenes = [
     '🏃‍♂️💨 ➡️ 🔥😱 ➡️ 🚒💦 ➡️ 🧯✅',
@@ -161,23 +189,43 @@ redirect_from:
   ];
 
   const sceneEl = document.getElementById('emojiScene');
+  const danmakuContainer = document.getElementById('danmaku-container');
   let currentIndex = 0;
 
   function showNextScene() {
     sceneEl.classList.add('fade-out');
-
     setTimeout(() => {
       currentIndex = (currentIndex + 1) % emojiScenes.length;
       sceneEl.innerHTML = emojiScenes[currentIndex];
       sceneEl.classList.remove('fade-out');
-    }, 1000); // 等动画结束再换内容
+    }, 1000);
   }
 
-  // 初始场景
+  // 自动轮播
   sceneEl.innerHTML = emojiScenes[currentIndex];
-  setInterval(showNextScene, 5000); // 每5秒切换一次
+  setInterval(showNextScene, 5000);
 
-  // 返回顶部按钮
+  // 自动生成弹幕
+  function createDanmaku(text) {
+    const el = document.createElement('div');
+    el.className = 'danmaku';
+    el.textContent = text;
+    el.style.top = `${Math.random() * 80 + 10}%`;
+    el.style.setProperty('--h', Math.floor(Math.random() * 360));
+    danmakuContainer.appendChild(el);
+
+    setTimeout(() => {
+      danmakuContainer.removeChild(el);
+    }, 12000);
+  }
+
+  // 每3秒发一条弹幕
+  setInterval(() => {
+    const random = emojiScenes[Math.floor(Math.random() * emojiScenes.length)];
+    createDanmaku(random);
+  }, 3000);
+
+  // 返回顶部按钮逻辑
   window.addEventListener('scroll', function () {
     const backToTop = document.querySelector('.back-to-top');
     if (window.pageYOffset > 300) {
