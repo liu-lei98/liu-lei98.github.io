@@ -569,3 +569,63 @@ border-radius: .1em;
 .ai-inverse {
   color: #fff;
 }
+
+:root {
+  --ai-candy-pink: #ffb3d1;
+  --ai-candy-yellow: #ffeb99;
+  --ai-candy-blue: #a3d5ff;
+  --ai-candy-mint: #c2ffe9;
+  --ai-candy-purple: #e0b3ff;
+  --ai-shadow-light: rgba(0, 0, 0, 0.05);
+  --ai-border-light: rgba(255, 255, 255, 0.5);
+}
+
+/* 通用图标糖果渐变样式 */
+.ai {
+  background: linear-gradient(135deg, var(--ai-candy-blue), var(--ai-candy-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 鼠标悬停时，渐变变换 + 发光边缘 */
+.ai:hover {
+  background: linear-gradient(135deg, var(--ai-candy-yellow), var(--ai-candy-purple));
+  text-shadow: 0 0 6px var(--ai-candy-mint);
+  transform: scale(1.05) rotate(1deg);
+}
+
+/* 给带边框的 icon 增加卡通边框风格 */
+.ai-border {
+  border-color: var(--ai-border-light);
+  box-shadow: 0 0 5px var(--ai-shadow-light), 0 0 2px var(--ai-candy-blue);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5em;
+}
+
+/* stack 模式也要有动画感 */
+.ai-stack {
+  filter: drop-shadow(0 0 2px var(--ai-candy-blue));
+  transition: all 0.2s ease;
+}
+.ai-stack:hover {
+  transform: rotate(-2deg) scale(1.1);
+  filter: drop-shadow(0 0 6px var(--ai-candy-yellow));
+}
+
+@keyframes candy-pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+.ai-pop {
+  animation: candy-pop 1.2s infinite ease-in-out;
+}
+
+@keyframes candy-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+.ai-bounce {
+  animation: candy-bounce 1.5s infinite ease-in-out;
+}
