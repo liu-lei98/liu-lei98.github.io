@@ -15,15 +15,6 @@
         url('../fonts/academicons.woff') format('woff'),
         url('../fonts/academicons.svg') format('svg');
 }
-:root {
-  --ai-candy-pink: #ffb3d1;
-  --ai-candy-yellow: #ffeb99;
-  --ai-candy-blue: #a3d5ff;
-  --ai-candy-mint: #c2ffe9;
-  --ai-candy-purple: #e0b3ff;
-  --ai-shadow-light: rgba(0, 0, 0, 0.05);
-  --ai-border-light: rgba(255, 255, 255, 0.5);
-}
 .ai {
   font-family: 'Academicons';
   font-weight: 400;
@@ -561,15 +552,7 @@ border-radius: .1em;
   position: relative;
   vertical-align: middle;
   width: 2.5em;
-  filter: drop-shadow(0 0 2px var(--ai-candy-blue));
-  transition: all 0.2s ease;
 }
-
-.ai-stack:hover {
-  transform: rotate(-2deg) scale(1.1);
-  filter: drop-shadow(0 0 6px var(--ai-candy-yellow));
-}
-
 .ai-stack-1x,
 .ai-stack-2x {
   left: 0;
@@ -585,11 +568,4 @@ border-radius: .1em;
 }
 .ai-inverse {
   color: #fff;
-}
-
-/* 鼠标悬停时，渐变变换 + 发光边缘 */
-.ai:hover {
-  background: linear-gradient(135deg, var(--ai-candy-yellow), var(--ai-candy-purple));
-  text-shadow: 0 0 6px var(--ai-candy-mint);
-  transform: scale(1.05) rotate(1deg);
 }
