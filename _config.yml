@@ -1,6 +1,6 @@
 # Site Settings
 name: Lei
-title: Space of Lei  | A blog theme for Lei
+title: Space of Lei  | This is a story of Lei's life.
 description: This is a story of Lei's life.
 tags:
   - blog
@@ -10,14 +10,10 @@ tags:
   - netlify
 show_hero: true
 menu:
-  - title: Home
-    url: /
-  - title: About
+  - title: About Lei
     url: /about
-  - title: Contact
+  - title: Contact to me
     url: /contact
-  - title: Feed
-    url: /feed.xml
 email: liu_lei_98@163.com
 # See: https://disqus.com/
 disqus_username: disqus_username
