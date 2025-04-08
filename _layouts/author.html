@@ -36,6 +36,7 @@ layout: page
 {% if author.linkedin_username %}
     {% assign author_urls = author_urls | append: '"https://space.bilibili.com/' | append: author.bilibili_uid  | append: '",' %}
 {% endif %}
+
 <script type="application/ld+json">
 {
     "@context": "http://schema.org",
