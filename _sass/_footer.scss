@@ -1,92 +1,98 @@
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
+.comments {
+  @include center(rem(800px));
+  padding: 0 rem(20px);
+  
+  h3 {
+    margin: 0 0 rem(30px);
+    font-size: rem(30px);
+  }
+}
 
-.page__footer {
-  @include clearfix;
-  float: left;
-  margin-left: 0;
-  margin-right: 0;
-  width: 100%;
-  clear: both;
-  /* sticky footer fix start */
-  position: absolute;
-  bottom: 0em;
-  height: auto;
-  /* sticky footer fix end */
-  margin-top: 3em;
-  color: mix(#fff, $gray, 25%);
-  -webkit-animation: intro 0.3s both;
-          animation: intro 0.3s both;
-  -webkit-animation-delay: 0.45s;
-          animation-delay: 0.45s;
-  background-color: $lighter-gray;
-  border-top: 1px solid $light-gray;
+footer {
+  @include center(rem(800px));
+  border-top: 1px solid darken($accentDark, 10%);
+  background: $accentDark;
+  padding: rem(20px) rem(25px);
+  margin-top: rem(50px);
+  margin-bottom: rem(120px);
+  @include mainFont(300);
 
-  footer {
-    @include clearfix;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1em;
-    max-width: 100%;
-    padding: 0 1em 1em;
+  @include media(">=sm") {
+    margin-top: rem(100px);
+  }
 
-    @include breakpoint($x-large) {
-      max-width: $x-large;
+  p {
+    text-decoration: none;
+    color: $primaryDark;
+    font-size: rem(16px);
+    line-height: rem(25px);
+  }
+
+  span {
+    font-weight: 700;
+  }
+
+  svg {
+    @include size(28, 28);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: rem(10px);
+
+    @include media(">=sm") {
+      margin-right: rem(20px);
+    }
+
+    &.love {
+      @include size(20, 20);
+      fill: $themeColor;
+      margin-top: rem(-2px);
+      margin-left: rem(3px);
+      margin-right: rem(3px);
     }
   }
 
   a {
-    color: inherit;
+    display: inline-block;
+    fill: #808080;
+    transition: all 0.3s ease;
     text-decoration: none;
-
+    color: #808080;
+    
     &:hover {
+      fill: $themeColor;
+    }
+    
+    &.creator:hover {
       text-decoration: underline;
     }
   }
 
-  .fas,
-  .fab,
-  .far,
-  .fal {
-    color: mix(#fff, $gray, 25%);
-  }
-}
-
-.page__footer-copyright {
-  font-family: $global-font-family;
-  font-size: $type-size-7;
-}
-
-.page__footer-follow {
   ul {
-    margin: 0;
     padding: 0;
     list-style-type: none;
-  }
 
-  li {
-    display: inline-block;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-family: $sans-serif-narrow;
-    font-size: $type-size-6;
-    text-transform: uppercase;
-  }
+    li {
+      margin-bottom: rem(10px);
+    }
 
-  li + li:before {
-    content: "";
-    padding-right: 5px;
-  }
-
-  a {
-    padding-right: 10px;
-    font-weight: bold;
-  }
-
-  .social-icons {
     a {
-      white-space: nowrap;
+      text-decoration: none;
+      font-size: rem(15px);
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.main-page {
+  footer {
+    background: $primaryDark;
+    border-top: 1px solid lighten($primaryDark, 10%);
+    
+    p {
+      color: $accentDark;
     }
   }
 }

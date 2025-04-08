@@ -1,75 +1,224 @@
-# Academic Pages
-**Academic Pages is a Github Pages template for academic websites.**
+# Jekflix Template
 
-# Getting Started
+![Jekflix Template Cover Image](https://res.cloudinary.com/dm7h7e8xj/image/upload/v1505354182/jekflix-logo_mfngps.png)
 
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Click the "Use this template" button in the top right.
-1. On the "New repository" page, enter your repository name as "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and add your content.
-1. Upload any files (like PDFs, .zip files, etc.) to the `files/` directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
+See the [demo here](https://jekflix.rossener.com/).
 
-See more info at https://academicpages.github.io/
+## What is it?
 
-## Running locally
+A theme for Jekyll inspired by Netflix panel for who loves movies and series and would like to have a blog with this cool appearance.
 
-When you are initially working your website, it is very useful to be able to preview the changes locally before pushing them to GitHub. To work locally you will need to:
+![Jekflix Screenshot Image](https://res.cloudinary.com/dm7h7e8xj/image/upload/v1566390829/jekflix-screenshot-2_zfiog2.jpg)
 
-1. Clone the repository and made updates as detailed above.
-1. Make sure you have ruby-dev, bundler, and nodejs installed
-    
-    On most Linux distribution and [Windows Subsystem Linux](https://learn.microsoft.com/en-us/windows/wsl/about) the command is:
-    ```bash
-    sudo apt install ruby-dev ruby-bundler nodejs
-    ```
-    On MacOS the commands are:
-    ```bash
-    brew install ruby
-    brew install node
-    gem install bundler
-    ```
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
-1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
+## Features
 
-If you are running on Linux it may be necessary to install some additional dependencies prior to being able to run locally: `sudo apt install build-essential gcc make`
+- [Live Search](docs/features.md#live-search)
+- [Estimated Reading Time](docs/features.md#estimated-reading-time)
+- [Reading Progress Bar](docs/features.md#reading-progress-bar) *(optional)*
+- ["New Post" tag](docs/features.md#new-post-tag)
+- [Load images on demand](docs/features.md#load-images-on-demand)
+- [Push Menu](docs/features.md#push-menu)
+- [SVG icons](docs/features.md#svg-icons)
+- [Shell script to create posts](docs/features.md#shell-script-to-create-posts)
+- [Tags page](docs/features.md#tags-page)
+- [About page](docs/features.md#about-page)
+- [Contact page](docs/features.md#contact-page)
+- [404 error page](docs/features.md#404-error-page)
+- [Feed RSS](docs/features.md#feed-rss)
+- [Disqus](docs/features.md#disqus) *(optional)*
+- [Featured post](docs/features.md#featured-post) *(optional)*
+- [Home page pagination](docs/features.md#home-page-pagination) *(optional)*
+- [Posts sidebar](docs/features.md#posts-sidebar) *(optional)*
+- [Paginated posts](docs/features.md#paginated-posts) *(optional)*
+- ["Before you go" modal](docs/features.md#before-you-go-modal) *(optional)*
+- [Post recommendation](docs/features.md#post-recommendation)
+- [Netlify CMS ready](docs/features.md#netlify-cms-ready)
+- [Translations](docs/setup.md#translations) **new!**
+- [Math Expressions](docs/features.md#math-expressions) *(optional)* **new!**
 
-## Using Docker
+## SEO
 
-Working from a different OS, or just want to avoid installing dependencies? You can use the provided `Dockerfile` to build a container that will run the site for you if you have [Docker](https://www.docker.com/) installed.
+- Google Analytics
+- Meta tags
+- JSON-LD
+- Sitemap.xml
+- Social Media ready
 
-Start by build the container:
+## Quick Install
 
-```bash
-docker build -t jekyll-site .
+In the case you're installing to existing Jekyll project, add this line to your project's `Gemfile`:
+
+```
+gem "jekflix"
 ```
 
-Next, run the container:
-```bash
-docker run -p 4000:4000 --rm -v $(pwd):/usr/src/app jekyll-site
+Add this line to your project's `_config.yml`:
+
+```
+theme: jekflix
 ```
 
-# Maintenance
+And then run:
 
-Bug reports and feature requests to the template should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
+```
+$ bundle
+```
 
-This repository was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License (see LICENSE.md). It is currently being maintained by [Robert Zupko](https://github.com/rjzupkoii) and additional maintainers would be welcomed.
+Or install it yourself as:
 
-## Bugfixes and enhancements
+```
+$ gem install jekflix
+```
 
-If you have bugfixes and enhancements that you would like to submit as a pull request, you will need to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository as opposed to using it as a template. This will also allow you to [synchronize your copy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) of template to your fork as well.
+### Theme Colors
 
-Unfortunately, one logistical issue with a template theme like Academic Pages that makes it a little tricky to get bug fixes and updates to the core theme. If you use this template and customize it, you will probably get merge conflicts if you attempt to synchronize. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch.
+Create the file `/assets/css/styles.scss` and add:
 
+```
 ---
-<div align="center">
-    
-![pages-build-deployment](https://github.com/academicpages/academicpages.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
-[![GitHub contributors](https://img.shields.io/github/contributors/academicpages/academicpages.github.io.svg)](https://github.com/academicpages/academicpages.github.io/graphs/contributors)
-[![GitHub release](https://img.shields.io/github/v/release/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/releases/latest)
-[![GitHub license](https://img.shields.io/github/license/academicpages/academicpages.github.io?color=blue)](https://github.com/academicpages/academicpages.github.io/blob/master/LICENSE)
+---
 
-[![GitHub stars](https://img.shields.io/github/stars/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io)
-[![GitHub forks](https://img.shields.io/github/forks/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/fork)
-</div>
+$themeColor: #ff0a16;
+$primaryDark: #141414;
+$accentDark: #ffffff;
+$lightGray: #f2f2f2;
+$texts: #333333;
+
+@import "jekflix";
+```
+
+Modify the variables above to change your theme colors.
+
+### Site configuration
+
+Below are some properties you can change in your project `_config.yml`, check the [documentation](docs/settings.md#settings) for more details.
+
+```
+# Site Settings
+name: Jekflix
+title: Jekflix | A blog theme for Jekyll
+description: Jekflix is a template for Jekyll inspired by Netflix and made by Thiago Rossener.
+tags:
+  - blog
+  - template
+  - jekyll
+  - theme
+  - netlify
+email: youremail@xyz.com
+disqus_username: disqus_username
+show_hero: true
+menu:
+  - title: Home
+    url: /
+  - title: About
+    url: /about
+  - title: Contact
+    url: /contact
+  - title: Feed
+    url: /feed.xml
+
+# Social Media Settings
+# Remove the item if you don't need it
+github_username: github_username
+facebook_username: facebook_username
+twitter_username: twitter_username
+instagram_username: instagram_username
+linkedin_username: linkedin_username
+medium_username: medium_username
+
+# Posts Settings
+show_time_bar: true
+show_modal_on_exit: false
+show_modal_on_finish_post: true
+two_columns_layout: true
+
+# Advanced Settings
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
+google_analytics: "UA-XXXXXXXX-X"
+language: "en"
+categories_folder: category
+sent_message_url: "/contact/message-sent/"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:title/
+collections:
+  authors:
+    output: true
+paginate_path: "/page/:num/"
+show_get_theme_btn: true
+use_logo: false
+
+# Content paginator
+paginate_content:
+  enabled: true
+  debug: false
+  collections:
+    - posts
+  auto: false
+  separator: "--page-break--"
+  permalink: "/:num/"
+  seo_canonical: true
+  properties:
+    part:
+      is_generated: true
+    last:
+      is_generated: true
+    single:
+      is_generated: true
+
+# SASS
+sass:
+  style: compressed
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-paginate-content
+```
+
+## Setup
+
+In the case you're cloning this repo, follow those instructions:
+
+- [Environment](docs/setup.md#environment)
+- [Installing template](docs/setup.md#installing-template)
+- [Running local](docs/setup.md#running-local)
+
+### Customization
+
+See the [settings documentation](docs/settings.md#settings) to customize layout, titles, social media and more.
+
+### Theme
+
+You can easily change the theme colors by changing the file `src/yml/theme.yml`, then running `gulp build` in your terminal.
+
+#### GitHub pages
+
+It's a known issue that you can't run Gulp when deploying the website into GitHub pages. So, you must change the theme colors and run `gulp build` locally, then push the changes into your repo, there is no other way.
+
+To see how your website is going to look like when you deploy it, run `bundle exec jekyll serve` locally and access `http://127.0.0.1:4000/`.
+
+## Posts
+
+Use the [Front Matter properties](docs/post.md#front-matter-properties) to create posts.
+
+> **Note:** In the case you're cloning this repo, you can use the available [script](docs/post.md#creating-a-post) to generate posts automatically.
+
+## Questions?
+
+File a [GitHub issue](https://github.com/thiagorossener/jekflix-template/issues/new) please.
+
+## Author
+
+[Thiago Rossener](https://rossener.com/)
+
+Do you like my work? Buy me a coffee!
+
+<a href="https://www.buymeacoffee.com/thiagorossener" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+## License
+
+*Jekflix Template* is available under the MIT license. See the [LICENSE](https://github.com/thiagorossener/jekflix-template/blob/master/LICENSE) file for more info.

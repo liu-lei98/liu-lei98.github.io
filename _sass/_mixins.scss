@@ -1,53 +1,51 @@
-/* ==========================================================================
-   MIXINS
-   ========================================================================== */
-
-%tab-focus {
-  /* Default*/
-  outline: thin dotted $warning-color;
-  /* Webkit*/
-  outline: 5px auto $warning-color;
-  outline-offset: -2px;
+@mixin mainFont($weight: 700) {
+  font-family: "Titillium Web", "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: $weight;
+  font-style: normal;
 }
 
-/*
-   em function
-   ========================================================================== */
-
-@function em($target, $context: $doc-font-size) {
-  @return ($target / $context) * 1em;
+@mixin size($width: 30, $height: 30) {
+  width: #{$width}px;
+  height: #{$height}px;
 }
 
+@mixin center($max-width: map-get($jeet, 'max-width'), $pad: 0) {
+  @include clearfix;
+  width: auto;
+  max-width: $max-width;
+  float: none;
+  display: block;
+  margin: {
+    right: auto;
+    left:  auto;
+  };
+  padding: {
+    left:  $pad;
+    right: $pad;
+  };
+}
 
-/*
-   Bourbon clearfix
-   ========================================================================== */
+@mixin align($direction: both) {
+  position: absolute;
+  transform-style: preserve-3d;
 
-/*
-  * Provides an easy way to include a clearfix for containing floats.
-  * link http://cssmojo.com/latest_new_clearfix_so_far/
-  *
-  * example scss - Usage
-  *
-  * .element {
-  *   @include clearfix;
-  * }
-  *
-  * example css - CSS Output
-  *
-  * .element::after {
-  *   clear: both;
-  *   content: "";
-  *   display: table;
-  * }
-*/
+  @if index("horizontal" "h", $direction) {
+    left: 50%;
+    transform: translateX(-50%);
+  } @else if index("vertical" "v", $direction) {
+    top: 50%;
+    transform: translateY(-50%);
+  } @else {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
 
-@mixin clearfix {
-  clear: both;
-
+@mixin clearfix() {
   &::after {
-    clear: both;
-    content: "";
+    content: '';
     display: table;
+    clear: both;
   }
 }

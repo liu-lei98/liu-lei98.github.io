@@ -1,104 +1,91 @@
-<!-- {% include base_path %}
+<footer>
+    <p>
+      {% if site.github_username %}
+        <a href="https://github.com/{{ site.github_username }}" title="Github">
+          <svg><use xlink:href="#icon-github"></use></svg>
+        </a>
+      {% endif %}
+      {% if site.facebook_username %}
+        <a href="https://www.facebook.com/{{ site.facebook_username }}" title="Facebook">
+          <svg><use xlink:href="#icon-facebook"></use></svg>
+        </a>
+      {% endif %}
+      {% if site.twitter_username %}
+        <a href="https://twitter.com/{{ site.twitter_username }}" title="Twitter">
+          <svg><use xlink:href="#icon-twitter"></use></svg>
+        </a>
+      {% endif %}
+      {% if site.medium_username %}
+        <a href="https://medium.com/@{{ site.medium_username }}" title="Medium">
+          <svg><use xlink:href="#icon-medium"></use></svg>
+        </a>
+      {% endif %}
+      {% if site.instagram_username %}
+        <a href="https://www.instagram.com/{{ site.instagram_username }}" title="Instagram">
+          <svg><use xlink:href="#icon-instagram"></use></svg>
+        </a>
+      {% endif %}
+      {% if site.linkedin_username %}
+        <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="LinkedIn">
+          <svg><use xlink:href="#icon-linkedin"></use></svg>
+        </a>
+      {% endif %}
+    </p>
 
-{% if site.author.github or site.author.bitbucket or site.atom_feed.hide != true %}
-<div class="page__footer-follow">
-  <ul class="social-icons">
-    {% if site.data.ui-text[site.locale].follow_label %}
-      <li><strong>{{ site.data.ui-text[site.locale].follow_label }}</strong></li>
-    {% endif %}
-    {% if site.author.github %}
-      <li><a href="http://github.com/{{ site.author.github }}"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>
-    {% endif %}
-    {% if site.author.bitbucket %}
-      <li><a href="http://bitbucket.org/{{ site.author.bitbucket }}"><i class="fab fa-bitbucket" aria-hidden="true"></i> Bitbucket</a></li>
-    {% endif %}
-    {% if site.atom_feed.hide != true %}
-    <li><a href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].feed_label | default: "Feed" }}</a></li>
-    {% endif %}
-  </ul>
-</div>
-{% endif %}
+    {% include links.html %}
 
-<div class="page__footer-copyright">
-  &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}, {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.<br />
-  Site last updated {{ "now" | date: '%Y-%m-%d' %}}
-</div> -->
-{% include base_path %}
-
-<footer class="japan-footer">
-  <div class="footer-inner">
-    <div class="footer-emoji" onclick="showSurprise()">
-      🐾 <span class="hint">点击猫咪有惊喜</span>
-    </div>
-    <div class="footer-links">
-      <a href="https://github.com/{{ site.author.github }}" target="_blank">GitHub</a>
-      <span>·</span>
-      <a href="{{ site.atom_feed.path | default: base_path | append: '/feed.xml' }}">RSS</a>
-    </div>
-    <div class="footer-text">
-      &copy; {{ site.time | date: '%Y' }} {{ site.title }} | 手工打造于 <a href="https://jekyllrb.com" target="_blank">Jekyll</a><br/>
-      <small>静かに、光を見つける。</small>
-    </div>
-  </div>
+    <p>
+      <span>Jekflix</span> was made with <svg class="love"><use xlink:href="#icon-heart"></use></svg> by <a href="https://rossener.com" target="_blank" class="creator">Thiago Rossener</a>
+    </p>
 </footer>
 
-<style>
-.japan-footer {
-  background-color: #f9f6f1;
-  padding: 30px 10px;
-  color: #5a5242;
-  text-align: center;
-  font-family: "Noto Serif JP", serif;
-  border-top: 1px solid #e0dcd4;
-  font-size: 15px;
-  position: relative;
-}
-.footer-inner {
-  max-width: 600px;
-  margin: 0 auto;
-}
-.footer-emoji {
-  font-size: 1.8rem;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-}
-.footer-emoji:hover {
-  transform: scale(1.1);
-}
-.footer-links {
-  margin-top: 10px;
-}
-.footer-links a {
-  color: #7a7262;
-  text-decoration: none;
-  margin: 0 5px;
-  font-weight: 500;
-}
-.footer-links a:hover {
-  text-decoration: underline;
-}
-.footer-text {
-  margin-top: 12px;
-  color: #958b7a;
-  font-size: 14px;
-}
-.hint {
-  font-size: 13px;
-  color: #a79f91;
-  margin-left: 8px;
-}
-</style>
+{% assign social_urls = '' %}
+{% if site.github_username %}
+    {% assign social_urls = social_urls | append: '"https://github.com/' | append: site.github_username | append: '",' %}
+{% endif %}
+{% if site.facebook_username %}
+    {% assign social_urls = social_urls | append: '"https://www.facebook.com/' | append: site.facebook_username | append: '",' %}
+{% endif %}
+{% if site.twitter_username %}
+    {% assign social_urls = social_urls | append: '"https://twitter.com/' | append: site.twitter_username | append: '",' %}
+{% endif %}
+{% if site.medium_username %}
+    {% assign social_urls = social_urls | append: '"https://medium.com/@' | append: site.medium_username | append: '",' %}
+{% endif %}
+{% if site.instagram_username %}
+    {% assign social_urls = social_urls | append: '"https://www.instagram.com/' | append: site.instagram_username | append: '",' %}
+{% endif %}
+{% if site.linkedin_username %}
+    {% assign social_urls = social_urls | append: '"https://www.linkedin.com/in/' | append: site.linkedin_username | append: '",' %}
+{% endif %}
 
-<script>
-function showSurprise() {
-  const quotes = [
-    "光が差し込むその瞬間を、静かに待っている。",
-    "今日も、やさしい風が吹いた。",
-    "レンズ越しの世界は、少しだけ優しく見える。",
-    "日常の隙間に、小さな奇跡がある。",
-    "どんな曇りの日でも、光はどこかにある。"
-  ];
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
-  alert(quote);
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ site.name }}",
+  "description": "{{ site.description }}",
+  "url": "{{ site.url }}{{site.baseurl}}/",
+  "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}{{site.baseurl}}/assets/img/icons/mediumtile.png",
+      "width": "600",
+      "height": "315"
+  },
+  "sameAs": [
+    {{ social_urls | split: "," | join: "," }}
+  ]
 }
 </script>
+
+<!-- Include the script that allows Netlify CMS login -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<!-- Include the website scripts -->
+<script src="{{ '/assets/js/scripts.min.js' | prepend: site.baseurl }}"></script>
+
+<!-- Include Google Analytics script -->
+{% include stats.html %}
+
+<!-- Include extra scripts -->
+{% include extra-js.html %}
