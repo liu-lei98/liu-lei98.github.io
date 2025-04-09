@@ -13,14 +13,14 @@ tags:
 author: Lei
 ---
 <!-- 回答者气泡（靠左） -->
-<div style="text-align: right; margin-bottom: 10px;">
+<div style="text-align: left; margin-bottom: 10px;">
   <div style="display: inline-block; background-color: #e3f2fd; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🍑：采访一下单身的酸，为什么要拍牵手呢？
   </div>
 </div>
 
 <!-- 提问者气泡（靠右） -->
-<div style="text-align: left; margin-bottom: 20px;">
+<div style="text-align: right; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🪨：我们每个人都距离很远，但牵手的时候却很近！就像我真的认识到你了一样！
   </div>
@@ -29,12 +29,12 @@ author: Lei
 [![B站视频封面](/assets/img/1.jpg){: width="50%" }](https://www.bilibili.com/video/BV1XYU5Y4EQg)
 
 <!-- 图文展示区域 -->
-<div style="text-align: left; margin-bottom: 20px;">
+<div style="text-align: right; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🪨：我第一部相机是fe，也是浅田家中出现的相机，开始拍摄也是因此，去记录那些消失的瞬间。希望能够再次看到照片的时候也能感觉到幸福！
   </div>
 </div>
-<div style="text-align: right; margin-bottom: 10px;">
+<div style="text-align: left; margin-bottom: 10px;">
   <div style="display: inline-block; background-color: #e3f2fd; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     浅田：我会去拍你的幸福，无论多远！
   </div>
@@ -56,24 +56,9 @@ author: Lei
   </div>
 </div>
 
-<div class="blog-photo-block">
-  <img src="/assets/gallery/gallery-2024/Hold-hand/000045520004.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
-</div>
-<div style="text-align: right; margin-bottom: 10px;">
-  <div style="display: inline-block; background-color: #e3f2fd; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
-    🥱：这个是拍的啥？
-  </div>
-</div>
-<div style="text-align: left; margin-bottom: 20px;">
-  <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
-    🪨：大爷在前面看着导航，一直在和大妈解释“嘿，我们接下来要往这走”，大妈“嗯！”，“ride with me, to the edge of the sunset!"
-  </div>
-</div>
-
 
 <div class="blog-photo-block">
   <img src="/assets/gallery/gallery-2024/Hold-hand/000045520004.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
-</div>
 </div>
 <div style="text-align: left; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
