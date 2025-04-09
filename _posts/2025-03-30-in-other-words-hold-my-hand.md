@@ -12,24 +12,25 @@ tags:
   - HDU
 author: Lei
 ---
-
-<!-- 提问者气泡（靠右） -->
+<!-- 回答者气泡（靠左） -->
 <div style="text-align: right; margin-bottom: 10px;">
   <div style="display: inline-block; background-color: #e3f2fd; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
-    你好，请问现在几点？
+    🍑：采访一下单身的酸，为什么要拍牵手呢？
   </div>
 </div>
 
-<!-- 回答者气泡（靠左） -->
+<!-- 提问者气泡（靠右） -->
 <div style="text-align: left; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
-    现在是下午3点25分，有什么可以帮您的吗？
+    🪨：我们每个人都距离很远，但牵手的时候却很近！
   </div>
 </div>
+
+
 
 <!-- 图文展示区域 -->
 <div class="blog-photo-block">
-  <img src="/assets/gallery/gallery-2023/IMG_1571.JPG" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
+  <img src="/assets/gallery/gallery-2024/Hold-hand/IMG_1571.JPG" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
   <p class="photo-caption">
     但这天不一样，雨过后的晴天。
   </p>
