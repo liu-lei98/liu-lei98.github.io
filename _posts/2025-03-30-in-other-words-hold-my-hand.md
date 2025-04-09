@@ -16,25 +16,32 @@ author: Lei
 <style>
 /* 对话气泡基础样式 */
 .chat-container {
-  margin-bottom: 15px;
+  margin-bottom: 25px; /* 增加气泡间距 */
   clear: both;
 }
 .bubble {
   max-width: 70%;
-  padding: 10px 15px;
+  padding: 12px 16px; /* 增加内边距 */
   border-radius: 18px;
   position: relative;
   word-wrap: break-word;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 添加轻微阴影 */
+  transition: transform 0.2s ease; /* 添加悬停动画 */
+}
+.bubble:hover {
+  transform: translateY(-2px); /* 悬停上浮效果 */
 }
 .left-bubble {
   float: left;
   background-color: #e3f2fd;
   text-align: left;
+  margin-right: 15%; /* 增加左右气泡间距 */
 }
 .right-bubble {
   float: right;
   background-color: #f5f5f5;
   text-align: left;
+  margin-left: 15%; /* 增加左右气泡间距 */
 }
 /* 图片气泡特殊处理 */
 .photo-bubble {
@@ -46,9 +53,21 @@ author: Lei
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .photo-bubble img:hover {
   opacity: 0.8;
+  transform: scale(1.02);
+}
+/* 音乐触发气泡 */
+.music-trigger {
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(227, 242, 253, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(227, 242, 253, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(227, 242, 253, 0); }
 }
 /* 模态框样式 */
 .modal {
@@ -58,6 +77,7 @@ author: Lei
   left: 0; top: 0;
   width: 100%; height: 100%;
   background-color: rgba(0,0,0,0.9);
+  cursor: pointer; /* 点击任意位置关闭 */
 }
 .modal-content {
   display: flex;
@@ -65,35 +85,64 @@ author: Lei
   align-items: center;
   justify-content: center;
   height: 100%;
+  max-width: 90%;
+  margin: 0 auto;
 }
 .modal-img {
-  max-width: 80%;
-  max-height: 80%;
+  max-width: 100%;
+  max-height: 80vh;
   object-fit: contain;
+  border-radius: 8px;
+}
+.modal-caption {
+  color: white;
+  margin-top: 15px;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 0 20px;
 }
 .close {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 25px;
+  right: 35px;
   color: white;
-  font-size: 35px;
+  font-size: 40px;
+  font-weight: bold;
   cursor: pointer;
 }
 /* 音乐按钮 */
 .music-btn {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 25px;
+  right: 25px;
   z-index: 999;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.9);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.music-btn:hover {
+  transform: scale(1.1);
+  background: #ffecec;
 }
 </style>
+
+<!-- 音乐播放器 (默认隐藏) -->
+<audio id="bgMusic" loop>
+  <source src="/assets/music/1.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 音乐触发气泡 -->
+<div class="chat-container">
+  <div class="bubble left-bubble music-trigger" onclick="startMusic()">
+    🎵 点击此处开始背景音乐
+  </div>
+</div>
 
 <!-- 对话开始 -->
 <div class="chat-container">
@@ -115,6 +164,7 @@ author: Lei
     </a>
   </div>
 </div>
+
 
 <div class="chat-container">
   <div class="bubble right-bubble">
@@ -238,62 +288,81 @@ author: Lei
 </div>
 
 <!-- 模态框 -->
-<div id="myModal" class="modal">
-  <span class="close" onclick="closeModal()">&times;</span>
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <span class="close" onclick="closeModal(event)">&times;</span>
   <div class="modal-content">
-    <img class="modal-img" id="img01">
-    <div id="caption"></div>
+    <img class="modal-img" id="modalImage">
+    <div class="modal-caption" id="modalCaption"></div>
   </div>
 </div>
 
-<!-- 音乐播放器 -->
-<audio id="bgMusic" loop>
-  <source src="/assets/music/1.mp3" type="audio/mpeg">
-</audio>
-<button class="music-btn" onclick="toggleMusic()">🎵</button>
+<!-- 音乐控制按钮 -->
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">🔇</button>
 
 <script>
+// 音乐播放器控制
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+let musicStarted = false;
+
+// 点击音乐触发气泡开始播放
+function startMusic() {
+  if (!musicStarted) {
+    bgMusic.volume = 0.3;
+    bgMusic.play()
+      .then(() => {
+        musicStarted = true;
+        musicBtn.textContent = "🔊";
+      })
+      .catch(e => {
+        alert("请点击页面任意位置后，再点击音乐气泡播放");
+      });
+  }
+}
+
+// 切换音乐播放状态
+function toggleMusic() {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    musicBtn.textContent = "🔊";
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = "🔇";
+  }
+}
+
 // 图片模态框
 function openModal(src, caption) {
-  const modal = document.getElementById("myModal");
-  const modalImg = document.getElementById("img01");
-  const captionText = document.getElementById("caption");
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  const captionText = document.getElementById("modalCaption");
   
   modal.style.display = "block";
   modalImg.src = src;
   captionText.innerHTML = caption;
+  document.body.style.overflow = "hidden"; // 防止背景滚动
+}
+
+function closeModal(event) {
+  // 阻止事件冒泡，只有点击关闭按钮时才执行
+  if (event && event.target.className !== 'close') return;
   
-  // 点击模态框外部关闭
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
+  document.getElementById("imageModal").style.display = "none";
+  document.body.style.overflow = "auto"; // 恢复滚动
+}
+
+// 点击模态框外部关闭
+window.onclick = function(event) {
+  if (event.target == document.getElementById("imageModal")) {
+    closeModal(event);
   }
 }
 
-function closeModal() {
-  document.getElementById("myModal").style.display = "none";
-}
-
-// 背景音乐控制
-const bgMusic = document.getElementById("bgMusic");
-bgMusic.volume = 0.3; // 设置音量
-
-function toggleMusic() {
-  const btn = document.querySelector(".music-btn");
-  if (bgMusic.paused) {
-    bgMusic.play();
-    btn.textContent = "🔊";
-  } else {
-    bgMusic.pause();
-    btn.textContent = "🔇";
-  }
-}
-
-// 页面加载后自动播放音乐（需要用户交互后才会真正播放）
-document.addEventListener('DOMContentLoaded', function() {
-  bgMusic.play().catch(e => {
-    console.log("自动播放被阻止，需要用户交互");
-  });
-});
+// 用户首次交互后尝试自动播放音乐
+document.addEventListener('click', function firstInteraction() {
+  bgMusic.play().then(() => {
+    bgMusic.pause(); // 预加载但不播放
+  }).catch(e => {});
+  document.removeEventListener('click', firstInteraction);
+}, { once: true });
 </script>
