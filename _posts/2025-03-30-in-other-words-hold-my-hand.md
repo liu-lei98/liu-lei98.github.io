@@ -26,7 +26,11 @@ author: Lei
   </div>
 </div>
 
+<div style="text-align: right; margin-bottom: 20px;">
+  <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
 [![B站视频封面](/assets/img/1.jpg){: width="50%" }](https://www.bilibili.com/video/BV1XYU5Y4EQg)
+  </div>
+</div>
 
 <!-- 图文展示区域 -->
 <div style="text-align: right; margin-bottom: 20px;">
@@ -42,90 +46,146 @@ author: Lei
 
 
 <!-- 图文展示区域 -->
-<div class="blog-photo-block">
-  <img src="/assets/gallery/gallery-2024/Hold-hand/IMG_1860.JPG" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
-</div>
-<div style="text-align: right; margin-bottom: 10px;">
+<div style="text-align: right; margin-bottom: 20px;">
+  <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
+    <div class="blog-photo-block">
+      <img src="/assets/gallery/gallery-2024/Hold-hand/IMG_1860.JPG" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
+    </div>
+  </div>
+</div>    
+
+<div style="text-align: left; margin-bottom: 10px;">
   <div style="display: inline-block; background-color: #e3f2fd; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🥱：这个是拍的啥？
   </div>
 </div>
-<div style="text-align: left; margin-bottom: 20px;">
+<div style="text-align: right; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🪨：大爷在前面看着导航，一直在和大妈解释“嘿，我们接下来要往这走”，大妈“嗯！”，“ride with me, to the edge of the sunset!"
   </div>
 </div>
 
 
-<div class="blog-photo-block">
+<div style="text-align: right; margin-bottom: 20px;">
+  <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
+    <div class="blog-photo-block">
+      <img src="/assets/gallery/gallery-2024/Hold-hand/000045520004.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
+    </div>
+  </div>
+</div>   
+
+<!-- <div class="blog-photo-block">
   <img src="/assets/gallery/gallery-2024/Hold-hand/000045520004.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
-</div>
-<div style="text-align: left; margin-bottom: 20px;">
+</div> -->
+<div style="text-align: right; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🪨：这个故事很简单，“好啦好啦，我牵着就是了”。
   </div>
 </div>
 
 
-<div class="blog-photo-block">
+<div style="text-align: right; margin-bottom: 20px;">
+  <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
+    <div class="blog-photo-block">
+      <img src="/assets/gallery/gallery-2024/Hold-hand/000045520007.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
+    </div>
+  </div>
+</div>   
+
+<!-- <div class="blog-photo-block">
   <img src="/assets/gallery/gallery-2024/Hold-hand/000045520007.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
-</div>
-<div style="text-align: right; margin-bottom: 10px;">
+</div> -->
+<div style="text-align: left; margin-bottom: 10px;">
   <div style="display: inline-block; background-color: #e3f2fd; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🥱：这个我知道是小孩的手，他在干嘛了
   </div>
 </div>
-<div style="text-align: left; margin-bottom: 20px;">
+<div style="text-align: right; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🪨：是她啦！在地铁上看见人就会笑的小孩！因为累了所以垂下的手，旁边的母亲在笑着看着她。
   </div>
 </div>
 
 
-<div class="blog-photo-block">
+<div style="text-align: right; margin-bottom: 20px;">
+  <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
+    <div class="blog-photo-block">
+      <img src="/assets/gallery/gallery-2024/Hold-hand/000045520008.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
+    </div>
+  </div>
+</div>   
+
+<!-- <div class="blog-photo-block">
   <img src="/assets/gallery/gallery-2024/Hold-hand/000045520008.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
-</div>
-<div style="text-align: left; margin-bottom: 20px;">
+</div> -->
+<div style="text-align: right; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🪨：非常老成的小孩，就在上面睡着的小孩下车后上了地铁，一直皱着眉头看着地铁到站信息。啊他真的看得懂吗？
   </div>
 </div>
 
+<div style="text-align: right; margin-bottom: 20px;">
+  <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
+    <div class="blog-photo-block">
+      <img src="/assets/gallery/gallery-2024/Hold-hand/000045520030.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
+    </div>
+  </div>
+</div>   
 
-<div class="blog-photo-block">
+<!-- <div class="blog-photo-block">
   <img src="/assets/gallery/gallery-2024/Hold-hand/000045520030.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
-</div>
-<div style="text-align: left; margin-bottom: 20px;">
+</div> -->
+<div style="text-align: right; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🪨："Je resterai à tes côtés quoi qu'il arrive." 无论什么我都会在你身边！
   </div>
 </div>
 
+<div style="text-align: right; margin-bottom: 20px;">
+  <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
+    <div class="blog-photo-block">
+      <img src="/assets/gallery/gallery-2024/Hold-hand/000045520031.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
+    </div>
+  </div>
+</div>   
 
-<div class="blog-photo-block">
+<!-- <div class="blog-photo-block">
   <img src="/assets/gallery/gallery-2024/Hold-hand/000045520031.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
-</div>
-<div style="text-align: left; margin-bottom: 20px;">
+</div> -->
+<div style="text-align: right; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🪨："跳过来，我会抓住你的！" Allez, saute ! Je te promets de pas te laisser tomber !
   </div>
 </div>
 
+<div style="text-align: right; margin-bottom: 20px;">
+  <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
+    <div class="blog-photo-block">
+      <img src="/assets/gallery/gallery-2024/Hold-hand/000045520033.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
+    </div>
+  </div>
+</div>   
 
-<div class="blog-photo-block">
+<!-- <div class="blog-photo-block">
   <img src="/assets/gallery/gallery-2024/Hold-hand/000045520033.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
-</div>
-<div style="text-align: left; margin-bottom: 20px;">
+</div> -->
+<div style="text-align: right; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🪨："反正就是挺温柔的就是了"
   </div>
 </div>
 
+<div style="text-align: right; margin-bottom: 20px;">
+  <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
+    <div class="blog-photo-block">
+      <img src="/assets/gallery/gallery-2024/Hold-hand/000045520037.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
+    </div>
+  </div>
+</div>   
 
-
-<div class="blog-photo-block">
+<!-- <div class="blog-photo-block">
   <img src="/assets/gallery/gallery-2024/Hold-hand/000045520037.jpg" alt="Image 1" onclick="openModal(this.src, '偶尔也会不一样')" />
-</div>
+</div> -->
 <div style="text-align: left; margin-bottom: 20px;">
   <div style="display: inline-block; background-color: #f5f5f5; border-radius: 18px; padding: 8px 16px; max-width: 70%;">
     🪨："对对对，就是这样，我扶着你的，放心！"
