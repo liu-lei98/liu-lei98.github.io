@@ -349,6 +349,12 @@
 
       var worldCode = slides[currentStage].getAttribute("data-world") || "1-1";
       if (hudWorld) hudWorld.textContent = worldCode;
+      var slideId = slides[currentStage].id;
+      if (slideId && window.history && window.history.replaceState) {
+        try {
+          window.history.replaceState(null, "", "#" + slideId);
+        } catch (e) {}
+      }
 
       for (var a = 0; a < navLinks.length; a++) {
         navLinks[a].classList.toggle(
@@ -476,9 +482,28 @@
       }
     });
 
-    goToStage(0, true);
+    var hashMap = {
+      "#world-start": 0,
+      "#1-1": 0,
+      "#world-profile": 1,
+      "#1-2": 1,
+      "#world-papers": 2,
+      "#1-3": 2,
+      "#world-quests": 3,
+      "#1-4": 3
+    };
+    var initStage = hashMap.hasOwnProperty(window.location.hash) ? hashMap[window.location.hash] : 0;
+    goToStage(initStage, true);
   } else {
-    // Fallback for regular pages (About / Posts)
+    // Fallback for regular pages (About / Posts / Contact / Tags)
+    if (hudWorld) {
+      var p = window.location.pathname || "";
+      if (p.indexOf("/about") === 0) hudWorld.textContent = "ARCHIVE";
+      else if (p.indexOf("/contact") === 0) hudWorld.textContent = "GUILD";
+      else if (p.indexOf("/tags") === 0) hudWorld.textContent = "TAGS";
+      else if (p.indexOf("/category") === 0) hudWorld.textContent = "BOARD";
+      else hudWorld.textContent = "QUEST";
+    }
     var warpTopFallback = document.getElementById("warp-top");
     if (warpTopFallback) {
       warpTopFallback.addEventListener("click", function () {
@@ -508,5 +533,54 @@
       { passive: true }
     );
     updateFallback();
+  }
+
+  // Quest completion reward button on secondary post pages
+  var completeBtn = document.querySelector("[data-quest-complete]");
+  if (completeBtn) {
+    var qKey = "lei_quest_done_" + window.location.pathname;
+    if (sessionStorage.getItem(qKey) === "1") {
+      completeBtn.classList.add("is-done");
+      completeBtn.textContent = "★ 已领取任务奖励";
+    }
+    completeBtn.addEventListener("click", function () {
+      if (this.classList.contains("is-done")) return;
+      var reward = parseInt(this.getAttribute("data-coin-reward") || "2", 10);
+      addCoins(reward);
+      sfx.coin();
+      this.classList.add("is-done");
+      this.textContent = "★ 已领取任务奖励";
+      sessionStorage.setItem(qKey, "1");
+      showToast("★ 任务完成！获得 +" + reward + " COIN");
+    });
+  }
+
+  // Smooth pixel curtain transition between primary & secondary pages
+  var curtain = document.getElementById("pixel-curtain");
+  window.addEventListener("pageshow", function () {
+    if (curtain) curtain.classList.remove("is-active");
+  });
+
+  if (curtain) {
+    document.addEventListener("click", function (ev) {
+      if (ev.defaultPrevented || ev.button !== 0) return;
+      if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+      var a = ev.target && ev.target.closest ? ev.target.closest("a") : null;
+      if (!a) return;
+      var href = a.getAttribute("href");
+      if (!href || href.charAt(0) === "#" || href.indexOf("mailto:") === 0 || href.indexOf("javascript:") === 0) return;
+      if (a.target === "_blank" || a.hasAttribute("download")) return;
+      if (pager && a.hasAttribute("data-go-stage")) return;
+      try {
+        var url = new URL(a.href, window.location.href);
+        if (url.origin !== window.location.origin) return;
+        if (url.pathname === window.location.pathname && url.hash) return;
+        ev.preventDefault();
+        curtain.classList.add("is-active");
+        setTimeout(function () {
+          window.location.href = url.href;
+        }, 160);
+      } catch (e) {}
+    });
   }
 })();

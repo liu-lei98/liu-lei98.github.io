@@ -3,9 +3,23 @@ layout: default
 ---
 
 <div class="post">
-
-  <article class="post-content fullwidth">
-    {{ content }}
-  </article>
-
+  {% if page.url == '/about/' %}
+    <div class="quest-nav-strip">
+      <span>★ CHARACTER ARCHIVE · 完整学者档案</span>
+      <a class="quest-back-btn" href="{{ site.baseurl }}/#world-profile">← 返回主世界 1-2</a>
+    </div>
+    <article class="post-content fullwidth">
+      {{ content }}
+    </article>
+  {% else %}
+    <article class="post-content fullwidth quest-dialog">
+      <div class="pixel-window-bar quest-bar">
+        <span>★ QUEST BOARD · {{ page.title | default: "详情" }}</span>
+        <a class="quest-back-btn" href="{{ site.baseurl }}/#world-start">← 返回主世界</a>
+      </div>
+      <div class="quest-dialog-body">
+        {{ content }}
+      </div>
+    </article>
+  {% endif %}
 </div>

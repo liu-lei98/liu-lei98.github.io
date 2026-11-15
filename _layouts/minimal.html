@@ -9,8 +9,14 @@ layout: compress
         {% include svg-icons.html %}
         {% include header.html %}
         <section class="post">
-            <article id="post" class="post-content fullwidth" role="main">
-                {{ content }}
+            <article id="post" class="post-content fullwidth quest-dialog" role="main">
+                <div class="pixel-window-bar quest-bar">
+                    <span>★ QUEST TAGS · {{ page.title | default: "标签索引" }}</span>
+                    <a class="quest-back-btn" href="{{ site.baseurl }}/#world-quests">← 返回 1-4 日志</a>
+                </div>
+                <div class="quest-dialog-body">
+                    {{ content }}
+                </div>
             </article>
         </section>
         {% include footer.html %}

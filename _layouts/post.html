@@ -6,37 +6,64 @@
         {% include svg-icons.html %}
         {% include header.html %}
 
-        <section class="post {% if site.two_columns_layout %}two-columns{% else %}one-column{% endif %}">
-            <article role="article" class="post-content">
-                <p class="post-info">
-                    {% if page.date %}
-                        <svg class="icon-calendar" id="date"><use xlink:href="#icon-calendar"></use></svg>
-                        <time class="date" datetime="{{ page.date | date_to_xmlschema }}">
-                            {% include date.html date=page.date %}
-                        </time>
+        <section class="post {% if site.two_columns_layout %}two-columns{% else %}one-column{% endif %}" id="top">
+            <article role="article" class="post-content quest-dialog">
+                <div class="pixel-window-bar quest-bar">
+                    <span>★ QUEST BRIEFING · 任务简报{% if page.category %} · [{{ page.category | upcase }}]{% endif %}</span>
+                    <a class="quest-back-btn" href="{{ site.baseurl }}/#world-quests">← 返回 1-4 日志</a>
+                </div>
+
+                <div class="quest-giver-strip">
+                    <div class="quest-giver-avatar">
+                        {% include pixel-sprite.html %}
+                        <span class="pixel-nameplate">LEI LIU</span>
+                    </div>
+                    <div class="quest-giver-meta">
+                        <p class="post-info">
+                            {% if page.date %}
+                                <svg class="icon-calendar" id="date"><use xlink:href="#icon-calendar"></use></svg>
+                                <time class="date" datetime="{{ page.date | date_to_xmlschema }}">
+                                    {% include date.html date=page.date %}
+                                </time>
+                            {% endif %}
+                            <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
+                            <span>{{ minutesText }}</span>
+                        </p>
+                        <h1 class="post-title">{{ page.title }}</h1>
+                        {% if page.subtitle %}
+                            <p class="post-subtitle">{{ page.subtitle }}</p>
+                        {% endif %}
+                        <div class="quest-reward-row">
+                            <span class="quest-status-pill">ACCEPTED · 任务进行中</span>
+                            <span class="quest-reward-pill">REWARD: +2 COIN · +EXP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quest-dialog-body">
+                    {% if page.image and paginator.activated == nil %}
+                        <img src="{{ page.image | prepend: site.baseurl }}" alt="Featured image" class="post-cover">
                     {% endif %}
-                    <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
-                    <span>{{ minutesText }}</span>
-                </p>
-                <h1 class="post-title">{{ page.title }}</h1>
-                <p class="post-subtitle">{{ page.subtitle }}</p>
 
-                {% if page.image and paginator.activated == nil %}
-                    <img src="{{ page.image }}" alt="Featured image" class="post-cover">
-                {% endif %}
+                    {% include pagination-post.html progressBar=true %}
 
-                {% include pagination-post.html progressBar=true %}
+                    {% include toc.html %}
 
-                {% include toc.html %}
+                    {{ content }}
 
-                {{ content }}
+                    {% include pagination-post.html %}
 
-                {% include pagination-post.html %}
+                    <div class="quest-action-bar">
+                        <a class="px-btn px-btn-alt" href="{{ site.baseurl }}/#world-quests">← 返回 1-4 日志</a>
+                        <button type="button" class="px-btn quest-complete-btn" data-quest-complete data-coin-reward="2">✓ 完成阅读 (+2 COIN)</button>
+                        <a class="px-btn px-btn-alt" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ 回到顶部</a>
+                    </div>
+                </div>
             </article>
 
             {% if site.two_columns_layout %}
-                <aside class="see-also">
-                    <h2>{{ site.translations.text.see_also | default: "See also" }}</h2>
+                <aside class="see-also quest-side-panel">
+                    <h2>SIDE QUESTS · {{ site.translations.text.see_also | default: "See also" }}</h2>
                     <ul>
                         {% assign next_posts = site.posts | where_exp:"post","post.is_generated != true" | where_exp:"post","post.path != page.path" %}
                         {% assign shuffled_array = next_posts | shuffle %}
@@ -44,11 +71,11 @@
                             <li>
                                 <a href="{{ post.url | prepend: site.baseurl }}">
                                     {% if post.optimized_image %}
-                                        <img src="{{ post.optimized_image }}">
+                                        <img src="{{ post.optimized_image | prepend: site.baseurl }}" alt="{{ post.title }}">
                                     {% elsif post.image %}
-                                        <img src="{{ post.image }}">
+                                        <img src="{{ post.image | prepend: site.baseurl }}" alt="{{ post.title }}">
                                     {% else %}
-                                        <img src="/assets/img/off.jpg">
+                                        <img src="{{ '/assets/img/off.jpg' | prepend: site.baseurl }}" alt="{{ post.title }}">
                                     {% endif %}
                                     <h3>{{ post.title }}</h3>
                                 </a>
