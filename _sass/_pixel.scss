@@ -887,9 +887,11 @@ footer,
 body.is-world-pager {
   overflow: hidden;
   height: 100vh;
+  height: 100dvh;
+  height: var(--stage-h, 100dvh);
 
   > .content {
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
   }
 
@@ -902,6 +904,8 @@ body.is-world-pager {
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  height: var(--stage-h, 100dvh);
   overflow: hidden;
 }
 
@@ -916,17 +920,20 @@ body.is-world-pager {
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  height: var(--stage-h, 100dvh);
   overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
   padding: 76px 0 64px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // safe: when a stage is taller than the screen, start at the top so it can scroll
+  justify-content: safe center;
 
   &.hero {
-    min-height: 100vh;
-    height: 100vh;
+    min-height: 0;
     padding: 80px 5vw 72px;
     justify-content: flex-end;
     align-items: flex-start;
@@ -1611,7 +1618,16 @@ body.is-world-pager {
 
   @media (max-width: 760px) {
     grid-template-columns: 1fr auto;
+    gap: 8px;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+
     .runner-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .runner-track {
       display: none;
     }
   }
@@ -2128,5 +2144,148 @@ body.is-world-pager {
 
   .quest-action-bar {
     justify-content: center;
+  }
+}
+
+// Phone portrait: keep stages scrollable and keep controls off the text
+@media (max-width: 760px) {
+  .bar-header {
+    padding-top: calc(8px + env(safe-area-inset-top));
+  }
+
+  .bar-header .logo a {
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 $px-line;
+  }
+
+  .stage-dots,
+  .scroll-cue {
+    display: none;
+  }
+
+  .world-slide,
+  .world-slide.hero {
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: calc(58px + env(safe-area-inset-top)) 12px calc(72px + env(safe-area-inset-bottom));
+  }
+
+  .hero .content.pixel-dialogue {
+    width: 100%;
+  }
+
+  .pixel-window-bar {
+    flex-wrap: wrap;
+    gap: 6px;
+    height: auto;
+    font-size: 11px;
+  }
+
+  .pixel-sheet-body,
+  .pixel-dialogue-body {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .sheet-top-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pixel-bars {
+    width: 100%;
+  }
+
+  .pixel-bars b {
+    min-width: 0;
+    max-width: none;
+  }
+
+  .stage-inner {
+    padding: 0 2px 8px;
+  }
+
+  .quest-heading,
+  .title-category {
+    font-size: 18px;
+    letter-spacing: 0;
+    text-shadow: 2px 2px 0 $px-line;
+  }
+
+  .quest-compact-grid,
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .flex-grid .box-item {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .runner-dock .runner-nav {
+    width: 100%;
+  }
+
+  .runner-nav a {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 8px 4px;
+    font-size: 10px;
+    line-height: 1.3;
+  }
+
+  .post {
+    top: 56px;
+  }
+
+  .post.two-columns {
+    flex-direction: column;
+    max-width: none;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .post-content {
+    overflow-x: hidden;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+
+  .quest-dialog,
+  .quest-nav-strip {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .quest-giver-strip {
+    grid-template-columns: 72px 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .savepoint-banner {
+    padding: 10px;
+  }
+
+  .pixel-toast-layer {
+    left: 10px;
+    right: 10px;
+    bottom: calc(68px + env(safe-area-inset-bottom));
+  }
+
+  .music-btn,
+  #musicBtn,
+  .mute-btn {
+    bottom: calc(68px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+@media (hover: none) {
+  .box-item:hover {
+    transform: none;
   }
 }

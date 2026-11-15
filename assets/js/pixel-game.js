@@ -337,6 +337,29 @@
     var lockUntil = 0;
     var stagePositions = [0, 0.34, 0.68, 1.0];
 
+    function stagePx() {
+      var vv = window.visualViewport;
+      var h = vv && vv.height ? vv.height : window.innerHeight;
+      return Math.max(1, Math.round(h));
+    }
+
+    function layoutStage(animate) {
+      var h = stagePx();
+      var hpx = h + "px";
+      document.documentElement.style.setProperty("--stage-h", hpx);
+      document.body.style.height = hpx;
+      pager.style.height = hpx;
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].style.height = hpx;
+      }
+      if (!animate) track.style.transition = "none";
+      track.style.transform = "translate3d(0, -" + currentStage * h + "px, 0)";
+      if (!animate) {
+        void track.offsetWidth;
+        track.style.transition = "";
+      }
+    }
+
     function goToStage(nextIdx, silent) {
       if (nextIdx < 0) nextIdx = 0;
       if (nextIdx >= slides.length) nextIdx = slides.length - 1;
@@ -344,7 +367,7 @@
 
       var isBack = nextIdx < currentStage;
       currentStage = nextIdx;
-      track.style.transform = "translate3d(0, -" + currentStage * 100 + "vh, 0)";
+      layoutStage(true);
       slides[currentStage].scrollTop = 0;
 
       var worldCode = slides[currentStage].getAttribute("data-world") || "1-1";
@@ -480,6 +503,20 @@
       } else if (ev.key >= "1" && ev.key <= String(slides.length)) {
         goToStage(parseInt(ev.key, 10) - 1);
       }
+    });
+
+    window.addEventListener("resize", function () {
+      layoutStage(false);
+    });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", function () {
+        layoutStage(false);
+      });
+    }
+    window.addEventListener("orientationchange", function () {
+      setTimeout(function () {
+        layoutStage(false);
+      }, 250);
     });
 
     var hashMap = {
