@@ -1,5 +1,5 @@
 <header class="bar-header">
-    <a id="menu" role="button">
+    <a id="menu" role="button" aria-label="打开菜单">
         <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
     </a>
     <h1 class="logo">
@@ -11,14 +11,30 @@
             {% endif %}
         </a>
     </h1>
-    <a id="search" class="dosearch" role="button">
+    <div class="hud" aria-label="游戏状态栏">
+        <span class="hud-chip" id="hud-world" title="当前关卡">1-1</span>
+        <button type="button" class="hud-hearts" id="hud-hearts" title="生命值（点击回复）" aria-label="生命值">
+            <svg class="px-heart" viewBox="0 0 9 8" shape-rendering="crispEdges"><rect x="1" y="0" width="2" height="1" fill="#ff5d73"/><rect x="6" y="0" width="2" height="1" fill="#ff5d73"/><rect x="0" y="1" width="4" height="2" fill="#ff5d73"/><rect x="5" y="1" width="4" height="2" fill="#ff5d73"/><rect x="1" y="1" width="1" height="1" fill="#ffb3be"/><rect x="0" y="3" width="9" height="1" fill="#ff5d73"/><rect x="1" y="4" width="7" height="1" fill="#e03550"/><rect x="2" y="5" width="5" height="1" fill="#e03550"/><rect x="3" y="6" width="3" height="1" fill="#b31b35"/><rect x="4" y="7" width="1" height="1" fill="#b31b35"/></svg>
+            <svg class="px-heart" viewBox="0 0 9 8" shape-rendering="crispEdges"><rect x="1" y="0" width="2" height="1" fill="#ff5d73"/><rect x="6" y="0" width="2" height="1" fill="#ff5d73"/><rect x="0" y="1" width="4" height="2" fill="#ff5d73"/><rect x="5" y="1" width="4" height="2" fill="#ff5d73"/><rect x="1" y="1" width="1" height="1" fill="#ffb3be"/><rect x="0" y="3" width="9" height="1" fill="#ff5d73"/><rect x="1" y="4" width="7" height="1" fill="#e03550"/><rect x="2" y="5" width="5" height="1" fill="#e03550"/><rect x="3" y="6" width="3" height="1" fill="#b31b35"/><rect x="4" y="7" width="1" height="1" fill="#b31b35"/></svg>
+            <svg class="px-heart" viewBox="0 0 9 8" shape-rendering="crispEdges"><rect x="1" y="0" width="2" height="1" fill="#ff5d73"/><rect x="6" y="0" width="2" height="1" fill="#ff5d73"/><rect x="0" y="1" width="4" height="2" fill="#ff5d73"/><rect x="5" y="1" width="4" height="2" fill="#ff5d73"/><rect x="1" y="1" width="1" height="1" fill="#ffb3be"/><rect x="0" y="3" width="9" height="1" fill="#ff5d73"/><rect x="1" y="4" width="7" height="1" fill="#e03550"/><rect x="2" y="5" width="5" height="1" fill="#e03550"/><rect x="3" y="6" width="3" height="1" fill="#b31b35"/><rect x="4" y="7" width="1" height="1" fill="#b31b35"/></svg>
+        </button>
+        <span class="hud-coin" title="已收集像素金币">
+            <svg class="px-coin-svg" viewBox="0 0 10 12" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="2" y="0" width="6" height="1" fill="#fff1a8"/>
+              <rect x="1" y="1" width="8" height="10" fill="#ffcc33"/>
+              <rect x="0" y="2" width="10" height="8" fill="#ffcc33"/>
+              <rect x="4" y="3" width="2" height="6" fill="#fff1a8"/>
+              <rect x="8" y="2" width="1" height="8" fill="#c48a12"/>
+              <rect x="2" y="11" width="6" height="1" fill="#996300"/>
+            </svg>
+            <span>x</span><b id="hud-coins">00</b>
+        </span>
+        <span class="hud-meter" data-label="EXP"><b><i class="mp" id="hud-exp" style="width: 15%"></i></b></span>
+        <button type="button" class="hud-sfx" id="hud-sfx" aria-pressed="false" title="开启或关闭 8-bit 音效">♪ OFF</button>
+    </div>
+    <a id="search" class="dosearch" role="button" aria-label="搜索">
         <svg class="icon-search"><use xlink:href="#icon-search"></use></svg>
     </a>
-    {% if site.show_get_theme_btn %}
-        <a href="https://github.com/thiagorossener/jekflix-template" class="get-theme" role="button">
-            Get this theme!
-        </a>
-    {% endif %}
 </header>
 
 <div id="mask" class="overlay"></div>

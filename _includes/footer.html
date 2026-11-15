@@ -5,17 +5,21 @@
           <svg><use xlink:href="#icon-github"></use></svg>
         </a>
       {% endif %}
-      {% if author.bilibili_uid %}
-        <a href="https://space.bilibili.com/{{ author.bilibili_uid }}" title="Bilibili">Bilibili</a>
-      {% endif %}
+      <a href="https://orcid.org/0000-0001-9271-3304" target="_blank" rel="noopener">ORCID</a>
+      <a href="https://ieeexplore.ieee.org/author/37085473839" target="_blank" rel="noopener">IEEE</a>
+      <a href="https://space.bilibili.com/3213366" target="_blank" rel="noopener">Bilibili</a>
+      <a href="mailto:liu_lei_98@163.com">liu_lei_98@163.com</a>
     </p>
 
     {% include links.html %}
 
+    <p class="checkpoint">SAVE POINT · 存档点</p>
     <p>
-      <span>This</span> is a ordinary story in life.<svg class="love"><use xlink:href="#icon-heart"></use></svg> </a>
+      <span>Practice Makes Perfect | Keep Learning | Grow Every Day</span><svg class="love"><use xlink:href="#icon-heart"></use></svg>
     </p>
 </footer>
+
+{% include pixel-hud-runner.html %}
 
 {% assign author_urls = '' %}
 {% if author.github_username %}
@@ -50,6 +54,7 @@
 
 <!-- Include the website scripts -->
 <script src="{{ '/assets/js/scripts.min.js' | prepend: site.baseurl }}"></script>
+<script src="{{ '/assets/js/pixel-game.js' | prepend: site.baseurl }}"></script>
 
 <!-- Include Google Analytics script -->
 {% include stats.html %}

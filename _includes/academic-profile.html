@@ -1,0 +1,105 @@
+<div class="stage-inner">
+  <div class="stage-head">
+    <h2 class="quest-heading"><span>WORLD 1-2 · STATUS &amp; INVENTORY</span>学者档案与装备栏</h2>
+    <button type="button" class="q-block" data-coin-reward="1" data-tip="发现研究卷轴 +1 COIN!" aria-label="顶一下问号砖块">
+      <b>?</b>
+    </button>
+  </div>
+
+  <div class="pixel-sheet">
+    <div class="pixel-window-bar">
+      <span>CHARACTER SHEET · LEI LIU</span>
+      <span>RESEARCHER | O^O</span>
+    </div>
+    <div class="pixel-sheet-body">
+      <div class="pixel-portrait">
+        <div class="portrait-frame">
+          <img src="{{ '/assets/img/uploads/profile.png' | prepend: site.baseurl }}" alt="Lei Liu">
+        </div>
+        {% include pixel-sprite.html %}
+        <span class="pixel-nameplate">LEI LIU</span>
+      </div>
+      <div class="pixel-sheet-text">
+        <div class="sheet-top-row">
+          <div>
+            <p class="hero-kicker">ABOUT ME · 地球在线科研中</p>
+            <h1>Lei Liu</h1>
+          </div>
+          <ul class="pixel-bars" aria-label="角色属性">
+            <li><span>HP</span><b><i class="hp"></i></b><em>100/100</em></li>
+            <li><span>MP</span><b><i class="mp"></i></b><em>88/100</em></li>
+            <li><span>EXP</span><b><i class="exp" id="sheet-exp"></i></b><em>LV.24</em></li>
+          </ul>
+        </div>
+
+        <dl class="pixel-facts">
+          <dt>主攻</dt>
+          <dd>Computational Imaging · Spectral Reconstruction · Deep Learning</dd>
+          <dt>信念</dt>
+          <dd>Practice Makes Perfect · Keep Learning · Grow Every Day</dd>
+        </dl>
+
+        <div class="interest-grid" aria-label="研究方向">
+          <button type="button" class="interest-card is-active" data-desc="计算成像 (Computational Imaging)：用算法与物理模型协同突破传统光学采集极限。">
+            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="1" width="10" height="7" fill="#3a446c"/><rect x="2" y="2" width="8" height="5" fill="#12162b"/><rect x="3" y="3" width="6" height="3" fill="#7ee0ff"/><rect x="5" y="8" width="2" height="2" fill="#9aa6c8"/><rect x="3" y="10" width="6" height="1" fill="#c5cee0"/></svg>
+            <strong>Computational Imaging</strong>
+          </button>
+          <button type="button" class="interest-card" data-desc="光谱重建 (Spectral Reconstruction)：从编码快照观测中高质量恢复高维光谱立方体。">
+            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="1" width="2" height="2" fill="#f6f1dd"/><rect x="4" y="3" width="4" height="2" fill="#7ee0ff"/><rect x="3" y="5" width="6" height="2" fill="#7dffb3"/><rect x="2" y="7" width="8" height="2" fill="#ffcc33"/><rect x="1" y="9" width="10" height="2" fill="#ff5d73"/></svg>
+            <strong>Spectral Reconstruction</strong>
+          </button>
+          <button type="button" class="interest-card" data-desc="深度学习应用 (Deep Learning Applications)：结合深度展开与傅里叶动态特征的端到端求解。">
+            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="0" width="2" height="2" fill="#ffcc33"/><rect x="2" y="2" width="8" height="7" fill="#7ee0ff"/><rect x="3" y="4" width="2" height="2" fill="#12162b"/><rect x="7" y="4" width="2" height="2" fill="#12162b"/><rect x="4" y="7" width="4" height="1" fill="#12162b"/><rect x="3" y="9" width="6" height="2" fill="#3a446c"/></svg>
+            <strong>Deep Learning Apps</strong>
+          </button>
+        </div>
+        <p class="pixel-say" id="interest-desc">计算成像 (Computational Imaging)：用算法与物理模型协同突破传统光学采集极限。<i class="caret" aria-hidden="true"></i></p>
+
+        <div class="zelda-inventory" aria-label="技术栈装备栏">
+          <div class="inv-head">
+            <span>TECH STACK · 装备栏</span>
+            <span class="inv-hint">点击装备查看属性</span>
+          </div>
+          <div class="inv-slots">
+            <button type="button" class="inv-slot is-selected" data-name="Python" data-lv="LV.99" data-role="主武器 · 科学计算与实验脚本">
+              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="1" width="5" height="4" fill="#3776ab"/><rect x="4" y="2" width="1" height="1" fill="#fff"/><rect x="2" y="4" width="4" height="3" fill="#3776ab"/><rect x="4" y="7" width="5" height="4" fill="#ffcc33"/><rect x="6" y="5" width="4" height="3" fill="#ffcc33"/><rect x="7" y="9" width="1" height="1" fill="#12162b"/></svg>
+              <span class="slot-label">Python</span>
+            </button>
+            <button type="button" class="inv-slot" data-name="PyTorch" data-lv="LV.95" data-role="核心法杖 · 深度展开网络与傅里叶建模">
+              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="1" width="2" height="2" fill="#ff5d73"/><rect x="3" y="3" width="6" height="3" fill="#ee4c2c"/><rect x="2" y="5" width="8" height="4" fill="#ee4c2c"/><rect x="4" y="6" width="4" height="3" fill="#ffcc33"/><rect x="3" y="9" width="6" height="2" fill="#ee4c2c"/></svg>
+              <span class="slot-label">PyTorch</span>
+            </button>
+            <button type="button" class="inv-slot" data-name="MATLAB" data-lv="LV.88" data-role="光学盾牌 · 矩阵仿真与光谱指标评测">
+              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="2" width="2" height="8" fill="#0076a8"/><rect x="4" y="4" width="4" height="5" fill="#2aa3d8"/><rect x="2" y="6" width="8" height="3" fill="#f08030"/><rect x="1" y="9" width="10" height="2" fill="#ffcc33"/></svg>
+              <span class="slot-label">MATLAB</span>
+            </button>
+            <button type="button" class="inv-slot" data-name="LaTeX" data-lv="LV.92" data-role="古代卷轴 · IEEE 论文排版与公式推导">
+              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="1" width="8" height="10" fill="#f6f1dd"/><rect x="3" y="3" width="6" height="1" fill="#008080"/><rect x="3" y="5" width="6" height="1" fill="#3a446c"/><rect x="3" y="7" width="4" height="1" fill="#3a446c"/><rect x="8" y="7" width="2" height="3" fill="#ffcc33"/></svg>
+              <span class="slot-label">LaTeX</span>
+            </button>
+            <button type="button" class="inv-slot" data-name="Overleaf" data-lv="LV.90" data-role="联机水晶 · 多人协作撰写与实时预览">
+              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="1" width="4" height="2" fill="#7dffb3"/><rect x="2" y="3" width="8" height="5" fill="#47a141"/><rect x="4" y="4" width="4" height="3" fill="#b7ffd6"/><rect x="3" y="8" width="6" height="2" fill="#2e7d32"/><rect x="5" y="10" width="2" height="1" fill="#1b5e20"/></svg>
+              <span class="slot-label">Overleaf</span>
+            </button>
+            <button type="button" class="inv-slot" data-name="Docker" data-lv="LV.85" data-role="空间胶囊 · 复现环境打包与跨机部署">
+              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="3" width="2" height="2" fill="#7ee0ff"/><rect x="6" y="3" width="2" height="2" fill="#7ee0ff"/><rect x="1" y="5" width="10" height="4" fill="#2496ed"/><rect x="2" y="9" width="8" height="2" fill="#1b6cb0"/><rect x="9" y="6" width="1" height="1" fill="#fff"/></svg>
+              <span class="slot-label">Docker</span>
+            </button>
+          </div>
+          <div class="inv-detail" id="inv-detail">
+            <strong id="inv-name">Python [LV.99]</strong>
+            <span id="inv-role">主武器 · 科学计算与实验脚本</span>
+          </div>
+        </div>
+
+        <ul class="pixel-items" aria-label="外部传送门">
+          <li><a href="https://github.com/liu-lei98" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://orcid.org/0000-0001-9271-3304" target="_blank" rel="noopener">ORCID</a></li>
+          <li><a href="https://ieeexplore.ieee.org/author/37085473839" target="_blank" rel="noopener">IEEE Xplore</a></li>
+          <li><a href="https://space.bilibili.com/3213366" target="_blank" rel="noopener">Bilibili</a></li>
+          <li><a href="mailto:liu_lei_98@163.com">Email</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

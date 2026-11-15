@@ -1,0 +1,37 @@
+<div class="pixel-sheet">
+  <div class="pixel-window-bar">
+    <span>STATUS</span>
+    <span>PLAYER 1</span>
+  </div>
+  <div class="pixel-sheet-body">
+    <div class="pixel-portrait">
+      <img src="{{ '/assets/img/uploads/profile.png' | prepend: site.baseurl }}" alt="Lei">
+      {% include pixel-sprite.html %}
+      <span class="pixel-nameplate">LEI</span>
+    </div>
+    <div class="pixel-sheet-text">
+      <p class="hero-kicker">角色档案</p>
+      <h1>Lei Liu</h1>
+      <ul class="pixel-bars" aria-hidden="true">
+        <li><span>HP</span><b><i class="hp"></i></b></li>
+        <li><span>MP</span><b><i class="mp"></i></b></li>
+        <li><span>EXP</span><b><i class="exp"></i></b></li>
+      </ul>
+      <dl class="pixel-facts">
+        <dt>职业</dt>
+        <dd>地球人</dd>
+        <dt>所在</dt>
+        <dd>地球</dd>
+        <dt>状态</dt>
+        <dd>还在活着</dd>
+      </dl>
+      <p class="pixel-say">哈喽！摩西摩西！喂喂喂！这里是 lei，一个还在活着的地球人！也许很无聊也许还有点意思，但是随意啦，希望翻到这里的你不要太严肃啦！<i class="caret" aria-hidden="true"></i></p>
+      <ul class="pixel-items">
+        <li><a href="{{ site.baseurl }}/">回到地图</a></li>
+        <li><a href="https://github.com/liu-lei98">GitHub</a></li>
+        <li><a href="https://space.bilibili.com/3213366">Bilibili</a></li>
+        <li><a href="{{ site.baseurl }}/contact/">送信</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
