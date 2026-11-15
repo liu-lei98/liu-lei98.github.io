@@ -20,28 +20,22 @@ author: Lei
   clear: both;
 }
 .bubble {
-  max-width: 70%;
-  padding: 12px 16px; /* 增加内边距 */
-  border-radius: 18px;
+  max-width: 100%;
+  padding: 12px 16px;
+  border-radius: 0;
   position: relative;
   word-wrap: break-word;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 添加轻微阴影 */
-  transition: transform 0.2s ease; /* 添加悬停动画 */
-}
-.bubble:hover {
-  transform: translateY(-2px); /* 悬停上浮效果 */
+  background: #222a46;
+  color: #e8e2d0;
+  border: 1px solid #3c4768;
 }
 .left-bubble {
-  float: left;
-  background-color: #e3f2fd;
+  border-left: 3px solid #8eabcb;
   text-align: left;
-  margin-right: 15%; /* 增加左右气泡间距 */
 }
 .right-bubble {
-  float: right;
-  background-color: #f5f5f5;
+  border-left: 3px solid #c6ae78;
   text-align: left;
-  margin-left: 15%; /* 增加左右气泡间距 */
 }
 /* 图片气泡特殊处理 */
 .photo-bubble {
@@ -113,22 +107,16 @@ author: Lei
 /* 音乐按钮 */
 .music-btn {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 999;
-  background: rgba(255,255,255,0.9);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  bottom: 84px;
+  right: 20px;
+  z-index: 38;
+  background: #1c2340;
+  color: #e6dcc4;
+  border: 1px solid #5c5340;
+  border-radius: 0;
+  padding: 6px 10px;
   cursor: pointer;
-  font-size: 20px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-}
-.music-btn:hover {
-  transform: scale(1.1);
-  background: #ffecec;
+  font-size: 12px;
 }
 </style>
 
