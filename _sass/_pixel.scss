@@ -1475,6 +1475,13 @@ body.is-world-pager {
   gap: 10px 18px;
 }
 
+.orcid-sync {
+  display: inline-block;
+  color: $px-muted;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
 .total-cites-chip {
   display: inline-block;
   padding: 5px 10px;

@@ -70,7 +70,10 @@
       "toast.save": "⚑ 已抵达 1-4 存档点",
       "toast.copy": "BibTeX 已复制",
       "toast.copyfail": "请手动选中 BibTeX 复制",
-      "toast.quest": "★ 任务完成"
+      "toast.quest": "★ 任务完成",
+      "orcid.loading": "正在读取 ORCID",
+      "orcid.ready": "已同步 ORCID",
+      "orcid.fail": "ORCID 暂不可用，显示本地列表"
     },
     en: {
       "npc.guide": "Guide",
@@ -122,7 +125,10 @@
       "toast.save": "⚑ Save point 1-4",
       "toast.copy": "BibTeX copied",
       "toast.copyfail": "Select the BibTeX and copy it",
-      "toast.quest": "★ Quest complete"
+      "toast.quest": "★ Quest complete",
+      "orcid.loading": "Reading ORCID",
+      "orcid.ready": "Synced from ORCID",
+      "orcid.fail": "ORCID unavailable, showing the saved list"
     }
   };
 
@@ -153,6 +159,16 @@
       var open = card && card.classList.contains("is-open");
       btn.textContent = open ? t("chest.close") : t("chest.open");
     });
+    document.querySelectorAll("[data-copy-bib]").forEach(function (btn) {
+      btn.textContent = t("chest.copy");
+    });
+    var sync = document.getElementById("orcid-sync");
+    if (sync) {
+      var state = sync.getAttribute("data-orcid-state");
+      if (state === "loading") sync.textContent = t("orcid.loading");
+      else if (state === "ready") sync.textContent = t("orcid.ready") + " · " + (sync.getAttribute("data-orcid-count") || "");
+      else if (state === "fail") sync.textContent = t("orcid.fail");
+    }
     document.querySelectorAll("[data-quest-complete]").forEach(function (btn) {
       btn.textContent = btn.classList.contains("is-done") ? t("quest.done") : t("quest.complete");
     });
@@ -379,33 +395,213 @@
     });
   }
 
-  // IEEE Paper Treasure Chests
-  var bibButtons = document.querySelectorAll("[data-toggle-bib]");
-  for (var b = 0; b < bibButtons.length; b++) {
-    bibButtons[b].addEventListener("click", function () {
-      var card = this.closest("[data-chest]");
-      if (!card) return;
-      var loot = card.querySelector(".chest-loot");
-      var isOpen = card.classList.toggle("is-open");
-      if (loot) loot.hidden = !isOpen;
-      this.textContent = isOpen ? t("chest.close") : t("chest.open");
-      if (isOpen) {
-        sfx.chest();
-        if (!card.getAttribute("data-looted")) {
-          card.setAttribute("data-looted", "1");
-          addCoins(2, "GET! 开启论文宝箱 +2 COINS");
-        }
-      } else {
-        sfx.step();
-      }
-    });
+  // Papers: ORCID list, with the saved cards as fallback, plus OpenAlex cites
+  var chestGrid = document.getElementById("chest-grid");
+  var totalCitesEl = document.getElementById("total-cites-num");
+  var orcidSyncEl = document.getElementById("orcid-sync");
+  var citeGen = 0;
+  var SCROLL_SVG =
+    '<svg viewBox="0 0 18 16" shape-rendering="crispEdges" aria-hidden="true">' +
+    '<rect x="2" y="1" width="14" height="2" fill="#d4882a"/>' +
+    '<rect x="1" y="3" width="16" height="4" fill="#9b5016"/>' +
+    '<rect x="2" y="4" width="14" height="1" fill="#b86b28"/>' +
+    '<rect x="1" y="6" width="16" height="2" fill="#ffcc33"/>' +
+    '<rect x="7" y="5" width="4" height="5" fill="#fff1a8"/>' +
+    '<rect x="8" y="6" width="2" height="3" fill="#c48a12"/>' +
+    '<rect x="1" y="8" width="16" height="6" fill="#6b3410"/>' +
+    '<rect x="2" y="9" width="14" height="4" fill="#8b4513"/>' +
+    '<rect x="1" y="14" width="16" height="1" fill="#0b0e1c"/>' +
+    "</svg>";
+
+  function orcidText(node, fallback) {
+    if (!node) return fallback || "";
+    if (typeof node === "string") return node;
+    if (node.value) return node.value;
+    return fallback || "";
   }
 
-  var copyButtons = document.querySelectorAll("[data-copy-bib]");
-  for (var c = 0; c < copyButtons.length; c++) {
-    copyButtons[c].addEventListener("click", function () {
-      var loot = this.closest(".chest-loot");
-      var pre = loot ? loot.querySelector("pre") : null;
+  function bibEscape(value) {
+    return String(value || "").replace(/[{}\\]/g, "");
+  }
+
+  function makeBib(work) {
+    var authors = work.authors.length ? work.authors.join(" and ") : "Lei Liu";
+    var first = (work.authors[0] || "Liu").split(" ").pop().toLowerCase().replace(/[^a-z0-9]/g, "") || "liu";
+    var word = (work.title || "paper").split(/\s+/)[0].toLowerCase().replace(/[^a-z0-9]/g, "") || "paper";
+    var key = first + (work.year || "") + word;
+    var kind = work.type === "conference-paper" ? "inproceedings" : "article";
+    var lines = ["@" + kind + "{" + key + ","];
+    lines.push("  title={" + bibEscape(work.title) + "},");
+    lines.push("  author={" + bibEscape(authors) + "},");
+    if (work.journal) lines.push("  journal={" + bibEscape(work.journal) + "},");
+    if (work.year) lines.push("  year={" + work.year + "},");
+    if (work.month) lines.push("  month={" + work.month + "},");
+    if (work.doi) lines.push("  doi={" + bibEscape(work.doi) + "}");
+    lines.push("}");
+    return lines.join("\n");
+  }
+
+  function renderOrcidWorks(works) {
+    if (!chestGrid) return;
+    chestGrid.textContent = "";
+    for (var i = 0; i < works.length; i++) {
+      var work = works[i];
+      var card = document.createElement("article");
+      card.className = "chest-card";
+      card.setAttribute("data-chest", "");
+      if (work.doi) card.setAttribute("data-doi", work.doi);
+      card.setAttribute("data-fallback-cites", "0");
+
+      var bar = document.createElement("div");
+      bar.className = "pixel-window-bar";
+      var label = document.createElement("span");
+      var num = String(i + 1);
+      if (num.length < 2) num = "0" + num;
+      var head = "SCROLL #" + num;
+      if (work.journal) head += " · " + work.journal;
+      else if (work.year) head += " · " + work.year;
+      label.textContent = head;
+      bar.appendChild(label);
+      var badge = document.createElement("span");
+      badge.className = "cite-badge";
+      badge.appendChild(document.createTextNode("CITES: "));
+      var count = document.createElement("b");
+      count.setAttribute("data-cite-count", "");
+      count.textContent = "–";
+      badge.appendChild(count);
+      bar.appendChild(badge);
+
+      var body = document.createElement("div");
+      body.className = "chest-body";
+      var icon = document.createElement("div");
+      icon.className = "chest-icon";
+      icon.innerHTML = SCROLL_SVG;
+      var info = document.createElement("div");
+      info.className = "chest-info";
+      var h3 = document.createElement("h3");
+      h3.textContent = work.title;
+      var authors = document.createElement("p");
+      authors.className = "chest-authors";
+      authors.textContent = work.authors.join(", ");
+      var venue = document.createElement("p");
+      venue.className = "chest-venue";
+      var venueBits = [];
+      if (work.journal) venueBits.push(work.journal);
+      if (work.year) venueBits.push(work.month ? work.year + "-" + work.month : work.year);
+      venue.textContent = venueBits.join(" · ");
+
+      var actions = document.createElement("div");
+      actions.className = "chest-actions";
+      if (work.doi) {
+        var doiLink = document.createElement("a");
+        doiLink.className = "px-btn";
+        doiLink.href = "https://doi.org/" + work.doi;
+        doiLink.target = "_blank";
+        doiLink.rel = "noopener";
+        doiLink.textContent = "DOI";
+        actions.appendChild(doiLink);
+      } else if (work.url) {
+        var urlLink = document.createElement("a");
+        urlLink.className = "px-btn";
+        urlLink.href = work.url;
+        urlLink.target = "_blank";
+        urlLink.rel = "noopener";
+        urlLink.textContent = "Link";
+        actions.appendChild(urlLink);
+      }
+      var toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "px-btn px-btn-chest";
+      toggle.setAttribute("data-toggle-bib", "");
+      toggle.textContent = t("chest.open");
+      actions.appendChild(toggle);
+
+      var loot = document.createElement("div");
+      loot.className = "chest-loot";
+      loot.hidden = true;
+      var pre = document.createElement("pre");
+      pre.textContent = makeBib(work);
+      var copy = document.createElement("button");
+      copy.type = "button";
+      copy.className = "px-btn px-btn-copy";
+      copy.setAttribute("data-copy-bib", "");
+      copy.textContent = t("chest.copy");
+      loot.appendChild(pre);
+      loot.appendChild(copy);
+
+      info.appendChild(h3);
+      info.appendChild(authors);
+      info.appendChild(venue);
+      info.appendChild(actions);
+      info.appendChild(loot);
+      body.appendChild(icon);
+      body.appendChild(info);
+      card.appendChild(bar);
+      card.appendChild(body);
+      chestGrid.appendChild(card);
+    }
+  }
+
+  function loadCitations() {
+    if (!chestGrid || !window.fetch) return;
+    var gen = ++citeGen;
+    var cards = chestGrid.querySelectorAll("[data-chest]");
+    var counts = [];
+    for (var i = 0; i < cards.length; i++) {
+      counts.push(parseInt(cards[i].getAttribute("data-fallback-cites") || "0", 10) || 0);
+    }
+    function updateTotal() {
+      if (gen !== citeGen || !totalCitesEl) return;
+      var sum = 0;
+      for (var s = 0; s < counts.length; s++) sum += counts[s];
+      totalCitesEl.textContent = String(sum);
+    }
+    updateTotal();
+    for (var idx = 0; idx < cards.length; idx++) {
+      (function (card, index) {
+        var doi = card.getAttribute("data-doi");
+        var out = card.querySelector("[data-cite-count]");
+        if (!doi || !out) return;
+        fetch("https://api.openalex.org/works/https://doi.org/" + encodeURIComponent(doi))
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (data) {
+            if (gen !== citeGen) return;
+            if (data && typeof data.cited_by_count === "number") {
+              counts[index] = data.cited_by_count;
+              out.textContent = String(data.cited_by_count);
+              updateTotal();
+            }
+          })
+          .catch(function () {});
+      })(cards[idx], idx);
+    }
+  }
+
+  if (chestGrid) {
+    chestGrid.addEventListener("click", function (ev) {
+      var toggle = ev.target.closest("[data-toggle-bib]");
+      if (toggle && chestGrid.contains(toggle)) {
+        var card = toggle.closest("[data-chest]");
+        if (!card) return;
+        var loot = card.querySelector(".chest-loot");
+        var isOpen = card.classList.toggle("is-open");
+        if (loot) loot.hidden = !isOpen;
+        toggle.textContent = isOpen ? t("chest.close") : t("chest.open");
+        if (isOpen) {
+          sfx.chest();
+          if (!card.getAttribute("data-looted")) {
+            card.setAttribute("data-looted", "1");
+            addCoins(2, "+2 COINS");
+          }
+        } else {
+          sfx.step();
+        }
+        return;
+      }
+      var copyBtn = ev.target.closest("[data-copy-bib]");
+      if (!copyBtn || !chestGrid.contains(copyBtn)) return;
+      var box = copyBtn.closest(".chest-loot");
+      var pre = box ? box.querySelector("pre") : null;
       if (!pre) return;
       var text = pre.textContent;
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -417,42 +613,94 @@
         showToast(t("toast.copyfail"));
       }
     });
-  }
 
-  // Live citation counts via OpenAlex API (with fallback values)
-  var chestCards = document.querySelectorAll("[data-doi]");
-  var totalCitesEl = document.getElementById("total-cites-num");
-  if (chestCards.length && window.fetch) {
-    var counts = [];
-    for (var ci = 0; ci < chestCards.length; ci++) {
-      counts.push(parseInt(chestCards[ci].getAttribute("data-fallback-cites") || "0", 10) || 0);
-    }
+    loadCitations();
 
-    function updateTotalCites() {
-      if (!totalCitesEl) return;
-      var sum = 0;
-      for (var s = 0; s < counts.length; s++) sum += counts[s];
-      totalCitesEl.textContent = String(sum);
-    }
-
-    for (var idx = 0; idx < chestCards.length; idx++) {
-      (function (card, index) {
-        var doi = card.getAttribute("data-doi");
-        var out = card.querySelector("[data-cite-count]");
-        if (!doi || !out) return;
-        fetch("https://api.openalex.org/works/https://doi.org/" + encodeURIComponent(doi))
-          .then(function (r) {
-            return r.ok ? r.json() : null;
-          })
-          .then(function (data) {
-            if (data && typeof data.cited_by_count === "number") {
-              counts[index] = data.cited_by_count;
-              out.textContent = String(data.cited_by_count);
-              updateTotalCites();
+    var orcid = chestGrid.getAttribute("data-orcid");
+    if (orcid && window.fetch) {
+      if (orcidSyncEl) {
+        orcidSyncEl.setAttribute("data-orcid-state", "loading");
+        orcidSyncEl.textContent = t("orcid.loading");
+      }
+      fetch("https://pub.orcid.org/v3.0/" + orcid + "/works", {
+        headers: { Accept: "application/json" }
+      })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          var groups = (data && data.group) || [];
+          var jobs = [];
+          for (var g = 0; g < groups.length && jobs.length < 24; g++) {
+            var summary = (groups[g]["work-summary"] || [])[0];
+            if (!summary || !summary["put-code"]) continue;
+            var kind = summary.type || "";
+            if (kind && kind !== "journal-article" && kind !== "conference-paper" && kind !== "book-chapter" && kind !== "dissertation" && kind !== "preprint" && kind !== "working-paper" && kind !== "report" && kind !== "book") {
+              continue;
             }
-          })
-          .catch(function () {});
-      })(chestCards[idx], idx);
+            jobs.push(summary["put-code"]);
+          }
+          if (!jobs.length) throw new Error("empty");
+          return Promise.all(jobs.map(function (code) {
+            return fetch("https://pub.orcid.org/v3.0/" + orcid + "/work/" + code, {
+              headers: { Accept: "application/json" }
+            }).then(function (r) { return r.ok ? r.json() : null; });
+          }));
+        })
+        .then(function (records) {
+          var works = [];
+          for (var i = 0; i < records.length; i++) {
+            var rec = records[i];
+            if (!rec) continue;
+            var title = orcidText(rec.title && rec.title.title);
+            if (!title) continue;
+            var people = ((rec.contributors || {}).contributor) || [];
+            var authors = [];
+            for (var p = 0; p < people.length; p++) {
+              var name = orcidText(people[p]["credit-name"]);
+              if (name) authors.push(name);
+            }
+            var ids = ((rec["external-ids"] || {})["external-id"]) || [];
+            var doi = "";
+            for (var e = 0; e < ids.length; e++) {
+              if (ids[e]["external-id-type"] === "doi" && ids[e]["external-id-value"]) {
+                doi = ids[e]["external-id-value"];
+                break;
+              }
+            }
+            var date = rec["publication-date"] || {};
+            var year = orcidText(date.year);
+            var month = orcidText(date.month);
+            if (month && month.length === 1) month = "0" + month;
+            works.push({
+              title: title,
+              authors: authors,
+              journal: orcidText(rec["journal-title"]),
+              year: year,
+              month: month,
+              doi: doi,
+              url: orcidText(rec.url),
+              type: rec.type || ""
+            });
+          }
+          works.sort(function (a, b) {
+            var ay = (parseInt(a.year, 10) || 0) * 100 + (parseInt(a.month, 10) || 0);
+            var by = (parseInt(b.year, 10) || 0) * 100 + (parseInt(b.month, 10) || 0);
+            return by - ay;
+          });
+          if (!works.length) throw new Error("empty");
+          renderOrcidWorks(works);
+          loadCitations();
+          if (orcidSyncEl) {
+            orcidSyncEl.setAttribute("data-orcid-state", "ready");
+            orcidSyncEl.setAttribute("data-orcid-count", String(works.length));
+            orcidSyncEl.textContent = t("orcid.ready") + " · " + works.length;
+          }
+        })
+        .catch(function () {
+          if (orcidSyncEl) {
+            orcidSyncEl.setAttribute("data-orcid-state", "fail");
+            orcidSyncEl.textContent = t("orcid.fail");
+          }
+        });
     }
   }
 
