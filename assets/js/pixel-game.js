@@ -13,6 +13,166 @@
     coins = parseInt(sessionStorage.getItem(COIN_KEY) || "0", 10) || 0;
   } catch (e) {}
 
+  var LANG_KEY = "lei_lang";
+  var lang = "zh";
+  try {
+    if (localStorage.getItem(LANG_KEY) === "en") lang = "en";
+  } catch (e) {}
+
+  var DICT = {
+    zh: {
+      "npc.guide": "向导",
+      "npc.scholar": "学者",
+      "npc.scroll": "书记",
+      "npc.lens": "记录者",
+      "hero.kicker": "研究者 | O^O",
+      "hero.hello": "你好，我是 Lei Liu",
+      "hero.line0": "专注计算成像、光谱重建与深度学习。下滑或按 ↓ 切换关卡。",
+      "hero.line1": "近期工作见 Pattern Recognition (2026)、IEEE TMM (2024) 与 IEEE TGRS (2023)。到 1-3 可看引用和 BibTeX。",
+      "hero.line2": "常用装备：Python、PyTorch、MATLAB、LaTeX、Overleaf、Docker。",
+      "hero.line3": "座右铭：熟能生巧，持续学习，每天成长。",
+      "hero.start": "开始冒险",
+      "hero.next": "下一句 ▼",
+      "hero.cue": "▼ 下滑切换关卡",
+      "stage2.title": "学者档案与装备栏",
+      "stage3.title": "学术发表与频道",
+      "stage4.title": "日常与随笔",
+      "sheet.kicker": "关于我 · 地球在线科研中",
+      "fact.focus": "主攻",
+      "fact.focus.v": "计算成像 · 光谱重建 · 深度学习",
+      "fact.motto": "信念",
+      "fact.motto.v": "熟能生巧 · 持续学习 · 每天成长",
+      "inv.title": "装备栏",
+      "inv.hint": "点击装备查看属性",
+      "chest.open": "开启卷轴 · BibTeX",
+      "chest.close": "收起卷轴",
+      "chest.copy": "复制 BibTeX",
+      "guild.tag": "频道 · Bilibili 与 GitHub",
+      "guild.line": "记录科研之外的日常与映像 · UID 3213366",
+      "guild.bili": "Bilibili 频道",
+      "guild.gh": "GitHub 主页",
+      "guild.mail": "邮件联系",
+      "save.flag": "⚑ 存档点",
+      "save.motto": "熟能生巧 · 持续学习 · 每天成长",
+      "save.about": "完整档案",
+      "save.mail": "送信",
+      "nav.11": "1-1 起点",
+      "nav.12": "1-2 档案",
+      "nav.13": "1-3 论文",
+      "nav.14": "1-4 日志",
+      "quest.bar": "★ 任务简报",
+      "quest.back": "← 返回 1-4 日志",
+      "quest.status": "任务进行中",
+      "quest.reward": "奖励 +2 金币 · 经验",
+      "quest.complete": "✓ 完成阅读 (+2 金币)",
+      "quest.done": "★ 已领取奖励",
+      "quest.top": "↑ 回到顶部",
+      "toast.save": "⚑ 已抵达 1-4 存档点",
+      "toast.copy": "BibTeX 已复制",
+      "toast.copyfail": "请手动选中 BibTeX 复制",
+      "toast.quest": "★ 任务完成"
+    },
+    en: {
+      "npc.guide": "Guide",
+      "npc.scholar": "Scholar",
+      "npc.scroll": "Scribe",
+      "npc.lens": "Recorder",
+      "hero.kicker": "Researcher | O^O",
+      "hero.hello": "Hello, I'm Lei Liu",
+      "hero.line0": "Computational imaging, spectral reconstruction, and deep learning. Scroll or press ↓ to change stage.",
+      "hero.line1": "Recent papers: Pattern Recognition (2026), IEEE TMM (2024), IEEE TGRS (2023). Stage 1-3 has citations and BibTeX.",
+      "hero.line2": "Kit: Python, PyTorch, MATLAB, LaTeX, Overleaf, Docker.",
+      "hero.line3": "Motto: practice makes perfect, keep learning, grow every day.",
+      "hero.start": "Start",
+      "hero.next": "Next ▼",
+      "hero.cue": "▼ Next stage",
+      "stage2.title": "Archive & Inventory",
+      "stage3.title": "Papers & Channel",
+      "stage4.title": "Notes & Days",
+      "sheet.kicker": "About me · research, still on Earth",
+      "fact.focus": "Focus",
+      "fact.focus.v": "Computational imaging · spectral reconstruction · deep learning",
+      "fact.motto": "Motto",
+      "fact.motto.v": "Practice makes perfect · keep learning · grow every day",
+      "inv.title": "Inventory",
+      "inv.hint": "Tap an item",
+      "chest.open": "Open scroll · BibTeX",
+      "chest.close": "Close scroll",
+      "chest.copy": "Copy BibTeX",
+      "guild.tag": "Channel · Bilibili & GitHub",
+      "guild.line": "Days and images beyond the papers · UID 3213366",
+      "guild.bili": "Bilibili",
+      "guild.gh": "GitHub",
+      "guild.mail": "Email",
+      "save.flag": "⚑ Save point",
+      "save.motto": "Practice makes perfect · keep learning · grow every day",
+      "save.about": "Full archive",
+      "save.mail": "Contact",
+      "nav.11": "1-1 Start",
+      "nav.12": "1-2 File",
+      "nav.13": "1-3 Papers",
+      "nav.14": "1-4 Notes",
+      "quest.bar": "★ Quest briefing",
+      "quest.back": "← Back to 1-4",
+      "quest.status": "Quest in progress",
+      "quest.reward": "Reward +2 coins · EXP",
+      "quest.complete": "✓ Finish reading (+2 coins)",
+      "quest.done": "★ Reward claimed",
+      "quest.top": "↑ Top",
+      "toast.save": "⚑ Save point 1-4",
+      "toast.copy": "BibTeX copied",
+      "toast.copyfail": "Select the BibTeX and copy it",
+      "toast.quest": "★ Quest complete"
+    }
+  };
+
+  function t(key) {
+    var pack = DICT[lang] || DICT.zh;
+    return pack[key] || DICT.zh[key] || key;
+  }
+
+  function refreshDynamicCopy() {
+    var active = document.querySelector(".interest-card.is-active");
+    var interestDesc = document.getElementById("interest-desc");
+    if (active && interestDesc) {
+      var desc = lang === "en" ? active.getAttribute("data-desc-en") : active.getAttribute("data-desc");
+      interestDesc.innerHTML = (desc || "") + '<i class="caret" aria-hidden="true"></i>';
+    }
+    var selected = document.querySelector(".inv-slot.is-selected");
+    var invRole = document.getElementById("inv-role");
+    if (selected && invRole) {
+      invRole.textContent = (lang === "en" ? selected.getAttribute("data-role-en") : selected.getAttribute("data-role")) || "";
+    }
+    var dialogLine = document.getElementById("hero-dialog-line");
+    if (dialogLine) {
+      var idx = parseInt(dialogLine.getAttribute("data-line") || "0", 10) || 0;
+      dialogLine.textContent = t("hero.line" + idx);
+    }
+    document.querySelectorAll("[data-toggle-bib]").forEach(function (btn) {
+      var card = btn.closest("[data-chest]");
+      var open = card && card.classList.contains("is-open");
+      btn.textContent = open ? t("chest.close") : t("chest.open");
+    });
+    document.querySelectorAll("[data-quest-complete]").forEach(function (btn) {
+      btn.textContent = btn.classList.contains("is-done") ? t("quest.done") : t("quest.complete");
+    });
+    var langBtn = document.getElementById("lang-toggle");
+    if (langBtn) {
+      langBtn.textContent = lang === "en" ? "中文" : "EN";
+      langBtn.setAttribute("aria-label", lang === "en" ? "Switch to Chinese" : "切换到英文");
+    }
+  }
+
+  function applyLang() {
+    document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      if (el.hasAttribute("data-toggle-bib") || el.hasAttribute("data-quest-complete")) return;
+      el.textContent = t(el.getAttribute("data-i18n"));
+    });
+    refreshDynamicCopy();
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+  }
+
   function ensureAudio() {
     if (!sfxOn) return null;
     if (!audioCtx) {
@@ -167,17 +327,13 @@
   // Zelda Hero Dialogue switcher
   var dialogLine = document.getElementById("hero-dialog-line");
   var nextLineBtn = document.getElementById("hero-next-line");
-  var lines = [
-    "专注计算成像 (Computational Imaging)、光谱重建与深度学习应用。下滑或按 ↓ 键，直接切换至下一关卡！",
-    "近期研究发表于 Pattern Recognition (2026)、IEEE TMM (2024) 与 IEEE TGRS (2023)，前往 1-3 关可查看引用量与 BibTeX。",
-    "常用装备：Python · PyTorch · MATLAB · LaTeX · Overleaf · Docker。",
-    "座右铭：Practice Makes Perfect | Keep Learning | Grow Every Day。"
-  ];
-  var lineIdx = 0;
+  var lineCount = 4;
   if (dialogLine && nextLineBtn) {
     nextLineBtn.addEventListener("click", function () {
-      lineIdx = (lineIdx + 1) % lines.length;
-      dialogLine.textContent = lines[lineIdx];
+      var lineIdx = (parseInt(dialogLine.getAttribute("data-line") || "0", 10) || 0) + 1;
+      if (lineIdx >= lineCount) lineIdx = 0;
+      dialogLine.setAttribute("data-line", String(lineIdx));
+      dialogLine.textContent = t("hero.line" + lineIdx);
       sfx.step();
     });
   }
@@ -192,7 +348,7 @@
       }
       this.classList.add("is-active");
       if (interestDesc) {
-        var text = this.getAttribute("data-desc") || "";
+        var text = (lang === "en" ? this.getAttribute("data-desc-en") : this.getAttribute("data-desc")) || "";
         interestDesc.innerHTML = text + '<i class="caret" aria-hidden="true"></i>';
       }
       sfx.step();
@@ -217,7 +373,7 @@
           "]";
       }
       if (invRole) {
-        invRole.textContent = this.getAttribute("data-role") || "";
+        invRole.textContent = (lang === "en" ? this.getAttribute("data-role-en") : this.getAttribute("data-role")) || "";
       }
       sfx.step();
     });
@@ -232,7 +388,7 @@
       var loot = card.querySelector(".chest-loot");
       var isOpen = card.classList.toggle("is-open");
       if (loot) loot.hidden = !isOpen;
-      this.textContent = isOpen ? "收起卷轴" : "开启宝箱 · BibTeX";
+      this.textContent = isOpen ? t("chest.close") : t("chest.open");
       if (isOpen) {
         sfx.chest();
         if (!card.getAttribute("data-looted")) {
@@ -255,10 +411,10 @@
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(function () {
           sfx.coin();
-          showToast("BibTeX 已复制到剪贴板！");
+          showToast(t("toast.copy"));
         });
       } else {
-        showToast("请手动选中 BibTeX 复制");
+        showToast(t("toast.copyfail"));
       }
     });
   }
@@ -395,7 +551,7 @@
       if (!silent) {
         sfx.stage();
         if (currentStage === slides.length - 1) {
-          showToast("⚑ SAVE POINT · 已抵达 1-4 存档点！");
+          showToast(t("toast.save"));
         }
       }
     }
@@ -578,7 +734,7 @@
     var qKey = "lei_quest_done_" + window.location.pathname;
     if (sessionStorage.getItem(qKey) === "1") {
       completeBtn.classList.add("is-done");
-      completeBtn.textContent = "★ 已领取任务奖励";
+      completeBtn.classList.add("is-done");
     }
     completeBtn.addEventListener("click", function () {
       if (this.classList.contains("is-done")) return;
@@ -586,11 +742,21 @@
       addCoins(reward);
       sfx.coin();
       this.classList.add("is-done");
-      this.textContent = "★ 已领取任务奖励";
+      this.textContent = t("quest.done");
       sessionStorage.setItem(qKey, "1");
-      showToast("★ 任务完成！获得 +" + reward + " COIN");
+      showToast(t("toast.quest") + " +" + reward);
     });
   }
+
+  var langBtn = document.getElementById("lang-toggle");
+  if (langBtn) {
+    langBtn.addEventListener("click", function () {
+      lang = lang === "en" ? "zh" : "en";
+      applyLang();
+      sfx.step();
+    });
+  }
+  applyLang();
 
   // Smooth pixel curtain transition between primary & secondary pages
   var curtain = document.getElementById("pixel-curtain");

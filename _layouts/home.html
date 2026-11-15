@@ -28,16 +28,16 @@ layout: main
             </div>
             <div class="pixel-dialogue-body">
                 <div class="pixel-dialogue-avatar">
-                    {% include pixel-sprite.html %}
-                    <span class="pixel-nameplate">LEI LIU</span>
+                    {% include pixel-sprite.html theme="guide" %}
+                    <span class="pixel-nameplate" data-i18n="npc.guide">向导</span>
                     <button type="button" class="q-block q-block-sm" data-coin-reward="1" data-tip="出发奖励 +1 COIN!" aria-label="顶一下问号砖块">
                         <b>?</b>
                     </button>
                 </div>
                 <div class="pixel-dialogue-text">
-                    <p class="hero-kicker">RESEARCHER | O^O</p>
-                    <h1 class="title">Hello, I'm Lei Liu</h1>
-                    <p class="description zelda-line" id="hero-dialog-line">专注计算成像 (Computational Imaging)、光谱重建与深度学习应用。下滑或按 ↓ 键，直接切换至下一关卡！</p>
+                    <p class="hero-kicker" data-i18n="hero.kicker">研究者 | O^O</p>
+                    <h1 class="title" data-i18n="hero.hello">你好，我是 Lei Liu</h1>
+                    <p class="description zelda-line" id="hero-dialog-line" data-i18n="hero.line0">专注计算成像、光谱重建与深度学习。下滑或按 ↓ 切换关卡。</p>
                     <div class="pixel-badge-row" aria-label="学术与社交链接">
                         <a class="px-chip" href="https://github.com/liu-lei98" target="_blank" rel="noopener">GitHub</a>
                         <a class="px-chip" href="https://orcid.org/0000-0001-9271-3304" target="_blank" rel="noopener">ORCID</a>
@@ -48,15 +48,15 @@ layout: main
                     <div class="buttons hero-btn-row">
                         <button type="button" class="button" data-go-stage="1">
                             <svg><use xlink:href="#icon-read"></use></svg>
-                            <span>开始冒险</span>
+                            <span data-i18n="hero.start">开始冒险</span>
                         </button>
-                        <button type="button" class="px-btn px-btn-alt" id="hero-next-line">下一句 ▼</button>
+                        <button type="button" class="px-btn px-btn-alt" id="hero-next-line" data-i18n="hero.next">下一句 ▼</button>
                     </div>
                 </div>
             </div>
         </div>
         <button type="button" class="scroll-cue" data-go-stage="1" aria-label="前往下一关">
-          <span>▼ 下滑切换关卡</span>
+          <span data-i18n="hero.cue">▼ 下滑切换关卡</span>
         </button>
     </section>
 
@@ -82,7 +82,11 @@ layout: main
     <section class="world-slide world-stage" id="world-quests" data-world="1-4" data-index="3">
         <div class="stage-inner">
           <div class="stage-head">
-              <h2 class="quest-heading"><span>WORLD 1-4 · QUEST LOG</span>日常与随笔记录</h2>
+              <div class="stage-mascot">
+                {% include pixel-sprite.html theme="lens" %}
+                <span class="pixel-nameplate" data-i18n="npc.lens">记录者</span>
+              </div>
+              <h2 class="quest-heading"><span class="qh-kicker">WORLD 1-4 · QUEST LOG</span><span data-i18n="stage4.title">日常与随笔</span></h2>
               <button type="button" class="q-block" data-coin-reward="1" data-tip="探索日志 +1 COIN!" aria-label="顶一下问号砖块">
                   <b>?</b>
               </button>
@@ -134,11 +138,11 @@ layout: main
           </section>
 
           <div class="savepoint-banner">
-            <span class="sp-flag">⚑ SAVE POINT · 存档点</span>
-            <span class="sp-motto">Practice Makes Perfect | Keep Learning | Grow Every Day</span>
+            <span class="sp-flag" data-i18n="save.flag">⚑ 存档点</span>
+            <span class="sp-motto" data-i18n="save.motto">熟能生巧 · 持续学习 · 每天成长</span>
             <div class="sp-links">
-              <a href="{{ site.baseurl }}/about/">完整档案</a>
-              <a href="{{ site.baseurl }}/contact/">送信</a>
+              <a href="{{ site.baseurl }}/about/" data-i18n="save.about">完整档案</a>
+              <a href="{{ site.baseurl }}/contact/" data-i18n="save.mail">送信</a>
               <a href="mailto:liu_lei_98@163.com">Email</a>
             </div>
           </div>

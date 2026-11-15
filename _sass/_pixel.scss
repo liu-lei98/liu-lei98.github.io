@@ -120,6 +120,24 @@ body.light:not(.main-page) .bar-header {
   text-shadow: 3px 3px 0 $px-line;
 }
 
+.lang-toggle {
+  float: right;
+  margin: 2px 12px 0 0;
+  padding: 4px 8px;
+  background: $px-panel;
+  color: $px-gold;
+  border: 2px solid $px-bevel;
+  font-size: 12px;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 $px-line;
+
+  &:hover {
+    background: $px-gold;
+    color: $px-night;
+  }
+}
+
 .hud {
   display: none;
   position: absolute;
@@ -419,7 +437,7 @@ aside.sidebar {
   text-transform: none;
   text-shadow: 4px 4px 0 $px-line;
 
-  span {
+  .qh-kicker {
     display: block;
     margin-bottom: 6px;
     color: $px-sky;
@@ -1110,6 +1128,18 @@ body.is-world-pager {
   margin: 0 auto;
   padding: 0 24px;
   box-sizing: border-box;
+}
+
+.stage-mascot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+
+  .pixel-sprite {
+    width: 56px;
+  }
 }
 
 .stage-head {
@@ -2204,6 +2234,20 @@ body.is-world-pager {
 
   .stage-inner {
     padding: 0 2px 8px;
+  }
+
+  .stage-mascot .pixel-sprite {
+    width: 44px;
+  }
+
+  .stage-head {
+    gap: 8px;
+    align-items: center;
+  }
+
+  .lang-toggle {
+    margin-top: 6px;
+    margin-right: 4px;
   }
 
   .quest-heading,

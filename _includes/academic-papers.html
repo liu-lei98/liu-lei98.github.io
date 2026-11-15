@@ -1,7 +1,11 @@
 <div class="stage-inner">
   <div class="stage-head">
+    <div class="stage-mascot">
+      {% include pixel-sprite.html theme="scroll" %}
+      <span class="pixel-nameplate" data-i18n="npc.scroll">书记</span>
+    </div>
     <div class="stage-head-left">
-      <h2 class="quest-heading"><span>WORLD 1-3 · PUBLICATIONS &amp; CHESTS</span>学术发表与频道</h2>
+      <h2 class="quest-heading"><span class="qh-kicker">WORLD 1-3 · SCROLLS</span><span data-i18n="stage3.title">学术发表与频道</span></h2>
       <span class="total-cites-chip" id="total-cites-chip" title="数据来源：OpenAlex 实时统计">TOTAL CITES: <b id="total-cites-num">33</b></span>
     </div>
     <button type="button" class="q-block" data-coin-reward="1" data-tip="文献能量 +1 COIN!" aria-label="顶一下问号砖块">
@@ -36,7 +40,7 @@
           <p class="chest-venue">Pattern Recognition · 2026-07</p>
           <div class="chest-actions">
             <a class="px-btn" href="https://doi.org/10.1016/j.patcog.2026.113058" target="_blank" rel="noopener">DOI</a>
-            <button type="button" class="px-btn px-btn-chest" data-toggle-bib>开启宝箱 · BibTeX</button>
+            <button type="button" class="px-btn px-btn-chest" data-toggle-bib data-i18n="chest.open">开启卷轴 · BibTeX</button>
           </div>
           <div class="chest-loot" hidden>
             <pre>@article{liu2026degradation,
@@ -47,7 +51,7 @@
   month={7},
   doi={10.1016/j.patcog.2026.113058}
 }</pre>
-            <button type="button" class="px-btn px-btn-copy" data-copy-bib>复制 BibTeX</button>
+            <button type="button" class="px-btn px-btn-copy" data-copy-bib data-i18n="chest.copy">复制 BibTeX</button>
           </div>
         </div>
       </div>
@@ -80,7 +84,7 @@
           <div class="chest-actions">
             <a class="px-btn" href="https://ieeexplore.ieee.org/document/10214675" target="_blank" rel="noopener">PDF</a>
             <a class="px-btn px-btn-alt" href="https://doi.org/10.1109/TMM.2023.3304450" target="_blank" rel="noopener">DOI</a>
-            <button type="button" class="px-btn px-btn-chest" data-toggle-bib>开启宝箱 · BibTeX</button>
+            <button type="button" class="px-btn px-btn-chest" data-toggle-bib data-i18n="chest.open">开启卷轴 · BibTeX</button>
           </div>
           <div class="chest-loot" hidden>
             <pre>@article{liu2024degradation,
@@ -90,7 +94,7 @@
   year={2024},
   doi={10.1109/TMM.2023.3304450}
 }</pre>
-            <button type="button" class="px-btn px-btn-copy" data-copy-bib>复制 BibTeX</button>
+            <button type="button" class="px-btn px-btn-copy" data-copy-bib data-i18n="chest.copy">复制 BibTeX</button>
           </div>
         </div>
       </div>
@@ -123,7 +127,7 @@
           <div class="chest-actions">
             <a class="px-btn" href="https://ieeexplore.ieee.org/document/10068551" target="_blank" rel="noopener">PDF</a>
             <a class="px-btn px-btn-alt" href="https://doi.org/10.1109/TGRS.2023.3257125" target="_blank" rel="noopener">DOI</a>
-            <button type="button" class="px-btn px-btn-chest" data-toggle-bib>开启宝箱 · BibTeX</button>
+            <button type="button" class="px-btn px-btn-chest" data-toggle-bib data-i18n="chest.open">开启卷轴 · BibTeX</button>
           </div>
           <div class="chest-loot" hidden>
             <pre>@article{liu2023refinement,
@@ -133,7 +137,7 @@
   year={2023},
   doi={10.1109/TGRS.2023.3257125}
 }</pre>
-            <button type="button" class="px-btn px-btn-copy" data-copy-bib>复制 BibTeX</button>
+            <button type="button" class="px-btn px-btn-copy" data-copy-bib data-i18n="chest.copy">复制 BibTeX</button>
           </div>
         </div>
       </div>
@@ -142,13 +146,13 @@
 
   <div class="pixel-guild-bar">
     <div class="guild-copy">
-      <span class="guild-tag">GUILD · Bilibili 频道 &amp; GitHub</span>
-      <strong>记录科研之外的日常与映像 · UID 3213366</strong>
+      <span class="guild-tag" data-i18n="guild.tag">频道 · Bilibili 与 GitHub</span>
+      <strong data-i18n="guild.line">记录科研之外的日常与映像 · UID 3213366</strong>
     </div>
     <div class="guild-links">
-      <a class="px-btn" href="https://space.bilibili.com/3213366" target="_blank" rel="noopener">Bilibili 频道</a>
-      <a class="px-btn px-btn-alt" href="https://github.com/liu-lei98" target="_blank" rel="noopener">GitHub 主页</a>
-      <a class="px-btn px-btn-alt" href="mailto:liu_lei_98@163.com">Email 联系</a>
+      <a class="px-btn" href="https://space.bilibili.com/3213366" target="_blank" rel="noopener" data-i18n="guild.bili">Bilibili 频道</a>
+      <a class="px-btn px-btn-alt" href="https://github.com/liu-lei98" target="_blank" rel="noopener" data-i18n="guild.gh">GitHub 主页</a>
+      <a class="px-btn px-btn-alt" href="mailto:liu_lei_98@163.com" data-i18n="guild.mail">邮件联系</a>
     </div>
   </div>
 </div>
