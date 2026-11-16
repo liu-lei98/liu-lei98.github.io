@@ -2,17 +2,23 @@
 layout: default
 ---
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 0px auto;
-    max-width: 600px;
-    text-align: center;
-    padding-top: 60px;
-  }
-</style>
+<div class="secondary-world-bg" aria-hidden="true">
+  {% include pixel-world-scene.html scene="home" %}
+</div>
 
-<div class="container">
-  <img src="/assets/img/404.gif" width="100%" alt="{{ site.translations.error_404.image_alt | default: '404 - Page not found' }}">
-  <p><strong>{{ site.translations.error_404.title | default: "Page not found :(" }}</strong></p>
-  <p>{{ site.translations.error_404.message | default: "I'm sorry. We couldn't find the page you are looking for." }}</p>
+<div class="post secondary-quest-shell">
+  <article class="post-content fullwidth quest-dialog">
+    <div class="pixel-window-bar quest-bar">
+      <span>★ LOST IN OVERWORLD · 迷雾边境 (404)</span>
+      <a class="quest-back-btn" href="{{ site.baseurl }}/#world-start">← 传送回起点</a>
+    </div>
+    <div class="quest-dialog-body" style="text-align: center; padding: 36px 20px;">
+      <div style="width: 96px; margin: 0 auto 14px;">
+        {% include pixel-sprite.html theme="guide" %}
+      </div>
+      <h2 style="margin: 0 0 10px; color: #2a3358;">{{ site.translations.error_404.title | default: "404 · 你走到了地图边界之外" }}</h2>
+      <p style="margin: 0 auto 20px; max-width: 420px; color: #5d6894;">{{ site.translations.error_404.message | default: "白猫向导翻遍了羊皮纸地图，也没有找到这个坐标。不如先传送回云端起点吧！" }}</p>
+      <a class="px-btn" href="{{ site.baseurl }}/#world-start">▶ 返回主世界起点</a>
+    </div>
+  </article>
 </div>

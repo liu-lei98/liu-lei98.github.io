@@ -4,51 +4,51 @@ layout: page
 
 {% if site.email or site.formspree_form_id %}
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 0px auto;
-    max-width: 600px;
-  }
-</style>
-
-<div class="container quest-dialog quest-dialog-compact">
-  <div class="pixel-window-bar quest-bar">
-    <span>★ SIDE QUEST · 送信委托</span>
-    <a class="quest-back-btn" href="{{ site.baseurl }}/#world-start">← 返回主世界</a>
+<div class="contact-board-wrap">
+  <div class="contact-npc-banner">
+    <div class="contact-npc-avatar">
+      {% include pixel-sprite.html theme="guide" %}
+    </div>
+    <div class="contact-npc-copy">
+      <h2 data-i18n="contact.boardTitle">{{ site.translations.contact.title | default: "信使驿站 · Talk to Me" }}</h2>
+      <p data-i18n="contact.boardSub">在羊皮纸上写下你的学术探讨、合作意向或日常问候，信使白猫会第一时间送达！你也可以直接发送邮件至 <a href="mailto:liu_lei_98@163.com">liu_lei_98@163.com</a>。</p>
+    </div>
   </div>
-  <div class="quest-dialog-body">
-    <h2>{{ site.translations.contact.title | default: "Talk to me" }}</h2>
 
-    <div id="form" class="contact-form">
+  <div id="form" class="contact-form">
     <form accept-charset="UTF-8" method="POST" action="https://formspree.io/{% if site.formspree_form_id %}f/{{ site.formspree_form_id }}{% else %}{{ site.email }}{% endif %}" v-on:submit.prevent="validateBeforeSubmit" ref="contact">
       <fieldset>
         <input type="hidden" name="_subject" value="{{ site.translations.contact.subject | default: 'New contact!' }}" />
         <input type="hidden" name="_next" value="{{ site.url }}{{ site.sent_message_url }}" />
         <input type="hidden" name="_language" value="{{ site.language }}" />
 
+        <label class="px-field-label" data-i18n="contact.nameLabel">署名 · Your Name</label>
         <input type="text" name="name" placeholder="{{ site.translations.contact.placeholders.name | default: 'Your name' }}" v-validate="'required'"
                :class="{ 'has-error': errors.has('name') }">
         <span v-if="errors.has('name')" v-cloak>${ errors.first('name') }</span>
 
+        <label class="px-field-label" data-i18n="contact.emailLabel">回信地址 · Your Email</label>
         <input type="text" name="email" placeholder="{{ site.translations.contact.placeholders.email | default: 'Your email' }}" v-validate="'required|email'"
                :class="{ 'has-error': errors.has('email') }">
         <span v-if="errors.has('email')" v-cloak>${ errors.first('email') }</span>
 
+        <label class="px-field-label" data-i18n="contact.msgLabel">信件内容 · Message</label>
         <textarea name="message" onkeyup="adjust_textarea(this)" placeholder="{{ site.translations.contact.placeholders.message | default: 'Your message' }}" v-validate="'required'"
                   :class="{ 'has-error': errors.has('message') }"></textarea>
         <span v-if="errors.has('message')" v-cloak>${ errors.first('message') }</span>
 
-        <button type="submit">{{ site.translations.contact.submit_btn | default:  "Send" }}</button>
+        <div class="contact-submit-row">
+          <a class="px-btn px-btn-alt" href="{{ site.baseurl }}/#world-contact">← 返回篝火营地</a>
+          <button type="submit" class="px-seal-submit">✉ {{ site.translations.contact.submit_btn | default: "寄出信件 · Send" }}</button>
+        </div>
       </fieldset>
     </form>
-  </div>
-
   </div>
 </div>
 
 <script type="text/javascript">
 function adjust_textarea(h) {
-    h.style.height = "200px";
+    h.style.height = "160px";
     h.style.height = (h.scrollHeight)+"px";
 }
 </script>

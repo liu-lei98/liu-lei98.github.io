@@ -21,32 +21,50 @@
 
   var DICT = {
     zh: {
+      "menu.home": "首页",
+      "menu.about": "关于",
+      "menu.research": "研究",
+      "menu.notes": "随笔",
+      "menu.contact": "联系",
       "npc.guide": "向导",
       "npc.scholar": "学者",
       "npc.scroll": "书记",
       "npc.lens": "记录者",
-      "hero.kicker": "研究者 | O^O",
-      "hero.hello": "你好，我是 Lei Liu",
-      "hero.line0": "专注计算成像、光谱重建与深度学习。下滑或按 ↓ 切换关卡。",
-      "hero.line1": "近期工作见 Pattern Recognition (2026)、IEEE TMM (2024) 与 IEEE TGRS (2023)。到 1-3 可看引用和 BibTeX。",
-      "hero.line2": "常用装备：Python、PyTorch、MATLAB、LaTeX、Overleaf、Docker。",
-      "hero.line3": "座右铭：熟能生巧，持续学习，每天成长。",
+      "hero.kicker": "Computational Imaging Researcher · 计算成像研究者",
+      "hero.hello": "你好，我是 Lei Liu!",
+      "hero.line0": "专注计算成像、光谱重建与深度学习。探索光学感知的边界。",
+      "hero.line1": "近期发表见 Pattern Recognition (2026)、IEEE TMM (2024) 与 IEEE TGRS (2023)。",
+      "hero.line2": "常用科研工具：Python、PyTorch、MATLAB、LaTeX、Overleaf、Docker。",
+      "hero.line3": "信念：熟能生巧，持续学习，每天成长 (Practice Makes Perfect)。",
       "hero.start": "开始冒险",
+      "hero.papers": "学术发表 →",
       "hero.next": "下一句 ▼",
-      "hero.cue": "▼ 下滑切换关卡",
-      "stage2.title": "学者档案与装备栏",
-      "stage3.title": "学术发表与频道",
-      "stage4.title": "日常与随笔",
-      "sheet.kicker": "关于我 · 地球在线科研中",
+      "hero.cue": "▼ 下滑切换场景 · 点击地面或按 A / D 漫步",
+      "stage2.title": "关于我 · About Me",
+      "stage3.title": "学术发表 · Research",
+      "stage3.sub": "探索计算光谱成像与深度展开网络的前沿 · 自动同步 ORCID",
+      "stage4.title": "日常随笔 · Notes & Gallery",
+      "stage4.sub": "科研之外的日常记录、校园瞬间与影像图鉴。",
+      "stage5.title": "Let's Connect! · 联系与交流",
+      "stage5.sub": "欢迎学术合作、论文探讨，或者随时发封邮件聊聊！",
+      "sheet.kicker": "地球人 · 还在活着 · 专注计算成像、快照压缩光谱重建与深度展开网络。",
+      "about.profileTitle": "学者档案 · Scholar Profile",
+      "about.interestsTitle": "研究方向 · Research Interests",
+      "about.interestsSub": "点击方向卡片查看研究内容",
+      "interest.ci": "计算成像与光学编码建模",
+      "interest.sr": "快照压缩光谱成像 (CASSI)",
+      "interest.du": "退化感知深度展开与傅里叶网络",
       "fact.focus": "主攻",
       "fact.focus.v": "计算成像 · 光谱重建 · 深度学习",
       "fact.motto": "信念",
       "fact.motto.v": "熟能生巧 · 持续学习 · 每天成长",
-      "inv.title": "装备栏",
-      "inv.hint": "点击装备查看属性",
-      "chest.open": "开启卷轴 · BibTeX",
-      "chest.close": "收起卷轴",
+      "inv.title": "科研工具箱 · Tech Stack",
+      "inv.hint": "点击图标查看说明",
+      "chest.open": "BibTeX ▾",
+      "chest.close": "收起 BibTeX ▴",
       "chest.copy": "复制 BibTeX",
+      "codex.read": "阅读全文 →",
+      "connect.board": "✉ 在线留言板",
       "guild.tag": "频道 · Bilibili 与 GitHub",
       "guild.line": "记录科研之外的日常与映像 · UID 3213366",
       "guild.bili": "Bilibili 频道",
@@ -62,6 +80,12 @@
       "nav.14": "1-4 日志",
       "quest.bar": "★ 任务简报",
       "quest.back": "← 返回 1-4 日志",
+      "quest.backHome": "← 返回主世界",
+      "contact.boardTitle": "信使驿站 · Talk to Me",
+      "contact.boardSub": "在羊皮纸上写下你的学术探讨、合作意向或日常问候，信使白猫会第一时间送达！",
+      "contact.nameLabel": "署名 · Your Name",
+      "contact.emailLabel": "回信地址 · Your Email",
+      "contact.msgLabel": "信件内容 · Message",
       "quest.status": "任务进行中",
       "quest.reward": "奖励 +2 金币 · 经验",
       "quest.complete": "✓ 完成阅读 (+2 金币)",
@@ -76,32 +100,50 @@
       "orcid.fail": "ORCID 暂不可用，显示本地列表"
     },
     en: {
+      "menu.home": "Home",
+      "menu.about": "About",
+      "menu.research": "Research",
+      "menu.notes": "Notes",
+      "menu.contact": "Contact",
       "npc.guide": "Guide",
       "npc.scholar": "Scholar",
       "npc.scroll": "Scribe",
       "npc.lens": "Recorder",
-      "hero.kicker": "Researcher | O^O",
-      "hero.hello": "Hello, I'm Lei Liu",
-      "hero.line0": "Computational imaging, spectral reconstruction, and deep learning. Scroll or press ↓ to change stage.",
-      "hero.line1": "Recent papers: Pattern Recognition (2026), IEEE TMM (2024), IEEE TGRS (2023). Stage 1-3 has citations and BibTeX.",
-      "hero.line2": "Kit: Python, PyTorch, MATLAB, LaTeX, Overleaf, Docker.",
-      "hero.line3": "Motto: practice makes perfect, keep learning, grow every day.",
-      "hero.start": "Start",
+      "hero.kicker": "Computational Imaging Researcher",
+      "hero.hello": "Hi, I'm Lei Liu!",
+      "hero.line0": "Exploring computational imaging, spectral reconstruction, and deep learning.",
+      "hero.line1": "Recent papers in Pattern Recognition (2026), IEEE TMM (2024), and IEEE TGRS (2023).",
+      "hero.line2": "Tech stack: Python, PyTorch, MATLAB, LaTeX, Overleaf, Docker.",
+      "hero.line3": "Motto: Practice Makes Perfect · Keep Learning · Grow Every Day.",
+      "hero.start": "Start Adventure",
+      "hero.papers": "Research →",
       "hero.next": "Next ▼",
-      "hero.cue": "▼ Next stage",
-      "stage2.title": "Archive & Inventory",
-      "stage3.title": "Papers & Channel",
-      "stage4.title": "Notes & Days",
-      "sheet.kicker": "About me · research, still on Earth",
+      "hero.cue": "▼ Scroll to explore · Click ground or press A / D to walk",
+      "stage2.title": "About Me",
+      "stage3.title": "Research & Publications",
+      "stage3.sub": "Exploring the frontiers of computational spectral imaging · Synced with ORCID",
+      "stage4.title": "Notes & Gallery",
+      "stage4.sub": "A collection of life moments, campus memories, and notes.",
+      "stage5.title": "Let's Connect!",
+      "stage5.sub": "Feel free to reach out for collaboration, discussion, or just a chat!",
+      "sheet.kicker": "Earthling · Still Alive · Focusing on computational imaging, CASSI & deep unfolding.",
+      "about.profileTitle": "Scholar Profile",
+      "about.interestsTitle": "Research Interests",
+      "about.interestsSub": "Click a topic to inspect details",
+      "interest.ci": "Optical coding & computational sensing",
+      "interest.sr": "Snapshot compressive spectral imaging (CASSI)",
+      "interest.du": "Degradation-aware deep unfolding & Fourier nets",
       "fact.focus": "Focus",
       "fact.focus.v": "Computational imaging · spectral reconstruction · deep learning",
       "fact.motto": "Motto",
       "fact.motto.v": "Practice makes perfect · keep learning · grow every day",
-      "inv.title": "Inventory",
-      "inv.hint": "Tap an item",
-      "chest.open": "Open scroll · BibTeX",
-      "chest.close": "Close scroll",
+      "inv.title": "Tech Stack & Tools",
+      "inv.hint": "Click an icon for details",
+      "chest.open": "BibTeX ▾",
+      "chest.close": "Hide BibTeX ▴",
       "chest.copy": "Copy BibTeX",
+      "codex.read": "Read Note →",
+      "connect.board": "✉ Message Board",
       "guild.tag": "Channel · Bilibili & GitHub",
       "guild.line": "Days and images beyond the papers · UID 3213366",
       "guild.bili": "Bilibili",
@@ -117,6 +159,12 @@
       "nav.14": "1-4 Notes",
       "quest.bar": "★ Quest briefing",
       "quest.back": "← Back to 1-4",
+      "quest.backHome": "← Back to Overworld",
+      "contact.boardTitle": "Messenger Post · Talk to Me",
+      "contact.boardSub": "Write your academic inquiry, collaboration idea, or greeting on the parchment below!",
+      "contact.nameLabel": "Your Name",
+      "contact.emailLabel": "Your Email",
+      "contact.msgLabel": "Your Message",
       "quest.status": "Quest in progress",
       "quest.reward": "Reward +2 coins · EXP",
       "quest.complete": "✓ Finish reading (+2 coins)",
@@ -313,6 +361,7 @@
       heartsBtn.classList.remove("is-heal");
       void heartsBtn.offsetWidth;
       heartsBtn.classList.add("is-heal");
+      if (window.LEI_WORLD && window.LEI_WORLD.celebrate) window.LEI_WORLD.celebrate();
       sfx.heart();
       showToast("♥ HP FULL · 元气满满！");
     });
@@ -400,18 +449,34 @@
   var totalCitesEl = document.getElementById("total-cites-num");
   var orcidSyncEl = document.getElementById("orcid-sync");
   var citeGen = 0;
-  var SCROLL_SVG =
-    '<svg viewBox="0 0 18 16" shape-rendering="crispEdges" aria-hidden="true">' +
-    '<rect x="2" y="1" width="14" height="2" fill="#d4882a"/>' +
-    '<rect x="1" y="3" width="16" height="4" fill="#9b5016"/>' +
-    '<rect x="2" y="4" width="14" height="1" fill="#b86b28"/>' +
-    '<rect x="1" y="6" width="16" height="2" fill="#ffcc33"/>' +
-    '<rect x="7" y="5" width="4" height="5" fill="#fff1a8"/>' +
-    '<rect x="8" y="6" width="2" height="3" fill="#c48a12"/>' +
-    '<rect x="1" y="8" width="16" height="6" fill="#6b3410"/>' +
-    '<rect x="2" y="9" width="14" height="4" fill="#8b4513"/>' +
-    '<rect x="1" y="14" width="16" height="1" fill="#0b0e1c"/>' +
-    "</svg>";
+  var PAPER_SVGS = [
+    '<svg viewBox="0 0 24 24" shape-rendering="crispEdges" aria-hidden="true">' +
+      '<rect x="1" y="1" width="22" height="22" fill="#d9ecff"/>' +
+      '<polygon points="12,4 20,18 4,18" fill="#3b70c4"/>' +
+      '<polygon points="12,6 18,17 6,17" fill="#7ce4ff"/>' +
+      '<rect x="15" y="9" width="7" height="2" fill="#ff5d73"/>' +
+      '<rect x="16" y="11" width="6" height="2" fill="#ffd24a"/>' +
+      '<rect x="17" y="13" width="5" height="2" fill="#5dae3a"/>' +
+      '<rect x="3" y="11" width="6" height="2" fill="#ffffff"/>' +
+    "</svg>",
+    '<svg viewBox="0 0 24 24" shape-rendering="crispEdges" aria-hidden="true">' +
+      '<rect x="1" y="1" width="22" height="22" fill="#e2f2ff"/>' +
+      '<polygon points="12,3 20,7 20,16 12,21 4,16 4,7" fill="#2b3354"/>' +
+      '<polygon points="12,4 19,8 12,12 5,8" fill="#5fd9ff"/>' +
+      '<polygon points="5,9 11,13 11,19 5,15" fill="#3b70c4"/>' +
+      '<polygon points="19,9 19,15 13,19 13,13" fill="#f0b429"/>' +
+      '<rect x="10" y="7" width="4" height="2" fill="#ffffff"/>' +
+    "</svg>",
+    '<svg viewBox="0 0 24 24" shape-rendering="crispEdges" aria-hidden="true">' +
+      '<rect x="1" y="1" width="22" height="22" fill="#e4f7e6"/>' +
+      '<rect x="3" y="15" width="18" height="6" fill="#5dae3a"/>' +
+      '<polygon points="4,15 10,10 15,15" fill="#3c7827"/>' +
+      '<rect x="9" y="5" width="6" height="5" fill="#3b70c4"/>' +
+      '<rect x="4" y="6" width="4" height="3" fill="#ffd24a"/>' +
+      '<rect x="16" y="6" width="4" height="3" fill="#ffd24a"/>' +
+      '<rect x="11" y="10" width="2" height="4" fill="#5fd9ff"/>' +
+    "</svg>"
+  ];
 
   function orcidText(node, fallback) {
     if (!node) return fallback || "";
@@ -452,69 +517,66 @@
       if (work.doi) card.setAttribute("data-doi", work.doi);
       card.setAttribute("data-fallback-cites", "0");
 
-      var bar = document.createElement("div");
-      bar.className = "pixel-window-bar";
-      var label = document.createElement("span");
-      var num = String(i + 1);
-      if (num.length < 2) num = "0" + num;
-      var head = "SCROLL #" + num;
-      if (work.journal) head += " · " + work.journal;
-      else if (work.year) head += " · " + work.year;
-      label.textContent = head;
-      bar.appendChild(label);
-      var badge = document.createElement("span");
-      badge.className = "cite-badge";
-      badge.appendChild(document.createTextNode("CITES: "));
-      var count = document.createElement("b");
-      count.setAttribute("data-cite-count", "");
-      count.textContent = "–";
-      badge.appendChild(count);
-      bar.appendChild(badge);
-
       var body = document.createElement("div");
       body.className = "chest-body";
       var icon = document.createElement("div");
       icon.className = "chest-icon";
-      icon.innerHTML = SCROLL_SVG;
+      icon.innerHTML = PAPER_SVGS[i % PAPER_SVGS.length];
+
       var info = document.createElement("div");
       info.className = "chest-info";
+
+      var metaTop = document.createElement("div");
+      metaTop.className = "chest-meta-top";
+      var venuePill = document.createElement("span");
+      venuePill.className = "chest-venue-pill";
+      var venueBits = [];
+      if (work.journal) venueBits.push(work.journal);
+      if (work.year) venueBits.push(work.month ? work.year + "-" + work.month : work.year);
+      venuePill.textContent = venueBits.join(" · ") || "Publication";
+
+      var badge = document.createElement("span");
+      badge.className = "cite-badge";
+      badge.appendChild(document.createTextNode("★ Cites: "));
+      var count = document.createElement("b");
+      count.setAttribute("data-cite-count", "");
+      count.textContent = "–";
+      badge.appendChild(count);
+      metaTop.appendChild(venuePill);
+      metaTop.appendChild(badge);
+
       var h3 = document.createElement("h3");
       h3.textContent = work.title;
       var authors = document.createElement("p");
       authors.className = "chest-authors";
       authors.textContent = work.authors.join(", ");
-      var venue = document.createElement("p");
-      venue.className = "chest-venue";
-      var venueBits = [];
-      if (work.journal) venueBits.push(work.journal);
-      if (work.year) venueBits.push(work.month ? work.year + "-" + work.month : work.year);
-      venue.textContent = venueBits.join(" · ");
 
       var actions = document.createElement("div");
       actions.className = "chest-actions";
-      if (work.doi) {
-        var doiLink = document.createElement("a");
-        doiLink.className = "px-btn";
-        doiLink.href = "https://doi.org/" + work.doi;
-        doiLink.target = "_blank";
-        doiLink.rel = "noopener";
-        doiLink.textContent = "DOI";
-        actions.appendChild(doiLink);
-      } else if (work.url) {
-        var urlLink = document.createElement("a");
-        urlLink.className = "px-btn";
-        urlLink.href = work.url;
-        urlLink.target = "_blank";
-        urlLink.rel = "noopener";
-        urlLink.textContent = "Link";
-        actions.appendChild(urlLink);
-      }
+      var tagsLeft = document.createElement("div");
+      tagsLeft.className = "chest-tags-left";
+      var tagPill = document.createElement("span");
+      tagPill.className = "paper-tag";
+      tagPill.textContent = work.type === "conference-paper" ? "Conference" : "Journal";
+      tagsLeft.appendChild(tagPill);
+
       var toggle = document.createElement("button");
       toggle.type = "button";
       toggle.className = "px-btn px-btn-chest";
       toggle.setAttribute("data-toggle-bib", "");
       toggle.textContent = t("chest.open");
-      actions.appendChild(toggle);
+      tagsLeft.appendChild(toggle);
+      actions.appendChild(tagsLeft);
+
+      if (work.doi || work.url) {
+        var viewLink = document.createElement("a");
+        viewLink.className = "view-more-link";
+        viewLink.href = work.doi ? "https://doi.org/" + work.doi : work.url;
+        viewLink.target = "_blank";
+        viewLink.rel = "noopener";
+        viewLink.textContent = "View Paper →";
+        actions.appendChild(viewLink);
+      }
 
       var loot = document.createElement("div");
       loot.className = "chest-loot";
@@ -529,14 +591,13 @@
       loot.appendChild(pre);
       loot.appendChild(copy);
 
+      info.appendChild(metaTop);
       info.appendChild(h3);
       info.appendChild(authors);
-      info.appendChild(venue);
       info.appendChild(actions);
       info.appendChild(loot);
       body.appendChild(icon);
       body.appendChild(info);
-      card.appendChild(bar);
       card.appendChild(body);
       chestGrid.appendChild(card);
     }
@@ -713,7 +774,7 @@
   var runnerHero = document.getElementById("runner-hero");
   var runnerGoal = document.getElementById("runner-goal");
   var hudWorld = document.getElementById("hud-world");
-  var navLinks = document.querySelectorAll(".runner-nav a[data-jump]");
+  var navLinks = document.querySelectorAll(".world-menu a[data-jump], .runner-nav a[data-jump]");
   var stageDots = document.querySelectorAll("#stage-dots button[data-go-stage]");
   var runTimer = null;
 
@@ -739,7 +800,7 @@
   if (pager && track && slides.length > 0) {
     var currentStage = 0;
     var lockUntil = 0;
-    var stagePositions = [0, 0.34, 0.68, 1.0];
+    var stagePositions = [0, 0.25, 0.5, 0.75, 1.0];
 
     function stagePx() {
       var vv = window.visualViewport;
@@ -795,6 +856,7 @@
 
       var pct = stagePositions[currentStage] != null ? stagePositions[currentStage] : currentStage / Math.max(1, slides.length - 1);
       moveRunner(pct, isBack);
+      if (window.LEI_WORLD && window.LEI_WORLD.stepStage) window.LEI_WORLD.stepStage();
 
       if (!silent) {
         sfx.stage();
@@ -931,7 +993,10 @@
       "#world-papers": 2,
       "#1-3": 2,
       "#world-quests": 3,
-      "#1-4": 3
+      "#1-4": 3,
+      "#world-contact": 4,
+      "#1-5": 4,
+      "#contact": 4
     };
     var initStage = hashMap.hasOwnProperty(window.location.hash) ? hashMap[window.location.hash] : 0;
     goToStage(initStage, true);

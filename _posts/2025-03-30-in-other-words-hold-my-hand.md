@@ -22,19 +22,20 @@ author: Lei
 .bubble {
   max-width: 100%;
   padding: 12px 16px;
-  border-radius: 0;
+  border-radius: 10px;
   position: relative;
   word-wrap: break-word;
-  background: #222a46;
-  color: #e8e2d0;
-  border: 1px solid #3c4768;
+  background: #fff6e4;
+  color: #2a3358;
+  border: 2px solid #e0c98a;
+  box-shadow: 0 3px 0 rgba(42, 51, 88, 0.08);
 }
 .left-bubble {
-  border-left: 3px solid #8eabcb;
+  border-left: 4px solid #3b70c4;
   text-align: left;
 }
 .right-bubble {
-  border-left: 3px solid #c6ae78;
+  border-left: 4px solid #d48d1b;
   text-align: left;
 }
 /* 图片气泡特殊处理 */
@@ -110,11 +111,12 @@ author: Lei
   bottom: 84px;
   right: 20px;
   z-index: 38;
-  background: #1c2340;
-  color: #e6dcc4;
-  border: 1px solid #5c5340;
-  border-radius: 0;
-  padding: 6px 10px;
+  background: #f5e6c8;
+  color: #2a3358;
+  border: 3px solid #6e442c;
+  border-radius: 10px;
+  box-shadow: 0 3px 0 #4d2d1c;
+  padding: 6px 12px;
   cursor: pointer;
   font-size: 12px;
 }

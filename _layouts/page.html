@@ -2,11 +2,19 @@
 layout: default
 ---
 
-<div class="post">
+<div class="secondary-world-bg" aria-hidden="true">
+  {% if page.url == '/about/' %}
+    {% include pixel-world-scene.html scene="about" %}
+  {% else %}
+    {% include pixel-world-scene.html scene="contact" %}
+  {% endif %}
+</div>
+
+<div class="post secondary-quest-shell">
   {% if page.url == '/about/' %}
     <div class="quest-nav-strip">
-      <span>★ CHARACTER ARCHIVE · 完整学者档案</span>
-      <a class="quest-back-btn" href="{{ site.baseurl }}/#world-profile">← 返回主世界 1-2</a>
+      <span>★ SCHOLAR ARCHIVE · 完整学者档案</span>
+      <a class="quest-back-btn" href="{{ site.baseurl }}/#world-profile" data-i18n="quest.backHome">← 返回主世界</a>
     </div>
     <article class="post-content fullwidth">
       {{ content }}
@@ -15,7 +23,7 @@ layout: default
     <article class="post-content fullwidth quest-dialog">
       <div class="pixel-window-bar quest-bar">
         <span>★ QUEST BOARD · {{ page.title | default: "详情" }}</span>
-        <a class="quest-back-btn" href="{{ site.baseurl }}/#world-start">← 返回主世界</a>
+        <a class="quest-back-btn" href="{{ site.baseurl }}/#world-start" data-i18n="quest.backHome">← 返回主世界</a>
       </div>
       <div class="quest-dialog-body">
         {{ content }}

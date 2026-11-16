@@ -10,10 +10,16 @@ tags:
   - netlify
 show_hero: true
 menu:
-  - title: 角色档案
-    url: /about
-  - title: 送信
-    url: /contact
+  - title: 首页
+    url: /#world-start
+  - title: 关于
+    url: /#world-profile
+  - title: 研究
+    url: /#world-papers
+  - title: 随笔
+    url: /#world-quests
+  - title: 联系
+    url: /#world-contact
 email: liu_lei_98@163.com
 # See: https://disqus.com/
 disqus_username: disqus_username

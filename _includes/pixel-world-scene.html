@@ -1,0 +1,4 @@
+{% assign scene = include.scene | default: "home" %}
+<div class="px-world-art px-world-{{ scene }}" aria-hidden="true">
+  <canvas class="px-world-canvas" data-scene="{{ scene }}" width="256" height="144"></canvas>
+</div>

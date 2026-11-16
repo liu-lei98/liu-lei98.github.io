@@ -5,6 +5,9 @@
         {% include minutes-to-read.html %}
         {% include svg-icons.html %}
         {% include header.html %}
+        <div class="secondary-world-bg" aria-hidden="true">
+            {% include pixel-world-scene.html scene="gallery" %}
+        </div>
 
         <section class="post {% if site.two_columns_layout %}two-columns{% else %}one-column{% endif %}" id="top">
             <article role="article" class="post-content quest-dialog">

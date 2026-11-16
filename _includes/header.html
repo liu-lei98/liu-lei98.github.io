@@ -1,41 +1,134 @@
-<header class="bar-header">
+<header class="bar-header world-top">
     <a id="menu" role="button" aria-label="打开菜单">
         <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
     </a>
     <h1 class="logo">
-        <a href="{{ site.baseurl }}/">
-            {% if site.use_logo %}
-                {% include logo.html %}
-            {% else %}
-                {{ site.name }} <span class="version">{{ site.version }}</span>
-            {% endif %}
+        <a href="{{ site.baseurl }}/#world-start" data-go-stage="0">
+            <span class="brand-face" aria-hidden="true">{% include pixel-sprite.html theme="avatar" %}</span>
+            <span class="brand-name">{{ site.name }}</span>
+            <span class="brand-sep" aria-hidden="true">|</span>
         </a>
     </h1>
-    <div class="hud" aria-label="游戏状态栏">
-        <span class="hud-chip" id="hud-world" title="当前关卡">1-1</span>
-        <button type="button" class="hud-hearts" id="hud-hearts" title="生命值（点击回复）" aria-label="生命值">
-            <svg class="px-heart" viewBox="0 0 9 8" shape-rendering="crispEdges"><rect x="1" y="0" width="2" height="1" fill="#ff5d73"/><rect x="6" y="0" width="2" height="1" fill="#ff5d73"/><rect x="0" y="1" width="4" height="2" fill="#ff5d73"/><rect x="5" y="1" width="4" height="2" fill="#ff5d73"/><rect x="1" y="1" width="1" height="1" fill="#ffb3be"/><rect x="0" y="3" width="9" height="1" fill="#ff5d73"/><rect x="1" y="4" width="7" height="1" fill="#e03550"/><rect x="2" y="5" width="5" height="1" fill="#e03550"/><rect x="3" y="6" width="3" height="1" fill="#b31b35"/><rect x="4" y="7" width="1" height="1" fill="#b31b35"/></svg>
-            <svg class="px-heart" viewBox="0 0 9 8" shape-rendering="crispEdges"><rect x="1" y="0" width="2" height="1" fill="#ff5d73"/><rect x="6" y="0" width="2" height="1" fill="#ff5d73"/><rect x="0" y="1" width="4" height="2" fill="#ff5d73"/><rect x="5" y="1" width="4" height="2" fill="#ff5d73"/><rect x="1" y="1" width="1" height="1" fill="#ffb3be"/><rect x="0" y="3" width="9" height="1" fill="#ff5d73"/><rect x="1" y="4" width="7" height="1" fill="#e03550"/><rect x="2" y="5" width="5" height="1" fill="#e03550"/><rect x="3" y="6" width="3" height="1" fill="#b31b35"/><rect x="4" y="7" width="1" height="1" fill="#b31b35"/></svg>
-            <svg class="px-heart" viewBox="0 0 9 8" shape-rendering="crispEdges"><rect x="1" y="0" width="2" height="1" fill="#ff5d73"/><rect x="6" y="0" width="2" height="1" fill="#ff5d73"/><rect x="0" y="1" width="4" height="2" fill="#ff5d73"/><rect x="5" y="1" width="4" height="2" fill="#ff5d73"/><rect x="1" y="1" width="1" height="1" fill="#ffb3be"/><rect x="0" y="3" width="9" height="1" fill="#ff5d73"/><rect x="1" y="4" width="7" height="1" fill="#e03550"/><rect x="2" y="5" width="5" height="1" fill="#e03550"/><rect x="3" y="6" width="3" height="1" fill="#b31b35"/><rect x="4" y="7" width="1" height="1" fill="#b31b35"/></svg>
-        </button>
-        <span class="hud-coin" title="已收集像素金币">
-            <svg class="px-coin-svg" viewBox="0 0 10 12" shape-rendering="crispEdges" aria-hidden="true">
-              <rect x="2" y="0" width="6" height="1" fill="#fff1a8"/>
-              <rect x="1" y="1" width="8" height="10" fill="#ffcc33"/>
-              <rect x="0" y="2" width="10" height="8" fill="#ffcc33"/>
-              <rect x="4" y="3" width="2" height="6" fill="#fff1a8"/>
-              <rect x="8" y="2" width="1" height="8" fill="#c48a12"/>
-              <rect x="2" y="11" width="6" height="1" fill="#996300"/>
+    <nav class="world-menu" aria-label="站点导航">
+        <a href="{{ site.baseurl }}/#world-start" data-jump="1-1" data-go-stage="0" class="is-active">
+            <svg class="wm-svg" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true">
+                <polygon points="1,6 6,1 11,6" fill="#e05a47"/>
+                <rect x="2" y="6" width="8" height="5" fill="#f5e6c8"/>
+                <rect x="5" y="8" width="2" height="3" fill="#6e442c"/>
             </svg>
-            <span>x</span><b id="hud-coins">00</b>
+            <span data-i18n="menu.home">首页</span>
+        </a>
+        <a href="{{ site.baseurl }}/#world-profile" data-jump="1-2" data-go-stage="1">
+            <svg class="wm-svg" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="4" y="1" width="4" height="4" fill="#f7cfa8"/>
+                <rect x="4" y="1" width="4" height="1" fill="#232c4d"/>
+                <rect x="2" y="6" width="8" height="5" fill="#447cd4"/>
+                <rect x="4" y="6" width="4" height="1" fill="#ffd24a"/>
+            </svg>
+            <span data-i18n="menu.about">关于</span>
+        </a>
+        <a href="{{ site.baseurl }}/#world-papers" data-jump="1-3" data-go-stage="2">
+            <svg class="wm-svg" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="4" y="1" width="4" height="1" fill="#d9c6a0"/>
+                <rect x="5" y="2" width="2" height="3" fill="#e8f6ff"/>
+                <polygon points="2,10 5,5 7,5 10,10" fill="#5fd9ff"/>
+                <rect x="2" y="10" width="8" height="1" fill="#2cb5e8"/>
+                <rect x="4" y="8" width="2" height="1" fill="#ffffff"/>
+            </svg>
+            <span data-i18n="menu.research">研究</span>
+        </a>
+        <a href="{{ site.baseurl }}/#world-quests" data-jump="1-4" data-go-stage="3">
+            <svg class="wm-svg" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="1" y="2" width="10" height="8" fill="#8c5a3c"/>
+                <rect x="2" y="3" width="8" height="6" fill="#7ec2ff"/>
+                <rect x="7" y="4" width="2" height="2" fill="#ffe478"/>
+                <polygon points="2,9 5,6 8,9" fill="#5dae3a"/>
+                <polygon points="6,9 8,7 10,9" fill="#3c7827"/>
+            </svg>
+            <span data-i18n="menu.notes">随笔</span>
+        </a>
+        <a href="{{ site.baseurl }}/#world-contact" data-jump="1-5" data-go-stage="4">
+            <svg class="wm-svg" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="1" y="2" width="10" height="8" fill="#f5e6c8"/>
+                <polygon points="1,2 6,7 11,2" fill="#e2cfa6"/>
+                <rect x="5" y="5" width="2" height="2" fill="#e23b4a"/>
+            </svg>
+            <span data-i18n="menu.contact">联系</span>
+        </a>
+    </nav>
+    <div class="hud" aria-label="状态栏">
+        <span class="hud-chip" id="hud-world" title="当前区域">1-1</span>
+        <span class="hud-coin-pill" title="已收集像素金币">
+            <svg class="px-coin-ico" viewBox="0 0 10 10" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="2" y="1" width="6" height="8" fill="#ffd24a"/>
+                <rect x="3" y="0" width="4" height="10" fill="#ffd24a"/>
+                <rect x="3" y="2" width="2" height="6" fill="#fff7a6"/>
+                <rect x="5" y="2" width="2" height="6" fill="#d48d1b"/>
+            </svg>
+            <b id="hud-coins">00</b>
         </span>
-        <span class="hud-meter" data-label="EXP"><b><i class="mp" id="hud-exp" style="width: 15%"></i></b></span>
-        <button type="button" class="hud-sfx" id="hud-sfx" aria-pressed="false" title="开启或关闭 8-bit 音效">♪ OFF</button>
+        <button type="button" class="hud-sfx-btn" id="hud-sfx" aria-label="8-bit 音效开关" title="切换 8-bit 音效">♪ OFF</button>
+        <button type="button" class="lang-toggle" id="lang-toggle" aria-label="切换中英文">EN</button>
+        <a id="search" class="dosearch" role="button" aria-label="搜索">
+            <svg class="icon-search"><use xlink:href="#icon-search"></use></svg>
+        </a>
+        <button type="button" class="hud-hearts" id="hud-hearts" title="生命值（点击让主角跳跃欢呼）" aria-label="生命值">
+            <svg class="px-heart" viewBox="0 0 11 10" shape-rendering="crispEdges">
+                <rect x="2" y="0" width="3" height="1" fill="#3b1725"/><rect x="6" y="0" width="3" height="1" fill="#3b1725"/>
+                <rect x="1" y="1" width="1" height="1" fill="#3b1725"/><rect x="5" y="1" width="1" height="1" fill="#3b1725"/><rect x="9" y="1" width="1" height="1" fill="#3b1725"/>
+                <rect x="0" y="2" width="1" height="3" fill="#3b1725"/><rect x="10" y="2" width="1" height="3" fill="#3b1725"/>
+                <rect x="1" y="5" width="1" height="1" fill="#3b1725"/><rect x="9" y="5" width="1" height="1" fill="#3b1725"/>
+                <rect x="2" y="6" width="1" height="1" fill="#3b1725"/><rect x="8" y="6" width="1" height="1" fill="#3b1725"/>
+                <rect x="3" y="7" width="1" height="1" fill="#3b1725"/><rect x="7" y="7" width="1" height="1" fill="#3b1725"/>
+                <rect x="4" y="8" width="1" height="1" fill="#3b1725"/><rect x="6" y="8" width="1" height="1" fill="#3b1725"/>
+                <rect x="5" y="9" width="1" height="1" fill="#3b1725"/>
+                <rect x="2" y="1" width="3" height="1" fill="#ff4d5e"/><rect x="6" y="1" width="3" height="1" fill="#ff4d5e"/>
+                <rect x="1" y="2" width="9" height="3" fill="#ff4d5e"/>
+                <rect x="2" y="5" width="7" height="1" fill="#e0283b"/>
+                <rect x="3" y="6" width="5" height="1" fill="#e0283b"/>
+                <rect x="4" y="7" width="3" height="1" fill="#b81b2c"/>
+                <rect x="5" y="8" width="1" height="1" fill="#b81b2c"/>
+                <rect x="2" y="2" width="2" height="1" fill="#ffffff"/>
+                <rect x="2" y="3" width="1" height="1" fill="#ffb8c1"/>
+            </svg>
+            <svg class="px-heart" viewBox="0 0 11 10" shape-rendering="crispEdges">
+                <rect x="2" y="0" width="3" height="1" fill="#3b1725"/><rect x="6" y="0" width="3" height="1" fill="#3b1725"/>
+                <rect x="1" y="1" width="1" height="1" fill="#3b1725"/><rect x="5" y="1" width="1" height="1" fill="#3b1725"/><rect x="9" y="1" width="1" height="1" fill="#3b1725"/>
+                <rect x="0" y="2" width="1" height="3" fill="#3b1725"/><rect x="10" y="2" width="1" height="3" fill="#3b1725"/>
+                <rect x="1" y="5" width="1" height="1" fill="#3b1725"/><rect x="9" y="5" width="1" height="1" fill="#3b1725"/>
+                <rect x="2" y="6" width="1" height="1" fill="#3b1725"/><rect x="8" y="6" width="1" height="1" fill="#3b1725"/>
+                <rect x="3" y="7" width="1" height="1" fill="#3b1725"/><rect x="7" y="7" width="1" height="1" fill="#3b1725"/>
+                <rect x="4" y="8" width="1" height="1" fill="#3b1725"/><rect x="6" y="8" width="1" height="1" fill="#3b1725"/>
+                <rect x="5" y="9" width="1" height="1" fill="#3b1725"/>
+                <rect x="2" y="1" width="3" height="1" fill="#ff4d5e"/><rect x="6" y="1" width="3" height="1" fill="#ff4d5e"/>
+                <rect x="1" y="2" width="9" height="3" fill="#ff4d5e"/>
+                <rect x="2" y="5" width="7" height="1" fill="#e0283b"/>
+                <rect x="3" y="6" width="5" height="1" fill="#e0283b"/>
+                <rect x="4" y="7" width="3" height="1" fill="#b81b2c"/>
+                <rect x="5" y="8" width="1" height="1" fill="#b81b2c"/>
+                <rect x="2" y="2" width="2" height="1" fill="#ffffff"/>
+                <rect x="2" y="3" width="1" height="1" fill="#ffb8c1"/>
+            </svg>
+            <svg class="px-heart" viewBox="0 0 11 10" shape-rendering="crispEdges">
+                <rect x="2" y="0" width="3" height="1" fill="#3b1725"/><rect x="6" y="0" width="3" height="1" fill="#3b1725"/>
+                <rect x="1" y="1" width="1" height="1" fill="#3b1725"/><rect x="5" y="1" width="1" height="1" fill="#3b1725"/><rect x="9" y="1" width="1" height="1" fill="#3b1725"/>
+                <rect x="0" y="2" width="1" height="3" fill="#3b1725"/><rect x="10" y="2" width="1" height="3" fill="#3b1725"/>
+                <rect x="1" y="5" width="1" height="1" fill="#3b1725"/><rect x="9" y="5" width="1" height="1" fill="#3b1725"/>
+                <rect x="2" y="6" width="1" height="1" fill="#3b1725"/><rect x="8" y="6" width="1" height="1" fill="#3b1725"/>
+                <rect x="3" y="7" width="1" height="1" fill="#3b1725"/><rect x="7" y="7" width="1" height="1" fill="#3b1725"/>
+                <rect x="4" y="8" width="1" height="1" fill="#3b1725"/><rect x="6" y="8" width="1" height="1" fill="#3b1725"/>
+                <rect x="5" y="9" width="1" height="1" fill="#3b1725"/>
+                <rect x="2" y="1" width="3" height="1" fill="#ff4d5e"/><rect x="6" y="1" width="3" height="1" fill="#ff4d5e"/>
+                <rect x="1" y="2" width="9" height="3" fill="#ff4d5e"/>
+                <rect x="2" y="5" width="7" height="1" fill="#e0283b"/>
+                <rect x="3" y="6" width="5" height="1" fill="#e0283b"/>
+                <rect x="4" y="7" width="3" height="1" fill="#b81b2c"/>
+                <rect x="5" y="8" width="1" height="1" fill="#b81b2c"/>
+                <rect x="2" y="2" width="2" height="1" fill="#ffffff"/>
+                <rect x="2" y="3" width="1" height="1" fill="#ffb8c1"/>
+            </svg>
+        </button>
     </div>
-    <button type="button" class="lang-toggle" id="lang-toggle" aria-label="切换中英文">EN</button>
-    <a id="search" class="dosearch" role="button" aria-label="搜索">
-        <svg class="icon-search"><use xlink:href="#icon-search"></use></svg>
-    </a>
 </header>
 
 <div id="mask" class="overlay"></div>

@@ -1,108 +1,193 @@
-<div class="stage-inner">
-  <div class="stage-head">
-    <div class="stage-mascot">
-      {% include pixel-sprite.html theme="scholar" %}
-      <span class="pixel-nameplate" data-i18n="npc.scholar">学者</span>
-    </div>
-    <h2 class="quest-heading"><span class="qh-kicker">WORLD 1-2 · ARCHIVE</span><span data-i18n="stage2.title">学者档案与装备栏</span></h2>
-    <button type="button" class="q-block" data-coin-reward="1" data-tip="发现研究卷轴 +1 COIN!" aria-label="顶一下问号砖块">
-      <b>?</b>
-    </button>
+<div class="stage-inner stage-about-inner">
+  <div class="stage-header-block">
+    <h2 class="quest-heading">
+      <span data-i18n="stage2.title">关于我 · About Me</span>
+    </h2>
+    <p class="stage-subtitle" data-i18n="sheet.kicker">地球人 · 还在活着 · 专注计算成像、快照压缩光谱重建与深度展开网络。</p>
   </div>
 
-  <div class="pixel-sheet">
-    <div class="pixel-window-bar">
-      <span>CHARACTER SHEET · LEI LIU</span>
-      <span>RESEARCHER | O^O</span>
-    </div>
-    <div class="pixel-sheet-body">
-      <div class="pixel-portrait">
-        <div class="portrait-frame">
-          <img src="{{ '/assets/img/uploads/profile.png' | prepend: site.baseurl }}" alt="Lei Liu">
-        </div>
-        <span class="pixel-nameplate">LEI LIU</span>
-      </div>
-      <div class="pixel-sheet-text">
-        <div class="sheet-top-row">
+  <div class="about-parchment-grid">
+    <!-- Left Column: Scholar Identity + Tech Arsenal -->
+    <div class="about-col-left">
+      <article class="parchment-card about-identity-card">
+        <div class="parchment-card-head">
+          <svg class="px-ico-lg" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+            <polygon points="1,6 8,2 15,6 8,10" fill="#2b3354"/>
+            <polygon points="2,6 8,3 14,6 8,9" fill="#3f528c"/>
+            <rect x="4" y="9" width="8" height="4" fill="#2b3354"/>
+            <rect x="13" y="6" width="1" height="6" fill="#ffd24a"/>
+            <rect x="12" y="11" width="3" height="2" fill="#ffd24a"/>
+          </svg>
           <div>
-            <p class="hero-kicker" data-i18n="sheet.kicker">关于我 · 地球在线科研中</p>
-            <h1>Lei Liu</h1>
-          </div>
-          <ul class="pixel-bars" aria-label="角色属性">
-            <li><span>HP</span><b><i class="hp"></i></b><em>100/100</em></li>
-            <li><span>MP</span><b><i class="mp"></i></b><em>88/100</em></li>
-            <li><span>EXP</span><b><i class="exp" id="sheet-exp"></i></b><em>LV.24</em></li>
-          </ul>
-        </div>
-
-        <dl class="pixel-facts">
-          <dt data-i18n="fact.focus">主攻</dt>
-          <dd data-i18n="fact.focus.v">计算成像 · 光谱重建 · 深度学习</dd>
-          <dt data-i18n="fact.motto">信念</dt>
-          <dd data-i18n="fact.motto.v">熟能生巧 · 持续学习 · 每天成长</dd>
-        </dl>
-
-        <div class="interest-grid" aria-label="研究方向">
-          <button type="button" class="interest-card is-active" data-desc="计算成像：用算法与物理模型协同突破传统光学采集极限。" data-desc-en="Computational imaging: algorithms and physical models together, past the limits of conventional optics.">
-            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="1" y="1" width="10" height="7" fill="#3a446c"/><rect x="2" y="2" width="8" height="5" fill="#12162b"/><rect x="3" y="3" width="6" height="3" fill="#7ee0ff"/><rect x="5" y="8" width="2" height="2" fill="#9aa6c8"/><rect x="3" y="10" width="6" height="1" fill="#c5cee0"/></svg>
-            <strong>Computational Imaging</strong>
-          </button>
-          <button type="button" class="interest-card" data-desc="光谱重建：从编码快照观测中恢复高维光谱立方体。" data-desc-en="Spectral reconstruction: recover a high-dimensional spectral cube from coded snapshot measurements.">
-            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="1" width="2" height="2" fill="#f6f1dd"/><rect x="4" y="3" width="4" height="2" fill="#7ee0ff"/><rect x="3" y="5" width="6" height="2" fill="#7dffb3"/><rect x="2" y="7" width="8" height="2" fill="#ffcc33"/><rect x="1" y="9" width="10" height="2" fill="#ff5d73"/></svg>
-            <strong>Spectral Reconstruction</strong>
-          </button>
-          <button type="button" class="interest-card" data-desc="深度学习应用：结合深度展开与傅里叶动态特征做端到端求解。" data-desc-en="Deep learning: end-to-end solvers that combine deep unfolding with dynamic Fourier features.">
-            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="0" width="2" height="2" fill="#ffcc33"/><rect x="2" y="2" width="8" height="7" fill="#7ee0ff"/><rect x="3" y="4" width="2" height="2" fill="#12162b"/><rect x="7" y="4" width="2" height="2" fill="#12162b"/><rect x="4" y="7" width="4" height="1" fill="#12162b"/><rect x="3" y="9" width="6" height="2" fill="#3a446c"/></svg>
-            <strong>Deep Learning Apps</strong>
-          </button>
-        </div>
-        <p class="pixel-say" id="interest-desc">计算成像：用算法与物理模型协同突破传统光学采集极限。<i class="caret" aria-hidden="true"></i></p>
-
-        <div class="zelda-inventory" aria-label="技术栈装备栏">
-          <div class="inv-head">
-            <span data-i18n="inv.title">装备栏</span>
-            <span class="inv-hint" data-i18n="inv.hint">点击装备查看属性</span>
-          </div>
-          <div class="inv-slots">
-            <button type="button" class="inv-slot is-selected" data-name="Python" data-lv="LV.99" data-role="主武器 · 科学计算与实验脚本" data-role-en="Main weapon · scientific computing and experiment scripts">
-              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="1" width="5" height="4" fill="#3776ab"/><rect x="4" y="2" width="1" height="1" fill="#fff"/><rect x="2" y="4" width="4" height="3" fill="#3776ab"/><rect x="4" y="7" width="5" height="4" fill="#ffcc33"/><rect x="6" y="5" width="4" height="3" fill="#ffcc33"/><rect x="7" y="9" width="1" height="1" fill="#12162b"/></svg>
-              <span class="slot-label">Python</span>
-            </button>
-            <button type="button" class="inv-slot" data-name="PyTorch" data-lv="LV.95" data-role="核心法杖 · 深度展开网络与傅里叶建模" data-role-en="Core staff · deep unfolding and Fourier modeling">
-              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="1" width="2" height="2" fill="#ff5d73"/><rect x="3" y="3" width="6" height="3" fill="#ee4c2c"/><rect x="2" y="5" width="8" height="4" fill="#ee4c2c"/><rect x="4" y="6" width="4" height="3" fill="#ffcc33"/><rect x="3" y="9" width="6" height="2" fill="#ee4c2c"/></svg>
-              <span class="slot-label">PyTorch</span>
-            </button>
-            <button type="button" class="inv-slot" data-name="MATLAB" data-lv="LV.88" data-role="光学盾牌 · 矩阵仿真与光谱指标评测" data-role-en="Optic shield · matrix simulation and spectral metrics">
-              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="2" width="2" height="8" fill="#0076a8"/><rect x="4" y="4" width="4" height="5" fill="#2aa3d8"/><rect x="2" y="6" width="8" height="3" fill="#f08030"/><rect x="1" y="9" width="10" height="2" fill="#ffcc33"/></svg>
-              <span class="slot-label">MATLAB</span>
-            </button>
-            <button type="button" class="inv-slot" data-name="LaTeX" data-lv="LV.92" data-role="古代卷轴 · IEEE 论文排版与公式推导" data-role-en="Ancient scroll · IEEE typesetting and equations">
-              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="1" width="8" height="10" fill="#f6f1dd"/><rect x="3" y="3" width="6" height="1" fill="#008080"/><rect x="3" y="5" width="6" height="1" fill="#3a446c"/><rect x="3" y="7" width="4" height="1" fill="#3a446c"/><rect x="8" y="7" width="2" height="3" fill="#ffcc33"/></svg>
-              <span class="slot-label">LaTeX</span>
-            </button>
-            <button type="button" class="inv-slot" data-name="Overleaf" data-lv="LV.90" data-role="联机水晶 · 多人协作撰写与实时预览" data-role-en="Party crystal · collaborative writing and live preview">
-              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="1" width="4" height="2" fill="#7dffb3"/><rect x="2" y="3" width="8" height="5" fill="#47a141"/><rect x="4" y="4" width="4" height="3" fill="#b7ffd6"/><rect x="3" y="8" width="6" height="2" fill="#2e7d32"/><rect x="5" y="10" width="2" height="1" fill="#1b5e20"/></svg>
-              <span class="slot-label">Overleaf</span>
-            </button>
-            <button type="button" class="inv-slot" data-name="Docker" data-lv="LV.85" data-role="空间胶囊 · 复现环境打包与跨机部署" data-role-en="Capsule · packaged environments that run anywhere">
-              <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="3" width="2" height="2" fill="#7ee0ff"/><rect x="6" y="3" width="2" height="2" fill="#7ee0ff"/><rect x="1" y="5" width="10" height="4" fill="#2496ed"/><rect x="2" y="9" width="8" height="2" fill="#1b6cb0"/><rect x="9" y="6" width="1" height="1" fill="#fff"/></svg>
-              <span class="slot-label">Docker</span>
-            </button>
-          </div>
-          <div class="inv-detail" id="inv-detail">
-            <strong id="inv-name">Python [LV.99]</strong>
-            <span id="inv-role">主武器 · 科学计算与实验脚本</span>
+            <h3 class="parchment-card-title" data-i18n="about.profileTitle">学者档案 · Scholar Profile</h3>
+            <span class="parchment-card-sub">ORCID: 0000-0001-9271-3304</span>
           </div>
         </div>
 
-        <ul class="pixel-items" aria-label="外部传送门">
-          <li><a href="https://github.com/liu-lei98" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="https://orcid.org/0000-0001-9271-3304" target="_blank" rel="noopener">ORCID</a></li>
-          <li><a href="https://ieeexplore.ieee.org/author/37085473839" target="_blank" rel="noopener">IEEE Xplore</a></li>
-          <li><a href="https://space.bilibili.com/3213366" target="_blank" rel="noopener">Bilibili</a></li>
-          <li><a href="mailto:liu_lei_98@163.com">Email</a></li>
-        </ul>
-      </div>
+        <div class="identity-main-row">
+          <div class="portrait-frame portrait-pixel-art" title="Lei Liu · 像素学者与白猫伙伴">
+            <svg viewBox="0 0 32 32" shape-rendering="crispEdges" aria-label="Lei Liu 像素学者立绘">
+              <!-- Sky & Sun Window Backdrop -->
+              <rect x="0" y="0" width="32" height="32" fill="#70b2f6"/>
+              <rect x="0" y="14" width="32" height="10" fill="#aad9fe"/>
+              <rect x="22" y="4" width="6" height="6" fill="#fff7a6"/>
+              <rect x="3" y="7" width="8" height="3" fill="#ffffff"/>
+              <!-- Distant Hills & Grass Ground -->
+              <polygon points="0,24 10,17 20,24" fill="#7ea5d8"/>
+              <polygon points="14,24 24,18 32,24" fill="#648bc2"/>
+              <rect x="0" y="24" width="32" height="3" fill="#92e252"/>
+              <rect x="0" y="27" width="32" height="5" fill="#9c6238"/>
+              <!-- Scholar Boy Portrait -->
+              <rect x="8" y="6" width="10" height="3" fill="#232c4d"/>
+              <rect x="7" y="8" width="12" height="4" fill="#2f3b66"/>
+              <rect x="8" y="12" width="10" height="6" fill="#ffe0c2"/>
+              <rect x="10" y="14" width="2" height="2" fill="#232c4d"/>
+              <rect x="15" y="14" width="2" height="2" fill="#232c4d"/>
+              <rect x="10" y="14" width="1" height="1" fill="#ffffff"/>
+              <rect x="15" y="14" width="1" height="1" fill="#ffffff"/>
+              <rect x="12" y="17" width="3" height="1" fill="#d48a6a"/>
+              <!-- Backpack & Blue Tunic + Gold Scarf -->
+              <rect x="5" y="18" width="3" height="7" fill="#a66d3b"/>
+              <rect x="8" y="18" width="10" height="8" fill="#3b6fd4"/>
+              <rect x="8" y="18" width="10" height="2" fill="#ffd24a"/>
+              <rect x="10" y="20" width="6" height="5" fill="#5c96eb"/>
+              <!-- White Cat Companion on Right -->
+              <rect x="21" y="19" width="2" height="2" fill="#ffffff"/>
+              <rect x="26" y="19" width="2" height="2" fill="#ffffff"/>
+              <rect x="21" y="21" width="7" height="6" fill="#ffffff"/>
+              <rect x="22" y="22" width="1" height="2" fill="#232c4d"/>
+              <rect x="26" y="22" width="1" height="2" fill="#232c4d"/>
+              <rect x="24" y="24" width="1" height="1" fill="#ff6b7a"/>
+            </svg>
+          </div>
+          <div class="identity-meta">
+            <div class="identity-name-line">
+              <strong>Lei Liu</strong>
+              <span class="role-pill" data-i18n="hero.kicker">计算成像研究者</span>
+            </div>
+            <dl class="pixel-facts">
+              <dt data-i18n="fact.focus">主攻</dt>
+              <dd data-i18n="fact.focus.v">计算成像 · 光谱重建 · 深度学习</dd>
+              <dt data-i18n="fact.motto">信念</dt>
+              <dd data-i18n="fact.motto.v">熟能生巧 · 持续学习 · 每天成长</dd>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <article class="parchment-card about-arsenal-card" aria-label="技术栈工具箱">
+        <div class="inv-head">
+          <span class="inv-title-wrap">
+            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="5" y="1" width="2" height="2" fill="#5fd9ff"/>
+              <rect x="3" y="3" width="6" height="6" fill="#3b70c4"/>
+              <rect x="4" y="4" width="4" height="4" fill="#8ce3ff"/>
+              <rect x="5" y="9" width="2" height="2" fill="#264e94"/>
+            </svg>
+            <strong data-i18n="inv.title">科研工具箱 · Tech Stack</strong>
+          </span>
+          <span class="inv-hint" data-i18n="inv.hint">点击图标查看说明</span>
+        </div>
+        <div class="inv-slots">
+          <button type="button" class="inv-slot is-selected" data-name="Python" data-lv="LV.99" data-role="主力语言 · 科学计算、数据处理与实验自动化" data-role-en="Core language · scientific computing, data pipelines, and experiments">
+            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="1" width="5" height="4" fill="#3776ab"/><rect x="4" y="2" width="1" height="1" fill="#fff"/><rect x="2" y="4" width="4" height="3" fill="#3776ab"/><rect x="4" y="7" width="5" height="4" fill="#f0b429"/><rect x="6" y="5" width="4" height="3" fill="#f0b429"/><rect x="7" y="9" width="1" height="1" fill="#232c4d"/></svg>
+            <span class="slot-label">Python</span>
+          </button>
+          <button type="button" class="inv-slot" data-name="PyTorch" data-lv="LV.95" data-role="核心框架 · 深度展开网络与动态傅里叶算子建模" data-role-en="Deep learning · deep unfolding networks and dynamic Fourier operators">
+            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="1" width="2" height="2" fill="#ff5d73"/><rect x="3" y="3" width="6" height="3" fill="#ee4c2c"/><rect x="2" y="5" width="8" height="4" fill="#ee4c2c"/><rect x="4" y="6" width="4" height="3" fill="#ffd24a"/><rect x="3" y="9" width="6" height="2" fill="#ee4c2c"/></svg>
+            <span class="slot-label">PyTorch</span>
+          </button>
+          <button type="button" class="inv-slot" data-name="MATLAB" data-lv="LV.88" data-role="光学仿真 · CASSI 编码孔径仿真与光谱指标评测" data-role-en="Optics simulation · CASSI coded aperture modeling and metrics">
+            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="5" y="2" width="2" height="8" fill="#0076a8"/><rect x="4" y="4" width="4" height="5" fill="#2aa3d8"/><rect x="2" y="6" width="8" height="3" fill="#f08030"/><rect x="1" y="9" width="10" height="2" fill="#f0b429"/></svg>
+            <span class="slot-label">MATLAB</span>
+          </button>
+          <button type="button" class="inv-slot" data-name="LaTeX" data-lv="LV.92" data-role="学术排版 · 期刊论文撰写、公式推导与图表排版" data-role-en="Academic typesetting · journal manuscripts and mathematical proofs">
+            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="2" y="1" width="8" height="10" fill="#fffdf7"/><rect x="3" y="3" width="6" height="1" fill="#008080"/><rect x="3" y="5" width="6" height="1" fill="#2b3354"/><rect x="3" y="7" width="4" height="1" fill="#2b3354"/><rect x="7" y="7" width="2" height="3" fill="#e09f2d"/></svg>
+            <span class="slot-label">LaTeX</span>
+          </button>
+          <button type="button" class="inv-slot" data-name="Overleaf" data-lv="LV.90" data-role="协作平台 · 论文多人协同写作与版本管理" data-role-en="Collaboration · co-authoring manuscripts and version tracking">
+            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="1" width="4" height="2" fill="#7bd955"/><rect x="2" y="3" width="8" height="5" fill="#47a141"/><rect x="4" y="4" width="4" height="3" fill="#c8f7b4"/><rect x="3" y="8" width="6" height="2" fill="#2e7d32"/></svg>
+            <span class="slot-label">Overleaf</span>
+          </button>
+          <button type="button" class="inv-slot" data-name="Docker" data-lv="LV.85" data-role="环境容器 · 实验环境打包与可复现训练部署" data-role-en="Reproducibility · containerized training environments">
+            <svg class="px-ico" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><rect x="3" y="3" width="2" height="2" fill="#5fd9ff"/><rect x="6" y="3" width="2" height="2" fill="#5fd9ff"/><rect x="1" y="5" width="10" height="4" fill="#2496ed"/><rect x="2" y="9" width="8" height="2" fill="#1b6cb0"/><rect x="9" y="6" width="1" height="1" fill="#fff"/></svg>
+            <span class="slot-label">Docker</span>
+          </button>
+        </div>
+        <div class="inv-detail" id="inv-detail">
+          <strong id="inv-name">Python [LV.99]</strong>
+          <span id="inv-role">主力语言 · 科学计算、数据处理与实验自动化</span>
+        </div>
+      </article>
     </div>
+
+    <!-- Right Column: Research Interests Panel -->
+    <article class="parchment-card about-interests-card" aria-label="研究方向">
+      <div class="parchment-card-head">
+        <svg class="px-ico-lg" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+          <rect x="6" y="1" width="4" height="2" fill="#6e442c"/>
+          <rect x="7" y="3" width="2" height="3" fill="#d9f4ff"/>
+          <polygon points="3,14 6,6 10,6 13,14" fill="#4ec9ff"/>
+          <rect x="3" y="14" width="10" height="1" fill="#2678b5"/>
+          <rect x="6" y="10" width="2" height="2" fill="#ffffff"/>
+        </svg>
+        <div>
+          <h3 class="parchment-card-title" data-i18n="about.interestsTitle">研究方向 · Research Interests</h3>
+          <span class="parchment-card-sub" data-i18n="about.interestsSub">点击方向卡片查看研究内容</span>
+        </div>
+      </div>
+
+      <div class="interest-grid">
+        <button type="button" class="interest-card is-active" data-desc="计算成像 (Computational Imaging)：将物理光学编码退化模型与先验重建算法深度耦合，突破传统相机在光谱与时间维度的采样极限。" data-desc-en="Computational Imaging: jointly modeling optical coding physics and learned priors to surpass traditional sensing limits.">
+          <span class="interest-ico-box">
+            <svg class="px-ico-lg" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="2" y="2" width="9" height="9" fill="#3b70c4"/>
+              <rect x="4" y="4" width="5" height="5" fill="#99e6ff"/>
+              <rect x="5" y="5" width="2" height="2" fill="#ffffff"/>
+              <rect x="10" y="10" width="2" height="2" fill="#6e442c"/>
+              <rect x="12" y="12" width="3" height="3" fill="#5a3822"/>
+            </svg>
+          </span>
+          <span class="interest-card-copy">
+            <strong>Computational Imaging</strong>
+            <small data-i18n="interest.ci">计算成像与光学编码建模</small>
+          </span>
+        </button>
+
+        <button type="button" class="interest-card" data-desc="光谱重建 (Spectral Reconstruction)：围绕快照压缩光谱成像 (CASSI)，从单次二维编码测量中高保真恢复数十通道的高光谱立方体。" data-desc-en="Spectral Reconstruction: high-fidelity recovery of 3D hyperspectral data cubes from single 2D coded snapshot measurements (CASSI).">
+          <span class="interest-ico-box">
+            <svg class="px-ico-lg" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+              <polygon points="8,1 14,4 14,11 8,15 2,11 2,4" fill="#2b3354"/>
+              <polygon points="8,2 13,5 8,8 3,5" fill="#7ce4ff"/>
+              <polygon points="3,6 8,9 8,14 3,11" fill="#447cd4"/>
+              <polygon points="13,6 13,11 8,14 8,9" fill="#5dae3a"/>
+            </svg>
+          </span>
+          <span class="interest-card-copy">
+            <strong>Spectral Reconstruction</strong>
+            <small data-i18n="interest.sr">快照压缩光谱成像 (CASSI)</small>
+          </span>
+        </button>
+
+        <button type="button" class="interest-card" data-desc="深度展开与频域学习 (Deep Unfolding &amp; Fourier Networks)：结合退化估计、动态傅里叶表征与近端梯度展开，兼顾物理可解释性与重建精度。" data-desc-en="Deep Unfolding &amp; Fourier Networks: combining degradation learning, dynamic Fourier features, and interpretable optimization unfolding.">
+          <span class="interest-ico-box">
+            <svg class="px-ico-lg" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="7" y="1" width="2" height="14" fill="#f0b429"/>
+              <rect x="1" y="7" width="14" height="2" fill="#f0b429"/>
+              <rect x="4" y="4" width="8" height="8" fill="#ffd24a"/>
+              <rect x="6" y="6" width="4" height="4" fill="#ffffff"/>
+              <rect x="2" y="2" width="2" height="2" fill="#5fd9ff"/>
+              <rect x="12" y="2" width="2" height="2" fill="#ff5d73"/>
+            </svg>
+          </span>
+          <span class="interest-card-copy">
+            <strong>Deep Unfolding &amp; Vision</strong>
+            <small data-i18n="interest.du">退化感知深度展开与傅里叶网络</small>
+          </span>
+        </button>
+      </div>
+
+      <p class="pixel-say" id="interest-desc">计算成像 (Computational Imaging)：将物理光学编码退化模型与先验重建算法深度耦合，突破传统相机在光谱与时间维度的采样极限。<i class="caret" aria-hidden="true"></i></p>
+    </article>
   </div>
 </div>
