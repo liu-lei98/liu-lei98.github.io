@@ -3535,21 +3535,38 @@ body.is-world-pager .runner-dock {
   }
 }
 
-.hud-sfx-btn {
-  padding: 5px 8px;
-  background: rgba(246, 231, 200, 0.92);
-  color: #2a3358;
-  border: 2px solid #e0c98a;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 11px;
-  cursor: pointer;
-  line-height: 1;
+// Nighttime mode (auto-enabled 18:00 - 05:59 from local clock)
+body.is-night {
+  .px-world-art {
+    background: linear-gradient(#0f1733 0%, #1d2b59 52%, #2f4480 82%, #3b5291 100%);
+  }
 
-  &.is-on {
-    background: #ffe9b8;
-    border-color: #d4a84a;
-    color: #6a4a12;
+  .bar-header.world-top {
+    background: linear-gradient(180deg, rgba(15, 23, 51, 0.72), rgba(15, 23, 51, 0.16));
+  }
+
+  .world-menu a {
+    color: #eaf2ff;
+
+    &.is-active,
+    &:hover {
+      color: #2a3358;
+    }
+  }
+
+  .stage-subtitle,
+  .hero .hero-overworld-box .hero-kicker,
+  .hero .hero-overworld-box .description {
+    color: #eef5ff;
+    text-shadow: 2px 2px 0 #131b3a;
+  }
+
+  .hero-divider {
+    color: #ffd24a;
+
+    span {
+      background: rgba(238, 245, 255, 0.4);
+    }
   }
 }
 

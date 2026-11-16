@@ -1,12 +1,5 @@
 (function () {
-  var SFX_KEY = "lei_pixel_sfx";
   var COIN_KEY = "lei_pixel_coins";
-  var sfxOn = false;
-  var audioCtx = null;
-
-  try {
-    sfxOn = sessionStorage.getItem(SFX_KEY) === "1";
-  } catch (e) {}
 
   var coins = 0;
   try {
@@ -237,64 +230,6 @@
     try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
   }
 
-  function ensureAudio() {
-    if (!sfxOn) return null;
-    if (!audioCtx) {
-      var Ctx = window.AudioContext || window.webkitAudioContext;
-      if (Ctx) audioCtx = new Ctx();
-    }
-    if (audioCtx && audioCtx.state === "suspended") {
-      audioCtx.resume();
-    }
-    return audioCtx;
-  }
-
-  function playTone(notes) {
-    var ctx = ensureAudio();
-    if (!ctx) return;
-    var t = ctx.currentTime;
-    for (var i = 0; i < notes.length; i++) {
-      var n = notes[i];
-      var osc = ctx.createOscillator();
-      var gain = ctx.createGain();
-      osc.type = n.type || "square";
-      osc.frequency.setValueAtTime(n.f, t);
-      gain.gain.setValueAtTime(0.055, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + n.d);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(t);
-      osc.stop(t + n.d);
-      t += n.d * 0.85;
-    }
-  }
-
-  var sfx = {
-    coin: function () {
-      playTone([{ f: 988, d: 0.07 }, { f: 1319, d: 0.16 }]);
-    },
-    step: function () {
-      playTone([{ f: 523, d: 0.05 }, { f: 659, d: 0.06 }]);
-    },
-    chest: function () {
-      playTone([
-        { f: 523, d: 0.08 },
-        { f: 659, d: 0.08 },
-        { f: 784, d: 0.08 },
-        { f: 1046, d: 0.22 }
-      ]);
-    },
-    heart: function () {
-      playTone([{ f: 659, d: 0.07 }, { f: 784, d: 0.07 }, { f: 988, d: 0.12 }]);
-    },
-    pipe: function () {
-      playTone([{ f: 440, d: 0.06 }, { f: 330, d: 0.06 }, { f: 220, d: 0.1 }]);
-    },
-    stage: function () {
-      playTone([{ f: 440, d: 0.05 }, { f: 587, d: 0.08 }]);
-    }
-  };
-
   var toastLayer = document.getElementById("pixel-toast-layer");
   function showToast(text) {
     if (!toastLayer) return;
@@ -325,34 +260,10 @@
       sessionStorage.setItem(COIN_KEY, String(coins));
     } catch (e) {}
     renderCoins();
-    sfx.coin();
     if (msg) showToast(msg);
   }
 
   renderCoins();
-
-  // 8-bit SFX toggle
-  var sfxBtn = document.getElementById("hud-sfx");
-  function updateSfxBtn() {
-    if (!sfxBtn) return;
-    sfxBtn.textContent = sfxOn ? "♪ ON" : "♪ OFF";
-    sfxBtn.setAttribute("aria-pressed", sfxOn ? "true" : "false");
-    sfxBtn.classList.toggle("is-on", sfxOn);
-  }
-  updateSfxBtn();
-  if (sfxBtn) {
-    sfxBtn.addEventListener("click", function () {
-      sfxOn = !sfxOn;
-      try {
-        sessionStorage.setItem(SFX_KEY, sfxOn ? "1" : "0");
-      } catch (e) {}
-      updateSfxBtn();
-      if (sfxOn) {
-        sfx.coin();
-        showToast("8-BIT 音效已开启 ♪");
-      }
-    });
-  }
 
   // Hearts interaction
   var heartsBtn = document.getElementById("hud-hearts");
@@ -362,7 +273,6 @@
       void heartsBtn.offsetWidth;
       heartsBtn.classList.add("is-heal");
       if (window.LEI_WORLD && window.LEI_WORLD.celebrate) window.LEI_WORLD.celebrate();
-      sfx.heart();
       showToast("♥ HP FULL · 元气满满！");
     });
   }
@@ -399,7 +309,6 @@
       if (lineIdx >= lineCount) lineIdx = 0;
       dialogLine.setAttribute("data-line", String(lineIdx));
       dialogLine.textContent = t("hero.line" + lineIdx);
-      sfx.step();
     });
   }
 
@@ -416,7 +325,6 @@
         var text = (lang === "en" ? this.getAttribute("data-desc-en") : this.getAttribute("data-desc")) || "";
         interestDesc.innerHTML = text + '<i class="caret" aria-hidden="true"></i>';
       }
-      sfx.step();
     });
   }
 
@@ -440,7 +348,6 @@
       if (invRole) {
         invRole.textContent = (lang === "en" ? this.getAttribute("data-role-en") : this.getAttribute("data-role")) || "";
       }
-      sfx.step();
     });
   }
 
@@ -649,13 +556,10 @@
         if (loot) loot.hidden = !isOpen;
         toggle.textContent = isOpen ? t("chest.close") : t("chest.open");
         if (isOpen) {
-          sfx.chest();
           if (!card.getAttribute("data-looted")) {
             card.setAttribute("data-looted", "1");
             addCoins(2, "+2 COINS");
           }
-        } else {
-          sfx.step();
         }
         return;
       }
@@ -667,7 +571,6 @@
       var text = pre.textContent;
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(function () {
-          sfx.coin();
           showToast(t("toast.copy"));
         });
       } else {
@@ -859,7 +762,6 @@
       if (window.LEI_WORLD && window.LEI_WORLD.stepStage) window.LEI_WORLD.stepStage();
 
       if (!silent) {
-        sfx.stage();
         if (currentStage === slides.length - 1) {
           showToast(t("toast.save"));
         }
@@ -882,7 +784,6 @@
     var warpTop = document.getElementById("warp-top");
     if (warpTop) {
       warpTop.addEventListener("click", function () {
-        sfx.pipe();
         lockUntil = Date.now() + 550;
         goToStage(0, true);
       });
@@ -1013,7 +914,6 @@
     var warpTopFallback = document.getElementById("warp-top");
     if (warpTopFallback) {
       warpTopFallback.addEventListener("click", function () {
-        sfx.pipe();
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
@@ -1053,7 +953,6 @@
       if (this.classList.contains("is-done")) return;
       var reward = parseInt(this.getAttribute("data-coin-reward") || "2", 10);
       addCoins(reward);
-      sfx.coin();
       this.classList.add("is-done");
       this.textContent = t("quest.done");
       sessionStorage.setItem(qKey, "1");
@@ -1066,7 +965,6 @@
     langBtn.addEventListener("click", function () {
       lang = lang === "en" ? "zh" : "en";
       applyLang();
-      sfx.step();
     });
   }
   applyLang();
