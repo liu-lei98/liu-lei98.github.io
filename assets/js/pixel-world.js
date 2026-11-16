@@ -11,6 +11,36 @@
   var H = 144;
   var timeOverride = null; // null = auto from local clock, or "day" / "night"
 
+  function computeCanvasDims() {
+    var vw = Math.max(1, window.innerWidth || 1280);
+    var vh = Math.max(1, window.innerHeight || 720);
+    if (vw < vh) {
+      // Portrait mobile: keep pixels 100% square and crisp
+      W = 144;
+      H = Math.max(180, Math.min(310, Math.round((144 * vh) / vw)));
+    } else {
+      W = 256;
+      H = Math.max(128, Math.min(180, Math.round((256 * vh) / vw)));
+    }
+  }
+
+  function getLayout() {
+    var narrow = W < 190;
+    var groundY = H - 28;
+    var yOff = groundY - 116;
+    return {
+      narrow: narrow,
+      groundY: groundY,
+      yOff: yOff,
+      bridgeL: narrow ? 50 : 88,
+      bridgeR: narrow ? 80 : 128,
+      castleX: narrow ? W - 60 : 182,
+      cottageX: narrow ? W - 52 : 184,
+      treasureX: narrow ? W - 36 : 200,
+      campX: narrow ? W - 74 : 162
+    };
+  }
+
   var DAY_PAL = {
     sky0: "#5ca0ee",
     sky1: "#70b2f6",
@@ -155,40 +185,44 @@
   ];
 
   // 1. Sky + Sun/Moon + Stars
-  function drawSky(ctx, tick, scene, PAL, night) {
+  function drawSky(ctx, tick, scene, PAL, night, L) {
+    var skyH = Math.max(112, L.groundY - 4);
+    var bH = Math.ceil(skyH / 6);
     var bands = [
-      [0, 18, PAL.sky0],
-      [18, 22, PAL.sky1],
-      [40, 24, PAL.sky2],
-      [64, 24, PAL.sky3],
-      [88, 24, PAL.sky4],
-      [112, 32, PAL.sky5]
+      [0, bH, PAL.sky0],
+      [bH, bH, PAL.sky1],
+      [bH * 2, bH, PAL.sky2],
+      [bH * 3, bH, PAL.sky3],
+      [bH * 4, bH, PAL.sky4],
+      [bH * 5, H - bH * 5, PAL.sky5]
     ];
     for (var i = 0; i < bands.length; i++) {
       px(ctx, 0, bands[i][0], W, bands[i][1], bands[i][2]);
     }
-    drawDitherBand(ctx, 17, PAL.sky0, PAL.sky1);
-    drawDitherBand(ctx, 39, PAL.sky1, PAL.sky2);
-    drawDitherBand(ctx, 63, PAL.sky2, PAL.sky3);
-    drawDitherBand(ctx, 87, PAL.sky3, PAL.sky4);
-    drawDitherBand(ctx, 111, PAL.sky4, PAL.sky5);
+    drawDitherBand(ctx, bH - 1, PAL.sky0, PAL.sky1);
+    drawDitherBand(ctx, bH * 2 - 1, PAL.sky1, PAL.sky2);
+    drawDitherBand(ctx, bH * 3 - 1, PAL.sky2, PAL.sky3);
+    drawDitherBand(ctx, bH * 4 - 1, PAL.sky3, PAL.sky4);
+    drawDitherBand(ctx, bH * 5 - 1, PAL.sky4, PAL.sky5);
 
-    var sx = scene === "home" ? 156 : 44;
-    var sy = 22;
+    var sx = scene === "home" ? (L.narrow ? W - 34 : 156) : (L.narrow ? 28 : 44);
+    var sy = L.narrow ? 28 : 22;
     var pulse = (tick >> 2) % 2;
 
     if (night) {
       // Twinkling Stars
       for (var s = 0; s < STARS.length; s++) {
         var st = STARS[s];
+        var stX = st[0] % W;
+        var stY = st[1] + ((s * 7) % Math.max(20, L.yOff + 48));
         var twinkle = ((tick >> 2) + s) % 5;
         if (twinkle === 0) {
-          px(ctx, st[0], st[1], 1, 1, "#9ab6f5");
+          px(ctx, stX, stY, 1, 1, "#9ab6f5");
         } else {
-          px(ctx, st[0], st[1], 1, 1, "#fffbe0");
+          px(ctx, stX, stY, 1, 1, "#fffbe0");
           if (s % 4 === 0 && twinkle === 2) {
-            px(ctx, st[0] - 1, st[1], 3, 1, "rgba(255,251,224,0.45)");
-            px(ctx, st[0], st[1] - 1, 1, 3, "rgba(255,251,224,0.45)");
+            px(ctx, stX - 1, stY, 3, 1, "rgba(255,251,224,0.45)");
+            px(ctx, stX, stY - 1, 1, 3, "rgba(255,251,224,0.45)");
           }
         }
       }
@@ -231,7 +265,8 @@
   }
 
   // 2. Distant Layered Pixel Mountains
-  function drawMountains(ctx, tick, PAL, night) {
+  function drawMountains(ctx, tick, PAL, night, L) {
+    var yO = L.yOff;
     var farPeaks = [
       [0, 102], [22, 82], [46, 98], [76, 70], [108, 95],
       [138, 74], [170, 94], [204, 68], [236, 88], [256, 98]
@@ -242,9 +277,9 @@
       var x0 = farPeaks[seg][0], y0 = farPeaks[seg][1];
       var x1 = farPeaks[seg + 1][0], y1 = farPeaks[seg + 1][1];
       var t = (x - x0) / Math.max(1, x1 - x0);
-      var my = ((y0 + (y1 - y0) * t) / 2 | 0) * 2;
-      px(ctx, x, my, 2, 128 - my, PAL.mtFar);
-      if (y1 < y0 && my < 86) {
+      var my = (((y0 + (y1 - y0) * t) / 2 | 0) * 2) + yO;
+      px(ctx, x, my, 2, (128 + yO) - my, PAL.mtFar);
+      if (y1 < y0 && my < 86 + yO) {
         px(ctx, x, my, 2, 6, PAL.mtFarHi);
       }
     }
@@ -259,32 +294,28 @@
       var nx0 = nearPeaks[nseg][0], ny0 = nearPeaks[nseg][1];
       var nx1 = nearPeaks[nseg + 1][0], ny1 = nearPeaks[nseg + 1][1];
       var nt = (nx - nx0) / Math.max(1, nx1 - nx0);
-      var nmy = ((ny0 + (ny1 - ny0) * nt) / 2 | 0) * 2;
-      px(ctx, nx, nmy, 2, 132 - nmy, PAL.mtMid);
+      var nmy = (((ny0 + (ny1 - ny0) * nt) / 2 | 0) * 2) + yO;
+      px(ctx, nx, nmy, 2, (132 + yO) - nmy, PAL.mtMid);
       if (ny1 < ny0) {
         px(ctx, nx, nmy, 2, 4, PAL.mtMidHi);
       }
     }
 
-    px(ctx, 0, 112, W, 6, PAL.mist);
-    px(ctx, 0, 118, W, 8, PAL.mist);
+    px(ctx, 0, 112 + yO, W, 6, PAL.mist);
+    px(ctx, 0, 118 + yO, W, 8, PAL.mist);
 
     var drift = (tick * 0.25) | 0;
-    drawCloud(ctx, 14 + drift, 20, 36, 11, PAL);
-    drawCloud(ctx, 88 + ((drift * 0.7) | 0), 32, 44, 12, PAL);
-    drawCloud(ctx, 182 + drift, 18, 38, 11, PAL);
-    drawCloud(ctx, 138 + ((drift * 0.5) | 0), 52, 30, 9, PAL);
+    drawCloud(ctx, 14 + drift, 20 + (yO >> 2), 36, 11, PAL);
+    drawCloud(ctx, 88 + ((drift * 0.7) | 0), 32 + (yO >> 2), 44, 12, PAL);
+    drawCloud(ctx, 182 + drift, 18 + (yO >> 2), 38, 11, PAL);
+    drawCloud(ctx, 138 + ((drift * 0.5) | 0), 52 + (yO >> 1), 30, 9, PAL);
 
     if (!night) {
-      var bx = (210 - ((tick >> 1) % 220) + W) % W;
+      var bx = (210 - ((tick >> 1) % (W + 20)) + W) % W;
       var flap = (tick >> 2) % 2;
-      px(ctx, bx, 36 + flap, 2, 1, PAL.outline);
-      px(ctx, bx + 2, 37, 1, 1, PAL.outline);
-      px(ctx, bx + 3, 36 + flap, 2, 1, PAL.outline);
-
-      px(ctx, bx + 12, 32 + (1 - flap), 2, 1, PAL.outline);
-      px(ctx, bx + 14, 33, 1, 1, PAL.outline);
-      px(ctx, bx + 15, 32 + (1 - flap), 2, 1, PAL.outline);
+      px(ctx, bx, 36 + (yO >> 2) + flap, 2, 1, PAL.outline);
+      px(ctx, bx + 2, 37 + (yO >> 2), 1, 1, PAL.outline);
+      px(ctx, bx + 3, 36 + (yO >> 2) + flap, 2, 1, PAL.outline);
     }
   }
 
@@ -375,60 +406,68 @@
     drawFloatingIsland(ctx, x - 4, cy, 60, 26, tick, true, PAL);
   }
 
-  function drawForegroundTerrain(ctx, tick, scene, PAL, night) {
-    px(ctx, 0, 126, W, 18, PAL.waterDk);
-    px(ctx, 0, 126, W, 5, PAL.waterMid);
-    for (var wx = 78; wx < 138; wx += 8) {
+  function drawForegroundTerrain(ctx, tick, scene, PAL, night, L) {
+    var gY = L.groundY;
+    var bL = L.bridgeL;
+    var bR = L.bridgeR;
+    var bW = bR - bL;
+
+    px(ctx, 0, gY + 10, W, H - (gY + 10), PAL.waterDk);
+    px(ctx, 0, gY + 10, W, 5, PAL.waterMid);
+    for (var wx = bL - 10; wx < bR + 10; wx += 8) {
       var shimmer = (wx + (tick & 7)) % 12;
-      px(ctx, wx + shimmer, 129, 5, 1, PAL.waterHi);
-      px(ctx, wx + 2, 135, 6, 1, PAL.waterLt);
+      px(ctx, wx + shimmer, gY + 13, 5, 1, PAL.waterHi);
+      px(ctx, wx + 2, gY + 19, 6, 1, PAL.waterLt);
     }
 
-    px(ctx, 0, 120, 90, 24, PAL.dirtMid);
-    px(ctx, 0, 126, 86, 18, PAL.dirtSh);
-    for (var dx = 6; dx < 82; dx += 14) {
-      px(ctx, dx, 125, 6, 4, PAL.dirtHi);
-      px(ctx, dx + 5, 132, 7, 4, PAL.dirtDark);
+    // Left Cliff
+    px(ctx, 0, gY + 4, bL + 2, H - (gY + 4), PAL.dirtMid);
+    px(ctx, 0, gY + 10, bL - 2, H - (gY + 10), PAL.dirtSh);
+    for (var dx = 6; dx < bL - 6; dx += 14) {
+      px(ctx, dx, gY + 9, 6, 4, PAL.dirtHi);
+      px(ctx, dx + 5, gY + 16, 7, 4, PAL.dirtDark);
     }
-    px(ctx, 0, 116, 92, 3, PAL.grassHi);
-    px(ctx, 0, 119, 91, 3, PAL.grassMid);
-    for (var gx = 2; gx < 90; gx += 5) {
-      px(ctx, gx, 122, 3, 2, PAL.grassSh);
+    px(ctx, 0, gY, bL + 4, 3, PAL.grassHi);
+    px(ctx, 0, gY + 3, bL + 3, 3, PAL.grassMid);
+    for (var gx = 2; gx < bL + 2; gx += 5) {
+      px(ctx, gx, gY + 6, 3, 2, PAL.grassSh);
     }
 
-    var rY = scene === "home" ? 120 : 116;
-    px(ctx, 126, rY + 2, 130, 144 - rY, PAL.dirtMid);
-    px(ctx, 130, rY + 8, 126, 144 - rY - 8, PAL.dirtSh);
-    for (var rdx = 134; rdx < 248; rdx += 16) {
+    // Right Cliff
+    var rY = scene === "home" ? gY + 4 : gY;
+    var rStart = bR - 2;
+    px(ctx, rStart, rY + 2, W - rStart, H - rY, PAL.dirtMid);
+    px(ctx, rStart + 4, rY + 8, W - rStart - 4, H - rY - 8, PAL.dirtSh);
+    for (var rdx = rStart + 8; rdx < W - 8; rdx += 16) {
       px(ctx, rdx, rY + 6, 7, 4, PAL.dirtHi);
       px(ctx, rdx + 6, rY + 13, 8, 4, PAL.dirtDark);
     }
-    px(ctx, 124, rY - 2, 132, 3, PAL.grassHi);
-    px(ctx, 125, rY + 1, 131, 3, PAL.grassMid);
-    for (var rgx = 126; rgx < 254; rgx += 5) {
+    px(ctx, rStart - 2, rY - 2, W - rStart + 2, 3, PAL.grassHi);
+    px(ctx, rStart - 1, rY + 1, W - rStart + 1, 3, PAL.grassMid);
+    for (var rgx = rStart; rgx < W - 2; rgx += 5) {
       px(ctx, rgx, rY + 4, 3, 2, PAL.grassSh);
     }
 
-    px(ctx, 88, 118, 3, 10, PAL.woodSh);
-    px(ctx, 125, 118, 3, 10, PAL.woodSh);
-    px(ctx, 89, 121, 38, 2, PAL.woodSh);
-    for (var bp = 90; bp < 126; bp += 4) {
-      var arch = (bp > 98 && bp < 118) ? -1 : 0;
-      px(ctx, bp, 119 + arch, 3, 2, PAL.woodHi);
-      px(ctx, bp + 1, 115 + arch, 1, 4, PAL.woodMid);
+    // Wooden Arch Bridge
+    px(ctx, bL, gY + 2, 3, 10, PAL.woodSh);
+    px(ctx, bR - 3, gY + 2, 3, 10, PAL.woodSh);
+    px(ctx, bL + 1, gY + 5, bW - 2, 2, PAL.woodSh);
+    for (var bp = bL + 2; bp < bR - 2; bp += 4) {
+      var arch = (bp > bL + 10 && bp < bR - 10) ? -1 : 0;
+      px(ctx, bp, gY + 3 + arch, 3, 2, PAL.woodHi);
+      px(ctx, bp + 1, gY - 1 + arch, 1, 4, PAL.woodMid);
     }
-    px(ctx, 89, 115, 38, 1, PAL.woodHi);
+    px(ctx, bL + 1, gY - 1, bW - 2, 1, PAL.woodHi);
 
-    drawTree(ctx, 12, 116, 1, tick, PAL);
-    var flowers = [[26, 114, PAL.redHi], [31, 115, PAL.goldMid], [74, 115, PAL.waterHi], [142, rY - 3, PAL.goldMid], [242, rY - 3, PAL.redHi]];
+    drawTree(ctx, 10, gY, 1, tick, PAL);
+    var flowers = [[24, gY - 2, PAL.redHi], [30, gY - 1, PAL.goldMid], [bL - 10, gY - 1, PAL.waterHi], [bR + 12, rY - 3, PAL.goldMid], [W - 14, rY - 3, PAL.redHi]];
     for (var f = 0; f < flowers.length; f++) {
       px(ctx, flowers[f][0], flowers[f][1], 2, 2, flowers[f][2]);
       px(ctx, flowers[f][0], flowers[f][1] + 2, 1, 1, PAL.grassDark);
     }
 
-    // Night fireflies drifting above meadow & bridge
     if (night) {
-      var flies = [[34, 106], [68, 100], [108, 108], [148, 104], [218, 102]];
+      var flies = [[34, gY - 10], [bL - 14, gY - 16], [bL + 16, gY - 8], [bR + 18, gY - 12], [W - 28, gY - 14]];
       for (var fl = 0; fl < flies.length; fl++) {
         var fx = flies[fl][0] + (((tick >> 2) + fl * 3) % 5) - 2;
         var fy = flies[fl][1] + (((tick >> 1) + fl) % 4) - 2;
@@ -678,46 +717,52 @@
     var scene = state.scene;
     var night = isNightTime();
     var PAL = getPal();
+    var L = getLayout();
+    var gY = L.groundY;
+    var yO = L.yOff;
 
-    drawSky(ctx, tick, scene, PAL, night);
-    drawMountains(ctx, tick, PAL, night);
+    drawSky(ctx, tick, scene, PAL, night, L);
+    drawMountains(ctx, tick, PAL, night, L);
 
-    drawFloatingIsland(ctx, 20, 62, 26, 12, tick, false, PAL);
-    drawTree(ctx, 32, 62 + ((tick >> 3) % 2), 1, tick, PAL);
+    drawFloatingIsland(ctx, 14, 62 + yO, 26, 12, tick, false, PAL);
+    drawTree(ctx, 26, 62 + yO + ((tick >> 3) % 2), 1, tick, PAL);
 
     if (scene === "home") {
-      drawFloatingIsland(ctx, 114, 54, 28, 12, tick, false, PAL);
-      drawTree(ctx, 128, 54 + ((tick >> 3) % 2), 1, tick, PAL);
-      drawSkyCastle(ctx, 182, 78, tick, PAL);
+      if (!L.narrow) {
+        drawFloatingIsland(ctx, 114, 54 + yO, 28, 12, tick, false, PAL);
+        drawTree(ctx, 128, 54 + yO + ((tick >> 3) % 2), 1, tick, PAL);
+      }
+      drawSkyCastle(ctx, L.castleX, 78 + yO, tick, PAL);
     } else if (scene === "about") {
-      drawFloatingIsland(ctx, 198, 44, 32, 14, tick, true, PAL);
+      drawFloatingIsland(ctx, W - 52, 44 + yO, 32, 14, tick, true, PAL);
     } else if (scene === "research") {
-      drawFloatingIsland(ctx, 206, 48, 30, 13, tick, false, PAL);
+      drawFloatingIsland(ctx, W - 46, 48 + yO, 30, 13, tick, false, PAL);
     } else if (scene === "gallery") {
-      drawSkyCastle(ctx, 194, 68, tick, PAL);
+      drawSkyCastle(ctx, L.castleX, 68 + yO, tick, PAL);
     } else if (scene === "contact") {
-      drawFloatingIsland(ctx, 192, 46, 30, 12, tick, false, PAL);
+      drawFloatingIsland(ctx, W - 56, 46 + yO, 30, 12, tick, false, PAL);
     }
 
-    drawForegroundTerrain(ctx, tick, scene, PAL, night);
+    drawForegroundTerrain(ctx, tick, scene, PAL, night, L);
 
     if (scene === "home") {
-      px(ctx, 72, 105, 2, 11, PAL.woodSh);
-      px(ctx, 66, 104, 14, 6, PAL.woodHi);
-      px(ctx, 67, 105, 12, 4, PAL.wallHi);
-      px(ctx, 69, 106, 8, 1, PAL.woodSh);
-      px(ctx, 69, 108, 6, 1, PAL.woodSh);
+      var signX = L.narrow ? 38 : 72;
+      px(ctx, signX, gY - 11, 2, 11, PAL.woodSh);
+      px(ctx, signX - 6, gY - 12, 14, 6, PAL.woodHi);
+      px(ctx, signX - 5, gY - 11, 12, 4, PAL.wallHi);
+      px(ctx, signX - 3, gY - 10, 8, 1, PAL.woodSh);
+      px(ctx, signX - 3, gY - 8, 6, 1, PAL.woodSh);
     } else if (scene === "about") {
-      drawScholarCottage(ctx, 184, 116, tick, state.lampLit, PAL, night);
-      drawTree(ctx, 242, 116, 1, tick, PAL);
+      drawScholarCottage(ctx, L.cottageX, gY, tick, state.lampLit, PAL, night);
+      if (!L.narrow) drawTree(ctx, 242, gY, 1, tick, PAL);
     } else if (scene === "research") {
-      drawTree(ctx, 236, 116, 1, tick, PAL);
-      drawTreasureScene(ctx, 198, 116, tick, state.chestOpen, PAL);
+      if (!L.narrow) drawTree(ctx, 236, gY, 1, tick, PAL);
+      drawTreasureScene(ctx, L.treasureX, gY, tick, state.chestOpen, PAL);
     } else if (scene === "gallery") {
-      drawTreasureScene(ctx, 202, 116, tick, state.chestOpen, PAL);
-      drawTree(ctx, 240, 116, 1, tick, PAL);
+      drawTreasureScene(ctx, L.treasureX, gY, tick, state.chestOpen, PAL);
+      if (!L.narrow) drawTree(ctx, 240, gY, 1, tick, PAL);
     } else if (scene === "contact") {
-      drawCampsite(ctx, 162, 116, tick, state.fireBoost > 0, PAL, night);
+      drawCampsite(ctx, L.campX, gY, tick, state.fireBoost > 0, PAL, night);
     }
 
     drawHeroAndCat(ctx, state, tick, PAL);
@@ -727,6 +772,8 @@
   var keys = { left: false, right: false };
 
   function initCanvases() {
+    computeCanvasDims();
+    var L = getLayout();
     var nodes = document.querySelectorAll("canvas.px-world-canvas");
     worlds = [];
     for (var i = 0; i < nodes.length; i++) {
@@ -734,15 +781,17 @@
       c.width = W;
       c.height = H;
       var sc = c.getAttribute("data-scene") || "home";
-      var defaultX = sc === "about" ? 148 : sc === "research" ? 54 : sc === "contact" ? 56 : 42;
+      var defaultX = L.narrow
+        ? (sc === "contact" ? 30 : 26)
+        : (sc === "about" ? 148 : sc === "research" ? 54 : sc === "contact" ? 56 : 42);
       worlds.push({
         canvas: c,
         ctx: c.getContext("2d"),
         scene: sc,
         heroX: defaultX,
-        heroY: 116,
+        heroY: L.groundY,
         targetX: defaultX,
-        catX: defaultX + 13,
+        catX: defaultX + 12,
         dir: 1,
         walking: false,
         jumpY: 0,
@@ -756,17 +805,41 @@
     syncBodyNightClass(isNightTime());
   }
 
+  function resizeCanvases() {
+    var prevW = W;
+    var prevH = H;
+    computeCanvasDims();
+    if (W === prevW && H === prevH) return;
+    var L = getLayout();
+    for (var i = 0; i < worlds.length; i++) {
+      var w = worlds[i];
+      w.canvas.width = W;
+      w.canvas.height = H;
+      w.heroX = Math.max(16, Math.min(W - 24, w.heroX));
+      w.targetX = w.heroX;
+      w.heroY = L.groundY;
+      w.catX = Math.max(10, w.heroX - w.dir * 12);
+    }
+  }
+
   window.addEventListener("keydown", function (ev) {
     var tag = (ev.target && ev.target.tagName) || "";
     if (tag === "INPUT" || tag === "TEXTAREA") return;
     if (ev.key === "a" || ev.key === "A" || ev.key === "ArrowLeft") keys.left = true;
     if (ev.key === "d" || ev.key === "D" || ev.key === "ArrowRight") keys.right = true;
     if (ev.key === "w" || ev.key === "W") {
+      var jumped = false;
       for (var i = 0; i < worlds.length; i++) {
-        if (worlds[i].jumpY === 0) worlds[i].jumpV = 5;
+        if (worlds[i].jumpY === 0) {
+          worlds[i].jumpV = 5;
+          jumped = true;
+        }
       }
+      if (jumped && window.LEI_SFX && window.LEI_SFX.jump) window.LEI_SFX.jump();
     }
   });
+
+  window.addEventListener("resize", resizeCanvases);
 
   window.addEventListener("keyup", function (ev) {
     if (ev.key === "a" || ev.key === "A" || ev.key === "ArrowLeft") keys.left = false;
@@ -803,25 +876,35 @@
     var vh = Math.max(1, window.innerHeight);
     var gx = ((ev.clientX / vw) * W) | 0;
     var gy = ((ev.clientY / vh) * H) | 0;
+    var L = getLayout();
+    var gY = L.groundY;
+    var played = false;
 
     for (var i = 0; i < worlds.length; i++) {
       var w = worlds[i];
-      if (w.scene === "about" && gx >= 180 && gx <= 236 && gy >= 85 && gy <= 120) {
+      if (w.scene === "about" && gx >= L.cottageX - 4 && gx <= L.cottageX + 52 && gy >= gY - 34 && gy <= gY + 6) {
         w.lampLit = !w.lampLit;
+        if (!played && window.LEI_SFX && window.LEI_SFX.step) { window.LEI_SFX.step(); played = true; }
       }
-      if ((w.scene === "gallery" || w.scene === "research") && gx >= 185 && gx <= 235 && gy >= 82 && gy <= 120) {
+      if ((w.scene === "gallery" || w.scene === "research") && gx >= L.treasureX - 18 && gx <= L.treasureX + 34 && gy >= gY - 34 && gy <= gY + 6) {
         w.chestOpen = !w.chestOpen;
         w.emoteTimer = 20;
+        if (!played && window.LEI_SFX && window.LEI_SFX.coin) { window.LEI_SFX.coin(); played = true; }
       }
-      if (w.scene === "contact" && gx >= 155 && gx <= 215 && gy >= 88 && gy <= 122) {
+      if (w.scene === "contact" && gx >= L.campX - 8 && gx <= L.campX + 54 && gy >= gY - 28 && gy <= gY + 6) {
         w.fireBoost = 24;
         w.emoteTimer = 20;
+        if (!played && window.LEI_SFX && window.LEI_SFX.heart) { window.LEI_SFX.heart(); played = true; }
       }
-      if (gy >= 78) {
-        w.targetX = Math.max(20, Math.min(168, gx));
+      if (gy >= gY - 38) {
+        w.targetX = Math.max(16, Math.min(W - 36, gx));
         w.emoteTimer = 16;
         if (Math.abs(gx - w.heroX) < 16 && w.jumpY === 0) {
           w.jumpV = 4;
+          if (!played && window.LEI_SFX && window.LEI_SFX.jump) { window.LEI_SFX.jump(); played = true; }
+        } else if (!played && window.LEI_SFX && window.LEI_SFX.step) {
+          window.LEI_SFX.step();
+          played = true;
         }
       }
     }
@@ -833,14 +916,15 @@
     if (tick % 300 === 0) {
       syncBodyNightClass(isNightTime());
     }
+    var L = getLayout();
     for (var i = 0; i < worlds.length; i++) {
       var w = worlds[i];
       if (!w.ctx) continue;
 
       if (keys.left) {
-        w.targetX = Math.max(20, w.heroX - 4);
+        w.targetX = Math.max(16, w.heroX - 4);
       } else if (keys.right) {
-        w.targetX = Math.min(168, w.heroX + 4);
+        w.targetX = Math.min(W - 36, w.heroX + 4);
       }
 
       var dx = w.targetX - w.heroX;
@@ -852,8 +936,8 @@
         w.walking = false;
       }
 
-      var bridgeLift = (w.heroX >= 90 && w.heroX <= 126) ? 2 : 0;
-      w.heroY = 116 - bridgeLift;
+      var bridgeLift = (w.heroX >= L.bridgeL && w.heroX <= L.bridgeR) ? 2 : 0;
+      w.heroY = L.groundY - bridgeLift;
 
       var desiredCatX = w.heroX - w.dir * 12;
       w.catX += (desiredCatX - w.catX) * 0.35;

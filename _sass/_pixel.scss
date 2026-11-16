@@ -2531,20 +2531,44 @@ body.is-world-pager::before {
   image-rendering: crisp-edges;
 }
 
-// Canvas scene stays full-bleed; text and cards occupy the upper part
+// Canvas scene stays full-bleed; text and notice boards occupy a fixed compact upper zone
+// leaving the lower ~36% of the pixel world (characters, bridge, cottage, campfire) open
 body.is-world-pager .world-slide:has(.px-world-canvas) {
   justify-content: flex-start;
   align-items: stretch;
-  padding: 78px 0 0;
+  padding: 68px 0 0;
 }
 
 body.is-world-pager .world-slide:has(.px-world-canvas) > .stage-inner,
 body.is-world-pager .world-slide:has(.px-world-canvas) > .content {
   flex: 0 1 auto;
   min-height: 0;
-  max-height: calc(100% - 20vh);
-  overflow-x: hidden;
-  overflow-y: auto;
+  max-height: calc(100% - 28vh);
+  overflow: visible;
+}
+
+// Custom parchment scrollbar for fixed notice boards
+.about-parchment-grid,
+.research-pavilion .chest-grid,
+.codex-grid,
+.connect-parchment-panel {
+  scrollbar-width: thin;
+  scrollbar-color: #c9ad78 rgba(255, 246, 228, 0.45);
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 246, 228, 0.35);
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c9ad78;
+    border-radius: 6px;
+    border: 1px solid #8c6a3a;
+  }
 }
 
 .px-svg-cloud.c-slow {
@@ -2875,18 +2899,17 @@ body.is-world-pager .world-slide:has(.px-world-canvas) > .content {
 }
 
 .stage-about-inner {
-  padding-bottom: 72px;
+  padding-bottom: 12px;
 }
 
 .about-parchment-grid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 18px;
+  gap: 14px;
   align-items: start;
-
-  @media (min-width: 900px) {
-    max-height: calc(var(--stage-h, 100dvh) - 200px);
-  }
+  max-height: #{"clamp(250px, 44vh, 410px)"};
+  overflow-y: auto;
+  padding: 2px 6px 8px 2px;
 }
 
 .about-col-left {
@@ -3062,13 +3085,16 @@ body.is-world-pager .world-slide:has(.px-world-canvas) > .content {
   font-size: 12px;
 }
 
-// Research pavilion
+// Research pavilion — fixed-height wooden notice board with internal scroll
 .research-pavilion {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: #{"clamp(270px, 47vh, 430px)"};
   background: linear-gradient(#8b5a3c, #6e442c);
   border: 4px solid #4d2d1c;
   border-radius: 16px;
-  padding: 18px 16px 16px;
+  padding: 16px 14px 12px;
   box-shadow:
     inset 0 0 0 3px #a87448,
     0 12px 0 rgba(42, 51, 88, 0.12);
@@ -3188,7 +3214,11 @@ body.is-world-pager .world-slide:has(.px-world-canvas) > .content {
 .research-pavilion .chest-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
 .research-pavilion .chest-card {
@@ -3298,11 +3328,14 @@ body.is-world-pager .world-slide:has(.px-world-canvas) > .content {
   }
 }
 
-// Notes / gallery codex
+// Notes / gallery codex — fixed-height scrollable notice board
 .codex-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 12px;
+  max-height: #{"clamp(250px, 44vh, 410px)"};
+  overflow-y: auto;
+  padding: 2px 6px 8px 2px;
 }
 
 .codex-card,
@@ -3408,8 +3441,10 @@ body.is-world-pager .world-slide:has(.px-world-canvas) > .content {
 .connect-parchment-panel {
   position: relative;
   max-width: 720px;
+  max-height: #{"clamp(220px, 42vh, 360px)"};
+  overflow-y: auto;
   margin: 0 auto;
-  padding: 28px 24px 20px;
+  padding: 24px 22px 18px;
   background: #f5e6c8;
   border-radius: 16px;
   border: 4px solid #c9ad78;
@@ -3532,6 +3567,25 @@ body.is-world-pager .runner-dock {
     width: 12px;
     height: 12px;
     display: block;
+  }
+}
+
+.hud-sfx-btn {
+  padding: 5px 8px;
+  background: rgba(246, 231, 200, 0.92);
+  color: #2a3358;
+  border: 2px solid #e0c98a;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  line-height: 1;
+  box-shadow: 0 2px 0 rgba(42, 51, 88, 0.12);
+
+  &.is-on {
+    background: #ffe9b8;
+    border-color: #d4a84a;
+    color: #6a4a12;
   }
 }
 
@@ -3772,37 +3826,165 @@ body:not(.is-world-pager) {
 }
 
 @media (max-width: 860px) {
-  .world-menu {
-    display: none;
+  .world-menu,
+  .brand-sep,
+  .stage-dots {
+    display: none !important;
   }
 
   .bar-header.world-top {
-    padding: 8px 12px;
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .hud {
+    gap: 6px;
+  }
+
+  .hud-coin-pill,
+  .hud-sfx-btn,
+  .lang-toggle {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+
+  .hud-hearts .px-heart {
+    width: 14px;
+    height: 13px;
+  }
+
+  body.is-world-pager .world-slide:has(.px-world-canvas) {
+    padding: 58px 0 0 !important;
+  }
+
+  .stage-inner {
+    padding: 0 12px 10px;
+  }
+
+  .stage-header-block {
+    margin: 4px auto 10px;
+  }
+
+  .about-parchment-grid,
+  .research-pavilion,
+  .codex-grid,
+  .connect-parchment-panel {
+    max-height: #{"clamp(240px, 47vh, 420px)"};
   }
 
   .codex-card,
   .research-pavilion .chest-body,
-  .identity-main-row {
+  .identity-main-row,
+  .contact-npc-banner {
     grid-template-columns: 1fr;
   }
 
   .codex-thumb {
-    min-height: 120px;
-    max-height: 160px;
+    min-height: 110px;
+    max-height: 145px;
+  }
+
+  .portrait-frame.portrait-pixel-art {
+    width: 84px;
+  }
+
+  .runner-dock {
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    z-index: 45;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 6px 8px;
+    background: rgba(245, 230, 200, 0.95);
+    border: 3px solid #6e442c;
+    border-radius: 12px;
+    box-shadow: 0 4px 0 #4d2d1c;
+
+    .runner-nav {
+      display: flex;
+      flex: 1 1 auto;
+      gap: 4px;
+      overflow-x: auto;
+
+      a {
+        flex: 1 0 auto;
+        text-align: center;
+        padding: 5px 6px;
+        border-radius: 8px;
+        font-size: 11px;
+        color: #2a3358;
+        text-decoration: none;
+
+        &.is-active {
+          background: #ffe9b8;
+          border: 1px solid #d4a84a;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .warp-pipe {
+      flex: 0 0 auto;
+      padding: 5px 8px;
+      background: #3b70c4;
+      color: #ffffff;
+      border: 2px solid #244794;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .scroll-cue {
+    bottom: 64px !important;
+    font-size: 11px;
+  }
+
+  .secondary-quest-shell {
+    padding: 64px 10px 76px;
   }
 }
 
 @media (max-width: 560px) {
-  .connect-icon-grid,
+  .bar-header.world-top .logo a .brand-name {
+    font-size: 13px;
+  }
+
+  .connect-icon-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
   .inv-slots {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
   }
 
   .hero-overworld-box {
-    margin-left: 12px !important;
+    margin: 2vh 0 0 14px !important;
+    width: calc(100% - 28px) !important;
+  }
+
+  .hero .hero-overworld-box .title {
+    font-size: 28px;
+  }
+
+  .hero .hero-overworld-box .button,
+  .hero .hero-overworld-box .px-btn {
+    padding: 9px 12px;
+    font-size: 12px;
   }
 
   .quest-heading {
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  .stage-subtitle {
+    font-size: 12px;
   }
 }
