@@ -13,8 +13,8 @@ layout: default
 <div class="post secondary-quest-shell">
   {% if page.url == '/about/' %}
     <div class="quest-nav-strip">
-      <span>★ SCHOLAR ARCHIVE · 完整学者档案</span>
-      <a class="quest-back-btn" href="{{ site.baseurl }}/#world-profile" data-i18n="quest.backHome">← 返回主世界</a>
+      <span>关于</span>
+      <a class="quest-back-btn" href="{{ site.baseurl }}/#world-profile" data-i18n="quest.backHome">← 返回首页</a>
     </div>
     <article class="post-content fullwidth">
       {{ content }}
@@ -22,8 +22,8 @@ layout: default
   {% else %}
     <article class="post-content fullwidth quest-dialog">
       <div class="pixel-window-bar quest-bar">
-        <span>★ QUEST BOARD · {{ page.title | default: "详情" }}</span>
-        <a class="quest-back-btn" href="{{ site.baseurl }}/#world-start" data-i18n="quest.backHome">← 返回主世界</a>
+        <span>{{ page.title | default: "详情" }}</span>
+        <a class="quest-back-btn" href="{{ site.baseurl }}/#world-start" data-i18n="quest.backHome">← 返回首页</a>
       </div>
       <div class="quest-dialog-body">
         {{ content }}

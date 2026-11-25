@@ -9,11 +9,11 @@
             {% include pixel-world-scene.html scene="gallery" %}
         </div>
 
-        <section class="post {% if site.two_columns_layout %}two-columns{% else %}one-column{% endif %}" id="top">
+        <section class="post secondary-readable {% if site.two_columns_layout %}two-columns{% else %}one-column{% endif %}" id="top">
             <article role="article" class="post-content quest-dialog">
                 <div class="pixel-window-bar quest-bar">
-                    <span><span data-i18n="quest.bar">★ 任务简报</span>{% if page.category %} · [{{ page.category | upcase }}]{% endif %}</span>
-                    <a class="quest-back-btn" href="{{ site.baseurl }}/#world-quests" data-i18n="quest.back">← 返回 1-4 日志</a>
+                    <span><span data-i18n="quest.bar">随笔</span>{% if page.category %} · [{{ page.category | upcase }}]{% endif %}</span>
+                    <a class="quest-back-btn" href="{{ site.baseurl }}/#world-quests" data-i18n="quest.back">← 返回随笔</a>
                 </div>
 
                 <div class="quest-giver-strip">
@@ -57,7 +57,7 @@
                     {% include pagination-post.html %}
 
                     <div class="quest-action-bar">
-                        <a class="px-btn px-btn-alt" href="{{ site.baseurl }}/#world-quests" data-i18n="quest.back">← 返回 1-4 日志</a>
+                        <a class="px-btn px-btn-alt" href="{{ site.baseurl }}/#world-quests" data-i18n="quest.back">← 返回随笔</a>
                         <button type="button" class="px-btn quest-complete-btn" data-quest-complete data-coin-reward="2" data-i18n="quest.complete">✓ 完成阅读 (+2 金币)</button>
                         <a class="px-btn px-btn-alt" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" data-i18n="quest.top">↑ 回到顶部</a>
                     </div>

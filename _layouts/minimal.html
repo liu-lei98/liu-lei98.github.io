@@ -14,8 +14,8 @@ layout: compress
         <section class="post secondary-quest-shell">
             <article id="post" class="post-content fullwidth quest-dialog" role="main">
                 <div class="pixel-window-bar quest-bar">
-                    <span>★ CODEX TAGS · {{ page.title | default: "冒险图鉴标签索引" }}</span>
-                    <a class="quest-back-btn" href="{{ site.baseurl }}/#world-quests">← 返回随笔图鉴</a>
+                    <span>{{ page.title | default: "标签" }}</span>
+                    <a class="quest-back-btn" href="{{ site.baseurl }}/#world-quests">← 返回随笔</a>
                 </div>
                 <div class="quest-dialog-body">
                     {{ content }}

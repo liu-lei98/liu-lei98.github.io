@@ -37,7 +37,7 @@
       "hero.line1": "近期发表见 Pattern Recognition (2026)、IEEE TMM (2024) 与 IEEE TGRS (2023)。",
       "hero.line2": "常用科研工具：Python、PyTorch、MATLAB、LaTeX、Overleaf、Docker。",
       "hero.line3": "信念：熟能生巧，持续学习，每天成长 (Practice Makes Perfect)。",
-      "hero.start": "开始冒险",
+      "hero.start": "进入",
       "hero.papers": "学术发表 →",
       "hero.next": "下一句 ▼",
       "hero.cue": "▼ 下滑切换场景 · 点击地面或按 A / D 漫步",
@@ -45,11 +45,11 @@
       "stage3.title": "学术发表 · Research",
       "stage3.sub": "探索计算光谱成像与深度展开网络的前沿 · 自动同步 ORCID",
       "stage4.title": "日常随笔 · Notes & Gallery",
-      "stage4.sub": "科研之外的日常记录、校园瞬间与影像图鉴。",
+      "stage4.sub": "科研之外的日常记录与校园瞬间。",
       "stage5.title": "Let's Connect! · 联系与交流",
       "stage5.sub": "欢迎学术合作、论文探讨，或者随时发封邮件聊聊！",
       "sheet.kicker": "地球人 · 还在活着 · 专注计算成像、快照压缩光谱重建与深度展开网络。",
-      "about.profileTitle": "学者档案 · Scholar Profile",
+      "about.profileTitle": "个人档案",
       "about.interestsTitle": "研究方向 · Research Interests",
       "about.interestsSub": "点击方向卡片查看研究内容",
       "interest.ci": "计算成像与光学编码建模",
@@ -71,19 +71,19 @@
       "guild.bili": "Bilibili 频道",
       "guild.gh": "GitHub 主页",
       "guild.mail": "邮件联系",
-      "save.flag": "⚑ 存档点",
+      "save.flag": "随笔",
       "save.motto": "熟能生巧 · 持续学习 · 每天成长",
       "save.about": "完整档案",
       "save.mail": "送信",
-      "nav.11": "1-1 起点",
-      "nav.12": "1-2 档案",
-      "nav.13": "1-3 论文",
-      "nav.14": "1-4 日志",
-      "quest.bar": "★ 任务简报",
-      "quest.back": "← 返回 1-4 日志",
-      "quest.backHome": "← 返回主世界",
-      "contact.boardTitle": "信使驿站 · Talk to Me",
-      "contact.boardSub": "在羊皮纸上写下你的学术探讨、合作意向或日常问候，信使白猫会第一时间送达！",
+      "nav.11": "首页",
+      "nav.12": "关于",
+      "nav.13": "研究",
+      "nav.14": "随笔",
+      "quest.bar": "随笔",
+      "quest.back": "← 返回随笔",
+      "quest.backHome": "← 返回首页",
+      "contact.boardTitle": "联系",
+      "contact.boardSub": "欢迎讨论合作、论文，或者随便聊聊。也可以直接写信到 liu_lei_98@163.com。",
       "contact.nameLabel": "署名 · Your Name",
       "contact.emailLabel": "回信地址 · Your Email",
       "contact.msgLabel": "信件内容 · Message",
@@ -92,13 +92,21 @@
       "quest.complete": "✓ 完成阅读 (+2 金币)",
       "quest.done": "★ 已领取奖励",
       "quest.top": "↑ 回到顶部",
-      "toast.save": "⚑ 已抵达 1-4 存档点",
+      "toast.save": "已打开随笔",
       "toast.copy": "BibTeX 已复制",
       "toast.copyfail": "请手动选中 BibTeX 复制",
       "toast.quest": "★ 任务完成",
       "orcid.loading": "正在读取 ORCID",
       "orcid.ready": "已同步 ORCID",
-      "orcid.fail": "ORCID 暂不可用，显示本地列表"
+      "orcid.fail": "ORCID 暂不可用，显示本地列表",
+      "world.titleSub": "计算成像 · 光谱重建 · 深度展开",
+      "world.pressAny": "按任意键或点击进入 · Press any key",
+      "ctrl.move": "移动 / 点击地面行走",
+      "ctrl.run": "奔跑",
+      "ctrl.interact": "互动 / 跳跃",
+      "ctrl.cam": "旋转镜头 / 滚轮缩放",
+      "ctrl.time": "切换昼夜",
+      "ctrl.sfx": "8-bit 音效"
     },
     en: {
       "menu.home": "Home",
@@ -116,7 +124,7 @@
       "hero.line1": "Recent papers in Pattern Recognition (2026), IEEE TMM (2024), and IEEE TGRS (2023).",
       "hero.line2": "Tech stack: Python, PyTorch, MATLAB, LaTeX, Overleaf, Docker.",
       "hero.line3": "Motto: Practice Makes Perfect · Keep Learning · Grow Every Day.",
-      "hero.start": "Start Adventure",
+      "hero.start": "Enter",
       "hero.papers": "Research →",
       "hero.next": "Next ▼",
       "hero.cue": "▼ Scroll to explore · Click ground or press A / D to walk",
@@ -124,11 +132,11 @@
       "stage3.title": "Research & Publications",
       "stage3.sub": "Exploring the frontiers of computational spectral imaging · Synced with ORCID",
       "stage4.title": "Notes & Gallery",
-      "stage4.sub": "A collection of life moments, campus memories, and notes.",
+      "stage4.sub": "Notes and moments beyond the papers.",
       "stage5.title": "Let's Connect!",
       "stage5.sub": "Feel free to reach out for collaboration, discussion, or just a chat!",
       "sheet.kicker": "Earthling · Still Alive · Focusing on computational imaging, CASSI & deep unfolding.",
-      "about.profileTitle": "Scholar Profile",
+      "about.profileTitle": "Profile",
       "about.interestsTitle": "Research Interests",
       "about.interestsSub": "Click a topic to inspect details",
       "interest.ci": "Optical coding & computational sensing",
@@ -150,19 +158,19 @@
       "guild.bili": "Bilibili",
       "guild.gh": "GitHub",
       "guild.mail": "Email",
-      "save.flag": "⚑ Save point",
+      "save.flag": "Notes",
       "save.motto": "Practice makes perfect · keep learning · grow every day",
       "save.about": "Full archive",
       "save.mail": "Contact",
-      "nav.11": "1-1 Start",
-      "nav.12": "1-2 File",
-      "nav.13": "1-3 Papers",
-      "nav.14": "1-4 Notes",
-      "quest.bar": "★ Quest briefing",
-      "quest.back": "← Back to 1-4",
-      "quest.backHome": "← Back to Overworld",
-      "contact.boardTitle": "Messenger Post · Talk to Me",
-      "contact.boardSub": "Write your academic inquiry, collaboration idea, or greeting on the parchment below!",
+      "nav.11": "Home",
+      "nav.12": "About",
+      "nav.13": "Research",
+      "nav.14": "Notes",
+      "quest.bar": "Notes",
+      "quest.back": "← Back to notes",
+      "quest.backHome": "← Back to home",
+      "contact.boardTitle": "Contact",
+      "contact.boardSub": "Write about a collaboration, a paper, or just to say hello. You can also email liu_lei_98@163.com.",
       "contact.nameLabel": "Your Name",
       "contact.emailLabel": "Your Email",
       "contact.msgLabel": "Your Message",
@@ -171,13 +179,21 @@
       "quest.complete": "✓ Finish reading (+2 coins)",
       "quest.done": "★ Reward claimed",
       "quest.top": "↑ Top",
-      "toast.save": "⚑ Save point 1-4",
+      "toast.save": "Notes opened",
       "toast.copy": "BibTeX copied",
       "toast.copyfail": "Select the BibTeX and copy it",
       "toast.quest": "★ Quest complete",
       "orcid.loading": "Reading ORCID",
       "orcid.ready": "Synced from ORCID",
-      "orcid.fail": "ORCID unavailable, showing the saved list"
+      "orcid.fail": "ORCID unavailable, showing the saved list",
+      "world.titleSub": "Computational Imaging · Spectral Reconstruction",
+      "world.pressAny": "Press any key or click to enter",
+      "ctrl.move": "Move / Click ground",
+      "ctrl.run": "Run",
+      "ctrl.interact": "Interact / Jump",
+      "ctrl.cam": "Rotate cam / Wheel zoom",
+      "ctrl.time": "Cycle time of day",
+      "ctrl.sfx": "Toggle 8-bit SFX"
     }
   };
 
@@ -235,6 +251,9 @@
       el.textContent = t(el.getAttribute("data-i18n"));
     });
     refreshDynamicCopy();
+    if (window.SPECTRAL_WORLD && typeof window.SPECTRAL_WORLD.refreshLang === "function") {
+      window.SPECTRAL_WORLD.refreshLang();
+    }
     try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
   }
 
@@ -296,6 +315,15 @@
     },
     stage: function () {
       playTone([{ f: 440, d: 0.05 }, { f: 587, d: 0.08 }]);
+    },
+    open: function () {
+      playTone([{ f: 523, d: 0.06 }, { f: 659, d: 0.06 }, { f: 784, d: 0.12 }]);
+    },
+    close: function () {
+      playTone([{ f: 587, d: 0.05 }, { f: 440, d: 0.08 }]);
+    },
+    play: function (name) {
+      if (typeof sfx[name] === "function") sfx[name]();
     }
   };
   window.LEI_SFX = sfx;
@@ -369,9 +397,35 @@
       void heartsBtn.offsetWidth;
       heartsBtn.classList.add("is-heal");
       if (window.LEI_WORLD && window.LEI_WORLD.celebrate) window.LEI_WORLD.celebrate();
+      if (window.SPECTRAL_WORLD && window.SPECTRAL_WORLD.jumpHero) window.SPECTRAL_WORLD.jumpHero();
       sfx.heart();
       showToast("♥ HP FULL · 元气满满！");
     });
+  }
+
+  window.LEI_GAME = {
+    addCoin: function (n, msg) { addCoins(n || 1, msg); },
+    setLang: function (nextLang) {
+      if (nextLang === "en" || nextLang === "zh") {
+        lang = nextLang;
+        applyLang();
+      }
+    }
+  };
+
+  // Bind header stage triggers to 2.5D Spectral World when on home page
+  if (window.SPECTRAL_WORLD) {
+    var ZONE_BY_STAGE = ["home", "about", "research", "gallery", "contact"];
+    var worldNavTriggers = document.querySelectorAll("[data-go-stage]");
+    for (var wt = 0; wt < worldNavTriggers.length; wt++) {
+      worldNavTriggers[wt].addEventListener("click", function (ev) {
+        var idx = parseInt(this.getAttribute("data-go-stage"), 10);
+        if (!isNaN(idx) && ZONE_BY_STAGE[idx]) {
+          ev.preventDefault();
+          window.SPECTRAL_WORLD.teleport(ZONE_BY_STAGE[idx], idx !== 0);
+        }
+      });
+    }
   }
 
   // Mario Question Blocks with flying pixel coin
@@ -1025,11 +1079,11 @@
     // Fallback for regular pages (About / Posts / Contact / Tags)
     if (hudWorld) {
       var p = window.location.pathname || "";
-      if (p.indexOf("/about") === 0) hudWorld.textContent = "ARCHIVE";
-      else if (p.indexOf("/contact") === 0) hudWorld.textContent = "GUILD";
-      else if (p.indexOf("/tags") === 0) hudWorld.textContent = "TAGS";
-      else if (p.indexOf("/category") === 0) hudWorld.textContent = "BOARD";
-      else hudWorld.textContent = "QUEST";
+      if (p.indexOf("/about") === 0) hudWorld.textContent = lang === "en" ? "About" : "关于";
+      else if (p.indexOf("/contact") === 0) hudWorld.textContent = lang === "en" ? "Contact" : "联系";
+      else if (p.indexOf("/tags") === 0) hudWorld.textContent = lang === "en" ? "Tags" : "标签";
+      else if (p.indexOf("/category") === 0) hudWorld.textContent = lang === "en" ? "Notes" : "随笔";
+      else hudWorld.textContent = lang === "en" ? "Notes" : "随笔";
     }
     var warpTopFallback = document.getElementById("warp-top");
     if (warpTopFallback) {
@@ -1106,7 +1160,7 @@
       var href = a.getAttribute("href");
       if (!href || href.charAt(0) === "#" || href.indexOf("mailto:") === 0 || href.indexOf("javascript:") === 0) return;
       if (a.target === "_blank" || a.hasAttribute("download")) return;
-      if (pager && a.hasAttribute("data-go-stage")) return;
+      if ((pager || window.SPECTRAL_WORLD) && a.hasAttribute("data-go-stage")) return;
       try {
         var url = new URL(a.href, window.location.href);
         if (url.origin !== window.location.origin) return;

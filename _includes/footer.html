@@ -13,7 +13,7 @@
 
     {% include links.html %}
 
-    <p class="checkpoint">SAVE POINT · 存档点</p>
+    <p class="checkpoint">Lei Liu</p>
     <p>
       <span>Practice Makes Perfect | Keep Learning | Grow Every Day</span><svg class="love"><use xlink:href="#icon-heart"></use></svg>
     </p>
@@ -54,7 +54,12 @@
 
 <!-- Include the website scripts -->
 <script src="{{ '/assets/js/scripts.min.js' | prepend: site.baseurl }}"></script>
+{% if page.layout == 'home' %}
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="{{ '/assets/js/spectral-world-3d.js' | prepend: site.baseurl }}"></script>
+{% else %}
 <script src="{{ '/assets/js/pixel-world.js' | prepend: site.baseurl }}"></script>
+{% endif %}
 <script src="{{ '/assets/js/pixel-game.js' | prepend: site.baseurl }}"></script>
 
 <!-- Include Google Analytics script -->

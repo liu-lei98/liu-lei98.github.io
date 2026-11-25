@@ -10,8 +10,8 @@ layout: page
       {% include pixel-sprite.html theme="guide" %}
     </div>
     <div class="contact-npc-copy">
-      <h2 data-i18n="contact.boardTitle">{{ site.translations.contact.title | default: "信使驿站 · Talk to Me" }}</h2>
-      <p data-i18n="contact.boardSub">在羊皮纸上写下你的学术探讨、合作意向或日常问候，信使白猫会第一时间送达！你也可以直接发送邮件至 <a href="mailto:liu_lei_98@163.com">liu_lei_98@163.com</a>。</p>
+      <h2 data-i18n="contact.boardTitle">{{ site.translations.contact.title | default: "联系" }}</h2>
+      <p data-i18n="contact.boardSub">欢迎讨论合作、论文，或者随便聊聊。也可以直接写信到 <a href="mailto:liu_lei_98@163.com">liu_lei_98@163.com</a>。</p>
     </div>
   </div>
 
@@ -38,7 +38,7 @@ layout: page
         <span v-if="errors.has('message')" v-cloak>${ errors.first('message') }</span>
 
         <div class="contact-submit-row">
-          <a class="px-btn px-btn-alt" href="{{ site.baseurl }}/#world-contact">← 返回篝火营地</a>
+          <a class="px-btn px-btn-alt" href="{{ site.baseurl }}/#world-contact">← 返回首页</a>
           <button type="submit" class="px-seal-submit">✉ {{ site.translations.contact.submit_btn | default: "寄出信件 · Send" }}</button>
         </div>
       </fieldset>
