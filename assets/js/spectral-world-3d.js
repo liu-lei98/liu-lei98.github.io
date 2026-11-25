@@ -418,6 +418,64 @@
     g.beginPath(); g.arc(32, 32, 11, 0, Math.PI * 2); g.fillStyle = "#fff8d6"; g.fill(); g.stroke();
   });
 
+  function makeSnapshotTex(kind) {
+    return makePixelTex(48, 36, function (g) {
+      if (kind === "hill") {
+        g.fillStyle = "#7ec8f0"; g.fillRect(0, 0, 48, 36);
+        g.fillStyle = "#fde68a"; g.fillRect(32, 5, 8, 8);
+        g.fillStyle = "#3f8f45"; g.fillRect(0, 20, 48, 16);
+        g.fillStyle = "#2f6d38"; g.fillRect(0, 26, 48, 10);
+        g.fillStyle = "#fbcfe8"; g.fillRect(8, 16, 6, 6);
+      } else if (kind === "night") {
+        g.fillStyle = "#1e2a4a"; g.fillRect(0, 0, 48, 36);
+        g.fillStyle = "#f8fafc";
+        g.fillRect(8, 6, 2, 2); g.fillRect(18, 4, 2, 2); g.fillRect(28, 9, 2, 2);
+        g.fillStyle = "#facc15"; g.fillRect(30, 16, 10, 10);
+        g.fillStyle = "#334155"; g.fillRect(0, 28, 48, 8);
+      } else {
+        g.fillStyle = "#fffaf0"; g.fillRect(0, 0, 48, 36);
+        g.fillStyle = "#94a3b8";
+        for (var i = 0; i < 5; i++) g.fillRect(6, 6 + i * 6, i === 4 ? 22 : 36, 2);
+      }
+    });
+  }
+
+  function makeSpectrumTex() {
+    return makePixelTex(48, 64, function (g) {
+      g.fillStyle = "#0f172a";
+      g.fillRect(0, 0, 48, 64);
+      g.fillStyle = "#e2e8f0";
+      g.fillRect(4, 4, 40, 5);
+      var cols = ["#7c3aed", "#2563eb", "#06b6d4", "#22c55e", "#eab308", "#f97316", "#ef4444"];
+      for (var i = 0; i < cols.length; i++) {
+        var bh = 10 + ((i * 7) % 20);
+        g.fillStyle = cols[i];
+        g.fillRect(4 + i * 6, 52 - bh, 4, bh);
+      }
+      g.fillStyle = "#94a3b8";
+      g.fillRect(4, 54, 40, 2);
+    });
+  }
+
+  function makePortraitTex() {
+    return makePixelTex(32, 40, function (g) {
+      g.fillStyle = "#dbeafe";
+      g.fillRect(0, 0, 32, 40);
+      g.fillStyle = "#3262b5";
+      g.fillRect(6, 22, 20, 16);
+      g.fillStyle = "#f7cfa6";
+      g.fillRect(9, 8, 14, 14);
+      g.fillStyle = "#212942";
+      g.fillRect(8, 6, 16, 6);
+      g.fillStyle = "#191f36";
+      g.fillRect(12, 13, 2, 2);
+      g.fillRect(18, 13, 2, 2);
+      g.fillStyle = "#334155";
+      g.fillRect(11, 12, 5, 1);
+      g.fillRect(17, 12, 5, 1);
+    });
+  }
+
   // Sparkling Pixel Water & Waterfall
   var texWater = makePixelTex(64, 64, function (g, w, h) {
     g.fillStyle = "#3489c7";
@@ -515,6 +573,27 @@
       var lR = stepFrame === 2 ? 23 : 24;
       r(7, lL, 4, 5, O); r(8, lL, 2, 3, palette.pants); r(8, lL + 3, 2, 2, "#3b281c");
       r(13, lR, 4, 5, O); r(14, lR, 2, 3, palette.pants); r(14, lR + 3, 2, 2, "#3b281c");
+
+      // Held prop so each host matches their scene
+      if (facing !== "back" && palette.prop === "book") {
+        r(15, 16, 6, 7, O);
+        r(16, 17, 4, 5, "#f8f1dc");
+        r(16, 19, 4, 1, "#3262b5");
+      } else if (facing !== "back" && palette.prop === "paper") {
+        r(14, 15, 8, 8, "#f8fafc");
+        r(15, 16, 6, 1, "#312e81");
+        r(15, 18, 6, 1, "#38bdf8");
+        r(15, 20, 5, 1, "#312e81");
+      } else if (facing !== "back" && palette.prop === "camera") {
+        r(14, 16, 8, 5, O);
+        r(15, 17, 5, 3, "#111827");
+        r(16, 17, 3, 3, "#7dd3fc");
+        r(20, 17, 2, 2, "#e2e8f0");
+      } else if (facing !== "back" && palette.prop === "letter") {
+        r(14, 16, 8, 6, "#fff7ed");
+        r(14, 16, 8, 1, "#fdba74");
+        r(16, 18, 3, 2, "#ef4444");
+      }
     });
   }
 
@@ -661,6 +740,28 @@
   }
   function addBox(w, h, d, mat, x, y, z, cast, recv, parent) {
     return addMesh(new THREE.BoxGeometry(w, h, d), mat, x, y, z, cast, recv, parent);
+  }
+
+  function addPhotoFrame(parent, x, y, z, kind, zoneId) {
+    var frame = addBox(1.45, 1.12, 0.12, matDarkWood, x, y, z, true, true, parent);
+    frame.userData.zoneId = zoneId;
+    clickableLandmarks.push(frame);
+    var pic = addMesh(
+      new THREE.PlaneGeometry(1.12, 0.82),
+      new THREE.MeshBasicMaterial({ map: makeSnapshotTex(kind) }),
+      x, y, z + 0.08, false, false, parent
+    );
+    pic.userData.zoneId = zoneId;
+    clickableLandmarks.push(pic);
+  }
+
+  function addBookStack(parent, x, y, z, zoneId) {
+    var colors = [0x1e3a8a, 0x7c2d12, 0xd4a017, 0x166534, 0x9f1239];
+    for (var i = 0; i < colors.length; i++) {
+      var book = addBox(0.78, 0.14, 0.52, new THREE.MeshStandardMaterial({ color: colors[i], roughness: 0.7 }), x, y + i * 0.15, z, true, true, parent);
+      book.userData.zoneId = zoneId;
+      clickableLandmarks.push(book);
+    }
   }
 
   // Ornamental Stone Balustrade helper
@@ -882,6 +983,23 @@
   cotGlow.position.set(-11.2, 3.4, -2.0);
   worldGroup.add(cotGlow);
   warmPointLights.push({ light: cotGlow, maxIntensity: 3.8 });
+  // South wall faces the camera: portrait and bookshelf mark this as the about house
+  addBox(1.25, 1.5, 0.12, matDarkWood, 0.4, 2.7, 2.72, true, true, cotG);
+  var portrait = addMesh(
+    new THREE.PlaneGeometry(0.95, 1.18),
+    new THREE.MeshBasicMaterial({ map: makePortraitTex() }),
+    0.4, 2.7, 2.82, false, false, cotG
+  );
+  portrait.userData.zoneId = "about";
+  clickableLandmarks.push(portrait);
+  addBox(1.35, 1.9, 0.38, matDarkWood, -1.7, 1.7, 2.78, true, true, cotG);
+  [0xb91c1c, 0x1d4ed8, 0x15803d, 0xd97706, 0x7c3aed].forEach(function (col, i) {
+    addBox(0.16, 1.35, 0.28, new THREE.MeshStandardMaterial({ color: col }), -2.15 + i * 0.22, 1.75, 2.98, true, true, cotG);
+  });
+  addBox(1.25, 0.72, 0.7, matDarkWood, 4.5, 0.72, 1.5, true, true, cotG);
+  var openBook = addBox(0.72, 0.08, 0.5, matIvory, 4.5, 1.12, 1.5, false, false, cotG);
+  openBook.userData.zoneId = "about";
+  clickableLandmarks.push(openBook);
   worldGroup.add(cotG);
   addLanternPost(-10.5, 0.9);
 
@@ -927,6 +1045,15 @@
     addBox(0.85, 2.9, 0.12, new THREE.MeshStandardMaterial({ color: 0x1e3f8a, roughness: 0.65 }), bx, 3.5, 3.22, true, true, towG);
     addBox(0.95, 0.22, 0.16, matGold, bx, 4.95, 3.22, true, true, towG);
   });
+  addBookStack(towG, -2.2, 1.15, 3.7, "research");
+  addBookStack(towG, 2.15, 1.15, 4.15, "research");
+  var spectrumBoard = addMesh(
+    new THREE.PlaneGeometry(1.55, 2.05),
+    new THREE.MeshBasicMaterial({ map: makeSpectrumTex() }),
+    3.9, 3.05, 3.24, false, false, towG
+  );
+  spectrumBoard.userData.zoneId = "research";
+  clickableLandmarks.push(spectrumBoard);
 
   // Central Tall Multi-Tier Observatory Spire
   var spireBase = addMesh(new THREE.CylinderGeometry(2.6, 2.9, 4.6, 8), matIvory, 0, 9.2, 0, true, true, towG);
@@ -993,13 +1120,15 @@
   clickableLandmarks.push(galDome);
   addMesh(new THREE.ConeGeometry(0.28, 1.1, 6), matGold, 0, 7.5, 0, false, false, galG);
 
-  // Painting Easel & Warm Lantern inside Pavilion
-  var easel = addBox(1.8, 1.5, 0.16, matWood, 0, 1.75, 0, true, true, galG);
-  easel.rotation.y = -Math.PI / 5;
-  easel.userData.zoneId = "gallery";
-  clickableLandmarks.push(easel);
-  var art = addBox(1.5, 1.15, 0.2, new THREE.MeshStandardMaterial({ map: texRoseWindow, emissive: 0x38bdf8, emissiveIntensity: 0.25 }), 0, 1.75, 0, false, false, galG);
-  art.rotation.y = -Math.PI / 5;
+  // Pictures and a notebook page, facing the path, so this reads as notes
+  addPhotoFrame(galG, -1.2, 1.75, 2.2, "hill", "gallery");
+  addPhotoFrame(galG, 1.2, 1.75, 2.2, "night", "gallery");
+  addPhotoFrame(galG, 0, 1.6, -0.2, "note", "gallery");
+  addBox(0.14, 1.15, 0.14, matDarkWood, 2.15, 0.85, 1.7, true, true, galG);
+  var cameraBody = addBox(0.55, 0.32, 0.28, matDarkWood, 2.15, 1.5, 1.7, true, true, galG);
+  cameraBody.userData.zoneId = "gallery";
+  clickableLandmarks.push(cameraBody);
+  addMesh(new THREE.CylinderGeometry(0.12, 0.12, 0.16, 8), new THREE.MeshStandardMaterial({ color: 0x38bdf8 }), 2.15, 1.5, 1.9, false, false, galG);
   worldGroup.add(galG);
   addLanternPost(11.4, 0.9);
 
@@ -1027,10 +1156,20 @@
 
   addBox(2.4, 0.44, 0.68, matDarkWood, -2.7, 0.44, 14.2);
   addBox(2.4, 0.44, 0.68, matDarkWood, 2.7, 0.44, 14.2);
-  var mailbox = addBox(0.65, 0.55, 0.85, new THREE.MeshStandardMaterial({ color: 0xdc2626, roughness: 0.45 }), 3.2, 1.22, 11.4);
+  var stall = addBox(2.4, 1.7, 1.4, matWood, -2.9, 0.95, 12.35, true, true);
+  stall.userData.zoneId = "contact";
+  clickableLandmarks.push(stall);
+  addBox(2.8, 0.22, 1.8, matRoofRed, -2.9, 1.9, 12.35, true, true);
+  var mailbox = addBox(1.15, 0.9, 0.7, new THREE.MeshStandardMaterial({ color: 0xdc2626, roughness: 0.45 }), -2.9, 1.2, 13.15);
   mailbox.userData.zoneId = "contact";
   clickableLandmarks.push(mailbox);
-  addBox(0.2, 1.0, 0.2, matDarkWood, 3.2, 0.55, 11.4);
+  addBox(0.7, 0.16, 0.08, matIvory, -2.9, 1.2, 13.54);
+  addBox(2.0, 0.72, 0.85, matDarkWood, 3.2, 0.46, 12.3, true, true);
+  [[2.7, 12.1], [3.25, 12.35], [3.8, 12.05]].forEach(function (p) {
+    var env = addBox(0.46, 0.08, 0.58, matIvory, p[0], 0.88, p[1], false, false);
+    env.userData.zoneId = "contact";
+    clickableLandmarks.push(env);
+  });
 
   // ==========================================================================
   // 7. FOLIAGE (CYPRESSES, BLOSSOM TREES) + DISTANT FLOATING ISLETS & MOUNTAINS
@@ -1166,10 +1305,10 @@
   // NPCs around the island
   var npcSprites = [];
   [
-    { zoneId: "about", x: -11.4, z: -2.4, pal: { hair: "#6b4423", hairHi: "#9a6638", skin: "#f4cca3", coat: "#8c4a2e", shirt: "#fef3c7", accent: "#38bdf8", pants: "#3b2f2f" } },
-    { zoneId: "research", x: 2.3, z: -13.0, pal: { hair: "#e2e8f0", hairHi: "#ffffff", skin: "#f4cca3", coat: "#3730a3", shirt: "#e0e7ff", accent: "#fbbf24", pants: "#1e1b4b", hat: "#312e81" } },
-    { zoneId: "gallery", x: 12.8, z: -2.7, pal: { hair: "#7c2d12", hairHi: "#b45309", skin: "#f4cca3", coat: "#15803d", shirt: "#dcfce7", accent: "#f472b6", pants: "#1f2937" } },
-    { zoneId: "contact", x: -2.2, z: 12.4, pal: { hair: "#334155", hairHi: "#64748b", skin: "#f4cca3", coat: "#b45309", shirt: "#fef3c7", accent: "#f97316", pants: "#292524" } }
+    { zoneId: "about", x: -13.2, z: 1.15, pal: { hair: "#212942", hairHi: "#3d4d7a", skin: "#f7cfa6", coat: "#3262b5", coatHi: "#60a5fa", shirt: "#f8fafc", accent: "#facc15", pants: "#1f2937", glasses: true, prop: "book" } },
+    { zoneId: "research", x: 2.5, z: -12.2, pal: { hair: "#e2e8f0", hairHi: "#ffffff", skin: "#f4cca3", coat: "#f8fafc", coatHi: "#e2e8f0", coatDark: "#cbd5e1", shirt: "#312e81", accent: "#38bdf8", pants: "#1e1b4b", hat: "#1e1b4b", prop: "paper" } },
+    { zoneId: "gallery", x: 13.5, z: 1.7, pal: { hair: "#7c2d12", hairHi: "#b45309", skin: "#f4cca3", coat: "#166534", shirt: "#dcfce7", accent: "#f472b6", pants: "#1f2937", prop: "camera" } },
+    { zoneId: "contact", x: -4.6, z: 13.5, pal: { hair: "#334155", hairHi: "#64748b", skin: "#f4cca3", coat: "#c2410c", shirt: "#ffedd5", accent: "#facc15", pants: "#292524", hat: "#b91c1c", prop: "letter" } }
   ].forEach(function (n) {
     var by = getGroundY(n.x, n.z);
     var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: makeHeroSpriteTex(n.pal, 0, "front"), transparent: true }));
